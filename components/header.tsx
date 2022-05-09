@@ -9,7 +9,7 @@ import { PagesByCategory } from '../common/viwablePages';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { Logo } from './logo';
 
-const Header = ({pages}) => {
+const Header = ({}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
 
   var styles = {

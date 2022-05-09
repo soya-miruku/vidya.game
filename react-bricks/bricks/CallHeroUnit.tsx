@@ -22,9 +22,6 @@ interface CallHeroUnitProps {
   text: string
 }
 
-//=============================
-// Component to be rendered
-//=============================
 const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily }) => {
   return (
     <div className={`${ padding === 'x-large' ? 'py-24 px-44' : padding === 'big' ? 'py-12 px-44' : 'py-2 px-20' }`}>
@@ -42,7 +39,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
             <div className='border-2 py-2 px-4 rounded-2xl border-[#651AB7] '>
               <Text
                 renderBlock={(props) => (
-                  <h1 className={`font-[${fontFamily}] text-true-dark-100 dark:text-white`}>
+                  <h1 className={`font-[${fontFamily ?? 'mono'}] text-true-dark-100 dark:text-white`}>
                     {props.children}
                   </h1>
                 )}
@@ -56,7 +53,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           </div>
           <Text
             renderBlock={(props) => (
-              <h1 className={`text-3xl sm:text-[80px] font-${fontFamily} font-bold text-[${textAlign}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
+              <h1 className={`text-3xl sm:text-[80px] font-${fontFamily ?? 'mono'} font-bold text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
                 {props.children}
               </h1>
             )}
@@ -68,7 +65,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           />
           <RichText
           renderBlock={(props) => (
-            <p className={`text-base font-${fontFamily} text-[${textAlign}] leading-relaxed text-true-dark-100 dark:text-gray-100`}>
+            <p className={`text-base font-${fontFamily ?? 'mono'} text-[${textAlign ?? 'left'}] leading-relaxed text-true-dark-100 dark:text-gray-100`}>
               {props.children}
             </p>
           )}
@@ -93,9 +90,6 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
   )
 }
 
-//=============================
-// Brick Schema
-//=============================
 CallHeroUnit.schema = {
   name: 'call-hero-unit',
   label: 'Call Hero Unit',
