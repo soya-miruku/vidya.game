@@ -1,0 +1,28 @@
+.grid-container { width: 100%; position: relative; bottom: 0; left: 0; margin: 0 auto; }
+
+.grid-container:after { 
+  -webkit-mask-image: -webkit-gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+  mask-image: gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+	transform: perspective(270px) rotateX(10.5deg) scale(2,1) translateZ(0);
+  content: ""; display: block; position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 155%;
+  padding: 1px;
+  -webkit-background-clip: content-box; 
+  -webkit-backface-visibility: hidden;
+  outline: 1px solid transparent;
+  transform-origin: bottom center;
+  will-change: transform; 
+}
+
+.grid-container:after {
+  z-index: -1;
+  background-color: #651AB7;
+  background-position: center bottom;
+  background-size: 110px 50px;
+  background-image: 
+  linear-gradient(to right, #a66de48a 1px, transparent 2px), 
+  linear-gradient(to bottom, #a66de48a 1px, transparent 2px);
+}
+
+.inwards {
+  transform: perspective(200px) rotateX(10.5deg) scale(1,1) translateZ(0);
+}
