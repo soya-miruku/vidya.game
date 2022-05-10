@@ -22,7 +22,3 @@
   linear-gradient(to right, #a66de48a 1px, transparent 2px), 
   linear-gradient(to bottom, #a66de48a 1px, transparent 2px);
 }
-
-/* .inwards {
-  transform: perspective(200px) rotateX(10.5deg) scale(1,1) translateZ(0);
-} */

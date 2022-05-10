@@ -1,14 +1,6 @@
 const defaultTheme = require('tailwindcss/defaultTheme')
 const colors = require('tailwindcss/colors')
 
-const generatePxSize = (size) => {
-  const res = Array.from({ length: size }, (_, i) => {
-    return `${i + 1}px`
-  });
-  console.log({...res})
-  return {...res};
-}
-
 module.exports = {
   content: [
     './pages/**/*.tsx',
@@ -18,18 +10,6 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    divideWidth: {
-      '0': '1px',
-      '1': '2px',
-      '2': '3px',
-      '3': '4px',
-      '4': '5px',
-      '5': '6px',
-      '6': '7px',
-      '7': '8px',
-      '8': '9px',
-      '9': '10px'
-    },
     extend: {
       letterSpacing: {
         'high-wide': '2px'

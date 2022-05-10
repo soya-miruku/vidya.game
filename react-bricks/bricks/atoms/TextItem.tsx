@@ -24,7 +24,7 @@ const TextItem: types.Brick<TextProps> = ({
       <RichText
           renderBlock={(props: any) => (
             <p style={{ 
-              fontSize: `${fontSize}px`,
+              fontSize: `${fontSize ?? 12}px`,
               color: fontColor,
             }} className="text-center" {...props.attributes}>
               {props.children}

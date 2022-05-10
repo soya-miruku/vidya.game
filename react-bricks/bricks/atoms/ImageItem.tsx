@@ -23,8 +23,8 @@ const ImageItem: types.Brick<ImageProps> = ({
   return (
     <Link {...rest}>
       <div style={{
-        width: `${imageWidth}px`,
-        height: `${imageHeight}px`,
+        width: `${imageWidth ?? 100}px`,
+        height: `${imageHeight ?? 100}px`,
       }}>
         <Image propName='image' 
           alt="image"
