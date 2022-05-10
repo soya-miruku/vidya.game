@@ -19,7 +19,7 @@ interface TwoColumnsUnitProps {
 //=============================
 const TwoColumnsUnit: types.Brick<TwoColumnsUnitProps> = ({ padding }) => {
   return (
-    <div className={classNames('text-white w-full h-full min-h-[120px] mx-auto px-6', 'flex flex-row divide-x-2 divide-slate-50 justify-center justify-items-center items-center')}>
+    <div className={classNames('shadow-2xl rounded-lg bg-true-light-200 text-true-dark-200 mb-44 py-12 w-full h-full min-h-[120px] mx-auto px-6', 'flex flex-row divide-x-2 divide-true-dark-100 divide-x-[1px] justify-center justify-items-center items-center')}>
       <div className={classNames('w-1/2', 'flex flex-col items-center')}>
         <Repeater propName='col1Buttons' 
         renderWrapper={(items) => {
