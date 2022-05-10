@@ -6,22 +6,16 @@ import { blockNames } from '../blockNames'
 export interface TextProps {
   text: string
   href: string
-  isTargetBlank: boolean
-  isBigButton: boolean
-  variant?: 'pink' | 'azure'
-  type?: 'solid' | 'outline'
-  padding: 'normal' | 'small'
+  fontSize: number
+  fontColor: string
   className?: string
 }
 
 const TextItem: types.Brick<TextProps> = ({
   text,
   href,
-  isTargetBlank = false,
-  isBigButton = false,
-  variant = 'pink',
-  type = 'solid',
-  padding = 'normale',
+  fontSize,
+  fontColor,
   className,
   ...rest
 }) => {
@@ -29,7 +23,10 @@ const TextItem: types.Brick<TextProps> = ({
     <Link {...rest}>
       <RichText
           renderBlock={(props: any) => (
-            <p className=" text-center" {...props.attributes}>
+            <p style={{ 
+              fontSize: `${fontSize}px`,
+              color: fontColor,
+            }} className="text-center" {...props.attributes}>
               {props.children}
             </p>
           )}
@@ -60,15 +57,30 @@ TextItem.schema = {
   category: 'vidya atoms',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    fontSize: '16',
+    fontSize: 16,
+    fontColor: '#000',
   }),
   sideEditProps: [
     {
       name: 'fontSize',
       label: 'Font size',
       defaultOpen: true,
-      type: types.SideEditPropType.Number
+      type: types.SideEditPropType.Range,
+      rangeOptions: {
+        min: 10,
+        max: 100,
+        step: 1,
+      }
     },
+    {
+      name: 'fontColor',
+      label: 'Font color',
+      defaultOpen: true,
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color,
+      }
+    }
   ],
 }
 

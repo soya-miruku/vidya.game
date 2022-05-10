@@ -7,9 +7,14 @@ import { blockNames } from '../blockNames'
 // Local Types
 //=============================
 type Padding = 'big' | 'small'
+type Rounded = 'xl' | 'lg' | 'sm' | 'xs'
 
 interface TwoColumnsUnitProps {
   padding: Padding
+  rounded: Rounded
+  bgColor: string
+  divideColor: string
+  divideWidth: string
   title: string
   text: string
 }
@@ -17,9 +22,17 @@ interface TwoColumnsUnitProps {
 //=============================
 // Component to be rendered
 //=============================
-const TwoColumnsUnit: types.Brick<TwoColumnsUnitProps> = ({ padding }) => {
+const TwoColumnsUnit: types.Brick<TwoColumnsUnitProps> = ({ padding, rounded, bgColor, divideColor, divideWidth }) => {
   return (
-    <div className={classNames('shadow-2xl rounded-lg bg-true-light-200 text-true-dark-200 mb-44 py-12 w-full h-full min-h-[120px] mx-auto px-6', 'flex flex-row divide-x-2 divide-true-dark-100 divide-x-[1px] justify-center justify-items-center items-center')}>
+    <div style={{
+      backgroundColor: bgColor,
+    }} className={classNames(
+    `${padding === 'big' ? 'py-12' : 'py-2'}`,
+    rounded ? `rounded-${rounded}` : 'rounded-lg',
+    divideColor ? `divide-[${divideColor}]` : 'divide-true-dark-100',
+    divideWidth ? `divide-x-1` : 'divide-x-[1px]',
+    'shadow-2xl mb-44 py-12 w-full h-full min-h-[120px] mx-auto px-6', 
+    'flex flex-row justify-center justify-items-center items-center')}>
       <div className={classNames('w-1/2', 'flex flex-col items-center')}>
         <Repeater propName='col1Buttons' 
         renderWrapper={(items) => {
@@ -86,6 +99,11 @@ TwoColumnsUnit.schema = {
   category: 'TeamOs-Basics',
 
   getDefaultProps: () => ({
+    padding: 'big',
+    rounded: 'xl',
+    bgColor: '#ffffff',
+    divideColor: '#00000',
+    divideWidth: 1,
     col1Buttons: [
       {
         text: 'Button 1',
@@ -167,6 +185,82 @@ TwoColumnsUnit.schema = {
       max: 4
     }
   ],
+  sideEditProps: [
+    {
+      name: 'padding',
+      label: 'Padding',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          {
+            label: 'Big',
+            value: 'big'
+          },
+          {
+            label: 'Small',
+            value: 'small'
+          }
+        ]
+      },
+    },
+    {
+      name: 'rounded',
+      label: 'Rounded',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          {
+            label: 'XLarge',
+            value: 'xl'
+          },
+          {
+            label: 'Large',
+            value: 'lg'
+          },
+          {
+            label: 'Small',
+            value: 'sm'
+          }
+        ]
+      },
+    },
+    {
+      name: 'bgColor',
+      label: 'Background Color',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color,
+      }
+    },
+    {
+      name: 'textColor',
+      label: 'Text Color',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color,
+      }
+    },
+    {
+      name: 'divideColor',
+      label: 'Divider Color',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Color, 
+      }
+    },
+    {
+      name: 'divideWidth',
+      label: 'Divider Width',
+      type: types.SideEditPropType.Range,
+      rangeOptions: {
+        min: 0,
+        max: 10,
+        step: 1
+      }
+    }
+  ]
 }
 
 export default TwoColumnsUnit
