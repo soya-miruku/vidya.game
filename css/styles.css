@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+/* @tailwind utilities; */
 
 @font-face {
   font-family: 'vidya-icons';
@@ -13,6 +16,7 @@
 
 [class^="-"], [class*=" -"] {
   font-family: 'vidya-icons' !important;
+  speak: never;
   font-style: normal;
   font-weight: normal;
   font-variant: normal;
