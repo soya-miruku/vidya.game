@@ -1,5 +1,4 @@
-import { faArrowsUpDown, faBars, faCross, faPlay, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { faBurger, faCloudMoon, faMoon, faSunBright, faSunHaze } from '@fortawesome/pro-regular-svg-icons';
+import { faPlay } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
@@ -113,6 +112,7 @@ const Header = ({}) => {
         styles={styles}
         pageWrapId="page-wrap"
         outerContainerId="outer-container"
+        noTransition
         >
         <div className='w-full'>
           <div className='px-20 py-4 flex w-full flex-wrap justify-between dark:text-white text-true-dark-100'>

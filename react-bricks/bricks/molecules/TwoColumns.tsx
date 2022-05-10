@@ -37,6 +37,14 @@ const TwoColumnsUnit: types.Brick<TwoColumnsUnitProps> = ({ padding }) => {
              </div>
           )
         }}/>
+      <Repeater propName='col1Image' 
+        renderWrapper={(items) => {
+          return (
+            <div className="flex justify-center items-center flex-col sm:flex-row mt-6 space-x-2">
+              {items}
+             </div>
+          )
+        }}/>
       </div>
       <div className={classNames('w-1/2', 'flex flex-col items-center')}>
       <Repeater propName='col2Buttons' 
@@ -49,6 +57,14 @@ const TwoColumnsUnit: types.Brick<TwoColumnsUnitProps> = ({ padding }) => {
         }}/>
 
         <Repeater propName='col2Text' 
+        renderWrapper={(items) => {
+          return (
+            <div className="flex justify-center items-center flex-col sm:flex-row mt-6 space-x-2">
+              {items}
+             </div>
+          )
+        }}/>
+        <Repeater propName='col2Image' 
         renderWrapper={(items) => {
           return (
             <div className="flex justify-center items-center flex-col sm:flex-row mt-6 space-x-2">
@@ -92,7 +108,19 @@ TwoColumnsUnit.schema = {
       {
         text: 'Text 2',
       }
-    ]
+    ],
+    col1Image: [
+      {
+        image: 'https://via.placeholder.com/300x200',
+      },
+      {
+      }
+    ],
+    col2Image: [
+      {
+        image: 'https://via.placeholder.com/300x200',
+      }
+    ],
 
   }),
   repeaterItems: [
@@ -111,6 +139,20 @@ TwoColumnsUnit.schema = {
       max: 2
     },
     {
+      name: 'col1Image',
+      itemType: blockNames.Image,
+      itemLabel: 'Add Image Col1',
+      min: 0,
+      max: 2
+    },
+    {
+      name: 'col2Image',
+      itemType: blockNames.Image,
+      itemLabel: 'Add Image Col2',
+      min: 0,
+      max: 2
+    },
+    {
       name: 'col1Buttons',
       itemType: blockNames.Button,
       itemLabel: 'Column 1 Button',
@@ -125,15 +167,6 @@ TwoColumnsUnit.schema = {
       max: 4
     }
   ],
-  sideEditProps: [
-    {
-      groupName: '',
-      defaultOpen: true,
-      props: [
-
-      ]
-    }
-  ]
 }
 
 export default TwoColumnsUnit

@@ -5,6 +5,7 @@ import CallHeroUnit from './molecules/CallHeroUnit';
 import TwoColumnsUnit from './molecules/TwoColumns';
 import Button from './atoms/ButtonItem';
 import Text from './atoms/TextItem';
+import Image from './atoms/ImageItem';
 
 const bricks: types.Brick<any>[] = [
   ...website, // React Bricks UI
@@ -12,7 +13,8 @@ const bricks: types.Brick<any>[] = [
   CallHeroUnit,
   TwoColumnsUnit,
   Button,
-  Text
+  Text,
+  Image
 ]
 
 export default bricks
