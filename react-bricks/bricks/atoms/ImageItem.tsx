@@ -28,9 +28,11 @@ const ImageItem: types.Brick<ImageProps> = ({
       }}>
         <Image propName='image' 
           alt="image"
+          imageStyle={{
+            width: `${imageWidth ?? 100}px`,
+            height: `${imageHeight ?? 100}px`,
+          }}
           imageClassName={classNames("h-full mb-5 ml-5", 
-          imageWidth ? `w-[${imageWidth ?? 200}px]` : 'w-[200px]',
-          imageHeight ? `h-[${imageHeight ?? 200}px]` : '',
           )}
         >
         </Image>
