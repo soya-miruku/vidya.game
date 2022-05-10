@@ -1,5 +1,7 @@
 import React, { Children } from 'react'
 import { Text, RichText, Image, types } from 'react-bricks/frontend'
+import { classNames } from '../../../common/helpers'
+import { blockNames } from '../blockNames'
 
 //=============================
 // Local Types
@@ -8,7 +10,7 @@ type Padding = 'x-large' | 'big' | 'small'
 type ImagePositions = 'left' | 'right'
 type TextPositions = 'left' | 'center' | 'right'
 type ImageSizes = 'small' | 'medium' | 'large'
-type FontFamily = 'sans-serif' | 'serif' | 'mono' | 'thin'
+type FontFamily = 'sans-serif' | 'serif' | 'mono' | 'thin' | 'Saira SemiCondensed' | 'Nunito' | 'roboto' | 'poppins'
 
 interface CallHeroUnitProps {
   padding: Padding
@@ -24,19 +26,19 @@ interface CallHeroUnitProps {
 
 const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily }) => {
   return (
-    <div className={`${ padding === 'x-large' ? 'py-24 px-44' : padding === 'big' ? 'py-12 px-44' : 'py-2 px-20' }`}>
-      <div className={`flex ${imagePosition === 'right' ? 'flex-row-reverse': ''} flex-auto justify-start items-center`}>
-        <div className='w-1/3'>
+    <div className={classNames(padding === 'x-large' ? 'sm:py-24 py-2 xs:px-44 md:px-24 px-8' : padding === 'big' ? 'sm:py-12 py-1 sm:px-44 px-1' : 'sm:py-2 sm:px-20 px-8', 
+    'w-full flex flex-row justify-center items-center')}>
+      <div className={`flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} flex-auto justify-start items-center`}>
+        <div className='sm:w-1/2 w-full h-full p-4 flex justify-center'>
           <Image
-            propName="icon"
-            alt="Icon"
-            maxWidth={100}
-            imageClassName="w-full mb-5"
+            propName="image"
+            alt="image"
+            imageClassName="w-[400px] h-full mb-5 ml-5"
           />
         </div>
-        <div className='w-2/3 flex flex-col justify-start items-center'>
+        <div className='sm:w-1/2 w-full flex flex-col justify-start items-center'>
           <div className='w-full flex justify-start items-start py-4'>
-            <div className='border-2 py-2 px-4 rounded-2xl border-[#651AB7] '>
+            <div className='border-2 ml-1 py-2 px-4 rounded-xl border-[#651AB7] '>
               <Text
                 renderBlock={(props) => (
                   <h1 className={`font-[${fontFamily ?? 'mono'}] text-true-dark-100 dark:text-white`}>
@@ -53,7 +55,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           </div>
           <Text
             renderBlock={(props) => (
-              <h1 className={`text-3xl sm:text-[80px] font-${fontFamily ?? 'mono'} font-bold text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
+              <h1 className={`text-3xl sm:text-[80px] font-${fontFamily ?? 'mono'} font-black text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
                 {props.children}
               </h1>
             )}
@@ -91,8 +93,9 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
 }
 
 CallHeroUnit.schema = {
-  name: 'call-hero-unit',
+  name: blockNames.CallHeroUnit,
   label: 'Call Hero Unit',
+  category: 'TeamOs-Basics',
   getDefaultProps: () => ({
     padding: 'big',
     textAlign: 'left',
@@ -152,6 +155,10 @@ CallHeroUnit.schema = {
           { value: 'serif', label: 'Serif' },
           { value: 'mono', label: 'Mono' },
           { value: 'thin', label: 'Thin' },
+          { value: 'saira', label: 'Saira SemiCondensed' },
+          { value: 'nunito', label: 'Nunito' },
+          { value: 'roboto', label: 'Roboto' },
+          { value: 'poppins', label: 'Poppins' },
         ],
       },
     }

@@ -1,3 +1,72 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@font-face {
+  font-family: 'vidya-icons';
+  src:  url('/fonts/vidya-icons.eot?3jztue');
+  src:  url('/fonts/vidya-icons.eot?3jztue#iefix') format('embedded-opentype'),
+    url('/fonts/vidya-icons.ttf?3jztue') format('truetype'),
+    url('/fonts/vidya-icons.woff?3jztue') format('woff'),
+    url('/fonts/vidya-icons.svg?3jztue#vidya-icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="-"], [class*=" -"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'vidya-icons' !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.-ic-swap:before {
+  content: "\e900";
+}
+.-ic-swap {
+  content: "";
+}
+
+.-ic-darkmode:before {
+  content: "\e901";
+}
+.-ic-lightmode:before {
+  content: "\e902";
+}
+.-ic-menu:before {
+  content: "\e903";
+}
+.-ic-close:before {
+  content: "\e904";
+}
+.-ic-settings:before {
+  content: "\e905";
+}
+.-ic-up-arrow:before {
+  content: "\e906";
+}
+.-ic-down-arrow:before {
+  content: "\e907";
+}
+.-ic-chevron:before {
+  content: "\e908";
+}
+
+
+@import url('https://fonts.googleapis.com/css2?family=Saira+Semi+Condensed:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,900;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap');
+
+body {
+  font-family: 'Saira Semi Condensed', sans-serif;
+  background-color: white;
+}

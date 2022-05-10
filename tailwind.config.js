@@ -11,17 +11,32 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      letterSpacing: {
+        'high-wide': '2px'
+      },
+      fontFamily: {
+        'saria': ['Saira Semi Condensed', 'Roboto'],
+        'nunito': ['Nunito', 'Roboto'],
+        'poppins': ['Poppins', 'sans-serif'] 
+      },
       transitionProperty: {
         'width': 'width',
+        'margin': 'margin',
       }
+    },
+    boxShadow: {
+      'l-sm': '4px 5px 80px rgba(0, 0, 0, 0.5)'
     },
     colors: {
       ...colors,
       'true-dark': {
-        100: '#0d0d0d'
+        100: '#0d0d0d',
+        200: '#11081F',
+        300: '#211436'
       },
       'true-light': {
-        100: '#fafafa'
+        100: '#fafafa',
+        200: '#FAFBFF'
       },
       'accent-dark': {
         100: '#d3aaff',

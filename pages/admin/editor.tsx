@@ -8,7 +8,9 @@ const AdminEditor: React.FC = () => {
       <Head>
         <title>Editor</title>
       </Head>
-      <Editor />
+      <div className='w-full bg-green-400'>
+        <Editor />
+      </div>
     </Admin>
   )
 }
