@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
 import { isMobileSmall } from "../common/helpers";
 
-export const useDetectIsMobileView = () => {
+export const useDetectIsMobileView = (maxWidth:number=640) => {
   const [isMobileView, setIsMobileView] = useState(false);
-  const MIN_WIDTH = 900;
-
   useEffect(() => {
-    if(innerWidth < MIN_WIDTH) {
+    if(innerWidth < maxWidth) {
       setIsMobileView(true);
     }
 
     const handleResize = () => {
-      if(innerWidth < MIN_WIDTH || isMobileView) {
+      if(innerWidth < maxWidth || isMobileView) {
         setIsMobileView(true);
       } else {
         setIsMobileView(false);

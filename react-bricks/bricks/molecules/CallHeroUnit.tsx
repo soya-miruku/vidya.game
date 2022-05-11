@@ -27,7 +27,7 @@ interface CallHeroUnitProps {
 const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily }) => {
   return (
     <div className={classNames(padding === 'x-large' ? 'sm:py-24 py-2 xs:px-44 md:px-24 px-8' : padding === 'big' ? 'sm:py-12 py-1 sm:px-44 px-1' : 'sm:py-2 sm:px-20 px-8', 
-    'w-full flex flex-row justify-center items-center')}>
+    'w-full flex flex-row justify-center')}>
       <div className='w-full h-full p-2'>
         <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} flex-auto justify-start items-center`)}>
         <div className='sm:w-1/2 w-full h-full p-4 flex justify-center z-10'>

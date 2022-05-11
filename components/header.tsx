@@ -6,12 +6,14 @@ import { push as Menu } from 'react-burger-menu';
 import { classNames } from '../common/helpers';
 import { PagesByCategory } from '../common/viwablePages';
 import { useDarkMode } from '../hooks/useDarkMode';
+import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
 
 const Header = ({}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
+  const { isMobileView } = useDetectIsMobileView();
   const [isOpen, setIsOpen] = useState(false);
-  const WIDTH = 600;
+  const WIDTH = isMobileView ? 300 : 600;
 
   var styles = {
     bmBurgerButton: {
@@ -115,10 +117,10 @@ const Header = ({}) => {
         noTransition
         >
         <div className='w-full'>
-          <div className='px-20 py-4 flex w-full flex-wrap justify-between dark:text-white text-true-dark-100'>
+          <div className='px-14 py-4 flex w-full flex-wrap justify-between dark:text-white text-true-dark-100'>
             {Object.keys(PagesByCategory).map((category, index) => {
               return( 
-                <div className='w-1/2 px-2'>
+                <div className='w-[225px] px-2'>
                   <h1 className='font-bold text-[14px] p-3'>{category.toUpperCase()}</h1>
                   {PagesByCategory[category].map(page => {
                   return (
