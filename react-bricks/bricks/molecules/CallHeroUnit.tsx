@@ -41,7 +41,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
         {/* <div className='absolute bg-primary-100 w-[90%] h-[500px] rounded-xl px-8 py-12 mt-10 mx-auto right-0 left-0 z-0'></div> */}
         <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
           <div className='w-full flex justify-start items-start py-4'>
-            <div className='border-2 ml-1 py-2 px-4 rounded-xl border-[#651AB7] '>
+            <div className='border-2 py-2 px-4 rounded-xl border-[#651AB7] '>
               <Text
                 renderBlock={(props) => (
                   <p className={`font-[${fontFamily ?? 'mono'}] text-true-dark-100 dark:text-white`}>
