@@ -98,9 +98,9 @@ return (
         </div>
       </div>
     </div>
-    <div className="flex justify-between w-full pt-16 text-true-light-200 font-saria">
-      <h1 className="w-2/3 uppercase">Copyright © Team3D 2021</h1>
-      <ul className="flex space-x-7 w-1/3 justify-end">
+    <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center w-full pt-16 text-true-light-200 font-saria">
+      <h1 className="uppercase">Copyright © Team3D 2021</h1>
+      <ul className="flex space-x-7 justify-end py-4">
         <li>
           <a href="/terms" className="text-true-light-200"> TERMS OF SERVICE </a>
         </li>
