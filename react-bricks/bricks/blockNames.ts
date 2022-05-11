@@ -1,7 +1,9 @@
 export enum blockNames {
   CallHeroUnit = 'CallHeroUnit',
   TwoColumnsUnit = 'TwoColumnsUnit',
-  Button = 'Button',
-  Text = 'Text',
-  Image = 'Image'
+  Button = 'VRBButton',
+  Text = 'VRBText',
+  RichText = 'VRBRichText',
+  Image = 'VRBImage',
+  Label = 'VRBLabel',
 }

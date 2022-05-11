@@ -1,6 +1,11 @@
 import React, { Children } from 'react'
-import { Text, RichText, Image, types } from 'react-bricks/frontend'
+import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '../../../common/helpers'
+import { VButton } from '../../../components/VButton'
+import { VLabel } from '../../../components/VLabel'
+import { VText } from '../../../components/VText'
+import { VTitle } from '../../../components/VTitle'
+import VRBText from '../atoms/VRBText'
 import { blockNames } from '../blockNames'
 
 //=============================
@@ -19,12 +24,13 @@ interface CallHeroUnitProps {
   fontFamily: FontFamily
   textAlign: TextPositions
   imageSize: ImageSizes
+  background: string
   image: string
   title: string
   text: string
 }
 
-const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily }) => {
+const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily, background }) => {
   return (
     <div className={classNames(padding === 'x-large' ? 'sm:py-8 py-3 xs:px-40 md:px-24 px-8' : padding === 'big' ? 'sm:py-2 py-1 sm:px-4 px-1' : 'sm:py-1 sm:px-2 px-1', 
     'w-full flex flex-row justify-center', 'prose')}>
@@ -38,29 +44,22 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
             imageClassName="w-[400px] h-full mb-5 ml-2"
           />
         </div>
-        {/* <div className='absolute bg-primary-100 w-[90%] h-[500px] rounded-xl px-8 py-12 mt-10 mx-auto right-0 left-0 z-0'></div> */}
+        { background && <div className='absolute bg-primary-100 w-[90%] rounded-xl px-8 py-12 mt-32 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
         <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
           <div className='w-full flex justify-start items-start py-4'>
-            <div className='border-2 py-2 px-4 rounded-xl border-[#651AB7] '>
-              <Text
-                renderBlock={(props) => (
-                  <p className={`font-[${fontFamily ?? 'mono'}] text-true-dark-100 dark:text-white`}>
-                    {props.children}
-                  </p>
-                )}
-                renderPlaceholder={(props) => (
-                  <span className="opacity-30">{props.children}</span>
-                )}
-                placeholder="Type a title..."
-                propName="badgeText"
-              />
-            </div>
+          <Repeater propName='badgeLabels' renderWrapper={(items) => {
+            return (
+              <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 space-x-2 w-full h-full">
+                {items}
+              </div>
+            )
+          }}>
+
+          </Repeater>
           </div>
           <Text
             renderBlock={(props) => (
-              <h2 className={`font-${fontFamily ?? 'mono'} text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
-                {props.children}
-              </h2>
+              <VTitle className='mb-3' type='h2'>{props.children}</VTitle>
             )}
             renderPlaceholder={(props) => (
               <span className="opacity-30">{props.children}</span>
@@ -69,26 +68,37 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
             propName="title"
           />
           <RichText
-          renderBlock={(props) => (
-            <p className={`text-base font-${fontFamily ?? 'mono'} text-[${textAlign ?? 'left'}] leading-relaxed text-true-dark-100 dark:text-gray-100`}>
-              {props.children}
-            </p>
-          )}
-          placeholder="Type a text..."
-          propName="text"
-          allowedFeatures={[
-            types.RichTextFeatures.Bold,
-            types.RichTextFeatures.Italic,
-            types.RichTextFeatures.Highlight,
-            types.RichTextFeatures.Code,
-            types.RichTextFeatures.Link,
-          ]}
-          renderCode={(props) => (
-            <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
-              {props.children}
-            </code>
-          )}
+            renderBlock={(props) => (
+              <VText size='lg'>
+                {props.children}
+              </VText>
+            )}
+            placeholder="Type a text..."
+            propName="text"
+            allowedFeatures={[
+              types.RichTextFeatures.Bold,
+              types.RichTextFeatures.Italic,
+              types.RichTextFeatures.Highlight,
+              types.RichTextFeatures.Code,
+              types.RichTextFeatures.Link,
+            ]}
+            renderCode={(props) => (
+              <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
+                {props.children}
+              </code>
+            )}
         />
+        <div className='w-full flex justify-start'>
+          <Repeater propName='headerButtons' renderWrapper={(items) => {
+            return (
+              <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 space-x-2 w-full h-full">
+                {items}
+              </div>
+            )
+          }}>
+          </Repeater>
+          </div>
+          {/* <VButton primary>Primary</VButton> */}
         </div>
         </div>
       </div>
@@ -101,6 +111,17 @@ CallHeroUnit.schema = {
   label: 'Call Hero Unit',
   category: 'TeamOs-Basics',
   getDefaultProps: () => ({
+    headerButtons: [
+      {
+        label: 'Button 1',
+      }
+    ],
+    badgeLabels: [
+      {
+        label: 'programs',
+      }
+    ],
+    background: true,
     padding: 'big',
     textAlign: 'left',
     imagePosition: 'right',
@@ -109,7 +130,28 @@ CallHeroUnit.schema = {
     title: 'This is a custom Hero Unit',
     text: "We are a hi-tech web development company committed to deliver great products on time. We love to understand our customers' needs and exceed expectations.",
   }),
+  repeaterItems: [
+    {
+      name: 'headerButtons',
+      itemType: blockNames.Button,
+      itemLabel: 'Button',
+      min: 0,
+      max: 2 
+    },
+    {
+      name: 'badgeLabels',
+      itemType: blockNames.Label,
+      itemLabel: 'Label',
+      min: 0,
+      max: 1
+    }
+  ],
   sideEditProps: [
+    {
+      name: 'background',
+      label: 'Background',
+      type: types.SideEditPropType.Boolean,
+    },
     {
       name: 'padding',
       label: 'Padding',

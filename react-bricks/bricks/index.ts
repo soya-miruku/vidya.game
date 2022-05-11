@@ -5,6 +5,8 @@ import TwoColumnsUnit from './molecules/TwoColumns';
 import Button from './atoms/ButtonItem';
 import Text from './atoms/TextItem';
 import Image from './atoms/ImageItem';
+import VRBText from './atoms/VRBText';
+import VRBLabel from './atoms/VRBLabel';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -12,6 +14,8 @@ const bricks: types.Brick<any>[] = [
   TwoColumnsUnit,
   Button,
   Text,
+  VRBText,
+  VRBLabel,
   Image
 ]
 

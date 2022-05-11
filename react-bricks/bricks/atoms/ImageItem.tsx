@@ -43,7 +43,7 @@ const ImageItem: types.Brick<ImageProps> = ({
 
 ImageItem.schema = {
   name: blockNames.Image,
-  label: 'Text',
+  label: 'Imagfe',
   category: 'vidya atoms',
   hideFromAddMenu: true,
   getDefaultProps: () => ({

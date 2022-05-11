@@ -2,6 +2,7 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Text, types, Link, RichText } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
+import { VText } from '../../../components/VText'
 
 export interface TextProps {
   text: string
@@ -23,12 +24,9 @@ const TextItem: types.Brick<TextProps> = ({
     <Link {...rest}>
       <RichText
           renderBlock={(props: any) => (
-            <p style={{ 
-              // fontSize: `${fontSize ?? 12}px`,
-              // color: fontColor,
-            }} className="text-center" {...props.attributes}>
+            <VText className="text-center" {...props.attributes}>
               {props.children}
-            </p>
+            </VText>
           )}
           placeholder="Type a text..."
           propName="text"
@@ -52,8 +50,8 @@ const TextItem: types.Brick<TextProps> = ({
 }
 
 TextItem.schema = {
-  name: blockNames.Text,
-  label: 'Text',
+  name: blockNames.RichText,
+  label: 'Rich Text',
   category: 'vidya atoms',
   hideFromAddMenu: true,
   getDefaultProps: () => ({

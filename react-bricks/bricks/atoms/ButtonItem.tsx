@@ -2,62 +2,25 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Link, types } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
+import { VButton, ButtonProps } from '../../../components/VButton'
+import { VText } from '../../../components/VText'
 
-export interface ButtonProps {
-  text: string
-  href: string
-  isTargetBlank: boolean
-  isBigButton: boolean
-  variant?: 'pink' | 'azure'
-  type?: 'solid' | 'outline'
-  padding: 'normal' | 'small'
-  className?: string
-}
 
 const Button: types.Brick<ButtonProps> = ({
-  text,
-  href,
-  isTargetBlank = false,
-  isBigButton = false,
-  variant = 'pink',
-  type = 'solid',
-  padding = 'normale',
-  className,
+  children:text,
+  primary=true,
+  special,
+  secondary,
+  onClick,
+  rounded,
   ...rest
 }) => {
-  const target = isTargetBlank
-    ? { target: '_blank', rel: 'noopener noreferrer' }
-    : {}
   return (
-    <Link
-      href={href}
-      {...target}
-      className={classNames(
-        'py-3 mx-2 my-2 rounded-full font-bold leading-none translate-hover-2 hover:shadow-lg transition-all ease-in-out duration-150',
-        padding === 'normal' ? 'px-8' : 'px-5',
-        isBigButton && ' w-3/5 text-center rounded-sm',
-        {
-          'bg-pink-500 text-white hover:bg-pink-600 hover:text-white':
-            variant === 'pink' && type === 'solid',
-        },
-        {
-          'bg-sky-500 text-white hover:bg-sky-600 hover:text-white':
-            variant === 'azure' && type === 'solid',
-        },
-        {
-          'border border-pink-600 text-pink-600 hover:text-pink-600 dark:border-pink-500 dark:text-pink-500':
-            variant === 'pink' && type === 'outline',
-        },
-        {
-          'border border-sky-600 text-sky-600 hover:text-sky-600 dark:border-sky-500 dark:text-sky-500':
-            variant === 'azure' && type === 'outline',
-        },
-        className
-      )}
-      {...rest}
-    >
-      {text}
-    </Link>
+    <VButton primary={primary} special={special} secondary={secondary} rounded={rounded} {...rest}>
+      <VText size='sm'>
+        {text}
+      </VText>
+    </VButton>
   )
 }
 
@@ -66,63 +29,40 @@ Button.schema = {
   label: 'Button',
   category: 'vidya atoms',
   hideFromAddMenu: true,
-  playgroundLinkLabel: 'View source code on Github',
-  playgroundLinkUrl:
-    'https://github.com/ReactBricks/react-bricks-ui/blob/master/src/website/shared/Button.tsx',
-
   getDefaultProps: () => ({
-    text: 'Click me',
-    href: '',
-    isTargetBlank: false,
-    variant: 'azure',
-    type: 'solid',
-    isBigButton: false,
+    children: 'Something',
+    rounded: true,
+    primary: true,
+    special: false,
+    secondary: false,
+
   }),
   sideEditProps: [
     {
-      name: 'text',
+      name: 'children',
       label: 'Button text',
       type: types.SideEditPropType.Text,
     },
     {
-      name: 'isBigButton',
-      label: 'Size button big?',
+      name: 'primary',
+      label: 'Primary',
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: 'variant',
-      label: 'Variant',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Radio,
-        options: [
-          { value: 'azure', label: 'Azure' },
-          { value: 'pink', label: 'Pink' },
-        ],
-      },
-    },
-    {
-      name: 'type',
-      label: 'Type',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Radio,
-        options: [
-          { value: 'solid', label: 'Solid' },
-          { value: 'outline', label: 'Outline' },
-        ],
-      },
-    },
-    {
-      name: 'href',
-      label: 'Link (external or path)',
-      type: types.SideEditPropType.Text,
-    },
-    {
-      name: 'isTargetBlank',
-      label: 'Open in new window',
+      name: 'special',
+      label: 'Special',
       type: types.SideEditPropType.Boolean,
     },
+    {
+      name: 'secondary',
+      label: 'Secondary',
+      type: types.SideEditPropType.Boolean,
+    },
+    {
+      name: 'rounded',
+      label: 'Rounded',
+      type: types.SideEditPropType.Boolean,
+    }
   ],
 }
 
