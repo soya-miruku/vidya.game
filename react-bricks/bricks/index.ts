@@ -7,16 +7,20 @@ import Text from './atoms/TextItem';
 import Image from './atoms/ImageItem';
 import VRBText from './atoms/VRBText';
 import VRBLabel from './atoms/VRBLabel';
+import VRBCustomer from './atoms/VRBCustomer';
+import Customers from './molecules/Customers';
 
 const bricks: types.Brick<any>[] = [
-  // ...website, // React Bricks UI
+  ...website, // React Bricks UI
   CallHeroUnit,
   TwoColumnsUnit,
   Button,
   Text,
   VRBText,
   VRBLabel,
-  Image
+  Image,
+  VRBCustomer,
+  Customers
 ]
 
 export default bricks

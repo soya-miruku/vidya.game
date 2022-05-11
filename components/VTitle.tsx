@@ -6,7 +6,7 @@ type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface TitleProps {
   type?: TitleType;
-  overrideTextColor: boolean;
+  overrideTextColor?: boolean;
   className?: string;
   children: React.ReactNode;
 }

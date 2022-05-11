@@ -6,4 +6,6 @@ export enum blockNames {
   RichText = 'VRBRichText',
   Image = 'VRBImage',
   Label = 'VRBLabel',
+  Customer = 'VRBCustomer',
+  Customers = 'VRBCustomers'
 }
