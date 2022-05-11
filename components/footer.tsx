@@ -1,22 +1,22 @@
 import { Logo } from "./logo"
-import styles from '../css/footer.module.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faInstagram, faReddit, faTelegram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { PagesByCategory } from "../common/viwablePages";
 import Link from "next/link";
 import { classNames } from "../common/helpers";
+import styles from '../css/footer.module.scss';
 
 const Footer = () => {
 return (
 <footer className={classNames('w-full px-4 py-12 h-3/6 bg-transparent overflow-x-clip', styles['grid-container'])}>
     {/* <div className={`${styles['grid-container']}`}></div> */}
 
-  <div className={classNames("max-w-7xl mx-auto flex flex-col justify-start items-center w-full", styles['inwards'])}>
+  <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full", styles['inwards'])}>
     <div className="w-full flex flex-row justify-betweem items-center space-x-4">
-      <div className="w-full">
+      <div className="sm:w-full w-72">
         <Logo enableDarkMode={false}/>
       </div>
-      <div id="social-media-links" className="w-96 text-white space-x-3 sm:text-3xl">
+      <div id="social-media-links" className="sm:w-[28em] w-full text-white sm:space-x-8 space-x-4 text-2xl">
         <a href="https://www.youtube.com/channel/UCoZiBsHIAm_EGQbTGpSrcLA" target='_blank'
           className="text-white hover:text-indigo-700">
           <FontAwesomeIcon icon={faYoutube} />
@@ -39,22 +39,24 @@ return (
         </a>
       </div>
     </div>
-    <div className="flex flex-row w-full">
+    <div className="flex flex-row w-full flex-wrap gap-x-[100px]">
       {Object.keys(PagesByCategory).map((category, i) => {
       return (
-      <div key={category} className="flex flex-col justify-start w-[400px] mt-12">
-        <div className="text-white sm:text-xl font-semibold font-mono">
+      <div key={category} className="flex flex-col justify-start max-w-[320px] px-2 mt-12">
+        <div className="text-true-light-200 sm:text-xl font-bold">
           <h1>{category.toUpperCase()}</h1>
         </div>
         <div>
-          <ul className="mt-3 space-y-3">
+          <ul className="mt-6 space-y-3">
             {PagesByCategory[category].map(page => {
             return (
-            <li key={page.slug} className="text-base font-semibold font-mono">
+            <li key={page.slug} className="text-[14px] tracking-high-wide flex justify-start items-center">
               <Link href={page.active ? page.url : '/soon' }>
-              <a className={classNames('', page.active ? "text-accent-dark-100 hover:text-white" : "text-accent-dark-700"
+              <a className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                 )}>{page.displayName}</a>
               </Link>
+              {!page.active && <span className='text-[8px] py-1 pb-[2.5px] px-2 mx-2 tracking-high-wide text-true-dark-200 dark:bg-true-light-200/50 rounded-md'>SOON</span>}
+
             </li>
             )
             })}
@@ -63,14 +65,14 @@ return (
       </div>
       )
       })}
-      <div className="flex flex-col justify-start w-full mt-12 -ml-4">
-        <div className="text-white sm:text-xl font-semibold font-mono">
+      <div className="flex flex-col justify-start max-w-[320px] sm:px-12 mt-12">
+        <div className="text-true-light-200 sm:text-xl font-bold font-saria">
           <h1>BUY AT</h1>
         </div>
         <div>
-          <ul className="mt-1 space-y-3">
-            <li className="text-base font-semibold font-mono">
-              <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-100 hover:text-white space-x-2 flex justify-start items-center">
+          <ul className="mt-5 -ml-1 space-y-3">
+            <li className="text-[14px] tracking-high-wide font-saria">
+              <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-200 hover:text-white space-x-2 flex justify-start items-center">
                 <span className="w-5 h-5">
                   <svg fill="white" viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
                     <path
@@ -95,6 +97,17 @@ return (
           </ul>
         </div>
       </div>
+    </div>
+    <div className="flex justify-between w-full pt-16 text-true-light-200 font-saria">
+      <h1 className="w-2/3 uppercase">Copyright © Team3D 2021</h1>
+      <ul className="flex space-x-7 w-1/3 justify-end">
+        <li>
+          <a href="/terms" className="text-true-light-200"> TERMS OF SERVICE </a>
+        </li>
+        <li>
+          <a href="/policy" className="text-true-light-200"> PRIVACY POLICY </a>
+        </li>
+      </ul>
     </div>
   </div>
 </footer>

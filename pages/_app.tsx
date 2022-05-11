@@ -3,7 +3,7 @@ import { ReactBricks } from 'react-bricks/frontend'
 import type { AppProps } from 'next/app'
 import config from '../react-bricks/config'
 
-import '../css/styles.css'
+import '../css/styles.scss'
 import { useDarkMode } from '../hooks/useDarkMode'
 import { ThemeProvider } from '../common/providers/ThemeProvider'
 

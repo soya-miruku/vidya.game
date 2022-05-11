@@ -15,10 +15,10 @@
 
 .grid-container:after {
   z-index: -1;
-  background-color: #651AB7;
+  @apply bg-primary-100;
   background-position: center bottom;
-  background-size: 110px 50px;
+  background-size: 100px 30px;
   background-image: 
-  linear-gradient(to right, #a66de48a 1px, transparent 2px), 
-  linear-gradient(to bottom, #a66de48a 1px, transparent 2px);
+  linear-gradient(to right, #401F68 1px, transparent 1px), 
+  linear-gradient(to bottom, #401F68 1px, transparent 1px);
 }
