@@ -1,12 +1,13 @@
 import { Logo } from "./logo"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDiscord, faInstagram, faReddit, faTelegram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { PagesByCategory } from "../common/viwablePages";
 import Link from "next/link";
 import { classNames } from "../common/helpers";
 import styles from '../css/footer.module.scss';
+import { useDetectIsMobileView } from "../hooks/useDetectIsMobileView";
+import { SocialLinks } from "./socialLinks";
 
 const Footer = () => {
+  const { isMobileView } = useDetectIsMobileView();
 return (
 <footer className={classNames('w-full px-4 py-12 h-3/6 bg-transparent overflow-x-clip', styles['grid-container'])}>
     {/* <div className={`${styles['grid-container']}`}></div> */}
@@ -16,28 +17,7 @@ return (
       <div className="sm:w-full w-72">
         <Logo enableDarkMode={false}/>
       </div>
-      <div id="social-media-links" className="sm:w-[28em] w-full text-white sm:space-x-8 space-x-4 text-2xl">
-        <a href="https://www.youtube.com/channel/UCoZiBsHIAm_EGQbTGpSrcLA" target='_blank'
-          className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faYoutube} />
-        </a>
-        <a href="https://www.discord.gg/team3d" target='_blank' className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faDiscord} />
-        </a>
-        <a href="https://www.reddit.com/r/VIDYAbyTeam3D/" target='_blank' className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faReddit} />
-        </a>
-        <a href="http://t.me/Team3D_Official" target='_blank' className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faTelegram} />
-        </a>
-        <a href="https://twitter.com/Team3D_Official" target='_blank' className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faTwitter} />
-        </a>
-        <a href="http://instagram.com/vidya.games_official/" target='_blank'
-          className="text-white hover:text-indigo-700">
-          <FontAwesomeIcon icon={faInstagram} />
-        </a>
-      </div>
+      {!isMobileView && <SocialLinks />}
     </div>
     <div className="flex flex-row w-full flex-wrap gap-x-[100px]">
       {Object.keys(PagesByCategory).map((category, i) => {
@@ -98,9 +78,10 @@ return (
         </div>
       </div>
     </div>
-    <div className="flex sm:flex-row flex-col sm:justify-between justify-center items-center w-full pt-16 text-true-light-200 font-saria">
+    <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-true-light-200 font-saria">
+      {isMobileView && <div> <SocialLinks /> </div>}
       <h1 className="uppercase">Copyright © Team3D 2021</h1>
-      <ul className="flex space-x-7 justify-end py-4">
+      <ul className="flex space-x-7 justify-end">
         <li>
           <a href="/terms" className="text-true-light-200"> TERMS OF SERVICE </a>
         </li>
