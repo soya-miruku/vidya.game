@@ -17,7 +17,7 @@ const Button: types.Brick<ButtonProps> = ({
 }) => {
   return (
     <VButton primary={primary} special={special} secondary={secondary} rounded={rounded} {...rest}>
-      <VText size='sm'>
+      <VText size='sm' overrideTextColor={true}>
         {text}
       </VText>
     </VButton>

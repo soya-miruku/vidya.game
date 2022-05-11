@@ -24,7 +24,7 @@ interface CallHeroUnitProps {
   fontFamily: FontFamily
   textAlign: TextPositions
   imageSize: ImageSizes
-  background: string
+  background: boolean
   image: string
   title: string
   text: string
@@ -35,13 +35,13 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
     <div className={classNames(padding === 'x-large' ? 'sm:py-8 py-3 xs:px-40 md:px-24 px-8' : padding === 'big' ? 'sm:py-2 py-1 sm:px-4 px-1' : 'sm:py-1 sm:px-2 px-1', 
     'w-full flex flex-row justify-center', 'prose')}>
       <div className='w-full h-full p-2'>
-        <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} flex-auto justify-start items-center`)}>
+        <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-end items-center`)}>
         <div className='sm:w-1/2 w-full h-full p-[30px] flex justify-center z-10'>
           <Image
             propName="image"
             alt="image"
             containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
-            imageClassName="w-[400px] h-full mb-5 ml-2"
+            imageClassName="h-full mb-5 ml-2"
           />
         </div>
         { background && <div className='absolute bg-primary-100 w-[90%] rounded-xl px-8 py-12 mt-32 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
@@ -59,7 +59,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           </div>
           <Text
             renderBlock={(props) => (
-              <VTitle className='mb-3' type='h2'>{props.children}</VTitle>
+              <VTitle overrideTextColor={background} className='mb-3' type='h2'>{props.children}</VTitle>
             )}
             renderPlaceholder={(props) => (
               <span className="opacity-30">{props.children}</span>
@@ -69,7 +69,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           />
           <RichText
             renderBlock={(props) => (
-              <VText size='lg'>
+              <VText overrideTextColor={background} size='lg' className='mt-4'>
                 {props.children}
               </VText>
             )}
