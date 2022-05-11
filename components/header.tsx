@@ -76,7 +76,7 @@ const Header = ({}) => {
           </a>
         </Link>
       </div>
-        <div className='flex justify-center items-center space-x-7'>
+        <div className='flex justify-center items-center sm:space-x-7 space-x-2'>
           <div className=''>
             <button className='group text-white bg-gradient-to-r from-accent-dark-200 to-accent-light-100 py-3 px-10 rounded-[10px] font-normal shadow-md' role='group'>       
               <div className='flex flex-row justify-center items-start animate-pulse'>
@@ -90,11 +90,11 @@ const Header = ({}) => {
             </button>
           </div>
           <div>
-            <button className="shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
+            <button className="hidden sm:block shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
             </button>
           </div>
           <div>
-            <button onClick={toggleMode} className={classNames("shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+            <button onClick={toggleMode} className={classNames("hidden sm:block shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
             </button>
           </div>
           <Menu
