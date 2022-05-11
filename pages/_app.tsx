@@ -12,7 +12,6 @@ const Init = ({Component, pageProps}) => {
 
   useEffect(() => {
     const html = document.querySelector("html");
-    console.log('isdarkmode', isDarkMode);
     if (isDarkMode) {
       html.classList.add('dark')
     } else {

@@ -8,6 +8,7 @@ import { PagesByCategory } from '../common/viwablePages';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
+import { VButton } from './VButton';
 
 const Header = ({}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
@@ -80,16 +81,16 @@ const Header = ({}) => {
       </div>
         <div className='flex justify-center items-center sm:space-x-7 space-x-2'>
           <div className=''>
-            <button className='group text-white bg-gradient-to-r from-accent-dark-200 to-accent-light-100 py-3 px-10 rounded-[10px] font-normal shadow-md' role='group'>       
+            <VButton special className='group shadow-md' role='group'>       
               <div className='flex flex-row justify-center items-start animate-pulse'>
                 <div className='text-lg'>
                   Play
                 </div>
                 <div className='group-hover:opacity-100 ml-1 opacity-0 ease-in duration-400 transition-all'>
-                  <FontAwesomeIcon className='group-hover:right-84 absolute w-6 h-6 right-80 transition-all duration-700 mt-[2px]' icon={faPlay}/>
+                  <FontAwesomeIcon className='absolute w-6 h-6 transition-all duration-700 mt-[2px]' icon={faPlay}/>
                 </div>
               </div>
-            </button>
+            </VButton>
           </div>
           <div>
             <button className="hidden sm:block shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">

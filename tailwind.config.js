@@ -1,6 +1,9 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
   content: [
     './pages/**/*.tsx',
     './components/**/*.tsx',
@@ -10,6 +13,65 @@ module.exports = {
   darkMode: 'class',
   theme: {
     extend: {
+      typography: {
+        DEFAULT: {
+          css: {
+            margin: '0 auto',
+            padding: '0',
+            'max-width': '100%',
+            'color': colors.gray['100'],
+            h1: {
+              'font-weight': 900,
+              'font-size': '80px',
+              'line-height': '80px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            h2: {
+              'font-weight': 900,
+              'font-size': '60px',
+              'line-height': '60px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            h3: {
+              'font-weight': 900,
+              'font-size': '45px',
+              'line-height': '45px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            h4: {
+              'font-weight': 900,
+              'font-size': '32px',
+              'line-height': '32px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            h5: {
+              'font-weight': 900,
+              'font-size': '20px',
+              'line-height': '20px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            h6: {
+              'font-weight': 900,
+              'font-size': '14px',
+              'line-height': '14px',
+              'text-transform': 'uppercase',
+              'margin-top': 0,
+            },
+            p: {
+              'font-size': '14px',
+              'line-height': '22px',
+              'letter-spacing': '2px',
+              'margin-top': 0,
+              'margin-bottom': 0,
+            }
+          }
+        }
+      },
       letterSpacing: {
         'high-wide': '2px'
       },

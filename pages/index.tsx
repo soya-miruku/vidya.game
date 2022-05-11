@@ -5,9 +5,6 @@ import {
   fetchPage,
   cleanPage,
   types,
-  fetchPages,
-  usePagesPublic,
-  usePages
 } from 'react-bricks/frontend'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
@@ -36,11 +33,6 @@ const Home: React.FC<HomeProps> = ({ page, error }) => {
   const {isDarkMode, toggleMode} = useDarkMode();
   
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-
-  useEffect(()=>{
-
-    console.log('lol just checking rendering amount')
-  }, [isDarkMode])
 
   return (
     <Layout displayCallout={true}>
