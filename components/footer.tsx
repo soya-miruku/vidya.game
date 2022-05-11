@@ -22,7 +22,7 @@ return (
     <div className="flex flex-row w-full flex-wrap gap-x-[100px]">
       {Object.keys(PagesByCategory).map((category, i) => {
       return (
-      <div key={category} className="flex flex-col justify-start w-[160px] px-2 mt-12">
+      <div key={category} className="flex flex-col justify-start w-[130px] px-2 mt-12">
         <div className="text-true-light-200 sm:text-xl font-bold">
           <h1>{category.toUpperCase()}</h1>
         </div>
@@ -45,7 +45,7 @@ return (
       </div>
       )
       })}
-      <div className="flex flex-col justify-start w-[160px] mt-12">
+      <div className="flex flex-col justify-start w-[130px] mt-12">
         <div className="text-true-light-200 sm:text-xl font-bold font-saria">
           <h1>BUY AT</h1>
         </div>

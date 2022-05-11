@@ -25,14 +25,14 @@ const ImageItem: types.Brick<ImageProps> = ({
       <div style={{
         width: `${imageWidth ?? 100}px`,
         height: `${imageHeight ?? 100}px`,
-      }}>
+      }} className="max-w-[130px] max-h-[130px] sm:max-w-[350px] sm:max-h-[350px]">
         <Image propName='image' 
           alt="image"
           imageStyle={{
             width: `${imageWidth ?? 100}px`,
             height: `${imageHeight ?? 100}px`,
           }}
-          imageClassName={classNames("h-full mb-5 ml-5", 
+          imageClassName={classNames("h-full mb-5 max-w-[130px] max-h-[130px] sm:max-w-[350px] sm:max-h-[350px]", 
           )}
         >
         </Image>
@@ -59,8 +59,8 @@ ImageItem.schema = {
       defaultOpen: true,
       type: types.SideEditPropType.Range,
       rangeOptions: {
-        min: 100,
-        max: 1000,
+        min: 50,
+        max: 350,
         step: 10,
       },
     },
@@ -70,8 +70,8 @@ ImageItem.schema = {
       defaultOpen: true,
       type: types.SideEditPropType.Range,
       rangeOptions: {
-        min: 100,
-        max: 1000,
+        min: 50,
+        max: 350,
         step: 10,
       },
     }

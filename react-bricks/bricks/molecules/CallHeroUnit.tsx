@@ -26,20 +26,20 @@ interface CallHeroUnitProps {
 
 const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imagePosition, fontFamily }) => {
   return (
-    <div className={classNames(padding === 'x-large' ? 'sm:py-24 py-2 xs:px-44 md:px-24 px-8' : padding === 'big' ? 'sm:py-12 py-1 sm:px-44 px-1' : 'sm:py-2 sm:px-20 px-8', 
+    <div className={classNames(padding === 'x-large' ? 'sm:py-8 py-3 xs:px-40 md:px-24 px-8' : padding === 'big' ? 'sm:py-2 py-1 sm:px-4 px-1' : 'sm:py-1 sm:px-2 px-1', 
     'w-full flex flex-row justify-center', 'prose')}>
       <div className='w-full h-full p-2'>
         <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} flex-auto justify-start items-center`)}>
-        <div className='sm:w-1/2 w-full h-full p-4 flex justify-center z-10'>
+        <div className='sm:w-1/2 w-full h-full p-[30px] flex justify-center z-10'>
           <Image
             propName="image"
             alt="image"
-            imageClassName="w-[400px] h-full mb-5 ml-5"
+            containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
+            imageClassName="w-[400px] h-full mb-5 ml-2"
           />
         </div>
-        {/* <h1>HELLO THERE MY FRIENDS</h1> */}
         {/* <div className='absolute bg-primary-100 w-[90%] h-[500px] rounded-xl px-8 py-12 mt-10 mx-auto right-0 left-0 z-0'></div> */}
-        <div className='sm:w-1/2 w-full flex flex-col justify-start items-center z-10'>
+        <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
           <div className='w-full flex justify-start items-start py-4'>
             <div className='border-2 ml-1 py-2 px-4 rounded-xl border-[#651AB7] '>
               <Text
@@ -58,7 +58,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ padding, textAlign, imag
           </div>
           <Text
             renderBlock={(props) => (
-              <h2 className={`sm:text-[80px] font-${fontFamily ?? 'mono'} font-black text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
+              <h2 className={`font-${fontFamily ?? 'mono'} text-[${textAlign ?? 'left'}] text-true-dark-100 dark:text-white leading-tight mb-3`}>
                 {props.children}
               </h2>
             )}
