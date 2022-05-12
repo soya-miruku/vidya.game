@@ -3,27 +3,28 @@ import classNames from 'classnames'
 import { Text, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '../../../components/VText'
+import { TitleType, VTitle } from '../../../components/VTitle'
 
-export interface VRBTextProps {
+export interface VRBTitleProps {
   propName: string,
-  size: 'sm' | 'md' | 'lg'
-  className?: string
+  type: TitleType
   overrideTextColor?: boolean
+  className?: string
 }
 
-const VRBText: types.Brick<VRBTextProps> = ({
-  size,
+const VRBTitle: types.Brick<VRBTitleProps> = ({
+  type,
+  overrideTextColor,
   propName,
   className,
-  overrideTextColor,
   ...rest
 }) => {
   return (
     <Text
       renderBlock={(props) => (
-        <VText overrideTextColor={overrideTextColor} size={size} className={className}>
+        <VTitle overrideTextColor={overrideTextColor} type={type} className={className}>
           {props.children}
-        </VText>
+        </VTitle>
       )}
       renderPlaceholder={(props) => (
         <span className="opacity-30">{props.children}</span>
@@ -34,31 +35,34 @@ const VRBText: types.Brick<VRBTextProps> = ({
   )
 }
 
-VRBText.schema = {
-  name: blockNames.Text,
+VRBTitle.schema = {
+  name: blockNames.Title,
   label: 'Text',
   category: 'vidya atoms',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
-    size: 'sm',
+    type: 'h2',
     overrideTextColor: false
   }),
   sideEditProps: [
     {
-      name: 'size',
-      label: 'Font Size',
+      name: 'type',
+      label: 'Heading Type',
       defaultOpen: true,
       type: types.SideEditPropType.Select,
       selectOptions: {
         display: types.OptionsDisplay.Select,
         options: [
-          { label: 'Small', value: 'sm' },
-          { label: 'Medium', value: 'md' },
-          { label: 'Large', value: 'lg' },
+          { label: 'H1', value: 'h1' },
+          { label: 'H2', value: 'h2' },
+          { label: 'H3', value: 'h3' },
+          { label: 'H4', value: 'h4' },
+          { label: 'H5', value: 'h5' },
+          { label: 'H6', value: 'h6' },
         ],
       }
     }
   ],
 }
 
-export default VRBText
+export default VRBTitle

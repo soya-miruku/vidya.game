@@ -3,10 +3,10 @@ import classNames from 'classnames'
 
 import { Repeater, types } from 'react-bricks/frontend'
 import {blockNames} from '../blockNames'
-import { bgColors } from '../colors'
+import { bgColors } from '../Shared/colors'
 import Section, { Border } from '../Layout/Section'
 import Container, { Size } from '../Layout/Container'
-import { LayoutProp } from '../LayoutProps'
+import { LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '../../../components/VTitle'
 
 export interface CustomersProps {

@@ -7,9 +7,9 @@ import { VText } from '../../../components/VText'
 import { VTitle } from '../../../components/VTitle'
 import VRBText from '../atoms/VRBText'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../colors';
+import { bgColors } from '../Shared/colors';
 import Section, {Border} from '../Layout/Section';
-import { LayoutProp } from '../LayoutProps';
+import { LayoutProp } from '../Shared/LayoutProps';
 
 //=============================
 // Local Types
@@ -51,7 +51,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
               imageClassName="h-full mb-5 ml-2"
             />
           </div>
-          { background && <div className='absolute bg-primary-100 w-[90%] rounded-xl px-8 py-12 mt-32 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
+          { background && <div className='absolute bg-primary-100 w-[90%] rounded-xl px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
           <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
             <div className='w-full flex justify-start items-start py-4'>
             <Repeater propName='badgeLabels' renderWrapper={(items) => {
@@ -115,9 +115,9 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
 }
 
 CallHeroUnit.schema = {
-  name: blockNames.CallHeroUnit,
-  label: 'Call Hero Unit',
-  category: 'TeamOs-Basics',
+  name: blockNames.CallHeroImage,
+  label: 'Call Hero Image Unit',
+  category: 'TeamOs-Molecules',
   getDefaultProps: () => ({
     bg: {
       color: '#',
@@ -127,7 +127,7 @@ CallHeroUnit.schema = {
     borderBottom: 'none',
     headerButtons: [
       {
-        label: 'Button 1',
+        children: 'Button 1',
       }
     ],
     badgeLabels: [
@@ -135,7 +135,7 @@ CallHeroUnit.schema = {
         label: 'programs',
       }
     ],
-    background: true,
+    background: false,
     padding: 'big',
     textAlign: 'left',
     imagePosition: 'right',

@@ -6,7 +6,7 @@ import { VButton, ButtonProps } from '../../../components/VButton'
 import { VText } from '../../../components/VText'
 
 
-const Button: types.Brick<ButtonProps> = ({
+const VRBButton: types.Brick<ButtonProps> = ({
   children:text,
   primary=true,
   special,
@@ -16,15 +16,17 @@ const Button: types.Brick<ButtonProps> = ({
   ...rest
 }) => {
   return (
-    <VButton primary={primary} special={special} secondary={secondary} rounded={rounded} {...rest}>
-      <VText size='sm' overrideTextColor={true}>
-        {text}
-      </VText>
-    </VButton>
+    <Link {...rest}>
+      <VButton primary={primary} special={special} secondary={secondary} rounded={rounded}>
+        <VText size='sm' overrideTextColor={true}>
+          {text}
+        </VText>
+      </VButton>
+    </Link>
   )
 }
 
-Button.schema = {
+VRBButton.schema = {
   name: blockNames.Button,
   label: 'Button',
   category: 'vidya atoms',
@@ -66,4 +68,4 @@ Button.schema = {
   ],
 }
 
-export default Button
+export default VRBButton

@@ -5,7 +5,7 @@ export interface ButtonProps {
   primary?: boolean;
   special?: boolean;
   secondary?: boolean;
-  onClick?: () => void;
+  onClick?: any;
   rounded?: boolean;
   className?: string;
   children?: any;

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { Text, types, } from 'react-bricks/frontend'
+import { Link, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '../../../components/VText'
 import { VLabel } from '../../../components/VLabel'
@@ -21,11 +21,13 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
   ...rest
 }) => {
   return (
-    <VLabel className={className} secondary={secondary} {...rest}>
-      <VRBText propName={blockNames.Label} size="sm" >
-        {label}
-      </VRBText>
-    </VLabel>
+    <Link {...rest}>
+      <VLabel className={className} secondary={secondary}>
+        <VRBText propName={blockNames.Label} size="sm" >
+          {label}
+        </VRBText>
+      </VLabel>
+    </Link>
   )
 }
 

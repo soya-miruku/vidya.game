@@ -2,7 +2,7 @@ import React from 'react';
 
 import { classNames } from "../common/helpers"
 
-type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
 
 interface TitleProps {
   type?: TitleType;

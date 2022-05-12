@@ -19,13 +19,27 @@ module.exports = {
             margin: '0 auto',
             padding: '0',
             'max-width': '100%',
+            'text-decoration': 'none',
             'color': colors.gray['100'],
+            img: {
+              'margin-top' : '0',
+              'margin-bottom' : '0',
+            },
+            a: {
+              'text-decoration': 'none',
+              'font-size': '14px',
+              'line-height': '22px',
+              'letter-spacing': '2px',
+              'margin-top': 0,
+              'margin-bottom': 0,
+            },
             h1: {
               'font-weight': 900,
               'font-size': '80px',
               'line-height': '80px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
             },
             h2: {
               'font-weight': 900,
@@ -33,6 +47,9 @@ module.exports = {
               'line-height': '60px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
+              'text-decoration': 'none',
+              'border': 'none'
             },
             h3: {
               'font-weight': 900,
@@ -40,6 +57,7 @@ module.exports = {
               'line-height': '45px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
             },
             h4: {
               'font-weight': 900,
@@ -47,6 +65,7 @@ module.exports = {
               'line-height': '32px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
             },
             h5: {
               'font-weight': 900,
@@ -54,6 +73,7 @@ module.exports = {
               'line-height': '20px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
             },
             h6: {
               'font-weight': 900,
@@ -61,6 +81,7 @@ module.exports = {
               'line-height': '14px',
               'text-transform': 'uppercase',
               'margin-top': 0,
+              'margin-bottom': 0,
             },
             p: {
               'font-size': '14px',

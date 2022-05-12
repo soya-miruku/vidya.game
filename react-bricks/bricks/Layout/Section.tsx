@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { bgColors } from '../colors'
+import { bgColors } from '../Shared/colors'
 
 export type Border = 'none' | 'full' | 'boxed'
 

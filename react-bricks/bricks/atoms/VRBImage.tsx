@@ -4,44 +4,48 @@ import { types, Link, Image } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 
 export interface ImageProps {
-  image: string
-  imageWidth: number
-  imageHeight: number
-  padding: 'normal' | 'small'
+  image?: string
+  imageWidth?: number | string
+  propName: string
+  imageHeight?: number | string
+  imageClassName?: string
+  containerClassName?: string
+  padding?: 'normal' | 'small'
   className?: string
 }
 
-const ImageItem: types.Brick<ImageProps> = ({
+const VRBImage: types.Brick<ImageProps> = ({
   image,
   imageWidth,
   imageHeight,
   padding = 'normal',
   className,
+  imageClassName,
+  propName,
+  containerClassName,
   ...rest
 }) => {
-  console.log(imageWidth)
   return (
     <Link {...rest}>
-      <div style={{
-        width: `${imageWidth ?? 100}px`,
-        height: `${imageHeight ?? 100}px`,
-      }} className="max-w-[130px] max-h-[130px] sm:max-w-[350px] sm:max-h-[350px]">
-        <Image propName='image' 
+        <Image propName={propName || 'image'} 
           alt="image"
-          imageStyle={{
-            width: `${imageWidth ?? 100}px`,
-            height: `${imageHeight ?? 100}px`,
-          }}
-          imageClassName={classNames("h-full mb-5 max-w-[130px] max-h-[130px] sm:max-w-[350px] sm:max-h-[350px]", 
-          )}
+          containerClassName={containerClassName}
+          imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
         >
         </Image>
-      </div>
+      {/* <div 
+      style={{
+        width: `${ typeof(imageWidth) === 'string' ? `${imageWidth}` : `${imageWidth ?? 100}px`}`,
+        height: `${ typeof(imageHeight) === 'string' ? `${imageHeight}` : `${imageHeight ?? 100}px`}`,
+      }} 
+      className="w-full h-full flex justify-end z-10">
+
+      </div> */}
       </Link>
   )
 }
 
-ImageItem.schema = {
+VRBImage.schema = {
   name: blockNames.Image,
   label: 'Imagfe',
   category: 'vidya atoms',
@@ -78,4 +82,4 @@ ImageItem.schema = {
   ],
 }
 
-export default ImageItem
+export default VRBImage

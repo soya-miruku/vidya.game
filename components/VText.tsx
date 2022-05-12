@@ -2,7 +2,7 @@ import React from 'react';
 
 import { classNames } from "../common/helpers"
 
-type TextSize = "sm" | "md" | "lg" | "xl";
+export type TextSize = "sm" | "md" | "lg" | "xl";
 
 interface TextProps {
   size?: TextSize;
