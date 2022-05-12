@@ -14,7 +14,7 @@ export interface SortableItemProps {
 export interface SortableListComponentProps {
   initialItems: SortableItemProps[],
   props: any,
-  itemProps: [any]
+  itemProps: any
 }
 
 export const SortableListComponent: React.FC<SortableListComponentProps> = ({initialItems, itemProps, props}) => {

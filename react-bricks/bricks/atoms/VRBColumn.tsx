@@ -61,7 +61,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, overrideTextColor, badg
       <Column className={classNames('text-white flex flex-wrap justify-start space-x-2 items-center no-underline space-y-8 pt-[10px] px-[25px] w-full h-full')}>
         {renderItems.sort((a, b) => a.order - b.order).filter(v=>v.show).map((item, index) =>
          <div className={classNames(item.inline ? 'w-full' : '', 'flex flex-row items-center justify-start')} key={`${index}`}>{(item as any).content}</div>)}
-        {((items || getColumnItems()).every(v=>!v.show)) && <div className='w-52 h-52 bg-transparent'></div>}
+        {((items as any || getColumnItems()).every(v=>!v.show)) && <div className='w-52 h-52 bg-transparent'></div>}
       </Column>
     </Link>
   )
