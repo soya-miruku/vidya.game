@@ -160,6 +160,9 @@ module.exports = {
       'primary': {
         '100': '#651AB7',
       },
+      'secondary': {
+        '100': '#C7CFFF'
+      },
       'true-dark': {
         100: '#0d0d0d',
         200: '#11081F',

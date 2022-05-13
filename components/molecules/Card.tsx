@@ -19,9 +19,10 @@ export interface ICardProps {
   center?: boolean;
   roundImage?: boolean;
   sameType?: boolean;
+  bordered?: boolean;
 }
 
-export const Card: React.FC<ICardProps> = ({sameType, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide}) => {
+export const Card: React.FC<ICardProps> = ({bordered=true, sameType, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide}) => {
   return (
     <div className='prose'>
     <VItemContainer showBorder={sameType} showBorderBottom={!sameType} dropShadow={false} roundedButtom={!sameType}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
@@ -38,8 +39,8 @@ export const Card: React.FC<ICardProps> = ({sameType, roundImage, label, center,
         </div>}
       </div>
     </VItemContainer>
-    <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : footer ? 'vsm' : 'vxs'}>
-      <div className={classNames(avatar ? 'mt-14' : 'mt-8','ml-2', footer ? 'space-y-4' : 'space-y-6')}>
+    <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : footer ? 'vsm' : 'vxs'}>
+      <div className={classNames(avatar ? 'mt-14' : 'mt-8','ml-2', footer ? 'space-y-4' : 'space-y-6', bordered ? '' : 'px-4 mt-0')}>
         <VTitle type='h4'>{title}</VTitle>
         <VText className={classNames(sameType ? 'min-h-[85px] max-h-[85px]' :'min-h-[52px] max-h-[52px] ', 'overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-true-light-300 scrollbar-thumb-true-dark-200')} size='md' weight='normal'>{subtitle}</VText>
         {footer && typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}

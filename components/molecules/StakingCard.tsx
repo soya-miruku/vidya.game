@@ -1,3 +1,4 @@
+import { classNames } from '@/common/helpers';
 import React from 'react';
 import { VButton } from '../atoms/VButton';
 import { VImage } from '../atoms/VImage';
@@ -12,12 +13,13 @@ export interface IStakingCardProps {
   label2?: string;
   title1?: string;
   title2?: string;
+  bordered?: boolean;
 }
 
-export const StakingCard: React.FC<IStakingCardProps> = ({ label1, label2, title1, title2, image}) => {
+export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, label1, label2, title1, title2, image}) => {
   return (
-    <VItemContainer showBorder={true} widthSize="v2xl" heightSize='vxxs'>
-      <div className='flex w-full flex-wrap space-x-4 justify-between items-center'>
+    <VItemContainer showBorder={bordered} widthSize="v2xl" heightSize='vxxs'>
+      <div className={classNames('flex w-full flex-wrap space-x-4 justify-between items-center', bordered ? '' : 'px-4')}>
         <div className='flex w-1/2 justify-start items-center space-x-4'>
           <VImage width={80} height={80} className="rounded-full"></VImage>
           <div className='flex flex-col space-y-4'>

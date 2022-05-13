@@ -13,11 +13,12 @@ export interface IFeatureCardProps {
   secondaryBtn?: boolean;
   specialBtn?: boolean;
   image?: string;
+  bordered?: boolean;
 }
 
-export const FeatureCard: React.FC<IFeatureCardProps> = ({title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image}) => {
+export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image}) => {
   return (
-    <VItemContainer showBorder={true} widthSize="v2xl" heightSize='v2xl'>
+    <VItemContainer showBorder={bordered} widthSize="v2xl" heightSize='v2xl'>
       <div className='flex flex-wrap space-y-4 p-8 justify-start items-start'>
         <VTitle type='h4'>{title}</VTitle>
         <VText className='min-h-[52px] max-h-[52px]  overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-true-light-300 scrollbar-thumb-true-dark-200' size='lg' weight='normal'>{subtitle}</VText>
