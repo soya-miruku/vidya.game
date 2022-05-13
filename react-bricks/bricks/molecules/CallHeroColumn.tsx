@@ -1,19 +1,12 @@
-import React, { Children } from 'react'
-import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
-import { classNames } from '../../../common/helpers'
-import { VButton } from '../../../components/VButton'
-import { VLabel } from '../../../components/VLabel'
-import { VText } from '../../../components/VText'
-import { VTitle } from '../../../components/VTitle'
-import VRBText from '../atoms/VRBText'
+import React from 'react'
+import { types, Repeater } from 'react-bricks/frontend';
+import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
 import { bgColors } from '../Shared/colors';
-import Column from '../Layout/Column';
 import Columns from '../Layout/Columns';
 import Section, {Border} from '../Layout/Section';
 import { LayoutProp } from '../Shared/LayoutProps';
 import { Gap, NumColumns, Padding } from '../Shared/additional';
-import { ColumnsProp } from '../Shared/ColumnProps';
 
 //=============================
 // Local Types

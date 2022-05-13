@@ -2,7 +2,7 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Text, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VText } from '../../../components/VText'
+import { VText } from '@/components/atoms/VText';
 
 export interface VRBTextProps {
   propName: string,

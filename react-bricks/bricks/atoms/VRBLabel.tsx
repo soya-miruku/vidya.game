@@ -2,8 +2,8 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Link, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VText } from '../../../components/VText'
-import { VLabel } from '../../../components/VLabel'
+import { VText } from '@/components/atoms/VText'
+import { VLabel } from '@/components/atoms/VLabel'
 import VRBText from './VRBText'
 
 export interface VRBLabelProps {

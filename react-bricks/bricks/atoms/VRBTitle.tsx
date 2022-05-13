@@ -2,8 +2,8 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Text, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VText } from '../../../components/VText'
-import { TitleType, VTitle } from '../../../components/VTitle'
+import { VText } from '@/components/atoms/VText'
+import { TitleType, VTitle } from '@/components/atoms/VTitle'
 
 export interface VRBTitleProps {
   propName: string,

@@ -1,7 +1,6 @@
 import { types } from 'react-bricks/frontend'
 import website from 'react-bricks-ui/website'
 import CallHeroImage from './molecules/CallHeroImage';
-import TwoColumnsUnit from './molecules/TwoColumns';
 import VRBButton from './atoms/VRBButton';
 import Text from './atoms/TextItem';
 import VRBImage from './atoms/VRBImage';
@@ -12,12 +11,13 @@ import Customers from './molecules/Customers';
 import CallHeroColumn from './molecules/CallHeroColumn';
 import VRBColumn from './atoms/VRBColumn';
 import VRBTitle from './atoms/VRBTitle';
+import BlogSection from './molecules/BlogSection';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
   CallHeroImage,
   CallHeroColumn,
-  TwoColumnsUnit,
+  BlogSection,
   VRBButton,
   Text,
   VRBColumn,

@@ -8,7 +8,7 @@ import { PagesByCategory } from '../common/viwablePages';
 import { useDarkMode } from '../hooks/useDarkMode';
 import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
-import { VButton } from './VButton';
+import { VButton } from './atoms/VButton';
 
 const Header = ({}) => {
   const { isDarkMode, toggleMode } = useDarkMode();

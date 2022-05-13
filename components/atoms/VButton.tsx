@@ -1,5 +1,5 @@
 import React from 'react';
-import { classNames } from "../common/helpers"
+import { classNames } from "@/common/helpers"
 
 export interface ButtonProps {
   primary?: boolean;

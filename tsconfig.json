@@ -6,6 +6,12 @@
       "dom.iterable",
       "esnext"
     ],
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["components/*"],
+      "@/common/*": ["common/*"],
+      "@/css/*": ["css/*"],
+    },
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
@@ -23,7 +29,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "common/static.js"  ],
   "exclude": [
     "node_modules"
   ]

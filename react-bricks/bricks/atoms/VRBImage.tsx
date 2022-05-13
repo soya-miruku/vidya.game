@@ -27,21 +27,13 @@ const VRBImage: types.Brick<ImageProps> = ({
 }) => {
   return (
     <Link {...rest}>
-        <Image propName={propName || 'image'} 
-          alt="image"
-          containerClassName={containerClassName}
-          imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
-        >
-        </Image>
-      {/* <div 
-      style={{
-        width: `${ typeof(imageWidth) === 'string' ? `${imageWidth}` : `${imageWidth ?? 100}px`}`,
-        height: `${ typeof(imageHeight) === 'string' ? `${imageHeight}` : `${imageHeight ?? 100}px`}`,
-      }} 
-      className="w-full h-full flex justify-end z-10">
-
-      </div> */}
-      </Link>
+      <Image propName={propName || 'image'} 
+        alt="image"
+        containerClassName={containerClassName}
+        imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
+      >
+      </Image>
+    </Link>
   )
 }
 

@@ -2,8 +2,8 @@ import * as React from 'react'
 import classNames from 'classnames'
 import { Link, types } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VButton, ButtonProps } from '../../../components/VButton'
-import { VText } from '../../../components/VText'
+import { VButton, ButtonProps } from '@/components/atoms/VButton'
+import { VText } from '@/components/atoms/VText'
 
 
 const VRBButton: types.Brick<ButtonProps> = ({

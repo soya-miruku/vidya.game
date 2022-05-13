@@ -7,7 +7,7 @@ import { bgColors } from '../Shared/colors'
 import Section, { Border } from '../Layout/Section'
 import Container, { Size } from '../Layout/Container'
 import { LayoutProp } from '../Shared/LayoutProps'
-import { VTitle } from '../../../components/VTitle'
+import { VTitle } from '@/components/atoms/VTitle'
 
 export interface CustomersProps {
   bg?: { color: string; className: string }

@@ -1,11 +1,10 @@
 import React, { Children } from 'react'
 import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
-import { classNames } from '../../../common/helpers'
-import { VButton } from '../../../components/VButton'
-import { VLabel } from '../../../components/VLabel'
-import { VText } from '../../../components/VText'
-import { VTitle } from '../../../components/VTitle'
-import VRBText from '../atoms/VRBText'
+import { classNames } from '@/common/helpers'
+import { VButton } from '@/components/atoms/VButton'
+import { VLabel } from '@/components/atoms/VLabel'
+import { VText } from '@/components/atoms/VText'
+import { VTitle } from '@/components/atoms/VTitle'
 import { blockNames } from '../blockNames'
 import { bgColors } from '../Shared/colors';
 import Section, {Border} from '../Layout/Section';
@@ -61,7 +60,6 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
                 </div>
               )
             }}>
-
             </Repeater>
             </div>
             <Text
