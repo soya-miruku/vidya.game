@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { SortableContainer, SortableElement, SortableHandle } from 'react-sortable-hoc';
 import { arrayMoveImmutable } from "array-move";
 import { Link, Repeater, types, Image } from 'react-bricks/frontend'
-import { classNames } from '../../../common/helpers';
-import { TitleType } from '../../../components/VTitle';
+import { classNames } from '@/common/helpers';
+import { TitleType } from '@/components/atoms/VTitle';
 import { blockNames } from '../blockNames';
 import Column from '../Layout/Column';
 import { Size } from '../Shared/additional';
