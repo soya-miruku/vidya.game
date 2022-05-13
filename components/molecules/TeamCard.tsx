@@ -15,28 +15,27 @@ export interface ITeamCardProps extends ICardProps {
 }
 
 export const TeamCard: React.FC<ITeamCardProps> = ({role, discord, twitter, telegram, instagram, label, title, subtitle, url, avatar}) => {
-  return <Card 
+  return <Card center roundImage sameType
   footer={
-    <div className='flex flex-col justify-center items-center'>
-      <VText size='sm'>Footer - {role}</VText>
-      <div className={classNames('flex space-x-4', !(discord && twitter && telegram && instagram) ? 'hidden' : '')}>
-      { 
-        discord && <a href={discord} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
+    <div className='flex flex-col justify-center items-center space-y-3'>
+      <VText size='sm'>Role - {role}</VText>
+      <div className={classNames('flex space-x-6')}>
+      { discord && <a href={discord} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
           <FontAwesomeIcon icon={faDiscord} />
         </a>
       }
       {telegram &&<a href={telegram} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
-        <FontAwesomeIcon icon={faTelegram} />
+        <FontAwesomeIcon size='lg' icon={faTelegram} />
       </a>}
-      {twitter &&
-      <a href={twitter} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
-        <FontAwesomeIcon icon={faTwitter} />
-      </a>
-      }
       {instagram && <a href={instagram} target='_blank'
         className="text-accent-dark-200 hover:text-indigo-700">
-        <FontAwesomeIcon icon={faInstagram} />
+        <FontAwesomeIcon size='lg' icon={faInstagram} />
       </a> }
+      {twitter &&
+      <a href={twitter} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
+        <FontAwesomeIcon size='lg' icon={faTwitter} />
+      </a>
+      }
       </div>
     </div>
   }

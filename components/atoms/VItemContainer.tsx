@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from '@/common/helpers';
 import SIZES from '@/common/static';
 
-export type VItemContainerSize = 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vlg' | 'vxl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;
@@ -19,11 +19,14 @@ export interface ItemContainerProps {
   roundedTop?: boolean;
   roundedLeft?: boolean;
   roundedRight?: boolean;
+  center?: boolean;
 }
 
-export const VItemContainer: React.FC<ItemContainerProps> = ({ dropShadow=true, roundedLeft=true, roundedRight=true, roundedTop=true, roundedButtom=true, showBorderBottom=true, showBorderLeft=true, showBorderRight=true, showBorderTop=true, showBorder, children, className, widthSize, heightSize }) => {
+export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dropShadow=true, roundedLeft=true, roundedRight=true, roundedTop=true, roundedButtom=true, showBorderBottom=true, showBorderLeft=true, showBorderRight=true, showBorderTop=true, showBorder, children, className, widthSize, heightSize }) => {
   const getSizeClass:any = (size, isHeight) => {
     switch(size) {
+      case 'vhlf':
+        return {class: isHeight ? 'h-vhlf min-h-vhlf max-h-vhlf' : 'w-vhlf min-w-vhlf max-w-vhlf', px: SIZES['vhlf']};
       case 'vxxs':
         return {class: isHeight ? 'h-vxxs min-h-vxxs max-h-vxxs' : 'w-vxxs min-w-vxxs max-w-vxxs', px: SIZES['vxxs']};
       case 'vxs':
@@ -74,7 +77,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ dropShadow=true, 
     <div className={classNames('prose flex flex-col justify-center mx-auto items-center', dropShadow ? 'dark:shadow-dark shadow-light' : '',
       getSizeClass(widthSize).class,
       getSizeClass(heightSize, true).class, className)}>
-      <div className={classNames('flex justify-center mx-auto items-center rounded-[10px]', 
+      <div className={classNames('flex justify-center mx-auto items-center rounded-[10px]', center ?'text-center' : '', 
       roundedButtom ? '' : 'rounded-b-none',
       roundedTop ? '' : 'rounded-t-none',
       roundedLeft ? '' : 'rounded-l-none',
