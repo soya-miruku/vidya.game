@@ -52,7 +52,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     return (
       <div className={classNames(className)} 
       style={{
-        maxHeight: !showBorderTop ? 'h-full' : heightSize === 'full' ? '99.8%' : `${(getSizeClass(heightSize, true).px - 25)}px`
+        maxHeight: !showBorderTop ? 'h-full' : heightSize === 'full' ? '99.8%' : `${(getSizeClass(heightSize, true).px - 20)}px`
       }}>
         {children}
       </div>
