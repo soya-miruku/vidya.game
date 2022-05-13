@@ -74,9 +74,9 @@ const Header = ({}) => {
     style={{marginLeft: isOpen ? `-${styles.bmMenuWrap.width}` : '', transition: 'margin 500ms', zIndex: 9999}}>
       <div className='-mt-2'>
         <Link href="/">
-          <a>
+          <p>
             <Logo/>
-          </a>
+          </p>
         </Link>
       </div>
         <div className='flex justify-center items-center sm:space-x-7 space-x-2'>
@@ -127,7 +127,7 @@ const Header = ({}) => {
                   return (
                     <div className={classNames('py-2 px-[12px] text-[14px]', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
                       <Link href={page.active ? page.url : '/soon'}>
-                        <a className="menu-item">{page.displayName}</a>
+                        <p className="menu-item">{page.displayName}</p>
                       </Link>
                       {!page.active && <span className='text-[8px] p-1 px-2 tracking-high-wide dark:text-true-light-200/50 text-true-dark-300 dark:bg-true-dark-300/50 rounded-lg'>SOON</span>}
                     </div>

@@ -22,13 +22,13 @@ const NextLink: types.RenderLocalLink = ({
   if (isAdmin) {
     return (
       <Link href={href}>
-        <a className={anchorClassName}>{children}</a>
+        <p className={anchorClassName}>{children}</p>
       </Link>
     )
   }
   return (
     <Link href="/[slug]" as={href}>
-      <a className={anchorClassName}>{children}</a>
+      <p className={anchorClassName}>{children}</p>
     </Link>
   )
 }

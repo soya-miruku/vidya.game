@@ -32,8 +32,8 @@ return (
             return (
             <li key={page.slug} className="text-[14px] tracking-high-wide flex justify-start items-center">
               <Link href={page.active ? page.url : '/soon' }>
-              <a className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
-                )}>{page.displayName}</a>
+              <p className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
+                )}>{page.displayName}</p>
               </Link>
               {!page.active && <span className='text-[8px] py-1 pb-[2.5px] px-2 mx-2 tracking-high-wide text-true-dark-200 dark:bg-true-light-200/50 rounded-md'>SOON</span>}
 

@@ -17,11 +17,13 @@ const VRBButton: types.Brick<ButtonProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <VButton primary={primary} special={special} secondary={secondary} rounded={rounded}>
-        <VText size='sm' overrideTextColor={true}>
-          {text}
-        </VText>
-      </VButton>
+      <div>
+        <VButton primary={primary} special={special} secondary={secondary} rounded={rounded}>
+          <VText size='sm' overrideTextColor={true}>
+            {text}
+          </VText>
+        </VButton>
+      </div>
     </Link>
   )
 }

@@ -89,6 +89,10 @@ module.exports = {
               'letter-spacing': '2px',
               'margin-top': 0,
               'margin-bottom': 0,
+            },
+            div: {
+              'line-height': '22px',
+              'letter-spacing': '2px',
             }
           }
         }

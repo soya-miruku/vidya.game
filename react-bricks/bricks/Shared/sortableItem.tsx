@@ -1,5 +1,6 @@
 import { types } from "react-bricks";
 import { SortableContainer, SortableElement, SortableHandle } from "react-sortable-hoc";
+import { generateUniqueId } from "../../../common/helpers";
 import { blockNames } from "../blockNames";
 
 export interface SortableItemProps {
@@ -31,14 +32,22 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
 
     for (let i = 0; i < itemProps.length; i++) {
       const prop:any = itemProps[i];
-      console.log(item.type, prop.name)
+      
       if(item.type !== prop.name) return null;
+      if(item.props && !item.props.hasOwnProperty(prop.propName)) {
+        console.log(item)
+        item.props = {
+          ...item.props,
+          [prop.propName]: null
+        }
+      }
       switch(prop.type) {
-        case types.SideEditPropType.Boolean:
+        case types.SideEditPropType.Boolean:{
           renders.push(
             <div key={prop.propName} className="flex justify-start space-x-2">
               <label className="flex items-center">
                 <input type="checkbox" checked={item[prop.propName]} onChange={(e) => {
+                  console.log(item.props)
                   const tmp = items[item.order];
                   item.props = {
                     ...item.props,
@@ -53,7 +62,8 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
               </label>
             </div>)
             break;
-        case types.SideEditPropType.Select:
+        }
+        case types.SideEditPropType.Select:{
           renders.push(
             <select value={item.name} onChange={(e) => {
               item.props = {
@@ -67,6 +77,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
             </select>
           )
           break;
+        }
         default: break;
       }
     }
@@ -86,7 +97,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
         <div className='flex space-x-4 items-center'>
           <h4>Show: </h4>
           <div>
-            <input type="checkbox" defaultChecked={show} checked={show} onChange={(e) => {
+            <input type="checkbox" checked={show} onChange={(e) => {
               const newValues = items.map((item, i) => {
                   if (i === sortIndex) {
                     return {...item, show: e.target.checked}
@@ -100,7 +111,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
         <div className='flex space-x-4 items-center'>
           <h4>Keep inline: </h4>
           <div>
-            <input type="checkbox" defaultChecked={inline} checked={inline} onChange={(e) => {
+            <input type="checkbox" checked={inline} onChange={(e) => {
               const newValues = items.map((item, i) => {
                   if (i === sortIndex) {
                     return {...item, inline: e.target.checked}
@@ -118,8 +129,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
           } }>Remove</button>
         </div>
         <div className="mt-1 p-2 flex flex-col">
-          <h1 className="font-bold">Item Prop</h1>
-          {itemProps && renderItemProps(item, itemProps)}
+          {itemProps && <><h1 className="font-bold">Item Prop</h1> {renderItemProps(item, itemProps)}</>}
         </div>
       </div>
       </div>
@@ -131,23 +141,53 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
       <ul className="list-reset p-4">
         {items.map((item, i) => {
           return (
-            <SortableItem disabled={(item?.order === undefined)} onChange={onChange} key={`item-${item?.type}-${item?.name}`} index={i} item={item} sortIndex={i}/>
+            <SortableItem disabled={(item?.order === undefined)} onChange={onChange} key={`item-${item?.type}-${item?.name}-${i}`} index={i} item={item} sortIndex={i}/>
           )
         }
         )}
       </ul>
     )
   })
+
   return (
-  <div>
-    <SortableList key='sortableList' items={items} helperClass="dragging-active drop-shadow-xl" useDragHandle useWindowAsScrollContainer={true} onSortStart={(e)=>{
-      console.log(e)
-    }} onSortEnd={({oldIndex, newIndex}) => {
-      const newItems = items;
-      newItems[oldIndex].order = newIndex;
-      newItems[newIndex].order = oldIndex;
-      onChange(newItems)
-    }}/>
-  </div>
+    <div>
+      <div>
+        {initialItems.map((item, index) => {
+          return (
+            <div key={`${index}-btn-g-${item.name}`}>
+              <div className="flex justify-start space-x-2">
+                <button style={{
+                  backgroundColor: '#fafafa',
+                  border: '1px solid #f3f3f3',
+                  borderRadius: '4px',
+                  padding: '4px 8px',
+                  fontSize: '10px',
+                  color: '#333',
+                }} onClick={(e) => {
+                  const tmp = initialItems[index];
+                  const canAdd = items.filter(i => i.type === tmp.type).length < 2;
+                  if(canAdd){
+                    items.push({
+                      ...tmp,
+                      show: true,
+                      name: `${tmp.name}-${generateUniqueId()}`
+                    });
+                  }
+                  onChange(items)
+                }}> ADD {item.type}</button>
+              </div>
+            </div>
+          )
+          })}
+      </div>
+      <SortableList key='sortableList' items={items} helperClass="dragging-active drop-shadow-xl" useDragHandle useWindowAsScrollContainer={true} onSortStart={(e)=>{
+        console.log(e)
+      }} onSortEnd={({oldIndex, newIndex}) => {
+        const newItems = items;
+        newItems[oldIndex].order = newIndex;
+        newItems[newIndex].order = oldIndex;
+        onChange(newItems)
+      }}/>
+    </div>
   )
 }

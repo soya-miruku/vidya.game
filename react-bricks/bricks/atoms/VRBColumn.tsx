@@ -58,9 +58,9 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, overrideTextColor, badg
   })
   return (
     <Link {...rest}>
-      <Column className={classNames('text-white flex flex-wrap justify-start space-x-2 items-center no-underline space-y-8 pt-[10px] px-[25px] w-full h-full')}>
+      <Column className={classNames('text-white flex flex-wrap justify-start items-center no-underline gap-x-4 space-y-8 pt-[10px] px-[25px] w-full h-full')}>
         {renderItems.sort((a, b) => a.order - b.order).filter(v=>v.show).map((item, index) =>
-         <div className={classNames(item.inline ? 'w-full' : '', 'flex flex-row items-center justify-start')} key={`${index}`}>{(item as any).content}</div>)}
+         <div className={classNames(item.inline ? 'w-full' : '', 'flex flex-row items-center justify-start')} key={`${item.name}-${index}`}>{(item as any).content}</div>)}
         {((items as any || getColumnItems()).every(v=>!v.show)) && <div className='w-52 h-52 bg-transparent'></div>}
       </Column>
     </Link>
@@ -109,45 +109,6 @@ VRBColumn.schema = {
           { label: 'H5 Heading', value: 'h5' },
           { label: 'H6 Heading', value: 'h6' },
         ],
-      }
-    },
-    {
-      name: 'items',
-      label: 'Add / Remove Items',
-      type: types.SideEditPropType.Custom,
-      component: ({value, isValid, onChange}) => {
-        const items = value || getColumnItems();
-        return (
-          <div>
-            {getColumnItems().map((item, index) => {
-              return (
-                <div key={`${index}-btn-g-${item.name}`}>
-                  <div className="flex justify-start space-x-2">
-                    <button style={{
-                      backgroundColor: '#fafafa',
-                      border: '1px solid #f3f3f3',
-                      borderRadius: '4px',
-                      padding: '4px 8px',
-                      fontSize: '10px',
-                      color: '#333',
-                    }} onClick={(e) => {
-                      const tmp = getColumnItems()[index];
-                      const canAdd = items.filter(i => i.type === tmp.type).length < 2;
-                      if(canAdd){
-                        items.push({
-                          ...tmp,
-                          show: true,
-                          name: `${tmp.name}-${index}`
-                        });
-                      }
-                      onChange(items)
-                    }}> ADD {item.type}</button>
-                  </div>
-                </div>
-              )
-            })}
-          </div>
-        )
       }
     },
     {

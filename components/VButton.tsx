@@ -12,7 +12,7 @@ export interface ButtonProps {
   role?: string;
 }
 
-export const VButton: React.FC<ButtonProps> = ({children, rounded=true, special=false, primary=false, secondary=false, className, onClick=undefined, role, ...props}) => {
+export const VButton: React.FC<ButtonProps> = ({children, rounded=true, special, primary, secondary, className, onClick=undefined, role, ...props}) => {
   return (
     <button 
       className={classNames((secondary && (!special || !primary)) ? 'dark:text-true-light-200 text-true-dark-200' : '', ' py-3 px-6 font-normal shadow-md uppercase',
