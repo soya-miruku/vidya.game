@@ -49,7 +49,7 @@ const Header = ({}) => {
     },
     bmMenu: {
       zIndex: '1',
-      background: isDarkMode ? '#11081F' : '#FAFBFF',
+      // background: isDarkMode ? '#11081F' : '#FAFBFF',
       paddingTop: '2.5em',
       fontSize: '1.15em'
     },
