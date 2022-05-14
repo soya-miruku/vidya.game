@@ -2,6 +2,7 @@ export enum blockNames {
   CallHeroImage = 'CallHeroImage',
   CallHeroText = 'CallHeroText',
   TwoColumnsUnit = 'TwoColumnsUnit',
+  VideoHero = 'VideoHeroUnit',
   BlogSection= 'BlogSectionUnit',
 
   Column = 'VRBColumn',

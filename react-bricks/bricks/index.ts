@@ -12,12 +12,14 @@ import CallHeroColumn from './molecules/CallHeroColumn';
 import VRBColumn from './atoms/VRBColumn';
 import VRBTitle from './atoms/VRBTitle';
 import BlogSection from './molecules/BlogSection';
+import VideoHeroUnit from './molecules/VideoHeroUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
   CallHeroImage,
   CallHeroColumn,
   BlogSection,
+  VideoHeroUnit,
   VRBButton,
   Text,
   VRBColumn,

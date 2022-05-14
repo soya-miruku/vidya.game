@@ -14,6 +14,7 @@ export interface IFeatureCardProps {
   specialBtn?: boolean;
   image?: string;
   bordered?: boolean;
+  size?: 'sm' | 'lg'
 }
 
 export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image}) => {

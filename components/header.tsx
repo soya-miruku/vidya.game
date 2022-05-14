@@ -10,10 +10,9 @@ import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
 import { VButton } from './atoms/VButton';
 
-const Header = ({}) => {
+const Header = ({isOpen, onOpen}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const { isMobileView } = useDetectIsMobileView();
-  const [isOpen, setIsOpen] = useState(false);
   const WIDTH = isMobileView ? 300 : 600;
 
   var styles = {
@@ -72,7 +71,7 @@ const Header = ({}) => {
   return (
     <div className={classNames('relative dark:bg-true-dark-200 bg-true-light-200 h-28 w-full flex justify-between px-10 py-10 transition-width duration-500',
     isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto mx-auto max-w-[1180px]' : '')}
-    style={{marginLeft: isOpen ? `-${WIDTH-73}px` : '', transition: 'margin 500ms'}}>
+    style={{marginLeft: isOpen ? `-${WIDTH}px` : '', transition: 'margin 500ms'}}>
       <div className='-mt-2'>
         <Link href="/">
           <p>
@@ -109,8 +108,8 @@ const Header = ({}) => {
         } 
         isOpen={isOpen}
         disableOverlayClick={false}
-        onOpen={() => setIsOpen(!isOpen)}
-        onClose={() => setIsOpen(false)}
+        onOpen={() => onOpen(!isOpen)}
+        onClose={() => onOpen(false)}
         noOverlay
         right
         styles={styles}
