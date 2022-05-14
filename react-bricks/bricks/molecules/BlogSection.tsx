@@ -40,12 +40,15 @@ const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBotto
         <StatCard label='LABEL' title='H4 VAL'/>
         <IconCard label='LABEL' icon={<FontAwesomeIcon size="lg" className='ml-4' style={{width: '60px', height: '60px'}} icon={faMoonStars}></FontAwesomeIcon>}/>
       </div>
-      {/* <Card title='card, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/> */}
-      {/* <ProgramCard title='H4 ProG TITLE' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/> */}
-      <GameCard title='aimbot, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/>
-      <BlogCard title='seriously?' label='COINBASE LISTING?' subtitle='yeah, what? ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' footer='Soya - 13/05/2022'/>
-
-      <TeamCard telegram='some' twitter='myhandle' instagram='lolwhatisthis' role='Developer' title='MyName?' subtitle='MYNAME ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' />
+      <div className='flex space-x-4'>
+        <Card title='default card, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/>
+        <ProgramCard title='H4 ProG TITLE' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/>
+      </div>
+      <div className='flex space-x-4'>
+        <GameCard title='aimbot, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/>
+        <BlogCard title='seriously?' label='COINBASE LISTING?' subtitle='yeah, what? ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' footer='Soya - 13/05/2022'/>
+        <TeamCard telegram='some' twitter='myhandle' instagram='lolwhatisthis' role='Developer' title='MyName?' subtitle='MYNAME ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' />
+      </div>
     </Section>
   )
 }
