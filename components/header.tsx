@@ -45,7 +45,7 @@ const Header = ({}) => {
       height: '100%',
       width: `${WIDTH}px`,
       top: '0px',
-      zIndex: '-1',
+      zIndex: '0',
     },
     bmMenu: {
       zIndex: '1',
@@ -72,7 +72,7 @@ const Header = ({}) => {
   return (
     <div className={classNames('relative dark:bg-true-dark-200 bg-true-light-200 h-28 w-full flex justify-between px-10 py-10 transition-width duration-500',
     isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto mx-auto max-w-[1180px]' : '')}
-    style={{marginLeft: isOpen ? `-${WIDTH-72}px` : '', transition: 'margin 500ms'}}>
+    style={{marginLeft: isOpen ? `-${WIDTH-73}px` : '', transition: 'margin 500ms'}}>
       <div className='-mt-2'>
         <Link href="/">
           <p>
