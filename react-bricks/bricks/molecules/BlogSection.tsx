@@ -29,15 +29,17 @@ interface BlogSectionProps {
 
 const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} className='py-14 flex space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
       {/* <FeatureCard buttonText='hello world' secondaryBtn title='H4 Title' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/> */}
       {/* <StakingCard title1='h5 value' title2='h5 value' label1='label' label2='label'/> */}
-      <PriceCard length='lg' label='PRICE' price='0.19' perctChange='-14.12%'/>
-      <PriceCard label='MARKET CAP' price='8.2M' perctChange='4.12%' increase/>
-
-      <StatCard label='LABEL' title='H4 VAL'/>
-      <IconCard label='LABEL' icon={<FontAwesomeIcon size="lg" className='ml-4' style={{width: '60px', height: '60px'}} icon={faMoonStars}></FontAwesomeIcon>}/>
-
+      <div className='flex space-x-4'>
+        <PriceCard length='lg' label='PRICE' price='0.19' perctChange='-14.12%'/>
+        <PriceCard label='MARKET CAP' price='8.2M' perctChange='4.12%' increase/>
+      </div>
+      <div className='flex space-x-4'>
+        <StatCard label='LABEL' title='H4 VAL'/>
+        <IconCard label='LABEL' icon={<FontAwesomeIcon size="lg" className='ml-4' style={{width: '60px', height: '60px'}} icon={faMoonStars}></FontAwesomeIcon>}/>
+      </div>
       {/* <Card title='card, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/> */}
       {/* <ProgramCard title='H4 ProG TITLE' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/> */}
       <GameCard title='aimbot, YES' label='AIMBOT?' subtitle='what does it mean? adipiscing consectetur elit. find out more here'/>
