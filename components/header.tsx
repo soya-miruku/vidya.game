@@ -37,21 +37,21 @@ const Header = ({}) => {
     },
     bmMenuWrap: {
       position: 'fixed',
-      paddingTop: '2.5rem',
-      borderRight: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
-      borderTop: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
-      borderBottom: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
+      // paddingTop: '2.5rem',
+      // borderRight: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
+      // borderTop: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
+      // borderBottom: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
       paddingBottom: '2.5rem',
       height: '100%',
       width: `${WIDTH}px`,
       top: '0px',
-      zIndex: '1',
+      zIndex: '-1',
     },
     bmMenu: {
       zIndex: '1',
       background: isDarkMode ? '#11081F' : '#FAFBFF',
       paddingTop: '2.5em',
-      fontSize: '1.15em',
+      fontSize: '1.15em'
     },
     bmMorphShape: {
       fill: '#373a47'
@@ -70,8 +70,9 @@ const Header = ({}) => {
   }
 
   return (
-    <div className='dark:bg-true-dark-200 bg-true-light-200 h-28 w-full flex justify-between px-10 py-10 transition-width duration-800' 
-    style={{marginLeft: isOpen ? `-${styles.bmMenuWrap.width}` : '', transition: 'margin 500ms', zIndex: 9999}}>
+    <div className={classNames('relative dark:bg-true-dark-200 bg-true-light-200 h-28 w-full flex justify-between px-10 py-10 transition-width duration-500',
+    isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto mx-auto max-w-[1180px]' : '')}
+    style={{marginLeft: isOpen ? `-${WIDTH-72}px` : '', transition: 'margin 500ms'}}>
       <div className='-mt-2'>
         <Link href="/">
           <p>

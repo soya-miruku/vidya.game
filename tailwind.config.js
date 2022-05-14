@@ -151,7 +151,8 @@ module.exports = {
       }
     },
     boxShadow: {
-      'l-sm': '4px 5px 80px rgba(0, 0, 0, 0.5)',
+      'dark-md': '0px 0px 80px rgba(0, 0, 0, 0.5)',
+      'light-md': '0px 0px 60px rgba(199, 207, 255, 0.3)',
       'light': '0px 40px 60px -25px #C7CFFF4D',
       'dark': '0px 40px 80px -25px rgba(0, 0, 0, 0.5)',
     },
