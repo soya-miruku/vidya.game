@@ -29,9 +29,9 @@ interface BlogSectionProps {
 
 const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} className='py-14 flex space-x-2 space-y-3 flex-wrap w-full'>
-      <FeatureCard buttonText='hello world' secondaryBtn title='H4 Title' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/>
-      <StakingCard title1='h5 value' title2='h5 value' label1='label' label2='label'/>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} className='py-14 flex space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
+      {/* <FeatureCard buttonText='hello world' secondaryBtn title='H4 Title' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/> */}
+      {/* <StakingCard title1='h5 value' title2='h5 value' label1='label' label2='label'/> */}
       <PriceCard length='lg' label='PRICE' price='0.19' perctChange='-14.12%'/>
       <PriceCard label='MARKET CAP' price='8.2M' perctChange='4.12%' increase/>
 
