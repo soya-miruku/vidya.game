@@ -2,7 +2,6 @@ const colors = require('tailwindcss/colors')
 const SIZES = require('./common/static.js')
 
 const allowableSizes = Object.keys(SIZES).reduce((o, key) => Object.assign(o, {[key]: `${SIZES[key]}px`}), {});
-console.log(allowableSizes);
 
 module.exports = {
   plugins: [
@@ -163,6 +162,15 @@ module.exports = {
       },
       'secondary': {
         '100': '#C7CFFF'
+      },
+      'tertiary': {
+        '100': '#E49696'
+      },
+      'true-red': {
+        100: '#FF4365'
+      },
+      'true-teal': {
+        100: '#63ADB7'
       },
       'true-dark': {
         100: '#0d0d0d',

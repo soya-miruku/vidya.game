@@ -35,7 +35,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
       
       if(item.type !== prop.name) return null;
       if(item.props && !item.props.hasOwnProperty(prop.propName)) {
-        console.log(item)
         item.props = {
           ...item.props,
           [prop.propName]: null
@@ -47,7 +46,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
             <div key={prop.propName} className="flex justify-start space-x-2">
               <label className="flex items-center">
                 <input type="checkbox" checked={item[prop.propName]} onChange={(e) => {
-                  console.log(item.props)
                   const tmp = items[item.order];
                   item.props = {
                     ...item.props,
@@ -181,7 +179,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
           })}
       </div>
       <SortableList key='sortableList' items={items} helperClass="dragging-active drop-shadow-xl" useDragHandle useWindowAsScrollContainer={true} onSortStart={(e)=>{
-        console.log(e)
       }} onSortEnd={({oldIndex, newIndex}) => {
         const newItems = items;
         newItems[oldIndex].order = newIndex;

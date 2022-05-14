@@ -1,9 +1,10 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { Text, types, } from 'react-bricks/frontend'
+import { Text, types, RichText } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText'
 import { TitleType, VTitle } from '@/components/atoms/VTitle'
+import VRBRichText from './VRBRichText'
 
 export interface VRBTitleProps {
   propName: string,
@@ -20,16 +21,11 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
   ...rest
 }) => {
   return (
-    <Text
-      renderBlock={(props) => (
-        <VTitle overrideTextColor={overrideTextColor} type={type} className={className}>
-          {props.children}
-        </VTitle>
-      )}
-      renderPlaceholder={(props) => (
-        <span className="opacity-30">{props.children}</span>
-      )}
-      placeholder="Type text..."
+    <VRBRichText
+      isTitle={true}
+      type={type}
+      className={className}
+      overrideTextColor={overrideTextColor}
       propName={propName}
     {...rest}/>
   )

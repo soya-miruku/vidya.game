@@ -2,7 +2,7 @@ import { types } from 'react-bricks/frontend'
 import website from 'react-bricks-ui/website'
 import CallHeroImage from './molecules/CallHeroImage';
 import VRBButton from './atoms/VRBButton';
-import Text from './atoms/TextItem';
+import VRBRichText from './atoms/VRBRichText';
 import VRBImage from './atoms/VRBImage';
 import VRBText from './atoms/VRBText';
 import VRBLabel from './atoms/VRBLabel';
@@ -21,7 +21,7 @@ const bricks: types.Brick<any>[] = [
   BlogSection,
   VideoHeroUnit,
   VRBButton,
-  Text,
+  VRBRichText,
   VRBColumn,
   VRBText,
   VRBTitle,

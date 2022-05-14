@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import { Text, types, } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText';
+import VRBRichText from './VRBRichText';
 
 export interface VRBTextProps {
   propName: string,
@@ -19,16 +20,11 @@ const VRBText: types.Brick<VRBTextProps> = ({
   ...rest
 }) => {
   return (
-    <Text
-      renderBlock={(props) => (
-        <VText overrideTextColor={overrideTextColor} size={size} className={className}>
-          {props.children}
-        </VText>
-      )}
-      renderPlaceholder={(props) => (
-        <span className="opacity-30">{props.children}</span>
-      )}
-      placeholder="Type text..."
+    <VRBRichText
+      isTitle={false}
+      size={size}
+      className={className}
+      overrideTextColor={overrideTextColor}
       propName={propName}
     {...rest}/>
   )

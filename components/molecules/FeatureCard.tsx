@@ -17,7 +17,7 @@ export interface IFeatureCardProps {
   size?: 'sm' | 'lg'
 }
 
-export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image}) => {
+export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, size}) => {
   return (
     <VItemContainer showBorder={bordered} widthSize="v2xl" heightSize='v2xl'>
       <div className='flex flex-wrap space-y-4 p-8 justify-start items-start'>
