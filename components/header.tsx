@@ -13,7 +13,7 @@ import { VButton } from './atoms/VButton';
 const Header = ({isOpen, onOpen}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const { isMobileView } = useDetectIsMobileView();
-  const WIDTH = isMobileView ? 300 : 600;
+  const WIDTH = isMobileView ? 250 : 600;
 
   var styles = {
     bmBurgerButton: {

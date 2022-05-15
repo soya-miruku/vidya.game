@@ -43,7 +43,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             markPluginConstructor({
               name: 'drop-shadow',
               hotKey: 'mod+s+h',
-              render: (props) => <h1 style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</h1>,
+              render: (props) => <h2 style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</h2>,
               icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faSquare} />,
             }),
             markPluginConstructor({

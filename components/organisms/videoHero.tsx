@@ -28,7 +28,7 @@ export const VideoHero: React.FC<IVideoHeroProps> = ({ hideTitleWhenPlaying, fet
       modestbranding: 1,
       autoplay: false,
       cc_load_policy: 0,
-      enablejsapo:0,
+      enablejsapi:0,
       disablekb:1,
       controls: 2,
       rel: 0,
@@ -36,14 +36,14 @@ export const VideoHero: React.FC<IVideoHeroProps> = ({ hideTitleWhenPlaying, fet
   }
 
   return (
-    <div className={classNames('sm:min-h-[700px] min-h-[400px] bg-black h-full flex justify-start items-end prose', canEdit ? 'w-[95%]' : 'w-full')}>
-      {hideTitle && hideTitleWhenPlaying ? <></> :  <div className='absolute w-[90%] h-44 mb-12 px-14'>
+    <div className={classNames('sm:min-h-[700px] min-h-[400px] bg-black h-full flex justify-start items-end prose', canEdit ? 'w-[95%]' : 'w-screen')}>
+      {hideTitle && hideTitleWhenPlaying ? <></> :  <div className='absolute w-[90%] h-44 sm:mb-16 mb-10 sm:px-14 px-2'>
         <div className='flex flex-col sm:space-y-4 space-y-0'>
           {(canEdit && !fetchTitleFromVideo) || typeof(videoTitle) !== 'string' ? <VRBTitle overrideTextColor={true} type='h1' propName='videoTitle' ></VRBTitle> : <VTitle overrideTextColor={true} type='h2'>{fetchTitleFromVideo ? title : videoTitle}</VTitle>}
           {(canEdit && !fetchTitleFromVideo) || typeof(videoDesc !== 'string') ? <VRBText overrideTextColor={true} size='lg' propName='videoDesc'></VRBText> :<VText overrideTextColor={true} size='lg'>{videoDesc}</VText>}
         </div>
       </div>}
-      <YouTube style={{width: '100%', height: isMobileView ? '400px' : '700px'}} loading="lazy" videoId={videoId} opts={videoConfig} 
+      <YouTube className={classNames('w-full sm:h-[700px] h-[400px]')} loading="lazy" videoId={videoId} opts={videoConfig} 
         onPlay={(s) => setHideTitle(true)} 
         onPause={(s) => setHideTitle(false)} 
         onError={(s) => setHideTitle(false)} 
