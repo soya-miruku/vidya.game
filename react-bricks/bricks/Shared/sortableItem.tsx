@@ -2,6 +2,7 @@ import { types } from "react-bricks";
 import { SortableContainer, SortableElement, SortableHandle } from "react-sortable-hoc";
 import { generateUniqueId } from "../../../common/helpers";
 import { blockNames } from "../blockNames";
+import { getColumnItems, getDefaultColumnItems, IColumnItemSettingsProp } from "./ColumnProps";
 
 export interface SortableItemProps {
   type: string,
@@ -13,27 +14,28 @@ export interface SortableItemProps {
 }
 
 export interface SortableListComponentProps {
-  initialItems: SortableItemProps[],
   props: any,
-  itemProps: any
+  itemProps: any,
+  maxAddPerItem?: number,
 }
 
-export const SortableListComponent: React.FC<SortableListComponentProps> = ({initialItems, itemProps, props}) => {
+export const SortableListComponent: React.FC<SortableListComponentProps> = ({ itemProps, props, maxAddPerItem=3}) => {
   const { value, onChange } = props;
-  const items = value || initialItems;
-
+  
+  const items = value || [];
+  // if(!items) return null;
   const DragHandle:any = SortableHandle(() => <div className="drag absolute flex justify-center items-center" 
     style={{backgroundColor: '#030303', color:"white", boxShadow: '0px 0px 2px rgba(0,0,0,0.5)', width: '32px', height: '32px', right:'15px', borderRadius:'100%'}}>
     <span className=' ' >⇕</span>
   </div>)
 
-  const renderItemProps = (item: SortableItemProps, itemProps: [any]) => {
+  const renderItemProps = (item: any, itemProps: [any]) => {
     const renders = [];
 
     for (let i = 0; i < itemProps.length; i++) {
       const prop:any = itemProps[i];
       
-      if(item.type !== prop.name) return null;
+      if(item.type !== prop.name) continue;
       if(item.props && !item.props.hasOwnProperty(prop.propName)) {
         item.props = {
           ...item.props,
@@ -43,16 +45,15 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
       switch(prop.type) {
         case types.SideEditPropType.Boolean:{
           renders.push(
-            <div key={prop.propName} className="flex justify-start space-x-2">
+            <div key={`${prop.propName}-${item.name}`} className="flex justify-start space-x-2">
               <label className="flex items-center">
-                <input type="checkbox" checked={item[prop.propName]} onChange={(e) => {
-                  const tmp = items[item.order];
+                <input type="checkbox" checked={item.itemProp[prop.propName]} onChange={(e) => {
+                  console.log(item.name, prop.propName, e.target.checked, e.target, item.itemProp[prop.propName])
                   item.props = {
                     ...item.props,
                     [prop.propName]: e.target.checked
                   }
-                  tmp[prop.propName] = e.target.checked;
-                  items[item.order] = tmp;
+                  item.itemProp[prop.propName] = e.target.checked;
                   onChange(items);
                 }
                 } />
@@ -62,17 +63,30 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
             break;
         }
         case types.SideEditPropType.Select:{
+          let selected = item.itemProp[prop.propName] || prop.options?.[0]?.value;
           renders.push(
-            <select value={item.name} onChange={(e) => {
+            <div key={`${prop.propName}-${item.name}`} className="flex justify-start space-x-2">
+            <select className="bg-black w-full h-10" onChange={(e) => {
               item.props = {
-                [e.target.value]: true
+                ...item.props,
+                [prop.propName]: e.target.value
               }
+              console.log(item.name, prop.propName, e.target.value, e.target)
+
+              item.itemProp[prop.propName] = e.target.value;
+              
+              selected = item.itemProp[prop.propName];
+
               onChange(items);
             }}>
-              {prop.options.map((option, index) => (
-                <option key={index} value={option.value}>{option.label}</option>
-              ))}
+              
+              {prop.options.map((option, index) => {
+                console.log(selected,option.value)
+
+                return (<option key={index} value={option.value} selected={selected === option.value}>{option.label}</option>)
+              })}
             </select>
+            </div>
           )
           break;
         }
@@ -127,7 +141,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
           } }>Remove</button>
         </div>
         <div className="mt-1 p-2 flex flex-col">
-          {itemProps && <><h1 className="font-bold">Item Prop</h1> {renderItemProps(item, itemProps)}</>}
+          {itemProps && <><h1 className="font-bold">Item Prop</h1> <div>{renderItemProps(item, itemProps)}</div></>}
         </div>
       </div>
       </div>
@@ -147,10 +161,11 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
     )
   })
 
+  const templateList = getDefaultColumnItems();
   return (
     <div>
       <div>
-        {initialItems.map((item, index) => {
+        {templateList.map((item, index) => {
           return (
             <div key={`${index}-btn-g-${item.name}`}>
               <div className="flex justify-start space-x-2">
@@ -162,8 +177,8 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ini
                   fontSize: '10px',
                   color: '#333',
                 }} onClick={(e) => {
-                  const tmp = initialItems[index];
-                  const canAdd = items.filter(i => i.type === tmp.type).length < 2;
+                  const tmp = templateList[index];
+                  const canAdd = items.filter(i => i.type === tmp.type).length < maxAddPerItem;
                   if(canAdd){
                     items.push({
                       ...tmp,

@@ -36,17 +36,14 @@ const Home: React.FC<HomeProps> = ({ page, error }) => {
 
   return (
     <Layout displayCallout={true}>
-      <div className='w-full h-full'>
-
-      </div>
       {pageOk && (
-        <>
+        <div className='w-full h-full'>
           <Head>
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />
           </Head>
           <PageViewer page={pageOk} />
-        </>
+        </div>
       )}
       {error === 'NOKEYS' && <ErrorNoKeys />}
       {error === 'NOPAGE' && <ErrorNoHomePage />}

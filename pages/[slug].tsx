@@ -28,13 +28,13 @@ const Page: React.FC<PageProps> = ({ page, error }) => {
   return (
     <Layout displayCallout={false}>
       {pageOk && (
-        <>
+        <div className="w-full h-full">
           <Head>
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />
           </Head>
           <PageViewer page={pageOk} />
-        </>
+        </div>
       )}
       {error === 'NOPAGE' && <ErrorNoPage />}
     </Layout>

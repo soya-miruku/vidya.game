@@ -19,9 +19,10 @@ const VRBButton: types.Brick<ButtonProps> = ({
     <Link {...rest}>
       <div>
         <VButton primary={primary} special={special} secondary={secondary} rounded={rounded}>
-          <VText size='sm' overrideTextColor={true}>
+          {typeof(text) === 'string' ?<VText size='sm' overrideTextColor={true}>
             {text}
           </VText>
+        :text  }
         </VButton>
       </div>
     </Link>

@@ -19,6 +19,11 @@
   } 
 }
 
+.mask {
+  -webkit-mask-image: -webkit-gradient(linear, left 90%, left top, from(rgba(0, 0, 0, 0.9)), to(rgba(0,0,0,0)));
+  mask-image: gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,0)));
+}
+
 @font-face {
   font-family: 'vidya-icons';
   src:  url('/fonts/vidya-icons.eot?3jztue');

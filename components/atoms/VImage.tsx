@@ -6,6 +6,7 @@ export interface IVImageProps {
   src?: string;
   alt?: string;
   className?: string;
+  style?: React.CSSProperties;
   width?: string | number;
   height?: string | number;
   layout?: "fill" | "fixed" | "intrinsic" | "responsive";
@@ -13,7 +14,7 @@ export interface IVImageProps {
   rest?: any;
 }
 
-export const VImage: React.FC<IVImageProps> = ({src, alt, className, width, height, objectFit, layout, ...rest}) => {
+export const VImage: React.FC<IVImageProps> = ({src, alt, className, style, width, height, objectFit, layout, ...rest}) => {
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
 
@@ -25,6 +26,7 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, className, width, heig
       blurDataURL={placeholderUrl}
       src={url || placeholderUrl}
       width={width}
+      style={style}
       height={height}
       alt={alt || 'image'}
       layout={layout}

@@ -5,7 +5,7 @@ import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText'
 import { VTitle } from '@/components/atoms/VTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleDollarToSlot, faSquare } from '@fortawesome/pro-regular-svg-icons'
+import { faCircleDollarToSlot, faParagraph, faSquare } from '@fortawesome/pro-regular-svg-icons'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
 
 export interface VRBRichTextProps {
@@ -40,15 +40,27 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
     <Link {...rest}>
       <RichTextExt
           plugins={[
+            // blockPluginConstructor({
+            //   name: 'paragraph',
+            //   hotKey: 'mod+p',
+            //   render: ({ children, ...rest }) => (<p className='dark:text-true-light-200 text-true-dark-200'>{children}</p>),
+            //   icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faParagraph} />
+            // }),
             markPluginConstructor({
               name: 'drop-shadow',
               hotKey: 'mod+s+h',
-              render: (props) => <h2 style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</h2>,
+              render: (props) => <span style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</span>,
               icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faSquare} />,
             }),
             markPluginConstructor({
+              name: 'white',
+              hotKey: 'mod+w',
+              render: (props) => <strong className='text-true-light-200'>{props.children}</strong>,
+              icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+            }),
+            markPluginConstructor({
               name: 'teal',
-              hotKey: 'mod+r',
+              hotKey: 'mod+t',
               render: (props) => <strong className='text-true-teal-100'>{props.children}</strong>,
               icon: <FontAwesomeIcon className='text-true-teal-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),
@@ -60,7 +72,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             }),
             markPluginConstructor({
               name: 'primary',
-              hotKey: 'mod+r',
+              hotKey: 'mod+alt+p',
               render: (props) => <strong className='text-primary-100'>{props.children}</strong>,
               icon: <FontAwesomeIcon className='text-primary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),

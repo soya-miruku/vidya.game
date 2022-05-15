@@ -30,17 +30,40 @@ export const ColumnsProp = ({
   }
 }
 
+export interface IColumnItemSettingsProp {
+  type: blockNames;
+  name: string;
+  show?: boolean;
+  order?: number;
+  inline?: boolean;
+  itemProp?: {};
+}
 
-export const getColumnItems = () => {
-  const allowed = [blockNames.Button, blockNames.Image, blockNames.Label, blockNames.Title, blockNames.Text];
-  return allowed.map((value, i) => {
+export const getDefaultColumnItems = () => {
+  const allowed=[blockNames.Button, blockNames.Image, blockNames.Label, blockNames.Title, blockNames.Text];
+  return allowed.map((item, index) => {
     return {
-      type: value,
-      name: `${value}_${i}`,
-      order: i,
-      show: i === 0,
+      type: item,
+      name: `${item}_${index}`,
+      show: false,
+      order: index,
       inline: false,
-      itemProp: {}
+      itemProp: {},
     }
   })
+}
+export const getColumnItems = (settings?: [IColumnItemSettingsProp], allowed=[blockNames.Button, blockNames.Image, blockNames.Label, blockNames.Title, blockNames.Text]) => {
+  return (settings||[]).map((item, index) => {
+    console.log(settings)
+    if (allowed.indexOf(item.type) > -1) {
+      return {
+        type: item.type,
+        name: item.name,
+        show: item.show,
+        order: item.order,
+        inline: item.inline,
+        itemProp: item.itemProp,
+      }
+    }
+  });
 }
