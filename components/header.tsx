@@ -10,7 +10,7 @@ import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
 import { VButton } from './atoms/VButton';
 
-const Header = ({className, isOpen, onOpen}) => {
+const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({className, isOpen, onOpen}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const { isMobileView } = useDetectIsMobileView();
   const WIDTH = isMobileView ? 250 : 600;

@@ -48,7 +48,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
             <div key={`${prop.propName}-${item.name}`} className="flex justify-start space-x-2">
               <label className="flex items-center">
                 <input type="checkbox" checked={item.itemProp[prop.propName]} onChange={(e) => {
-                  console.log(item.name, prop.propName, e.target.checked, e.target, item.itemProp[prop.propName])
                   item.props = {
                     ...item.props,
                     [prop.propName]: e.target.checked
@@ -71,7 +70,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
                 ...item.props,
                 [prop.propName]: e.target.value
               }
-              console.log(item.name, prop.propName, e.target.value, e.target)
 
               item.itemProp[prop.propName] = e.target.value;
               
@@ -81,8 +79,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
             }}>
               
               {prop.options.map((option, index) => {
-                console.log(selected,option.value)
-
                 return (<option key={index} value={option.value} selected={selected === option.value}>{option.label}</option>)
               })}
             </select>

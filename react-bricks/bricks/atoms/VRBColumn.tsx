@@ -29,7 +29,6 @@ export interface VRBColumnProps {
 const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideTextColor, type, label,  ...rest}) => {
   // console.log(items, initialItems)
   const renderItems = (items ?? getColumnItems(initialItems)).sort((a,b) => a.order - b.order).map((item, index) => {
-    console.log(item.itemProp, item.props, item.type, item.name)
     return {
       ...item,
       content: item.type === 'VRBLabel' 

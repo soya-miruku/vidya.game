@@ -54,7 +54,6 @@ export const getDefaultColumnItems = () => {
 }
 export const getColumnItems = (settings?: [IColumnItemSettingsProp], allowed=[blockNames.Button, blockNames.Image, blockNames.Label, blockNames.Title, blockNames.Text]) => {
   return (settings||[]).map((item, index) => {
-    console.log(settings)
     if (allowed.indexOf(item.type) > -1) {
       return {
         type: item.type,
