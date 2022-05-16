@@ -93,18 +93,18 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
             </VButton>
           </div>
           <div>
-            <button className="hidden sm:block shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
+            <button className="hidden sm:block shadow-md dark:text-light-200 text-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
             </button>
           </div>
           <div>
-            <button onClick={toggleMode} className={classNames("hidden sm:block shadow-md dark:text-true-light-200 text-true-dark-100 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+            <button onClick={toggleMode} className={classNames("hidden sm:block shadow-md dark:text-light-200 text-dark-100 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
             </button>
           </div>
           <Menu
         width={WIDTH}
         customBurgerIcon={!isOpen 
-          ?  <span className='dark:text-true-light-200 text-true-dark-100 -ic-menu'></span> //<FontAwesomeIcon className='dark:text-true-light-200 text-true-dark-100' icon={faBars}></FontAwesomeIcon> 
-          : <span className='dark:text-true-light-200 text-true-dark-100 -ic-close'></span> //<FontAwesomeIcon className='dark:text-true-light-200 text-true-dark-100' icon={faXmark}></FontAwesomeIcon>
+          ?  <span className='dark:text-light-200 text-dark-100 -ic-menu'></span> //<FontAwesomeIcon className='dark:text-light-200 text-dark-100' icon={faBars}></FontAwesomeIcon> 
+          : <span className='dark:text-light-200 text-dark-100 -ic-close'></span> //<FontAwesomeIcon className='dark:text-light-200 text-dark-100' icon={faXmark}></FontAwesomeIcon>
         } 
         isOpen={isOpen}
         disableOverlayClick={false}
@@ -118,7 +118,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
         noTransition
         >
         <div className='w-full'>
-          <div className='px-14 py-4 flex w-full flex-wrap justify-between dark:text-white text-true-dark-100'>
+          <div className='px-14 py-4 flex w-full flex-wrap justify-between dark:text-white text-dark-100'>
             {Object.keys(PagesByCategory).map((category, index) => {
               return( 
                 <div className='w-[225px] px-2'>
@@ -129,7 +129,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
                       <Link href={page.active ? page.url : '/soon'}>
                         <p className="menu-item">{page.displayName}</p>
                       </Link>
-                      {!page.active && <span className='text-[8px] p-1 px-2 tracking-high-wide dark:text-true-light-200/50 text-true-dark-300 dark:bg-true-dark-300/50 rounded-lg'>SOON</span>}
+                      {!page.active && <span className='text-[8px] p-1 px-2 tracking-high-wide dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 rounded-lg'>SOON</span>}
                     </div>
                   )
                 })} 

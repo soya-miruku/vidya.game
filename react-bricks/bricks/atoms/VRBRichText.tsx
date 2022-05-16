@@ -43,32 +43,32 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             // blockPluginConstructor({
             //   name: 'paragraph',
             //   hotKey: 'mod+p',
-            //   render: ({ children, ...rest }) => (<p className='dark:text-true-light-200 text-true-dark-200'>{children}</p>),
-            //   icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faParagraph} />
+            //   render: ({ children, ...rest }) => (<p className='dark:text-light-200 text-dark-200'>{children}</p>),
+            //   icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faParagraph} />
             // }),
             markPluginConstructor({
               name: 'drop-shadow',
               hotKey: 'mod+s+h',
               render: (props) => <span style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</span>,
-              icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faSquare} />,
+              icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare} />,
             }),
             markPluginConstructor({
               name: 'white',
               hotKey: 'mod+w',
-              render: (props) => <strong className='text-true-light-200'>{props.children}</strong>,
-              icon: <FontAwesomeIcon className='text-true-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+              render: (props) => <strong className='text-light-200'>{props.children}</strong>,
+              icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),
             markPluginConstructor({
               name: 'teal',
               hotKey: 'mod+t',
-              render: (props) => <strong className='text-true-teal-100'>{props.children}</strong>,
-              icon: <FontAwesomeIcon className='text-true-teal-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+              render: (props) => <strong className='text-aimbotsGreen -100'>{props.children}</strong>,
+              icon: <FontAwesomeIcon className='text-aimbotsGreen -100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),
             markPluginConstructor({
               name: 'red',
               hotKey: 'mod+r',
-              render: (props) => <strong className='text-true-red-100'>{props.children}</strong>,
-              icon: <FontAwesomeIcon className='text-true-red-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+              render: (props) => <strong className='text-aimbotsRed-100'>{props.children}</strong>,
+              icon: <FontAwesomeIcon className='text-aimbotsRed-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),
             markPluginConstructor({
               name: 'primary',

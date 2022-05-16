@@ -23,7 +23,7 @@ return (
       {Object.keys(PagesByCategory).map((category, i) => {
       return (
       <div key={category} className="flex flex-col justify-start w-[130px] px-2 mt-12">
-        <div className="text-true-light-200 sm:text-xl font-bold">
+        <div className="text-light-200 sm:text-xl font-bold">
           <h1>{category.toUpperCase()}</h1>
         </div>
         <div>
@@ -35,7 +35,7 @@ return (
               <p className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                 )}>{page.displayName}</p>
               </Link>
-              {!page.active && <span className='text-[8px] py-1 pb-[2.5px] px-2 mx-2 tracking-high-wide text-true-dark-200 dark:bg-true-light-200/50 rounded-md'>SOON</span>}
+              {!page.active && <span className='text-[8px] py-1 pb-[2.5px] px-2 mx-2 tracking-high-wide text-dark-200 dark:bg-light-200/50 rounded-md'>SOON</span>}
 
             </li>
             )
@@ -46,7 +46,7 @@ return (
       )
       })}
       <div className="flex flex-col justify-start w-[130px] mt-12">
-        <div className="text-true-light-200 sm:text-xl font-bold font-saria">
+        <div className="text-light-200 sm:text-xl font-bold font-saria">
           <h1>BUY AT</h1>
         </div>
         <div>
@@ -78,15 +78,15 @@ return (
         </div>
       </div>
     </div>
-    <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-true-light-200 font-saria">
+    <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-light-200 font-saria">
       {isMobileView && <div> <SocialLinks /> </div>}
       <h1 className="uppercase">Copyright © Team3D 2021</h1>
       <ul className="flex space-x-7 justify-end">
         <li>
-          <a href="/terms" className="text-true-light-200"> TERMS OF SERVICE </a>
+          <a href="/terms" className="text-light-200"> TERMS OF SERVICE </a>
         </li>
         <li>
-          <a href="/policy" className="text-true-light-200"> PRIVACY POLICY </a>
+          <a href="/policy" className="text-light-200"> PRIVACY POLICY </a>
         </li>
       </ul>
     </div>

@@ -66,7 +66,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     roundedTop ? '' : 'rounded-t-none',
     roundedLeft ? '' : 'rounded-l-none',
     roundedRight ? '' : 'rounded-r-none',
-    showBorder ? 'border-[1px] dark:border-true-dark-300 border-true-light-300' : '',
+    showBorder ? 'border-[1px] dark:border-dark-300 border-light-300' : '',
     showBorderBottom ? '' : 'border-b-[0px]',
     showBorderLeft ? '' : 'border-l-[0px]',
     showBorderRight ? '' : 'border-r-[0px]',
@@ -75,7 +75,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   </DivContainer>);
 
   return (
-    <div className={classNames('prose flex flex-col justify-center mx-auto items-center', dropShadow ? 'dark:shadow-dark shadow-light' : '',
+    <div className={classNames('prose flex flex-col justify-center mx-auto items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',
       getSizeClass(widthSize).class,
       getSizeClass(heightSize, true).class, className)}>
       <div className={classNames('flex justify-center mx-auto items-center rounded-lgr', center ?'text-center' : '', 
@@ -84,7 +84,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       roundedLeft ? '' : 'rounded-l-none',
       roundedRight ? '' : 'rounded-r-none',
       'w-full h-full',
-          showBorder ? 'border-[2px] dark:border-true-dark-300 border-true-light-300' : 'dark:bg-true-dark-300 bg-true-light-300',
+          showBorder ? 'border-[2px] dark:border-dark-300 border-light-300' : 'dark:bg-dark-300 bg-light-300',
           showBorderBottom ? '' : 'border-b-[0px]',
           showBorderLeft ? '' : 'border-l-[0px]',
           showBorderRight ? '' : 'border-r-[0px]',

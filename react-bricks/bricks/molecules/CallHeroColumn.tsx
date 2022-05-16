@@ -45,7 +45,7 @@ const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, bor
           )
        }} itemProps={{overrideTextColor: background === true}} renderWrapper={(items) => {
           return (
-            <Columns gap={gap} cols={items?.props?.children?.length} className={classNames("text-true-light-100 items-start", 's-items-end', background ? 'bg-primary-100 w-full rounded-xl my-auto mx-auto  right-0 left-0 z-0' : '')} paddingX={paddingX} paddingY={paddingY}>
+            <Columns gap={gap} cols={items?.props?.children?.length} className={classNames("text-light-100 items-start", 's-items-end', background ? 'bg-primary-100 w-full rounded-xl my-auto mx-auto  right-0 left-0 z-0' : '')} paddingX={paddingX} paddingY={paddingY}>
               {/* {background && <div className='bg-primary-100 w-full rounded-xl my-auto mx-auto right-0 left-0 z-0' >{items}</div>} */}
               {items}
             </Columns>
@@ -83,7 +83,7 @@ CallHeroColumn.schema = {
     ],
     bg: {
       color: '#',
-      className: 'bg-gray-100 dark:bg-true-dark-200 bg-true-light-200',
+      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
     },
     borderTop: 'none',
     borderBottom: 'none',

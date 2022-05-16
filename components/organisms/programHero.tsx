@@ -19,7 +19,7 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
   return (
     <div className="w-full h-full prose flex flex-col justify-center items-center space-y-4 py-12">
       <div className='absolute'>
-        {canEdit || typeof(pageTitle) !== 'string' ? <VRBTitle className='dark:text-true-dark-300 text-true-light-300' type='title' propName='pageTitle' ></VRBTitle> : <VTitle className='dark:text-true-dark-300 text-true-light-300' type='title'>{pageTitle}</VTitle>}
+        {canEdit || typeof(pageTitle) !== 'string' ? <VRBTitle className='dark:text-dark-300 text-light-300' type='title' propName='pageTitle' ></VRBTitle> : <VTitle className='dark:text-dark-300 text-light-300' type='title'>{pageTitle}</VTitle>}
       </div>
       <div className='flex justify-center items-center w-fullh h-full'>
         <div className='sm:w-[244.5px] sm:h-[300px] w-[123px] h-[180px] relative'>

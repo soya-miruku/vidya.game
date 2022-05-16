@@ -61,7 +61,7 @@ BlogSection.schema = {
   getDefaultProps: () => ({
     bg: {
       color: '#',
-      className: 'bg-gray-100 dark:bg-true-dark-200 bg-true-light-200',
+      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
     },
     borderTop: 'none',
     borderBottom: 'none',

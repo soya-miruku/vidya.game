@@ -184,18 +184,22 @@ module.exports = {
       'tertiary': {
         '100': '#E49696'
       },
-      'true-red': {
+      'aimbotsRed': {
         100: '#FF4365'
       },
-      'true-teal': {
+      'aimbotsGreen ': {
         100: '#63ADB7'
       },
-      'true-dark': {
+      'aimbotsDark': {
+        100: '#10151F',
+        200: '#1E242E'
+      },
+      'dark': {
         100: '#0d0d0d',
         200: '#11081F',
         300: '#211436'
       },
-      'true-light': {
+      'light': {
         100: '#fafafa',
         200: '#FAFBFF',
         300: '#E9EBF3'
