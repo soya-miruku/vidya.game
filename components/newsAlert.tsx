@@ -16,7 +16,7 @@ export const NewsAlert = ({}) => {
   }
 
   return (
-    <Slider {...settings} className="w-full bg-[#651AB7] p-3">
+    <Slider {...settings} className="w-full bg-primary-100 p-3">
       <div className="text-white">
         <div className="flex justify-center items-center space-x-2">
           <div className="bg-white rounded-sm p-1 px-2">
