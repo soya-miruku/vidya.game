@@ -20,11 +20,11 @@ export const VTab: React.FC<ITabProps> = ({ label, active, onClick }) => {
   )
 }
 
-export const VTabs: React.FC<ITabsProps> = ({ items, onChange }) => {
+export const VTabs: React.FC<ITabsProps> = ({ items, onChange, className }) => {
   const [selected, setSelected] = useState(0);
 
   return (
-    <div className='flex gap-x-2'>
+    <div className={classNames('flex gap-x-2', className)}>
       {items.map((item, index) => (
         <VTab key={index} label={item.label} active={selected === index} onClick={() => {
           setSelected(index);
