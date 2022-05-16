@@ -19,6 +19,6 @@
   background-position: center bottom;
   background-size: 100px 30px;
   background-image: 
-  linear-gradient(to right, #401F68 1px, transparent 1px), 
-  linear-gradient(to bottom, #401F68 1px, transparent 1px);
+  linear-gradient(to right, theme('colors.accent.600') 1px, transparent 1px), 
+  linear-gradient(to bottom, theme('colors.accent.600') 1px, transparent 1px);
 }

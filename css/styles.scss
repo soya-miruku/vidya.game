@@ -44,18 +44,26 @@ body {
   width: 3px;
 }
 
-// :root {
-//   ::-webkit-scrollbar {
-//     width: 3px;
-//   }
+:root {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  &.dark {
+    ::-webkit-scrollbar-thumb {
+      @apply bg-light-200 ;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      @apply bg-light-200 ;
+    }
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-100 ;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-100 ;
+  }
+}
 
-//   ::-webkit-scrollbar-thumb {
-//     background: #11081F;
-//   }
-//   ::-webkit-scrollbar-thumb:hover {
-//     background: #11081F;
-//   }
-// }
 
 [class^="-"], [class*=" -"] {
   font-family: 'vidya-icons' !important;

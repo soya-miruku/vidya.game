@@ -18,11 +18,8 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
   var styles = {
     bmBurgerButton: {
       position: 'relative',
-      // right: '36px',
-      // width: '30px',
       height: '20px',
       width: '20px'
-      // top: '40px'
     },
     bmBurgerBars: {
       background: isDarkMode ? '#fff' : '#000'
@@ -36,10 +33,6 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     },
     bmMenuWrap: {
       position: 'fixed',
-      // paddingTop: '2.5rem',
-      // borderRight: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
-      // borderTop: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
-      // borderBottom: `25px solid ${!isDarkMode ? '#11081F' : '#FAFBFF'}`,
       paddingBottom: '2.5rem',
       height: '100%',
       width: `${WIDTH}px`,
@@ -48,7 +41,6 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     },
     bmMenu: {
       zIndex: '1',
-      // background: isDarkMode ? '#11081F' : '#FAFBFF',
       paddingTop: '2.5em',
       fontSize: '1.15em'
     },
