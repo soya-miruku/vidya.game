@@ -16,7 +16,7 @@ export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className
   switch(type) {
     case "title":
       return (
-        <h1 onChange={onChange} className={classNames('font-saria sm:text-[150px] text-[4rem]', overrideTextColor ? 'text-light-200' : 'dark:text-light-200 text-dark-200', className)}>
+        <h1 onChange={onChange} className={classNames('font-saria sm:text-title text-h2', overrideTextColor ? 'text-light-200' : 'dark:text-light-200 text-dark-200', className)}>
           {children}
         </h1>
       )

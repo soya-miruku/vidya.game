@@ -126,6 +126,9 @@ module.exports = {
               'margin-top': 0,
               'margin-bottom': 0,
             },
+            span: {
+              'line-height': 'auto',
+            },
             h6: {
               'font-weight': 900,
               'font-size': '14px',
@@ -143,6 +146,17 @@ module.exports = {
               'margin-top': 0,
               'margin-bottom': 0,
             },
+            ul: {
+              'padding': '0',
+              'margin': '0'
+            },
+            'ul li': {
+              padding: '0rem'
+            },
+            li: {
+              'list-style': 'none',
+              'padding-left': '0em'
+            },
             div: {
               'line-height': '22px',
               'letter-spacing': '2px',
@@ -151,7 +165,10 @@ module.exports = {
         }
       },
       letterSpacing: {
-        'high-wide': '2px'
+        'cta': '2px',
+      },
+      lineHeight: {
+        'cta': '22px',
       },
       fontFamily: {
         'saria': ['Saira Semi Condensed', 'Roboto'],
@@ -165,13 +182,28 @@ module.exports = {
     },
     borderRadius: {
       lgr: '20px',
-      sm: '10px'
+      sm: '10px',
+      xs: '5px'
     },
     boxShadow: {
       'dark-md': '0px 0px 80px rgba(0, 0, 0, 0.5)',
       'light-md': '0px 0px 60px rgba(199, 207, 255, 0.3)',
       'light': '0px 40px 60px -25px #C7CFFF4D',
       'dark': '0px 40px 80px -25px rgba(0, 0, 0, 0.5)',
+    },
+    fontSize: {
+      'title': '150px',
+      'h1': '80px',
+      'h2': '60px',
+      'h3': '45px',
+      'h4': '32px',
+      'h5': '20px',
+      'h6': '14px',
+      'standfirst': '30px',
+      'body': '18px',
+      'cta': '14px', 
+      'body-sm': '12px',
+      'xs': '8px'
     },
     colors: {
       ...colors,

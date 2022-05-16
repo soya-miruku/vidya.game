@@ -74,7 +74,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
             />
             <RichText
               renderBlock={(props) => (
-                <VText overrideTextColor={background} size='lg' className='mt-4'>
+                <VText overrideTextColor={background} size='md' className='mt-4'>
                   {props.children}
                 </VText>
               )}

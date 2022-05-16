@@ -9,7 +9,7 @@ import { SocialLinks } from "./socialLinks";
 const Footer = () => {
   const { isMobileView } = useDetectIsMobileView();
 return (
-<footer className={classNames('w-full px-4 py-12 h-3/6 bg-transparent overflow-x-clip', styles['grid-container'])}>
+<footer className={classNames('w-full px-4 py-12 h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
     {/* <div className={`${styles['grid-container']}`}></div> */}
 
   <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full", styles['inwards'])}>
@@ -22,20 +22,20 @@ return (
     <div className="flex flex-row w-full flex-wrap gap-x-[100px]">
       {Object.keys(PagesByCategory).map((category, i) => {
       return (
-      <div key={category} className="flex flex-col justify-start w-[130px] px-2 mt-12">
+      <div key={category} className="flex flex-col justify-start w-[130px] pt-12">
         <div className="text-light-200 sm:text-xl font-bold">
-          <h1>{category.toUpperCase()}</h1>
+          <h6>{category.toUpperCase()}</h6>
         </div>
         <div>
-          <ul className="mt-6 space-y-3">
+          <ul className="pt-4">
             {PagesByCategory[category].map(page => {
             return (
-            <li key={page.slug} className="text-[14px] tracking-high-wide flex justify-start items-center">
+            <li key={page.slug} className="text-cta tracking-cta flex justify-start items-center">
               <Link href={page.active ? page.url : '/soon' }>
               <p className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                 )}>{page.displayName}</p>
               </Link>
-              {!page.active && <span className='text-[8px] py-1 pb-[2.5px] px-2 mx-2 tracking-high-wide text-dark-200 dark:bg-light-200/50 rounded-md'>SOON</span>}
+              {!page.active && <span className='text-xs px-1 mx-2 tracking-cta text-dark-100 bg-light-200/50 rounded-xs'>SOON</span>}
 
             </li>
             )
@@ -47,11 +47,11 @@ return (
       })}
       <div className="flex flex-col justify-start w-[130px] mt-12">
         <div className="text-light-200 sm:text-xl font-bold font-saria">
-          <h1>BUY AT</h1>
+          <h6>BUY AT</h6>
         </div>
         <div>
           <ul className="mt-5 -ml-1 space-y-3">
-            <li className="text-[14px] tracking-high-wide font-saria">
+            <li className="text-cta tracking-cta font-saria">
               <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-200 hover:text-white space-x-2 flex justify-start items-center">
                 <span className="w-5 h-5">
                   <svg fill="white" viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
@@ -69,18 +69,18 @@ return (
                     </path>
                   </svg>
                 </span>
-                <h1 className="mt-1">
+                <h6 className="mt-1">
                   UNISWAP
-                </h1>
+                </h6>
               </a>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-light-200 font-saria">
+    <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-light-200 tracking-cta font-saria text-cta">
       {isMobileView && <div> <SocialLinks /> </div>}
-      <h1 className="uppercase">Copyright © Team3D 2021</h1>
+      <p className="uppercase">Copyright © Team3D 2021</p>
       <ul className="flex space-x-7 justify-end">
         <li>
           <a href="/terms" className="text-light-200"> TERMS OF SERVICE </a>
