@@ -161,7 +161,7 @@ module.exports = {
             },
             div: {
               'line-height': '22px',
-              'letter-spacing': '2px',
+              'letter-spacing': '0px',
             }
           }
         }

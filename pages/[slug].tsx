@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import {
   ReactBricksContext,
   PageViewer,
@@ -13,6 +13,7 @@ import { GetStaticProps, GetStaticPaths } from 'next'
 import config from '../react-bricks/config'
 import Layout from '../components/layout'
 import ErrorNoPage from '../components/errorNoPage'
+import { usePages } from 'react-bricks/frontend'
 
 interface PageProps {
   page: types.Page
@@ -22,7 +23,8 @@ interface PageProps {
 const Page: React.FC<PageProps> = ({ page, error }) => {
   // Clean the received content
   // Removes unknown or not allowed bricks
-  const { pageTypes, bricks } = useContext(ReactBricksContext)
+  const { pageTypes, bricks, apiKey, appId } = useContext(ReactBricksContext);
+  console.log(apiKey, appId)
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
 
   return (

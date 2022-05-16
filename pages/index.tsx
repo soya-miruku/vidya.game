@@ -5,6 +5,7 @@ import {
   fetchPage,
   cleanPage,
   types,
+  fetchPages,
 } from 'react-bricks/frontend'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
@@ -29,7 +30,7 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ page, error }) => {
-  const { pageTypes, bricks } = useContext(ReactBricksContext)
+  const { pageTypes, bricks, apiKey } = useContext(ReactBricksContext)
   const {isDarkMode, toggleMode} = useDarkMode();
   
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
@@ -59,6 +60,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   try {
     // const pagesResult = await fetchPages(config.apiKey, {types: ['program', 'about', 'game']});
+    // console.log(pagesResult)
     // const groupedPages = groupByKey(pagesResult, 'type', {omitKey: false});
     // const pages = Object.keys(groupedPages).map(type => {
     //   return {

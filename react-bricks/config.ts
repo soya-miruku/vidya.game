@@ -24,7 +24,13 @@ const config: types.ReactBricksConfig = {
   useCssInJs: false,
   appRootElement: '#__next',
   clickToEditSide: types.ClickToEditSide.BottomRight,
-  customFields: [],
+  customFields: [
+    {
+      name: 'label',
+      label: 'Label',
+      type: types.SideEditPropType.Text,
+    }
+  ],
   //responsiveBreakpoints: [{ type: types.DeviceType.Phone, width: 480, label: 'Smartphone'}],
   enableAutoSave: true,
   disableSaveIfInvalidProps: false,

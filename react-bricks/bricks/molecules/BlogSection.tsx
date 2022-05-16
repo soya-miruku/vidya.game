@@ -20,6 +20,7 @@ import { IconCard } from '@/components/molecules/IconCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoonStars } from '@fortawesome/pro-light-svg-icons';
 import { Padding } from '../Shared/additional';
+import { BlogListSection } from '@/components/organisms/blogsListSection';
 
 interface BlogSectionProps {
   maxItems?: number
@@ -33,12 +34,7 @@ interface BlogSectionProps {
 const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems, paddingX, paddingY }) => {
   return (
     <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
-      <div className='flex space-x-4 space-y-4 flex-wrap'>
-        <BlogCard title='seriously?' label='COINBASE LISTING?' subtitle='yeah, what? ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' footer='Soya - 13/05/2022'/>
-        <BlogCard title='seriously?' label='COINBASE LISTING?' subtitle='yeah, what? ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' footer='Soya - 13/05/2022'/>
-        <BlogCard title='seriously?' label='COINBASE LISTING?' subtitle='yeah, what? ipsum dolor sit amectetur adipiscing consectetur elit.  ipsum dolor sit amectetur adipiscing consectetur elit. find out more here' footer='Soya - 13/05/2022'/>
-
-      </div>
+      <BlogListSection/>
     </Section>
   )
 }
