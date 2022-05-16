@@ -183,6 +183,17 @@ module.exports = {
       }
     },
     borderRadius: {
+      full: '9999px',
+      sm: '0.125rem',
+      default: '0.25rem',
+      lg: '0.5rem',
+      xl: '1rem',
+      '2xl': '2rem',
+      '3xl': '3rem',
+      '4xl': '4rem',
+      '5xl': '5rem',
+      '6xl': '6rem',
+      '7xl': '7rem',
       lxl: '30px',
       lgr: '20px',
       sm: '10px',
