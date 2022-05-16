@@ -47,18 +47,32 @@ export const LayoutProp = ({
             },
           },
           {
-            name: 'width',
-            label: 'Width',
+            name: 'rounded',
+            label: 'Rounded',
             type: types.SideEditPropType.Select,
             selectOptions: {
               display: types.OptionsDisplay.Select,
               options: [
+                { value: 'none', label: 'None' },
                 { value: 'sm', label: 'Small' },
                 { value: 'md', label: 'Medium' },
                 { value: 'lg', label: 'Large' },
               ],
             },
           },
+          // {
+          //   name: 'width',
+          //   label: 'Width',
+          //   type: types.SideEditPropType.Select,
+          //   selectOptions: {
+          //     display: types.OptionsDisplay.Select,
+          //     options: [
+          //       { value: 'sm', label: 'Small' },
+          //       { value: 'md', label: 'Medium' },
+          //       { value: 'lg', label: 'Large' },
+          //     ],
+          //   },
+          // },
           {
             name: 'paddingX',
             label: 'Padding X',
@@ -70,6 +84,8 @@ export const LayoutProp = ({
                 { value: 'sm', label: 'Small' },
                 { value: 'lg', label: 'Large' },
                 { value: 'xl', label: 'X Large' },
+                { value: 'xxl', label: 'XX Large' },
+
               ],
             },
           },
@@ -84,6 +100,7 @@ export const LayoutProp = ({
                 { value: 'sm', label: 'Small' },
                 { value: 'lg', label: 'Large' },
                 { value: 'xl', label: 'X Large' },
+                { value: 'xxl', label: 'XX Large' },
               ],
             },
           }

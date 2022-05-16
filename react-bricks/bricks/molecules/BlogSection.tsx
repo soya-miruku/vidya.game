@@ -19,17 +19,20 @@ import { StatCard } from '@/components/molecules/StatCard';
 import { IconCard } from '@/components/molecules/IconCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMoonStars } from '@fortawesome/pro-light-svg-icons';
+import { Padding } from '../Shared/additional';
 
 interface BlogSectionProps {
   maxItems?: number
   bg?: { color: string; className: string }
   borderTop?: Border
   borderBottom?: Border
+  paddingX?: Padding
+  paddingY?: Padding
 }
 
-const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems }) => {
+const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems, paddingX, paddingY }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
       {/* <FeatureCard buttonText='hello world' secondaryBtn title='H4 Title' subtitle='Body — ipsum dolor sit amectetur adipiscing consectetur elit.'/> */}
       {/* <StakingCard title1='h5 value' title2='h5 value' label1='label' label2='label'/> */}
       <div className='flex space-x-4 space-y-4 flex-wrap'>

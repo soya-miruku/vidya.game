@@ -118,6 +118,7 @@ VRBColumn.schema = {
             { label: 'Small', value: 'sm' },
             { label: 'Medium', value: 'md' },
             { label: 'Large', value: 'lg' }, 
+            { label: 'X Large', value: 'xl' }, 
           ]
         },
         {

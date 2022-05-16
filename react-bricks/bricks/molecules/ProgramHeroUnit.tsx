@@ -6,18 +6,21 @@ import { bgColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
 import { IProgramHeroProps, ProgramHero } from '@/components/organisms/programHero';
 import Section, { Border } from '../Layout/Section';
+import { Padding } from '../Shared/additional';
 
 export interface IProgramHeroUnitProps extends IProgramHeroProps {
   bg?: { color: string; className: string };
   borderTop?: Border
   borderBottom?: Border
+  paddingX?: Padding;
+  paddingY?: Padding;
   className?: string;
 }
 
-const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ bg, borderTop, borderBottom, className, pageTitle, pageDescription, image }) => {
+const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY, className, pageTitle, pageDescription, image }) => {
   const { isAdmin } = useAdminContext();
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
+    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
       <ProgramHero image={image} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
     </Section>
   )

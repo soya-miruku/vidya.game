@@ -36,9 +36,11 @@ module.exports = {
       },
       width: {
         ...allowableSizes,
+        'page': '1140px'
       },
       maxWidth: {
         ...allowableSizes,
+        'page': '1140px'
       },
       minWidth: {
         ...allowableSizes,
@@ -181,6 +183,7 @@ module.exports = {
       }
     },
     borderRadius: {
+      lxl: '30px',
       lgr: '20px',
       sm: '10px',
       xs: '5px'

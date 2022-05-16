@@ -9,21 +9,18 @@ import { blockNames } from '../blockNames'
 import { bgColors } from '../Shared/colors';
 import Section, {Border} from '../Layout/Section';
 import { LayoutProp } from '../Shared/LayoutProps';
+import { Padding, Round } from '../Shared/additional';
 
 //=============================
 // Local Types
 //=============================
-type Padding = 'x-large' | 'big' | 'small'
 type ImagePositions = 'left' | 'right'
 type TextPositions = 'left' | 'center' | 'right'
 type ImageSizes = 'small' | 'medium' | 'large'
-type FontFamily = 'sans-serif' | 'serif' | 'mono' | 'thin' | 'Saira SemiCondensed' | 'Nunito' | 'roboto' | 'poppins'
 
-interface CallHeroUnitProps {
-  padding: Padding
+export interface ICallHeroUnitProps {
   badgeText: string
   imagePosition: ImagePositions
-  fontFamily: FontFamily
   textAlign: TextPositions
   imageSize: ImageSizes
   background: boolean
@@ -31,18 +28,20 @@ interface CallHeroUnitProps {
   title: string
   text: string
   bg?: { color: string; className: string }
+  paddingX?: Padding
+  paddingY?: Padding
   borderTop?: Border
+  rounded?: Round
   borderBottom?: Border
 }
 
-const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBottom, padding, textAlign, imagePosition, fontFamily, background }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop, borderBottom, imagePosition, paddingX, paddingY, background }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
-      <div className={classNames(padding === 'x-large' ? 'sm:py-8 py-3 xs:px-40 md:px-24 px-8' : padding === 'big' ? 'sm:py-2 py-1 sm:px-4 px-1' : 'sm:py-1 sm:px-2 px-1', 
-      'w-full flex flex-row justify-center', 'prose')}>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
+      <div className={classNames('w-full flex flex-row justify-center px-[20px]', 'prose')}>
         <div className='w-full h-full p-2'>
           <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-end items-center`)}>
-          <div className='sm:w-1/2 w-full h-full p-[30px] flex justify-center z-10'>
+          <div className='sm:w-1/2 w-full h-full flex justify-center z-10'>
             <Image
               propName="image"
               alt="image"
@@ -50,7 +49,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
               imageClassName="h-full mb-5 ml-2"
             />
           </div>
-          { background && <div className='absolute bg-primary-100 w-[90%] rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
+          { background && <div className='absolute bg-primary-100 w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
           <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
             <div className='w-full flex justify-start items-start py-4'>
             <Repeater propName='badgeLabels' renderWrapper={(items) => {
@@ -74,7 +73,7 @@ const CallHeroUnit: types.Brick<CallHeroUnitProps> = ({ bg, borderTop, borderBot
             />
             <RichText
               renderBlock={(props) => (
-                <VText overrideTextColor={background} size='md' className='mt-4'>
+                <VText overrideTextColor={background} size='lg' className='mt-4'>
                   {props.children}
                 </VText>
               )}
@@ -126,6 +125,7 @@ CallHeroUnit.schema = {
     headerButtons: [
       {
         children: 'Button 1',
+        secondary:true
       }
     ],
     badgeLabels: [
@@ -134,7 +134,6 @@ CallHeroUnit.schema = {
       }
     ],
     background: false,
-    padding: 'big',
     textAlign: 'left',
     imagePosition: 'right',
     badgeText: 'Programs',
@@ -171,19 +170,6 @@ CallHeroUnit.schema = {
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: 'padding',
-      label: 'Padding',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Select,
-        options: [
-          { value: 'x-large', label: 'X Large Padding' },
-          { value: 'big', label: 'Big Padding' },
-          { value: 'small', label: 'Small Padding' },
-        ],
-      },
-    },
-    {
       name: 'textAlign',
       label: 'Text Align',
       type: types.SideEditPropType.Select,
@@ -208,24 +194,24 @@ CallHeroUnit.schema = {
         ],
       },
     },
-    {
-      name: 'fontFamily',
-      label: 'Font Family',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Select, 
-        options: [
-          { value: 'sans', label: 'Sans' },
-          { value: 'serif', label: 'Serif' },
-          { value: 'mono', label: 'Mono' },
-          { value: 'thin', label: 'Thin' },
-          { value: 'saira', label: 'Saira SemiCondensed' },
-          { value: 'nunito', label: 'Nunito' },
-          { value: 'roboto', label: 'Roboto' },
-          { value: 'poppins', label: 'Poppins' },
-        ],
-      },
-    }
+    // {
+    //   name: 'fontFamily',
+    //   label: 'Font Family',
+    //   type: types.SideEditPropType.Select,
+    //   selectOptions: {
+    //     display: types.OptionsDisplay.Select, 
+    //     options: [
+    //       { value: 'sans', label: 'Sans' },
+    //       { value: 'serif', label: 'Serif' },
+    //       { value: 'mono', label: 'Mono' },
+    //       { value: 'thin', label: 'Thin' },
+    //       { value: 'saira', label: 'Saira SemiCondensed' },
+    //       { value: 'nunito', label: 'Nunito' },
+    //       { value: 'roboto', label: 'Roboto' },
+    //       { value: 'poppins', label: 'Poppins' },
+    //     ],
+    //   },
+    // }
   ],
 }
 

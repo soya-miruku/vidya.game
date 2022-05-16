@@ -90,7 +90,7 @@ export const bgColors: BgColors = {
   },
   dark: {
     label: 'Dark',
-    value: { color: '#111827', className: 'bg-gray-900 dark:bg-dark-200 dark' },
+    value: { color: '#11081F', className: 'bg-gray-900 dark:bg-dark-200 dark' },
   },
 }
 

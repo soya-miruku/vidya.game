@@ -17,9 +17,9 @@ interface IntroProps {
 const IntroUnit: types.Brick<IntroProps> = ({ bg, borderTop, borderBottom }) => {
   return (
     <div className='prose w-full h-full flex flex-col gap-y-2'>
-      <CallHeroColumn className='mt-4' propName='header' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xxl" paddingY='lg'></CallHeroColumn>
-      <CallHeroColumn propName='body' columns={2} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xxl" paddingY='lg'></CallHeroColumn>
-      <CallHeroColumn className='mb-12' propName='footer' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xxl" paddingY='sm'></CallHeroColumn>
+      <CallHeroColumn className='mt-4' propName='header' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='lg'></CallHeroColumn>
+      <CallHeroColumn propName='body' columns={2} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='lg'></CallHeroColumn>
+      <CallHeroColumn className='mb-12' propName='footer' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='sm'></CallHeroColumn>
     </div>
   )
 }
@@ -47,7 +47,7 @@ IntroUnit.schema = {
             order: 0,
             inline: false,
             itemProp: {
-              'size': 'lg'
+              'size': 'xl'
             },
           }
         ],
@@ -63,11 +63,10 @@ IntroUnit.schema = {
             order: 0,
             inline: false,
             itemProp: {
-              size: 'sm'
+              size: 'lg'
             },
           }
         ],
-        size: 'sm',
       },
       {
         items: [
@@ -78,11 +77,10 @@ IntroUnit.schema = {
             order: 0,
             inline: false,
             itemProp: {
-              size: 'sm'
+              size: 'lg'
             },
           }
         ],
-        size: 'sm',
       }
     ],
     footer: [

@@ -66,7 +66,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
       <div className='-mt-2'>
         <Link href="/">
-          <p>
+          <p className='hover:cursor-pointer'>
             <Logo/>
           </p>
         </Link>

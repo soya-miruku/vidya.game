@@ -8,11 +8,14 @@ import Section, { Border } from '../Layout/Section'
 import Container, { Size } from '../Layout/Container'
 import { LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '@/components/atoms/VTitle'
+import { Padding } from '../Shared/additional'
 
 export interface CustomersProps {
   bg?: { color: string; className: string }
-  borderTop?: Border
-  borderBottom?: Border
+  borderTop?: Border;
+  borderBottom?: Border;
+  paddingX?: Padding;
+  paddingY?: Padding;
   size?: 'medium' | 'large'
   width?: Size
   grayscale?: boolean
@@ -24,9 +27,11 @@ const Customers: types.Brick<CustomersProps> = ({
   borderBottom = 'none',
   width = 'lg',
   grayscale = true,
+  paddingX,
+  paddingY
 }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
+    <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
       <Container
         size={width}
         className={classNames(

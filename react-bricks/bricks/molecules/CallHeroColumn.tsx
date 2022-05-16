@@ -36,7 +36,7 @@ interface CallHeroUnitProps {
 
 const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, borderTop, borderBottom, paddingX, paddingY, background, className }) => {
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
+    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
        <Repeater propName={propName || 'columns'} renderItemWrapper={(item, index) => {
           return (
             <div style={{zIndex: 100}} key={index}>
@@ -45,7 +45,7 @@ const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, bor
           )
        }} itemProps={{overrideTextColor: background === true}} renderWrapper={(items) => {
           return (
-            <Columns gap={gap} cols={items?.props?.children?.length} className={classNames("text-light-100 items-start", 's-items-end', background ? 'bg-primary-100 w-full rounded-xl my-auto mx-auto  right-0 left-0 z-0' : '')} paddingX={paddingX} paddingY={paddingY}>
+            <Columns gap={gap} cols={items?.props?.children?.length} className={classNames("text-light-100 items-start", 's-items-end', background ? 'bg-primary-100 w-full rounded-xl my-auto mx-auto  right-0 left-0 z-0' : '')}>
               {/* {background && <div className='bg-primary-100 w-full rounded-xl my-auto mx-auto right-0 left-0 z-0' >{items}</div>} */}
               {items}
             </Columns>
@@ -127,37 +127,7 @@ CallHeroColumn.schema = {
           { label: 'Large', value: 'lg' },
         ]
       }
-    },
-    {
-      name: 'paddingX',
-      label: 'Padding X',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Select,
-        options: [
-          { value: 'xxl', label: 'XX Large Padding'},
-          { value: 'xl', label: 'X Large Padding' },
-          { value: 'lg', label: 'Big Padding' },
-          { value: 'sm', label: 'Small Padding' },
-          { value: 'none', label: 'None' },
-        ],
-      },
-    },
-    {
-      name: 'paddingY',
-      label: 'Padding Y',
-      type: types.SideEditPropType.Select,
-      selectOptions: {
-        display: types.OptionsDisplay.Select,
-        options: [
-          { value: 'xxl', label: 'XX Large Padding'},
-          { value: 'xlg', label: 'X Large Padding' },
-          { value: 'lg', label: 'Big Padding' },
-          { value: 'sm', label: 'Small Padding' },
-          { value: 'none', label: 'None' },
-        ],
-      },
-    },
+    }
   ],
 }
 
