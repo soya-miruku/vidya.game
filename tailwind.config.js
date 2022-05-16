@@ -222,7 +222,7 @@ module.exports = {
       'aimbotsRed': {
         100: '#FF4365'
       },
-      'aimbotsGreen ': {
+      'aimbotsGreen': {
         100: '#63ADB7'
       },
       'aimbotsDark': {

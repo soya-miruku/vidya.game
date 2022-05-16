@@ -61,8 +61,8 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             markPluginConstructor({
               name: 'teal',
               hotKey: 'mod+t',
-              render: (props) => <strong className='text-aimbotsGreen -100'>{props.children}</strong>,
-              icon: <FontAwesomeIcon className='text-aimbotsGreen -100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+              render: (props) => <strong className='text-aimbotsGreen-100'>{props.children}</strong>,
+              icon: <FontAwesomeIcon className='text-aimbotsGreen-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
             }),
             markPluginConstructor({
               name: 'red',
