@@ -71,7 +71,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
   return (
     <div className={classNames('relative dark:bg-true-dark-200 bg-true-light-200 h-28 w-full flex justify-between px-10 py-10 transition-width duration-500',
     isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto' : 'max-w-[1380px] mx-auto', className)}
-    style={{marginLeft: isOpen ? `${-WIDTH}px` : '0px', transition: 'margin 500ms'}}>
+    style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
       <div className='-mt-2'>
         <Link href="/">
           <p>
