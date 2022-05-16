@@ -23,8 +23,7 @@ interface PageProps {
 const Page: React.FC<PageProps> = ({ page, error }) => {
   // Clean the received content
   // Removes unknown or not allowed bricks
-  const { pageTypes, bricks, apiKey, appId } = useContext(ReactBricksContext);
-  console.log(apiKey, appId)
+  const { pageTypes, bricks } = useContext(ReactBricksContext);
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
 
   return (
