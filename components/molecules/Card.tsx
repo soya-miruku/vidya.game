@@ -22,9 +22,9 @@ export interface ICardProps {
   bordered?: boolean;
 }
 
-export const Card: React.FC<ICardProps> = ({bordered=true, sameType, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide}) => {
+export const Card: React.FC<ICardProps> = ({bordered=true, sameType, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url}) => {
   return (
-    <div className='prose'>
+    <div className={classNames('prose', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
     <VItemContainer showBorder={sameType} showBorderBottom={!sameType} dropShadow={false} roundedButtom={!sameType}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
       <div className='w-full h-full'>
         {label && <VLabel className='absolute z-50 text-light-300 m-[30px]'>{label}</VLabel>}
