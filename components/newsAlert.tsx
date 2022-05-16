@@ -19,7 +19,7 @@ export const NewsAlert = ({}) => {
     <Slider {...settings} className="w-full bg-[#651AB7] p-3">
       <div className="text-white">
         <div className="flex justify-center items-center space-x-2">
-          <div className="bg-white rounded-xl p-1 px-2">
+          <div className="bg-white rounded-sm p-1 px-2">
             <h1 className="text-black text-sm">NEW</h1>
           </div>
           <h3>Crpto.com X Vidya</h3>
@@ -28,7 +28,7 @@ export const NewsAlert = ({}) => {
       </div>
       <div className="text-white">
         <div className="flex justify-center items-center space-x-2">
-          <div className="bg-white rounded-xl p-1 px-2">
+          <div className="bg-white rounded-sm p-1 px-2">
             <h1 className="text-black text-sm">NEW</h1>
           </div>
           <h3>Generator Staking: Ready For Launch?</h3>

@@ -61,7 +61,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   }
 
   const borderComponent = ({children}) => (<DivContainer className={
-    classNames('flex flex-col space-y-2 justify-start items-start w-full h-full p-2 m-2 rounded-[10px]',
+    classNames('flex flex-col space-y-2 justify-start items-start w-full h-full p-2 m-2 rounded-sm',
     roundedButtom ? '' : 'rounded-b-none',
     roundedTop ? '' : 'rounded-t-none',
     roundedLeft ? '' : 'rounded-l-none',
@@ -78,7 +78,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     <div className={classNames('prose flex flex-col justify-center mx-auto items-center', dropShadow ? 'dark:shadow-dark shadow-light' : '',
       getSizeClass(widthSize).class,
       getSizeClass(heightSize, true).class, className)}>
-      <div className={classNames('flex justify-center mx-auto items-center rounded-[10px]', center ?'text-center' : '', 
+      <div className={classNames('flex justify-center mx-auto items-center rounded-lgr', center ?'text-center' : '', 
       roundedButtom ? '' : 'rounded-b-none',
       roundedTop ? '' : 'rounded-t-none',
       roundedLeft ? '' : 'rounded-l-none',
@@ -90,7 +90,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
           showBorderRight ? '' : 'border-r-[0px]',
           showBorderTop ? '' : 'border-t-[0px]',
         )}>
-        {showBorder ? borderComponent({children}): <div className='flex flex-col space-y-2 justify-center items-start w-full h-full rounded-[10px]'>{children}</div>}
+        {showBorder ? borderComponent({children}): <div className='flex flex-col space-y-2 justify-center items-start w-full h-full rounded-sm'>{children}</div>}
         
       </div>
     </div>

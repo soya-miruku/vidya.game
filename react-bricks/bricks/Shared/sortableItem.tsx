@@ -98,7 +98,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
     return (
       <div>
       <DragHandle />
-      <div key={`nesv-${sortIndex}-${name}`} className="flex space-x-2 flex-col rounded-md p-2 mt-2" style={{ backgroundColor: '#dbdbdb'}}>
+      <div key={`nesv-${sortIndex}-${name}`} className="flex space-x-2 flex-col rounded-sm p-2 mt-2" style={{ backgroundColor: '#dbdbdb'}}>
         <h3 className='font-bold'>Component: {type}</h3>
         <h4>Name: {name}</h4>
         <h4>Order: {order}</h4>

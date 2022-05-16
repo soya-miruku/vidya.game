@@ -163,6 +163,10 @@ module.exports = {
         'margin': 'margin',
       }
     },
+    borderRadius: {
+      lgr: '20px',
+      sm: '10px'
+    },
     boxShadow: {
       'dark-md': '0px 0px 80px rgba(0, 0, 0, 0.5)',
       'light-md': '0px 0px 60px rgba(199, 207, 255, 0.3)',
