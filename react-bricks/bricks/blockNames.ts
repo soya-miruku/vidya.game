@@ -6,6 +6,7 @@ export enum blockNames {
   BlogSection= 'BlogSectionUnit',
   SmallHeroUnit = 'SmallHeroUnit',
   IntroUnit = 'IntroUnit',
+  ProgramHeroUnit = 'ProgramHeroUnit',
 
   Column = 'VRBColumn',
   Columns = 'VRBColumns',

@@ -15,6 +15,7 @@ import BlogSection from './molecules/BlogSection';
 import VideoHeroUnit from './molecules/VideoHeroUnit';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
+import ProgramHeroUnit from './molecules/ProgramHeroUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -24,6 +25,7 @@ const bricks: types.Brick<any>[] = [
   BlogSection,
   IntroUnit,
   VideoHeroUnit,
+  ProgramHeroUnit,
   VRBButton,
   VRBRichText,
   VRBColumn,

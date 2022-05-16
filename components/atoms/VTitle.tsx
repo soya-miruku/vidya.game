@@ -2,7 +2,7 @@ import React from 'react';
 
 import { classNames } from "@/common/helpers"
 
-export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6";
+export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "title";
 
 interface TitleProps {
   type?: TitleType;
@@ -14,6 +14,12 @@ interface TitleProps {
 
 export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange}) => {
   switch(type) {
+    case "title":
+      return (
+        <h1 onChange={onChange} className={classNames('font-saria sm:text-[150px] text-[4rem]', overrideTextColor ? 'text-true-light-200' : 'dark:text-true-light-200 text-true-dark-200', className)}>
+          {children}
+        </h1>
+      )
     case "h1":
       return (
         <h1 onChange={onChange} className={classNames('font-saria', overrideTextColor ? 'text-true-light-200' : 'dark:text-true-light-200 text-true-dark-200', className)}>

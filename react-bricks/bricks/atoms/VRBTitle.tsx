@@ -8,7 +8,7 @@ import VRBRichText from './VRBRichText'
 
 export interface VRBTitleProps {
   propName: string,
-  type: TitleType
+  type: TitleType;
   overrideTextColor?: boolean
   className?: string
 }

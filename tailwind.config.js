@@ -20,6 +20,20 @@ module.exports = {
   },
   theme: {
     extend: {
+      keyframes: {
+        scroll: {
+          '0%': {
+            opacity: 1
+          },
+          '100%': {
+            opacity: 0,
+            transform: 'translateY(40px)'
+          }
+        }
+      },
+      animation: {
+        scroll: 'scroll 1.5s infinite'
+      },
       width: {
         ...allowableSizes,
       },

@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { RichTextExt, types, Link, RichText, plugins, markPluginConstructor, blockPluginConstructor } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText'
-import { VTitle } from '@/components/atoms/VTitle'
+import { TitleType, VTitle } from '@/components/atoms/VTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCircleDollarToSlot, faParagraph, faSquare } from '@fortawesome/pro-regular-svg-icons'
 import { faCircle } from '@fortawesome/free-solid-svg-icons'
@@ -15,7 +15,7 @@ export interface VRBRichTextProps {
   fontColor?: string
   className?: string,
   overrideTextColor?: boolean
-  type?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+  type?: TitleType
   size?: 'sm' | 'md' | 'lg'
   propName: string
   isTitle?: boolean
