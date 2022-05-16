@@ -7,7 +7,7 @@ import { VTitle } from '../atoms/VTitle';
 
 export interface IBasicCardProps {
   label?: string;
-  title?: string;
+  title?: string | number;
   footer?: any;
   center?: boolean;
   bordered?: boolean;

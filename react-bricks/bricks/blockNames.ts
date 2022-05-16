@@ -7,6 +7,7 @@ export enum blockNames {
   SmallHeroUnit = 'SmallHeroUnit',
   IntroUnit = 'IntroUnit',
   ProgramHeroUnit = 'ProgramHeroUnit',
+  PricesSectionUnit = 'PricesSectionUnit',
 
   Column = 'VRBColumn',
   Columns = 'VRBColumns',

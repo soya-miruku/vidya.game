@@ -16,6 +16,7 @@ import VideoHeroUnit from './molecules/VideoHeroUnit';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
 import ProgramHeroUnit from './molecules/ProgramHeroUnit';
+import PricesSectionUnit from './molecules/PricesSectionUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -26,6 +27,7 @@ const bricks: types.Brick<any>[] = [
   IntroUnit,
   VideoHeroUnit,
   ProgramHeroUnit,
+  PricesSectionUnit,
   VRBButton,
   VRBRichText,
   VRBColumn,

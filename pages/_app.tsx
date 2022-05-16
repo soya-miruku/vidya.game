@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { ReactBricks } from 'react-bricks/frontend'
 import type { AppProps } from 'next/app'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import config from '../react-bricks/config'
 
 import '../css/styles.scss'
@@ -36,11 +37,15 @@ const Init = ({Component, pageProps}) => {
   )
 }
 
+const queryClient = new QueryClient()
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ThemeProvider>
-      <Init Component={Component} pageProps={pageProps} />
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <Init Component={Component} pageProps={pageProps} />
+      </ThemeProvider>
+    </QueryClientProvider>
   )
 }
 
