@@ -59,6 +59,34 @@ export const LayoutProp = ({
               ],
             },
           },
+          {
+            name: 'paddingX',
+            label: 'Padding X',
+            type: types.SideEditPropType.Select,
+            selectOptions: {
+              display: types.OptionsDisplay.Select,
+              options: [
+                { value: 'none', label: 'None' },
+                { value: 'sm', label: 'Small' },
+                { value: 'lg', label: 'Large' },
+                { value: 'xl', label: 'X Large' },
+              ],
+            },
+          },
+          {
+            name: 'paddingY',
+            label: 'Padding Y',
+            type: types.SideEditPropType.Select,
+            selectOptions: {
+              display: types.OptionsDisplay.Select,
+              options: [
+                { value: 'none', label: 'None' },
+                { value: 'sm', label: 'Small' },
+                { value: 'lg', label: 'Large' },
+                { value: 'xl', label: 'X Large' },
+              ],
+            },
+          }
         ],
       }
     : {

@@ -6,16 +6,19 @@ import { bgColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
 import { IPricesSectionProps, PricesSection } from '@/components/organisms/pricesSection';
 import Section, { Border } from '../Layout/Section';
+import { Padding } from '../Shared/additional';
 
 export interface IPricesSectionUnitProps extends IPricesSectionProps {
   bg?: { color: string; className: string };
   borderTop?: Border
   borderBottom?: Border
+  paddingX?: Padding
+  paddingY?: Padding
   className?: string;
 }
-const PricesSectionUnit: types.Brick<IPricesSectionUnitProps> = ({ tokenId, bg, borderTop, borderBottom, className }) => {
+const PricesSectionUnit: types.Brick<IPricesSectionUnitProps> = ({ tokenId, bg, borderTop, borderBottom, className, paddingX, paddingY }) => {
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
+    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
       <PricesSection tokenId={tokenId}/>
     </Section>
   )
