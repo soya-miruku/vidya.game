@@ -25,7 +25,7 @@ export interface ICardProps {
 export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url}) => {
   return (
     <div className={classNames('prose', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
-    <VItemContainer showBorder={sameType} showBorderBottom={!sameType} dropShadow={false} roundedButtom={!sameType}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
+    <VItemContainer showBorder={sameType} showBorderBottom={false} dropShadow={false} roundedButtom={false}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
       <div className='w-full h-full'>
         {label && <VLabel className='absolute z-50 text-light-300 m-[30px]'>{label}</VLabel>}
         <div className='w-full h-full flex justify-center items-center'>

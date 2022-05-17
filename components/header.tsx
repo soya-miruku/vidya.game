@@ -80,6 +80,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
         navbarRef.current.classList.add('invisible');
         navbarRef.current.classList.remove('opacity-100');
       } else {
+        console.log(navbarRef)
         navbarRef.current.classList.remove('opacity-0');
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');

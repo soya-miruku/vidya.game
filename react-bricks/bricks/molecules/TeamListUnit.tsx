@@ -21,7 +21,7 @@ interface ITeamListUnitProps {
 
 const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start'>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
       <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (
