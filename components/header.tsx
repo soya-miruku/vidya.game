@@ -43,7 +43,8 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     bmMenu: {
       zIndex: '1',
       paddingTop: '2.5em',
-      fontSize: '1.15em'
+      fontSize: '1.15em',
+      overflow: 'none',
     },
     bmMorphShape: {
       fill: '#373a47'
@@ -152,7 +153,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-cta', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
                         <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon'}>
-                          <p className="menu-item">{page.displayName}</p>
+                          <p className="menu-item font-saria">{page.displayName}</p>
                         </Link>
                         {!page.active && <span className='text-xs p-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 rounded-lg'>SOON</span>}
                       </div>
