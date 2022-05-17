@@ -10,6 +10,7 @@ import { LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '@/components/atoms/VTitle'
 import { Padding } from '../Shared/additional'
 import { VCarousel } from '@/components/atoms/VCarousel'
+import { useDetectIsMobileView } from 'hooks/useDetectIsMobileView'
 
 export interface CustomersProps {
   bg?: { color: string; className: string }
@@ -31,13 +32,14 @@ const Customers: types.Brick<CustomersProps> = ({
   paddingY
 }) => {
   const { isAdmin } = useAdminContext();
+  const { isMobileView } = useDetectIsMobileView();
   return (
-    <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
+    <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom} className="w-full">
       <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
         return (
           <div className='prose flex flex-col justify-center items-center gap-y-12'>
             <VTitle type='h5'>Featured In</VTitle>
-            <VCarousel navigation={isAdmin} slides={items.props.children}></VCarousel>
+            <VCarousel slidesPerView={isMobileView ? 3 : 5} navigation={isAdmin} slides={items.props.children}></VCarousel>
           </div>
         )
       }}></Repeater>

@@ -22,7 +22,7 @@ export const VCarousel: React.FC<IVCarouselProps> = ({ slides, autoplay=true, sl
   if (navigation) {
     modules.push(Navigation);
   }
-
+  
   return (
     <div className='w-full h-full'>
       <Swiper loop={loop} speed={speed} autoplay={autoplay} modules={modules} navigation={navigation ? {} : undefined} spaceBetween={spaceBetween} slidesPerView={slidesPerView} virtual>
