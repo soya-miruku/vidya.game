@@ -43,7 +43,7 @@ const Home: React.FC<HomeProps> = ({ page, error }) => {
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />
           </Head>
-          <PageViewer page={pageOk} />
+          <PageViewer page={pageOk}/>
         </div>
       )}
       {error === 'NOKEYS' && <ErrorNoKeys />}

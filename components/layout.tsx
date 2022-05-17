@@ -14,7 +14,7 @@ const Layout = ({ children, displayCallout }) => {
         { typeof window !== 'undefined' && window?.localStorage && <Header isOpen={opened} onOpen={(e) => setOnMenu(e)}/>}
         <main id="page-wrap" className={classNames('w-full h-full z-auto relative mt-28', opened ? 'dark:shadow-dark-md shadow-light-md' : '')}>
             {displayCallout && <NewsAlert/>}
-            <div className={classNames('mx-auto max-w-page w-full h-full flex flex-col justify-center items-center ')}>
+            <div className={classNames('mx-auto max-w-page w-full h-full flex flex-col justify-center items-center')}>
               {children}
             <Footer />
           </div>

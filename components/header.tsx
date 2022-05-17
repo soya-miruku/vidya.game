@@ -35,16 +35,18 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     bmMenuWrap: {
       position: 'fixed',
       paddingBottom: '2.5rem',
-      height: '100%',
       width: `${WIDTH}px`,
+      height: '80vh',
       top: '0px',
       zIndex: '0',
+      overflow: 'hidden',
     },
     bmMenu: {
       zIndex: '1',
       paddingTop: '2.5em',
       fontSize: '1.15em',
-      overflow: 'none',
+      height: '80vh',
+      overflow: 'hidden',
     },
     bmMorphShape: {
       fill: '#373a47'
@@ -92,6 +94,18 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     }
 
   }, [navbarRef])
+
+  useEffect(() => {
+    // prevent scroll when open
+    if(isOpen) {
+      document.getElementById('root_html').style.overflow = 'hidden';
+    } else {
+      document.getElementById('root_html').style.overflow = 'auto';
+    }
+    return () => {
+      document.getElementById('root_html').style.overflow = 'auto';
+    }
+  }, [isOpen])
 
   return (
     <div ref={navbarRef} className='fixed w-full h-28 top-0 dark:bg-dark-200 bg-light-200 z-[1000] transition-all duration-500'>
@@ -148,7 +162,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
               {Object.keys(PagesByCategory).map((category, index) => {
                 return( 
                   <div key={`cat-${category}-${index}`} className='w-[225px] px-2'>
-                    <h1 className='font-bold text-cta p-3'>{category.toUpperCase()}</h1>
+                    <h1 className='font-bold font-saria text-cta p-3'>{category.toUpperCase()}</h1>
                     {PagesByCategory[category].map((page, y) => {
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-cta', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
