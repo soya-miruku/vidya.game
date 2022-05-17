@@ -49,7 +49,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
               imageClassName="h-full mb-5 ml-2"
             />
           </div>
-          { background && <div className='absolute bg-primary-100 w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
+          { background && <div className='absolute bg-primary-100 max-w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
           <div className='sm:w-1/2 w-full sm:p-[30px] flex flex-col justify-start items-start z-10'>
             <div className='w-full flex justify-start items-start py-4'>
             <Repeater propName='badgeLabels' renderWrapper={(items) => {
