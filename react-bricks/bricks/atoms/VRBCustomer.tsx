@@ -13,20 +13,20 @@ const VRBCustomer: types.Brick<CustomerProps> = ({
   const { isDarkColorMode } = React.useContext(ReactBricksContext)
   return (
     <div
-      className="p-[10px] px-[30px] flex justify-center items-center text-gray-300"
+      className="flex px-[30px] justify-center items-center text-gray-300"
       {...rest}
     >
       <Image
         propName="image"
         alt="customer"
         imageClassName="w-[165px] h-[40px]"
-        // imageStyle={
-        //   grayscale
-        //     ? isDarkColorMode
-        //       ? { filter: 'opacity(1) grayscale(100%) invert(1)' } //grayscale and darkmode
-        //       : { filter: 'opacity(1) grayscale(100%)' } //only grayscale
-        //     : {}
-        // }
+        imageStyle={
+          grayscale
+            ? isDarkColorMode
+              ? { filter: 'opacity(1) grayscale(100%) invert(1)' } //grayscale and darkmode
+              : { filter: 'opacity(1) grayscale(100%)' } //only grayscale
+            : {}
+        }
       />
     </div>
   )

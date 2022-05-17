@@ -33,7 +33,7 @@ interface BlogSectionProps {
 
 const BlogSection: types.Brick<BlogSectionProps> = ({ bg, borderTop, borderBottom, maxItems, paddingX, paddingY }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center w-full'>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center max-w-page'>
       <BlogListSection/>
     </Section>
   )

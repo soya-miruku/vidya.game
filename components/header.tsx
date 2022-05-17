@@ -142,11 +142,11 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
             <div className='px-14 py-4 flex w-full flex-wrap justify-between dark:text-white text-dark-100'>
               {Object.keys(PagesByCategory).map((category, index) => {
                 return( 
-                  <div className='w-[225px] px-2'>
+                  <div key={`cat-${category}-${index}`} className='w-[225px] px-2'>
                     <h1 className='font-bold text-cta p-3'>{category.toUpperCase()}</h1>
-                    {PagesByCategory[category].map(page => {
+                    {PagesByCategory[category].map((page, y) => {
                     return (
-                      <div className={classNames('py-2 px-[12px] text-cta', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
+                      <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-cta', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
                         <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon'}>
                           <p className="menu-item">{page.displayName}</p>
                         </Link>

@@ -19,10 +19,11 @@ export const BlogListSection: React.FC<IBlogListSectionProps> = ({fetchAmount=3}
   }
 
   return (
-    <div className='w-full'>
-      <div className='w-full h-full flex flex-wrap gap-x-4 py-12'>
+    // <div className='w-full flex flex-col justify-center items-center'>
+      <div className='flex  gap-4 flex-wrap justify-center items-center py-[30px]'>
         {(data || []).map((post, index) => {
           return (
+            <div className=''>
             <BlogCard url={getPageUrlByType(post.type, post.slug)} 
             avatar={post.author.avatarUrl} 
             key={index} 
@@ -31,9 +32,10 @@ export const BlogListSection: React.FC<IBlogListSectionProps> = ({fetchAmount=3}
             label={post.customValues?.label} 
             subtitle={post.meta.description} 
             footer={post.publishedAt ? `${post.author.firstName} - ${new Date(post.publishedAt).toLocaleTimeString("en-US", {weekday: 'long', year: 'numeric', month: 'long', day:'numeric'})}` : ''} />
+            </div>
           )
         })}
       </div>
-    </div>
+    // </div>
   )
 }

@@ -1,7 +1,7 @@
 import * as React from 'react'
 import classNames from 'classnames'
 
-import { Repeater, types } from 'react-bricks/frontend'
+import { Repeater, types, useAdminContext } from 'react-bricks/frontend'
 import {blockNames} from '../blockNames'
 import { bgColors } from '../Shared/colors'
 import Section, { Border } from '../Layout/Section'
@@ -9,6 +9,7 @@ import Container, { Size } from '../Layout/Container'
 import { LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '@/components/atoms/VTitle'
 import { Padding } from '../Shared/additional'
+import { VCarousel } from '@/components/atoms/VCarousel'
 
 export interface CustomersProps {
   bg?: { color: string; className: string }
@@ -25,24 +26,21 @@ const Customers: types.Brick<CustomersProps> = ({
   bg = bgColors.white.value,
   borderTop = 'none',
   borderBottom = 'none',
-  width = 'lg',
   grayscale = true,
   paddingX,
   paddingY
 }) => {
+  const { isAdmin } = useAdminContext();
   return (
     <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom}>
-      <Container
-        size={width}
-        className={classNames(
-          'py-12 flex flex-col justify-center items-center prose'
-        )}
-      >
-        <VTitle type='h5'>Featured In</VTitle>
-        <div className='flex  justify-center items-center'>
-          <Repeater propName="customers" itemProps={{ grayscale }} ></Repeater>
-        </div>
-      </Container>
+      <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
+        return (
+          <div className='prose flex flex-col justify-center items-center gap-y-12'>
+            <VTitle type='h5'>Featured In</VTitle>
+            <VCarousel navigation={isAdmin} slides={items.props.children}></VCarousel>
+          </div>
+        )
+      }}></Repeater>
     </Section>
   )
 }
@@ -63,7 +61,7 @@ Customers.schema = {
     borderTop: 'none',
     borderBottom: 'none',
     width: 'lg',
-    grayscale: true,
+    grayscale: false,
     customers: [
       {
         image: {

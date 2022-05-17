@@ -116,7 +116,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
           )}
           placeholder="Type a text..."
         />
-      </Link>
+    </Link>
   )
 }
 

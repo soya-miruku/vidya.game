@@ -41,7 +41,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
       ? item.show && <VRBImage containerClassName='w-full h-full min-w-[200px] min-h-[200px]' imageHeight="100%" imageWidth="100%" propName={item.name}></VRBImage>
       : item.type === 'VRBButton'
       ? item.show && <VRBButton primary={false} secondary={false} special={false} { ...item.itemProp}>
-        <VRBText overrideTextColor={item.itemProp?.primary === true || item.itemProp?.special === true} propName={`${item.name}_btn`} size='sm'></VRBText>
+        <VRBText overrideTextColor={item.itemProp?.primary === true || item.itemProp?.special === true} propName={`${item.name}_btn`} size='md'></VRBText>
       </VRBButton>
       : null
     }

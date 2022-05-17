@@ -93,7 +93,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
               )}
           />
           <div className='w-full flex justify-start'>
-            <Repeater propName='headerButtons' renderWrapper={(items) => {
+            <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
               return (
                 <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 space-x-7 w-full h-full">
                   {items}

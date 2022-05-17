@@ -23,7 +23,7 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
   return (
     <Link {...rest}>
       <VLabel className={className} secondary={secondary}>
-        <VRBText propName={blockNames.Label} size="sm" >
+        <VRBText propName={blockNames.Label} size="md" >
           {label}
         </VRBText>
       </VLabel>

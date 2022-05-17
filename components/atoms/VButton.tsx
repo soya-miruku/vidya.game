@@ -16,9 +16,9 @@ export interface ButtonProps {
 export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=true, special, primary, secondary, className, onClick=undefined, role, ...props}) => {
   return (
     <button 
-      className={classNames(secondary ? 'dark:text-light-200 text-dark-200' : 'text-light-200', ' py-3 px-6 font-normal shadow-md uppercase',
+      className={classNames('text-light-200', 'py-3 px-6 font-normal shadow-md uppercase',
       special ? 'bg-gradient-to-r from-accent-dark-200 to-accent-light-100 text-light-200' : '',
-      secondary ? 'px-0' : '',
+      secondary ? 'px-0 dark:text-light-200 text-dark-200' : '',
       rounded ? 'rounded-sm' : '',
       !padding ? 'px-0' : '', 
       className,

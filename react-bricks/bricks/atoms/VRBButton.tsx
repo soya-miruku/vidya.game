@@ -6,20 +6,25 @@ import { VButton, ButtonProps } from '@/components/atoms/VButton'
 import { VText } from '@/components/atoms/VText'
 
 
-const VRBButton: types.Brick<ButtonProps> = ({
+export interface IVRBButtonProps extends ButtonProps {
+  background?: boolean
+}
+
+const VRBButton: types.Brick<IVRBButtonProps> = ({
   children:text,
   primary=true,
   special,
   secondary,
   onClick,
   rounded,
+  background,
   ...rest
 }) => {
   return (
     <Link {...rest}>
       <div>
         <VButton primary={primary} special={special} secondary={secondary} rounded={rounded}>
-          {typeof(text) === 'string' ?<VText size='md' overrideTextColor={true}>
+          {typeof(text) === 'string' ? <VText size='md' overrideTextColor={background || !secondary}>
             {text}
           </VText>
         :text  }

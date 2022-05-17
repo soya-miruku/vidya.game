@@ -6,7 +6,7 @@ import { ISmallHeroProps, SmallHero } from '@/components/organisms/smallHero';
 
 
 const SmallHeroUnit: types.Brick<ISmallHeroProps> = ({ title, desc, imgSrc }) => {
-  const { isAdmin, previewMode } = useAdminContext();
+  const { isAdmin } = useAdminContext();
   return (
     <div className='w-full h-full '>
       <SmallHero title={title} desc={desc} imgSrc={(imgSrc as any)?.src} canEdit={isAdmin}></SmallHero>
