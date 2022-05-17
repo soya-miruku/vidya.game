@@ -18,7 +18,7 @@ export interface IPricesSectionUnitProps extends IPricesSectionProps {
 }
 const PricesSectionUnit: types.Brick<IPricesSectionUnitProps> = ({ tokenId, bg, borderTop, borderBottom, className, paddingX, paddingY }) => {
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section className={classNames(className)} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
       <PricesSection tokenId={tokenId}/>
     </Section>
   )
