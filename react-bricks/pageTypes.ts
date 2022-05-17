@@ -1,37 +1,39 @@
+import { pageNames } from '@/common/pageNames'
 import { types } from 'react-bricks/frontend'
 
-const pageTypes: types.IPageType[] = [
+
+export const pageTypes: types.IPageType[] = [
   {
-    name: 'page',
-    pluralName: 'pages',
+    name: pageNames.PAGE.name,
+    pluralName: pageNames.PAGE.plural,
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
   },
   {
-    name: 'program',
-    pluralName: 'programs',
+    name: pageNames.PROGRAM.name,
+    pluralName: pageNames.PROGRAM.plural,
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
   },
   {
-    name: 'game',
-    pluralName: 'games',
+    name: pageNames.GAME.name,
+    pluralName: pageNames.GAME.plural,
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
   },
   {
-    name: 'about',
-    pluralName: 'abouts',
+    name: pageNames.ABOUT.name,
+    pluralName: pageNames.ABOUT.plural,
     defaultLocked: false,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],
   },
   {
-    name: 'post',
-    pluralName: 'posts',
+    name: pageNames.POST.name,
+    pluralName: pageNames.POST.plural,
     defaultLocked: true,
     defaultStatus: types.PageStatus.Published,
     getDefaultContent: () => [],

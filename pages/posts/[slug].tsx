@@ -5,17 +5,19 @@ import {
   fetchPage,
   fetchPages,
   cleanPage,
+  types,
 } from 'react-bricks/frontend'
 import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
-import config from '../react-bricks/config'
+import config from '../../react-bricks/config'
 import Layout from '@/components/layout'
 import ErrorNoPage from '@/components/errorNoPage'
 import { pageNames } from '@/common/pageNames'
 import { PageProps } from '@/common/pageProps'
 
-const Page: React.FC<PageProps> = ({ page, error }) => {
+
+const PostPage: React.FC<PageProps> = ({ page, error }) => {
   // Clean the received content
   // Removes unknown or not allowed bricks
   const { pageTypes, bricks } = useContext(ReactBricksContext);
@@ -59,7 +61,7 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
 
   const allPages = await fetchPages(config.apiKey)
   const paths = allPages
-    .filter((page) => page.type === pageNames.PAGE.name || page.type === pageNames.ABOUT.name)
+    .filter((page) => page.type === pageNames.POST.name)
     .map((page) =>
       page.translations
         .filter(
@@ -75,4 +77,4 @@ export const getStaticPaths: GetStaticPaths = async (context) => {
   return { paths, fallback: false }
 }
 
-export default Page
+export default PostPage

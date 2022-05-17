@@ -3,25 +3,25 @@ export const PagesByCategory = {
     {
       displayName: 'TEAMOS',
       slug: 'teamos',
-      url: '/teamos',
+      type: 'program',
       active: true
     },
     {
       displayName: 'GENERATOR',
       slug: 'generator',
-      url: '/generator',
+      type: 'program',
       active: true
     },
     {
       displayName: 'MERCHANT',
       slug: 'merchant',
-      url: '/merchant',
+      type: 'program',
       active: false
     },
     {
       displayName: 'FABRICATOR',
       slug: 'fabricator',
-      url: '/fabricator',
+      type: 'program',
       active: false
     }
   ],
@@ -29,13 +29,13 @@ export const PagesByCategory = {
     {
       displayName: 'AIMBOTS',
       slug: 'aimbots',
-      url: '/aimbots',
+      type: 'game',
       active: true
     },
     {
       displayName: 'ASTRONAUT',
       slug: 'astronaut',
-      url: '/astronaut',
+      type: 'game',
       active: false
     }
   ],
@@ -43,25 +43,25 @@ export const PagesByCategory = {
     {
       displayName: 'ROADMAP',
       slug: 'roadmap',
-      url: '/roadmap',
+      type: 'about',
       active: true
     },
     {
       displayName: 'MISSION',
       slug: 'mission',
-      url: '/mission',
+      type: 'about',
       active: true
     },
     {
       displayName: 'TEAM',
       slug: 'team',
-      url: '/team',
+      type: 'about',
       active: true
     },
     {
       displayName: 'FAQS',
       slug: 'faq',
-      url: '/faq',
+      type: 'about',
       active: true
     }
   ]

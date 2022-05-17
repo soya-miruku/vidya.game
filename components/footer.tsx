@@ -1,7 +1,7 @@
 import { Logo } from "./logo"
 import { PagesByCategory } from "../common/viwablePages";
 import Link from "next/link";
-import { classNames } from "../common/helpers";
+import { classNames, getPageUrlByType } from "../common/helpers";
 import styles from '../css/footer.module.scss';
 import { useDetectIsMobileView } from "../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./socialLinks";
@@ -31,8 +31,8 @@ return (
             {PagesByCategory[category].map(page => {
             return (
             <li key={page.slug} className="text-cta tracking-cta flex justify-start items-center">
-              <Link href={page.active ? page.url : '/soon' }>
-              <p className={classNames('', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
+              <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon' }>
+              <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                 )}>{page.displayName}</p>
               </Link>
               {!page.active && <span className='text-xs px-1 mx-2 tracking-cta text-dark-100 bg-light-200/50 rounded-xs'>SOON</span>}
