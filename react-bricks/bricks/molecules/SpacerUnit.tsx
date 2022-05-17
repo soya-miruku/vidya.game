@@ -22,7 +22,6 @@ const SpacerUnit: types.Brick<ISpacerUnitProps> = ({ size }) => {
     )
   }
   else {
-    console.log('wht')
     return (
       <div className={classNames('w-full', size === 'lgr' ? 'h-[200px]' : size === 'med' ? 'h-[100px]' :  'h-[50px]')}/>
     )
