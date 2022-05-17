@@ -19,6 +19,7 @@ import ProgramHeroUnit from './molecules/ProgramHeroUnit';
 import PricesSectionUnit from './molecules/PricesSectionUnit';
 import Promo1HeroUnit from './molecules/Promo1HeroUnit';
 import Promo2HeroUnit from './molecules/Promo2HeroUnit';
+import SpacerUnit from './molecules/SpacerUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -27,6 +28,7 @@ const bricks: types.Brick<any>[] = [
   SmallHeroUnit,
   BlogSection,
   IntroUnit,
+  SpacerUnit,
   VideoHeroUnit,
   ProgramHeroUnit,
   PricesSectionUnit,

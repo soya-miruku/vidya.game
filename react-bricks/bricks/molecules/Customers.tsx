@@ -50,7 +50,7 @@ const Customers: types.Brick<CustomersProps> = ({
 Customers.schema = {
   name: blockNames.Customers,
   label: 'Customers',
-  category: 'TeamOs-Basics',
+  category: 'TeamOs-Molecules',
   playgroundLinkLabel: 'View source code on Github',
   playgroundLinkUrl:
     'https://github.com/ReactBricks/react-bricks-ui/blob/master/src/website/Customers/Customers.tsx',

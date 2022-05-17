@@ -70,10 +70,14 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
 
       if (currentY > prevY) {
         navbarRef.current.classList.add('opacity-0');
+        navbarRef.current.classList.remove('translate-y-0');
+        navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
         navbarRef.current.classList.remove('opacity-100');
       } else {
         navbarRef.current.classList.remove('opacity-0');
+        navbarRef.current.classList.remove('-translate-y-full');
+        navbarRef.current.classList.add('translate-y-0');
         navbarRef.current.classList.remove('invisible');
         navbarRef.current.classList.add('opacity-100');
       }
@@ -102,9 +106,9 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
         </div>
           <div className='flex justify-center items-center sm:space-x-7 space-x-2'>
             <div className=''>
-              <VButton special className='group shadow-md' role='group'>       
+              <VButton special className='group shadow-md' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>       
                 <div className='flex flex-row justify-center items-start animate-pulse'>
-                  <div className='text-lg'>
+                  <div className='text-lg font-saria'>
                     Play
                   </div>
                   <div className='group-hover:opacity-100 ml-1 opacity-0 ease-in duration-400 transition-all'>
