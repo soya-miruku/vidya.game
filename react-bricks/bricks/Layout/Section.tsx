@@ -44,7 +44,7 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const bgColor = bg.className
   return (
-    <section className={classNames(bgColor, className, 'overflow-hidden', 
+    <section className={classNames(bgColor, className, 'overflow-hidden', 'mb-[60px]',
     paddingX === 'none' ? '' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-1',
     paddingY === 'none' ? '' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
     rounded === 'none' ? '' : rounded === 'sm' ? 'rounded-sm' : rounded === 'md' ? 'rounded-lgr' : 'rounded-lxl',

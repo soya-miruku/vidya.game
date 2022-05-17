@@ -7,32 +7,27 @@
   z-index: 100; 
   perspective: 480px;
   transform: translate3d(0, 0, 0);
-  background-color:linear-gradient(180deg, rgba(0, 0, 0, 0.37) 0%, rgba(0, 0, 0, 0) 28.76%);
-
-}
-
-.grid-container:after { 
-  -webkit-mask-image: -webkit-gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,.9)));  
-  mask-image: gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,.3)));
-	// transform: perspective(270px) rotateX(10.5deg) scale(2,1) translateZ(0);
-  transform: perspective(480px) rotateX(10.5deg) scale(3,1.7);
-  perspective: 480px;
-  content: ""; display: block; position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;
-  padding: 1px;
-  -webkit-background-clip: content-box; 
-  -webkit-backface-visibility: hidden;
-  outline: 1px solid transparent;
-  transform-origin: bottom center;
-  will-change: transform; 
-}
-
-.grid-container:after {
-  z-index: -1;
-  // @apply bg-primary-100;
-  // background: linear-gradient(to bottom, theme('colors.primary.100'), rgba(117, 19, 93, 0.73));
-  background-position: center bottom;
-  background-size: 70px 30px;
-  background-image: 
-  linear-gradient(to right, theme('colors.accent.600') 1px, transparent 1px), 
-  linear-gradient(to bottom, theme('colors.accent.600') 1px, transparent 1px);
+  &::after {
+    z-index: -1;
+    @apply bg-primary-100;
+    // background: linear-gradient(to bottom, theme('colors.primary.100'), rgba(117, 19, 93, 0.73));
+    background-position: center bottom;
+    background-size: 70px 30px;
+    background-image: 
+    linear-gradient(to right, theme('colors.accent.600') 1px, transparent 1px), 
+    linear-gradient(to bottom, theme('colors.accent.600') 1px, transparent 1px);
+  
+    -webkit-mask-image: -webkit-gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,.9)));  
+    mask-image: gradient(linear, left 90%, left top, from(rgba(0,0,0,1)), to(rgba(0,0,0,.3)));
+    // transform: perspective(270px) rotateX(10.5deg) scale(2,1) translateZ(0);
+    transform: perspective(480px) rotateX(10.5deg) scale(3,1.7);
+    perspective: 480px;
+    content: ""; display: block; position: absolute; bottom: 0; left: 0; right: 0; width: 100%; height: 100%;
+    padding: 1px;
+    -webkit-background-clip: content-box; 
+    -webkit-backface-visibility: hidden;
+    outline: 1px solid transparent;
+    transform-origin: bottom center;
+    will-change: transform; 
+  }
 }

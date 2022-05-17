@@ -22,7 +22,7 @@ export interface ICardProps {
   bordered?: boolean;
 }
 
-export const Card: React.FC<ICardProps> = ({bordered=true, sameType, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url}) => {
+export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url}) => {
   return (
     <div className={classNames('prose', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
     <VItemContainer showBorder={sameType} showBorderBottom={!sameType} dropShadow={false} roundedButtom={!sameType}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
@@ -40,7 +40,7 @@ export const Card: React.FC<ICardProps> = ({bordered=true, sameType, roundImage,
       </div>
     </VItemContainer>
     <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : footer ? 'vsm' : 'vxs'}>
-      <div className={classNames(avatar ? 'mt-14' : 'mt-8','ml-2', footer ? 'space-y-4' : 'space-y-6', bordered ? '' : 'px-4 mt-0')}>
+      <div className={classNames('w-full flex flex-col justify-center items-center', avatar ? 'mt-14' : 'mt-8','ml-2', footer ? 'space-y-4' : 'space-y-6', bordered ? '' : 'px-4 mt-0')}>
         <VTitle type='h4'>{title}</VTitle>
         <VText className={classNames(sameType ? 'min-h-[85px] max-h-[85px]' :'min-h-[52px] max-h-[52px] ', 'overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200')} size='md' weight='normal'>{subtitle}</VText>
         {footer && typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}

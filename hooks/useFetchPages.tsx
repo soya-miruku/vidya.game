@@ -26,7 +26,11 @@ export interface IFetchedPage {
   }
 }
 
-export const useFetchPages = ({type, limit=4}) => {
+export interface IFetchPropPages {
+  limit?: number;
+}
+
+export const useFetchPages = ({type, limit=3}) => {
   const {data, isLoading, error} = useQuery<IFetchedPage[]>(`fetch-page-${type}`, async () => {
     const response = await fetch(`/api/pages?type=${type}&limit=${limit}`, {
       method: 'GET',

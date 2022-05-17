@@ -11,7 +11,7 @@ import Customers from './molecules/Customers';
 import CallHeroColumn from './molecules/CallHeroColumn';
 import VRBColumn from './atoms/VRBColumn';
 import VRBTitle from './atoms/VRBTitle';
-import BlogSection from './molecules/BlogSection';
+import BlogListUnit from './molecules/BlogListUnit';
 import VideoHeroUnit from './molecules/VideoHeroUnit';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
@@ -20,13 +20,20 @@ import PricesSectionUnit from './molecules/PricesSectionUnit';
 import Promo1HeroUnit from './molecules/Promo1HeroUnit';
 import Promo2HeroUnit from './molecules/Promo2HeroUnit';
 import SpacerUnit from './molecules/SpacerUnit';
+import ProgramListUnit from './molecules/ProgramListUnit';
+import GameListUnit from './molecules/GameListUnit';
+import TeamListUnit from './molecules/TeamListUnit';
+import VRBTeamCard from './atoms/VRBTeamCard';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
   CallHeroImage,
   CallHeroColumn,
   SmallHeroUnit,
-  BlogSection,
+  BlogListUnit,
+  ProgramListUnit,
+  GameListUnit,
+  TeamListUnit,
   IntroUnit,
   SpacerUnit,
   VideoHeroUnit,
@@ -34,6 +41,7 @@ const bricks: types.Brick<any>[] = [
   PricesSectionUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
+  VRBTeamCard,
   VRBButton,
   VRBRichText,
   VRBColumn,

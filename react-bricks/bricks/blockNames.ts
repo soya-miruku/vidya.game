@@ -3,7 +3,10 @@ export enum blockNames {
   CallHeroText = 'CallHeroText',
   TwoColumnsUnit = 'TwoColumnsUnit',
   VideoHero = 'VideoHeroUnit',
-  BlogSection= 'BlogSectionUnit',
+  BlogListUnit= 'BlogListUnit',
+  TeamListUnit = 'TeamListUnit',
+  ProgramListUnit = 'ProgramListUnit',
+  GameListUnit = 'GameListUnit',
   SmallHeroUnit = 'SmallHeroUnit',
   IntroUnit = 'IntroUnit',
   SpacerUnit = 'SpacerUnit',
@@ -21,5 +24,6 @@ export enum blockNames {
   Image = 'VRBImage',
   Label = 'VRBLabel',
   Customer = 'VRBCustomer',
-  Customers = 'VRBCustomers'
+  Customers = 'VRBCustomers',
+  TeamCard = 'VRBTeamCard',
 }

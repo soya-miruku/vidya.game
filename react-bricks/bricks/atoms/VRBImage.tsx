@@ -39,7 +39,7 @@ const VRBImage: types.Brick<ImageProps> = ({
 
 VRBImage.schema = {
   name: blockNames.Image,
-  label: 'Imagfe',
+  label: 'Image',
   category: 'vidya atoms',
   hideFromAddMenu: true,
   getDefaultProps: () => ({

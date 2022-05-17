@@ -69,6 +69,8 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
     const handleScroll = () => {
+      if(!navbarRef && !navbarRef.current) return;
+      
       const currentY = window.scrollY;
 
       if (currentY > prevY) {

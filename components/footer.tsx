@@ -10,8 +10,6 @@ const Footer = () => {
   const { isMobileView } = useDetectIsMobileView();
   return (
     <footer className={classNames('w-full px-4 py-[30px] h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
-        {/* <div className={`${styles['grid-container']}`}></div> */}
-
       <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>
         <div className="w-full flex flex-row justify-betweem items-center space-x-4">
           <div className="sm:w-full w-72">

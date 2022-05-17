@@ -14,8 +14,8 @@ export interface ITeamCardProps extends ICardProps {
   github?: string;
 }
 
-export const TeamCard: React.FC<ITeamCardProps> = ({bordered=true, role, discord, twitter, telegram, instagram, label, title, subtitle, url, avatar}) => {
-  return <Card center roundImage sameType bordered={bordered}
+export const TeamCard: React.FC<ITeamCardProps> = ({bordered=true, role, discord, twitter, telegram, instagram, title, subtitle, url, avatar}) => {
+  return <Card center roundImage sameType={true} bordered={bordered}
   footer={
     <div className='flex flex-col justify-center items-center space-y-3'>
       <VText size='sm'>Role - {role}</VText>
@@ -39,5 +39,5 @@ export const TeamCard: React.FC<ITeamCardProps> = ({bordered=true, role, discord
       </div>
     </div>
   }
-   label={label} title={title} subtitle={subtitle} image={avatar} url={url} long={false} wide={false}></Card>
+  title={title} subtitle={subtitle} image={avatar} long={false} wide={false}></Card>
 }
