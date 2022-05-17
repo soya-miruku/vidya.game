@@ -50,11 +50,11 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
             />
           </div>
           { background && <div className='absolute bg-primary-100 w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
-          <div className='sm:w-1/2 w-full p-[30px] flex flex-col justify-start items-start z-10'>
+          <div className='sm:w-1/2 w-full sm:p-[30px] flex flex-col justify-start items-start z-10'>
             <div className='w-full flex justify-start items-start py-4'>
             <Repeater propName='badgeLabels' renderWrapper={(items) => {
               return (
-                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 space-x-2 w-full h-full">
+                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 ">
                   {items}
                 </div>
               )
@@ -95,7 +95,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
           <div className='w-full flex justify-start'>
             <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
               return (
-                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 space-x-7 w-full h-full">
+                <div className="flex flex-wrap justify-start items-center sm:flex-row mt-6 gap-x-7">
                   {items}
                 </div>
               )
