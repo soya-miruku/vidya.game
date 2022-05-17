@@ -16,8 +16,8 @@ const Layout = ({ children, displayCallout }) => {
             {displayCallout && <NewsAlert/>}
             <div className={classNames('mx-auto max-w-page w-full h-full flex flex-col justify-center items-center')}>
               {children}
+            </div>
             <Footer />
-          </div>
         </main>
       </div>
     </div>
