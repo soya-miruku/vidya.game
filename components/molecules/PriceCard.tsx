@@ -22,7 +22,7 @@ export const PriceCard: React.FC<IPriceCardProps> = ({increase, length='sm', hei
   }, [increase]);
 
   return (
-    <BasicCard height={height} length={length} bordered={bordered} title={price} label={label} footer={<div className='flex gap-x-[vsm] justify-center items-center'>
+    <BasicCard height={height} length={length} bordered={bordered} title={price} label={label} footer={<div className='flex gap-x-vsm justify-center items-center'>
       <FontAwesomeIcon className={classNames(hasIncreased ? 'text-secondary-100' : perctChange === 0 ? 'text-primary-100' : 'text-accent-dark-200')} icon={hasIncreased ? faArrowUp : perctChange === 0 ? faDash : faArrowDown}></FontAwesomeIcon>
       <VText size='sm'>
         {perctChange === 0 ? '' : `${perctChange}%`}
