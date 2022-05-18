@@ -37,14 +37,13 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
     else return price.toFixed(7)
   }
 
-  console.log(isMobileView, isWideTabletView, isTabletView)
   return (
     <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
-      <div className='flex xl:gap-x-vxl lg:gap-x-vlrg md:gap-x-vmd sm:gap-x-vsm gap-x-vsm gap-y-vlrg flex-wrap justify-center items-center p-vlrg'>
-        <PriceCard length={(isMobileView || isTabletView) ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='PRICE' price={formatDecimals(data?.currentPrice[currencySelected]?.value)} perctChange={formatDecimals(data?.currentPrice[currencySelected].changePercentage24h)} increase="auto"></PriceCard>
-        <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>
-        <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
-        <PriceCardWithCustomFooter length={(isMobileView || isTabletView)  ? 'lg' : isWideTabletView ? 'xs' : 'md'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${data?.circulatingSupply?.toFixed(2) || 0} circulating`}/>
+      <div className='w-full grid justify-center place-items-center justify-items-center grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-1 xl:gap-x-vxl lg:gap-x-vlrg md:gap-x-vmd sm:gap-x-vsm gap-x-vsm gap-y-vlrg p-vlrg'>
+        <PriceCard length={ 'md'} height={'xs'} label='PRICE' price={formatDecimals(data?.currentPrice[currencySelected]?.value)} perctChange={formatDecimals(data?.currentPrice[currencySelected].changePercentage24h)} increase="auto"></PriceCard>
+        <PriceCard length={'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>
+        <PriceCard length={'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
+        <PriceCardWithCustomFooter length={'md'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${data?.circulatingSupply?.toFixed(2) || 0} circulating`}/>
       </div>
       <div className='p-vlrg flex justify-between items-center w-full h-full'>
         <VTabs items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val) => setCurrencySelected(val)}/>

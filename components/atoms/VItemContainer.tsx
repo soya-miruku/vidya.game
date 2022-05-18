@@ -34,7 +34,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'vsm':
         return {class: isHeight ? 'h-vsm min-h-vsm max-h-vsm' : 'w-vsm min-w-vsm max-w-vsm', px: SIZES['vsm']};
       case 'vmd':
-        return {class: isHeight ? 'h-vmd min-h-vmd max-h-vmd' : 'w-vmd min-w-vmd max-w-vmd', px: SIZES['vmd']};
+        return {class: isHeight ? 'h-vmd min-h-vmd max-h-vmd' : 'max-w-vsm mobile:max-w-vlg tablet:max-w-vlg min-w-vxs max-w-vmd', px: SIZES['vmd']};
       case 'vlg':
         return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'w-vlg min-w-vlg max-w-vlg', px: SIZES['vlg']};
       case 'vxl':
@@ -53,7 +53,6 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       <div className={classNames(className)} 
       style={{
         maxHeight: !showBorderTop ? 'h-full' : heightSize === 'full' ? '99.8%' : `${(getSizeClass(heightSize, true).px - 20)}px`,
-        maxWidth: !showBorderTop ? 'w-full' : widthSize === 'full' ? '99.8%' : `${(getSizeClass(widthSize, false).px - 20)}px`
       }}>
         {children}
       </div>
@@ -75,7 +74,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   </DivContainer>);
 
   return (
-    <div className={classNames('prose flex flex-col justify-center items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',
+    <div className={classNames('prose w-full flex flex-col justify-center items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',
       getSizeClass(widthSize).class,
       getSizeClass(heightSize, true).class, className)}>
       <div className={classNames('flex justify-center items-center rounded-lgr', center ?'text-center' : '', 

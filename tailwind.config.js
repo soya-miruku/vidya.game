@@ -20,6 +20,11 @@ module.exports = {
   },
   theme: {
     extend: {
+      screens: {
+        'tablet': {'raw': 'only screen and (max-width: 768px)'},  
+        // 'tablet': '768px',
+        'mobile': {'raw': 'only screen and (max-width: 430px)'},
+      },
       spacing: {
         'vsm': '10px',
         'vmd': '20px',
