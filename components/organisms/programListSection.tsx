@@ -15,7 +15,7 @@ export const ProgramListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
   }
 
   return (
-    <div className='flex  gap-4 flex-wrap justify-center items-center py-[30px]'>
+    <div className='flex gap-vlrg flex-wrap justify-center items-center py-vlrg'>
       {(data || []).map((post, index) => {
         return (
           <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.featuredImage} title={post.meta.title} subtitle={post.meta.description} />

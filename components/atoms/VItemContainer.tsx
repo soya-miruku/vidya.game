@@ -75,10 +75,10 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   </DivContainer>);
 
   return (
-    <div className={classNames('prose flex flex-col justify-center mx-auto items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',
+    <div className={classNames('prose flex flex-col justify-center items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',
       getSizeClass(widthSize).class,
       getSizeClass(heightSize, true).class, className)}>
-      <div className={classNames('flex justify-center mx-auto items-center rounded-lgr', center ?'text-center' : '', 
+      <div className={classNames('flex justify-center items-center rounded-lgr', center ?'text-center' : '', 
       roundedButtom ? '' : 'rounded-b-[0px]',
       roundedTop ? '' : 'rounded-t-[0px]',
       roundedLeft ? '' : 'rounded-l-[0px]',
