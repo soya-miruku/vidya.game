@@ -42,7 +42,7 @@ export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, round
     <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : footer ? 'vsm' : 'vxs'}>
       <div className={classNames('w-full flex flex-col justify-center gap-y-vmd', center ? 'items-center' : 'items-start', avatar ? 'mt-vxl pt-vmd' : 'mt-vmd','ml-2', footer ? 'gap-y-vmd' : 'gap-y-vmd', bordered ? '' : 'px-4 mt-0')}>
         <VTitle type='h4'>{title}</VTitle>
-        <VText className={classNames(sameType ? 'min-h-[85px] max-h-[85px]' : 'min-h-[20px] max-h-[25px] ', 'overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200')} size='md' weight='normal'>{subtitle}</VText>
+        <VText className={classNames(sameType ? 'min-h-[80px] max-h-[85px]' : footer ? 'min-h-[20px] max-h-[25px]' : 'min-h-[80px] max-h-[85px]', 'overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200')} size='md' weight='normal'>{subtitle}</VText>
         {footer && typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}
       </div>
     </VItemContainer>
