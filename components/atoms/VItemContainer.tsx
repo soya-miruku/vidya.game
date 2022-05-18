@@ -61,7 +61,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   }
 
   const borderComponent = ({children}) => (<DivContainer className={
-    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full p-2 m-2 rounded-sm',
+    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full p-vsm m-vsm rounded-sm',
     roundedButtom ? '' : 'rounded-b-[0px]',
     roundedTop ? '' : 'rounded-t-[0px]',
     roundedLeft ? '' : 'rounded-l-[0px]',
@@ -90,7 +90,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
           showBorderRight ? '' : 'border-r-[0px]',
           showBorderTop ? '' : 'border-t-[0px]',
         )}>
-        {showBorder ? borderComponent({children}): <div className='flex flex-col gap-vsm justify-center items-start w-full h-full rounded-sm'>{children}</div>}
+        {showBorder ? borderComponent({children}): <div className='flex flex-col gap-vsm justify-center items-start w-full h-auto rounded-sm'>{children}</div>}
         
       </div>
     </div>
