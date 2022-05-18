@@ -24,6 +24,7 @@ module.exports = {
         'vsm': '10px',
         'vmd': '20px',
         'vlrg': '30px',
+        'vxl': '60px'
       },
       keyframes: {
         scroll: {

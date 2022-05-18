@@ -31,8 +31,8 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
   }
 
   return (
-    <div className='w-full h-full flex flex-col m-0 p-4 justify-center items-center flex-wrap'>
-      <div className='flex sm:gap-x-8 gap-x-0 gap-y-4 flex-wrap justify-center items-center'>
+    <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
+      <div className='flex sm:gap-x-vxl gap-x-0 gap-y-lrg flex-wrap justify-center items-center'>
         <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='PRICE' price={data?.currentPrice[currencySelected]?.value?.toFixed(5) || 0} perctChange={data?.currentPrice[currencySelected].changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
