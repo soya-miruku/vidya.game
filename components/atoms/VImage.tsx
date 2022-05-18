@@ -17,7 +17,7 @@ export interface IVImageProps {
 export const VImage: React.FC<IVImageProps> = ({src, alt, className, style, width, height, objectFit, layout, ...rest}) => {
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
-
+  console.log(src);
   const url = errorImage ? placeholderUrl : src;
   return (
     <Image

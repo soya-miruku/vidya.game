@@ -17,9 +17,9 @@ export interface ITeamCardProps extends ICardProps {
 export const TeamCard: React.FC<ITeamCardProps> = ({bordered=true, role, discord, twitter, telegram, instagram, title, subtitle, url, avatar}) => {
   return <Card center roundImage sameType={true} bordered={bordered}
   footer={
-    <div className='flex flex-col justify-center items-center space-y-3'>
+    <div className='flex flex-col justify-center items-center gap-y-vmd'>
       <VText size='sm'>Role - {role}</VText>
-      <div className={classNames('flex space-x-6')}>
+      <div className={classNames('flex gap-x-vlrg')}>
       { discord && <a href={discord} target='_blank' className="text-accent-dark-200 hover:text-indigo-700">
           <FontAwesomeIcon icon={faDiscord} />
         </a>

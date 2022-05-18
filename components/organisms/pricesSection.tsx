@@ -32,13 +32,13 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
 
   return (
     <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
-      <div className='flex sm:gap-x-vxl gap-x-0 gap-y-lrg flex-wrap justify-center items-center'>
-        <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='PRICE' price={data?.currentPrice[currencySelected]?.value?.toFixed(5) || 0} perctChange={data?.currentPrice[currencySelected].changePercentage24h || 0} increase="auto"></PriceCard>
+      <div className='flex gap-x-vlrg gap-y-vlrg flex-wrap justify-center items-center p-vlrg'>
+        <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='PRICE' price={data?.currentPrice[currencySelected]?.value?.toFixed(2) || 0} perctChange={data?.currentPrice[currencySelected].changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCard length={isMobileView ? 'xs' : 'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCardWithCustomFooter length={isMobileView ? 'sm' : 'md'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${data?.circulatingSupply?.toFixed(2) || 0} circulating`}/>
       </div>
-      <div className='px-9 pt-8 pb-4 flex justify-between items-center w-full h-full'>
+      <div className='p-vlrg flex justify-between items-center w-full h-full'>
         <VTabs items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val) => setCurrencySelected(val)}/>
         <div className='flex space-x-4 space-x-reverse items-center'>
           <VText className='px-2' size="md">Prices provided by <strong>Coingecko</strong></VText>
