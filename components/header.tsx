@@ -74,13 +74,14 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
       const currentY = window.scrollY;
 
       if (currentY > prevY) {
+        if(!navbarRef.current) return;
         navbarRef.current.classList.add('opacity-0');
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
         navbarRef.current.classList.remove('opacity-100');
       } else {
-        console.log(navbarRef)
+        if(!navbarRef.current) return;
         navbarRef.current.classList.remove('opacity-0');
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');

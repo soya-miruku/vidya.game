@@ -13,12 +13,12 @@ export interface IIconCardProps {
 
 export const IconCard: React.FC<IIconCardProps> = ({bordered=true, label, icon}) => {
   return (
-    <VItemContainer showBorder={bordered}>
+    <VItemContainer showBorder={bordered} widthSize='vsm' heightSize='vsm'>
       <div className={classNames('w-full h-full flex flex-col justify-center items-center p-4 space-y-3')}>
-      <div className='text-primary-100 flex justify-center items-center' style={{width: '60px', height: '60px'}}>
+      <div className='text-primary-100 flex justify-center items-center mt-4' style={{width: '60px', height: '60px'}}>
         {icon}
       </div>
-      <VLabel padding={false} secondary>{label}</VLabel>
+      <VLabel className='pt-8' padding={false} secondary>{label}</VLabel>
       </div>
     </VItemContainer>
   )

@@ -20,6 +20,11 @@ module.exports = {
   },
   theme: {
     extend: {
+      spacing: {
+        'vsm': '10px',
+        'vmd': '20px',
+        'vlrg': '30px',
+      },
       keyframes: {
         scroll: {
           '0%': {
