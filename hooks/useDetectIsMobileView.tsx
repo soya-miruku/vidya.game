@@ -6,6 +6,7 @@ import {TABLET_WIDTH, MOBILE_WIDTH, DESKTOP_WIDTH} from '@/common/constants';
 export const useDetectDeviceSize = () => {
   const [isMobileView, setIsMobileView] = useState(false);
   const [isTabletView, setIsTabletView] = useState(false);
+  const [isWideTabletView, setIsWideTabletView] = useState(false);
 
   useEffect(() => {
     const handleResise = () => {
@@ -22,6 +23,14 @@ export const useDetectDeviceSize = () => {
       else {
         setIsMobileView(false);
       }
+
+      if(innerWidth <= DESKTOP_WIDTH && innerWidth > TABLET_WIDTH) {
+        setIsWideTabletView(true);
+      }
+      else {
+        setIsWideTabletView(false);
+      }
+      
     }
 
     handleResise();
@@ -35,7 +44,7 @@ export const useDetectDeviceSize = () => {
   }, [])
 
 
-  return {isMobileView, isTabletView}
+  return {isMobileView, isTabletView, isWideTabletView}
 }
 
 export const useDetectIsMobileView = (maxWidth:number=640) => {
