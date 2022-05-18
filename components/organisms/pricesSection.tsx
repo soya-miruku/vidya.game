@@ -40,7 +40,7 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
   console.log(isMobileView, isWideTabletView, isTabletView)
   return (
     <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
-      <div className='flex xl:gap-x-vxl lg:gap-x-vlrg md:gap-x-vmd sm:gap-x-vsm gap-x-vsm gap-y-vlrg flex-wrap justify-center items-center p-vlrg xl:px-vxl lg:px-vlrg md:px-vmd sm:px-vsm'>
+      <div className='flex xl:gap-x-vxl lg:gap-x-vlrg md:gap-x-vmd sm:gap-x-vsm gap-x-vsm gap-y-vlrg flex-wrap justify-center items-center p-vlrg'>
         <PriceCard length={(isMobileView || isTabletView) ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='PRICE' price={formatDecimals(data?.currentPrice[currencySelected]?.value)} perctChange={formatDecimals(data?.currentPrice[currencySelected].changePercentage24h)} increase="auto"></PriceCard>
         <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>
         <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : isWideTabletView ? 'xs' : 'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
