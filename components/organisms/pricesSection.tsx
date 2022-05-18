@@ -28,10 +28,19 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
     return price.toFixed(2);
   }
 
+  const formatDecimals = (price: number) => {
+    if(!price) return 0;
+    if(price > 0.01) return price.toFixed(2)
+    else if(price > 0.001) return price.toFixed(3)
+    else if(price > 0.0001) return price.toFixed(4)
+    else if(price > 0.00001) return price.toFixed(5)
+    else return price.toFixed(7)
+  }
+
   return (
     <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
       <div className='flex gap-x-vxl gap-y-vlrg flex-wrap justify-center items-center p-vlrg'>
-        <PriceCard length={(isMobileView || isTabletView) ? 'lg' : 'md'} height={'xs'} label='PRICE' price={data?.currentPrice[currencySelected]?.value?.toFixed(2) || 0} perctChange={data?.currentPrice[currencySelected].changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>
+        <PriceCard length={(isMobileView || isTabletView) ? 'lg' : 'md'} height={'xs'} label='PRICE' price={formatDecimals(data?.currentPrice[currencySelected]?.value)} perctChange={formatDecimals(data?.currentPrice[currencySelected].changePercentage24h)} increase="auto"></PriceCard>
         <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : 'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>
         <PriceCard length={(isMobileView || isTabletView)  ? 'lg' : 'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCardWithCustomFooter length={(isMobileView || isTabletView)  ? 'lg' : 'md'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${data?.circulatingSupply?.toFixed(2) || 0} circulating`}/>
