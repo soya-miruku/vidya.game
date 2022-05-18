@@ -16,7 +16,7 @@ export const BlogListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
 
   return (
     // <div className='w-full flex flex-col justify-center items-center'>
-      <div className='flex gap-vlrg flex-wrap justify-center items-center py-vlrg'>
+      <div className='flex gap-vlrg flex-wrap justify-center items-center py-vxl'>
         {(data || []).map((post, index) => {
           return (
             <BlogCard url={getPageUrlByType(post.type, post.slug)} 

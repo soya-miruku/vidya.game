@@ -16,7 +16,6 @@ export interface IBasicCardProps {
 }
 
 export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered, title, label, center, footer}) => {
-  console.log(length)
   return (
     <VItemContainer showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
       <div className={classNames('w-full h-full flex flex-col justify-center items-start p-4 gap-y-vsm', center ? 'items-center' : '')}>

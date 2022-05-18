@@ -9,14 +9,14 @@ export const useDetectDeviceSize = () => {
 
   useEffect(() => {
     const handleResise = () => {
-      if((innerWidth >= TABLET_WIDTH && innerWidth <= DESKTOP_WIDTH)|| isTablet) {
+      if((innerWidth <= TABLET_WIDTH) || isTablet) {
         setIsTabletView(true);
       }
       else {
         setIsTabletView(false);
       }
 
-      if((innerWidth >= MOBILE_WIDTH && innerWidth <= TABLET_WIDTH) || isMobileSmall()) {
+      if((innerWidth <= MOBILE_WIDTH) || isMobileSmall()) {
         setIsMobileView(true);
       }
       else {
