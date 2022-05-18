@@ -6,14 +6,14 @@ import { push as Menu } from 'react-burger-menu';
 import { classNames, getPageUrlByType } from '../common/helpers';
 import { PagesByCategory } from '../common/viwablePages';
 import { useDarkMode } from '../hooks/useDarkMode';
-import { useDetectIsMobileView } from '../hooks/useDetectIsMobileView';
+import { useDetectDeviceSize } from '../hooks/useDetectIsMobileView';
 import { Logo } from './logo';
 import { VButton } from './atoms/VButton';
 
 const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({className, isOpen, onOpen}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const navbarRef = useRef<HTMLDivElement>(null);
-  const { isMobileView } = useDetectIsMobileView();
+  const { isMobileView } = useDetectDeviceSize();
   const WIDTH = isMobileView ? 250 : 600;
 
   var styles = {

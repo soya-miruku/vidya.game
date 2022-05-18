@@ -3,11 +3,11 @@ import { PagesByCategory } from "../common/viwablePages";
 import Link from "next/link";
 import { classNames, getPageUrlByType } from "../common/helpers";
 import styles from '../css/footer.module.scss';
-import { useDetectIsMobileView } from "../hooks/useDetectIsMobileView";
+import { useDetectDeviceSize } from "../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./socialLinks";
 
 const Footer = () => {
-  const { isMobileView } = useDetectIsMobileView();
+  const { isMobileView } = useDetectDeviceSize();
   return (
     <footer className={classNames('w-full px-4 py-[30px] h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
       <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>

@@ -4,8 +4,6 @@ import VRBText from '../../react-bricks/bricks/atoms/VRBText';
 import VRBTitle from '../../react-bricks/bricks/atoms/VRBTitle';
 import { VText } from '../atoms/VText';
 import { VTitle } from '../atoms/VTitle';
-import { useDetectIsMobileView } from 'hooks/useDetectIsMobileView';
-import { VImage } from '../atoms/VImage';
 
 export interface ISmallHeroProps {
   title?: string;

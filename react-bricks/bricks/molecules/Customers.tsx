@@ -10,7 +10,7 @@ import { LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '@/components/atoms/VTitle'
 import { Padding } from '../Shared/additional'
 import { VCarousel } from '@/components/atoms/VCarousel'
-import { useDetectIsMobileView } from 'hooks/useDetectIsMobileView'
+import { useDetectDeviceSize } from 'hooks/useDetectIsMobileView'
 
 export interface CustomersProps {
   bg?: { color: string; className: string }
@@ -32,7 +32,7 @@ const Customers: types.Brick<CustomersProps> = ({
   paddingY
 }) => {
   const { isAdmin } = useAdminContext();
-  const { isMobileView } = useDetectIsMobileView();
+  const { isMobileView } = useDetectDeviceSize();
   return (
     <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom} className="w-full">
       <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {

@@ -5,7 +5,7 @@ import VRBTitle from '../../react-bricks/bricks/atoms/VRBTitle';
 import YouTube from "react-youtube";
 import { VText } from '../atoms/VText';
 import { VTitle } from '../atoms/VTitle';
-import { useDetectIsMobileView } from 'hooks/useDetectIsMobileView';
+import { useDetectDeviceSize } from 'hooks/useDetectIsMobileView';
 
 export interface IVideoHeroProps {
   videoId?: string;
@@ -17,7 +17,7 @@ export interface IVideoHeroProps {
 }
 
 export const VideoHero: React.FC<IVideoHeroProps> = ({ hideTitleWhenPlaying, fetchTitleFromVideo, videoId, videoTitle, videoDesc, canEdit}) => {
-  const { isMobileView } = useDetectIsMobileView();
+  const { isMobileView } = useDetectDeviceSize();
   const [title, setVideoTitle] = useState();
   const [hideTitle, setHideTitle] = useState(false);
 

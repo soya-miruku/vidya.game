@@ -2,14 +2,14 @@ import React, { useEffect } from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { useDetectIsMobileView } from 'hooks/useDetectIsMobileView';
+import { useDetectDeviceSize } from 'hooks/useDetectIsMobileView';
 
 interface ISpacerUnitProps {
   size?: 'lgr' | 'med' | 'sm';
 }
 
 const SpacerUnit: types.Brick<ISpacerUnitProps> = ({ size }) => {
-  const { isMobileView, isTabletView} = useDetectIsMobileView();
+  const { isMobileView, isTabletView} = useDetectDeviceSize();
 
   if(isMobileView && !isTabletView) {
     return (
