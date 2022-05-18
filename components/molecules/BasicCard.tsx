@@ -11,12 +11,13 @@ export interface IBasicCardProps {
   footer?: any;
   center?: boolean;
   bordered?: boolean;
-  length?: 'sm' | 'md' | 'lg' | 'xl';
+  length?: 'xs'| 'sm' | 'md' | 'lg' | 'xl';
+  height?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
-export const BasicCard: React.FC<IBasicCardProps> = ({ length, bordered, title, label, center, footer}) => {
+export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered, title, label, center, footer}) => {
   return (
-    <VItemContainer showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : 'vsm'}>
+    <VItemContainer showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
       <div className={classNames('w-full h-full flex flex-col justify-center items-start p-4 space-y-3', center ? 'items-center' : '')}>
       <VLabel padding={false} secondary>{label}</VLabel>
       <VTitle type='h4'>{title}</VTitle>
