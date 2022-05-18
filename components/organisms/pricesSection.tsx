@@ -30,10 +30,10 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
 
   const formatDecimals = (price: number) => {
     if(!price) return 0;
-    if(price > 0.01) return price.toFixed(2)
-    else if(price > 0.001) return price.toFixed(3)
-    else if(price > 0.0001) return price.toFixed(4)
-    else if(price > 0.00001) return price.toFixed(5)
+    if(Math.abs(price) > 0.01) return price.toFixed(2)
+    else if(Math.abs(price) > 0.001) return price.toFixed(3)
+    else if(Math.abs(price) > 0.0001) return price.toFixed(4)
+    else if(Math.abs(price) > 0.00001) return price.toFixed(5)
     else return price.toFixed(7)
   }
 
