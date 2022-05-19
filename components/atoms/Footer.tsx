@@ -1,9 +1,9 @@
-import { Logo } from "./logo"
-import { PagesByCategory } from "../common/viwablePages";
+import { Logo } from "../logo"
+import { PagesByCategory } from "../../common/viwablePages";
 import Link from "next/link";
-import { classNames, getPageUrlByType } from "../common/helpers";
-import styles from '../css/footer.module.scss';
-import { useDetectDeviceSize } from "../hooks/useDetectIsMobileView";
+import { classNames, getPageUrlByType } from "../../common/helpers";
+import styles from '@/css/footer.module.scss';
+import { useDetectDeviceSize } from "../../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./socialLinks";
 
 const Footer = () => {

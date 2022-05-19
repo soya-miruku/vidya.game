@@ -3,12 +3,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link'
 import React, { useEffect, useRef } from 'react'
 import { push as Menu } from 'react-burger-menu';
-import { classNames, getPageUrlByType } from '../common/helpers';
-import { PagesByCategory } from '../common/viwablePages';
-import { useDarkMode } from '../hooks/useDarkMode';
-import { useDetectDeviceSize } from '../hooks/useDetectIsMobileView';
-import { Logo } from './logo';
-import { VButton } from './atoms/VButton';
+import { classNames, getPageUrlByType } from '../../common/helpers';
+import { PagesByCategory } from '../../common/viwablePages';
+import { useDarkMode } from '../../hooks/useDarkMode';
+import { useDetectDeviceSize } from '../../hooks/useDetectIsMobileView';
+import { Logo } from '../logo';
+import { VButton } from './VButton';
 
 const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({className, isOpen, onOpen}) => {
   const { isDarkMode, toggleMode } = useDarkMode();

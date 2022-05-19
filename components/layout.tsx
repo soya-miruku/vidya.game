@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 
-import Header from './header'
-import Footer from './footer'
-import { NewsAlert } from './newsAlert'
 import { classNames } from '@/common/helpers'
+import { NewsAlert } from './atoms/newsAlert';
+import Footer from './atoms/footer';
+import Header from './atoms/header';
 
 const Layout = ({ children, displayCallout }) => {
   const [opened, setOnMenu] = useState(false);
