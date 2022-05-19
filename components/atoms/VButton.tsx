@@ -17,7 +17,7 @@ export interface ButtonProps {
 export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=true, special, primary, secondary, className, animate=true, onClick=undefined, role, ...props}) => {
   return (
     <button 
-      className={classNames('group font-saria text-light-200 tracking-cta uppercase',
+      className={classNames('group font-saria text-light-200 text-body-sm tracking-cta uppercase',
       'px-[30px] py-[19px] b-0 transition-all duration-500 overflow-hidden relative',
       'hover:pr-[40px] hover:pl-[20px]',
       special ? 'bg-gradient-to-r from-accent-dark-200 to-secondary-100 dark:shadow-btn-dark shadow-btn-light' : '',
