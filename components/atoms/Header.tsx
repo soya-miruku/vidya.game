@@ -75,18 +75,14 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
 
       if (currentY > prevY) {
         if(!navbarRef.current) return;
-        // navbarRef.current.classList.add('opacity-0');
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
-        // navbarRef.current.classList.remove('opacity-100');
       } else {
         if(!navbarRef.current) return;
-        // navbarRef.current.classList.remove('opacity-0');
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
         navbarRef.current.classList.remove('invisible');
-        // navbarRef.current.classList.add('opacity-100');
       }
       prevY = currentY;
     }
