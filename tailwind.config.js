@@ -212,6 +212,8 @@ module.exports = {
     },
     boxShadow: {
       'dark-md': '0px 0px 80px rgba(0, 0, 0, 0.5)',
+      'btn-light': '0 12px 32px -12px rgb(199 207 255 / 100%)',
+      'btn-dark': '0px 20px 30px -5px #00000080',
       'light-md': '0px 0px 60px rgba(199, 207, 255, 0.3)',
       'light': '0px 40px 60px -25px #C7CFFF4D',
       'dark': '0px 40px 80px -25px rgba(0, 0, 0, 0.5)',
@@ -239,8 +241,8 @@ module.exports = {
       'h6': '14px',
       'standfirst': '30px',
       'body': '18px',
-      'cta': '14px', 
-      'body-sm': '12px',
+      'body-sm': '14px', 
+      'body-xs': '12px',
       'xs': '8px'
     },
     colors: {

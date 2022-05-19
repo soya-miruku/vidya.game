@@ -17,7 +17,7 @@ export const VText: React.FC<TextProps> = ({size, weight="normal", overrideTextC
   return (
     <div onClick={onClick} className={classNames('font-saria', 
       overrideTextColor ? 'text-light-200 ' : 'dark:text-light-200 text-dark-200', 
-      size === 'sm' ? 'text-body-sm leading-5' : size === 'md' ? 'text-cta leading-cta' : size === 'lg'  ? 'text-body leading-7' : 'text-standfirst leading-8', 
+      size === 'sm' ? 'text-body-xs leading-5' : size === 'md' ? 'text-body-sm leading-cta' : size === 'lg'  ? 'text-body leading-7' : 'text-standfirst leading-8', 
       weight === 'thin' ? 'font-thin' : weight === 'extralight' ? 'font-extralight' : weight === 'light' ? 'font-light' : weight === 'normal' ? 'font-normal' : weight === 'medium' ? 'font-medium' : weight === 'semibold' ? 'font-semibold' : weight === 'bold' ? 'font-bold' : weight === 'extrabold' ? 'font-extrabold' : '',
       className)}>
       {children}

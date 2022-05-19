@@ -75,18 +75,18 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
 
       if (currentY > prevY) {
         if(!navbarRef.current) return;
-        navbarRef.current.classList.add('opacity-0');
+        // navbarRef.current.classList.add('opacity-0');
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
-        navbarRef.current.classList.remove('opacity-100');
+        // navbarRef.current.classList.remove('opacity-100');
       } else {
         if(!navbarRef.current) return;
-        navbarRef.current.classList.remove('opacity-0');
+        // navbarRef.current.classList.remove('opacity-0');
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
         navbarRef.current.classList.remove('invisible');
-        navbarRef.current.classList.add('opacity-100');
+        // navbarRef.current.classList.add('opacity-100');
       }
       prevY = currentY;
     }
@@ -112,28 +112,19 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
   }, [isOpen])
 
   return (
-    <div ref={navbarRef} className='fixed w-full h-28 top-0 dark:bg-dark-200 bg-light-200 z-[1000] transition-all duration-500'>
-      <div className={classNames('relative h-28 w-full flex justify-between px-10 py-10 transition-all duration-500',
-      isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto' : 'max-w-[1140px] mx-auto', className)}
+    <div ref={navbarRef} className='fixed w-full h-[120px] top-0 dark:bg-dark-200 bg-light-200 z-[1000] transition-all duration-300'>
+      <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg transition-all duration-500',
+      isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto' : 'max-w-page mx-auto', className)}
       style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
-        <div className='-mt-2'>
           <Link href="/">
             <p className='hover:cursor-pointer'>
               <Logo/>
             </p>
           </Link>
-        </div>
-          <div className='flex justify-center items-center sm:space-x-7 space-x-2'>
+          <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
             <div className=''>
-              <VButton special className='group shadow-md' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>       
-                <div className='flex flex-row justify-center items-start animate-pulse'>
-                  <div className='text-lg font-saria'>
-                    Play
-                  </div>
-                  <div className='group-hover:opacity-100 ml-1 opacity-0 ease-in duration-400 transition-all'>
-                    <FontAwesomeIcon className='absolute w-6 h-6 transition-all duration-700 mt-[2px]' icon={faPlay}/>
-                  </div>
-                </div>
+              <VButton special className='group shadow-md' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>
+                Play
               </VButton>
             </div>
             <div>
@@ -166,10 +157,10 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
               {Object.keys(PagesByCategory).map((category, index) => {
                 return( 
                   <div key={`cat-${category}-${index}`} className='w-[225px] px-2'>
-                    <h1 className='font-bold font-saria text-cta p-3'>{category.toUpperCase()}</h1>
+                    <h1 className='font-bold font-saria text-body-sm p-3'>{category.toUpperCase()}</h1>
                     {PagesByCategory[category].map((page, y) => {
                     return (
-                      <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-cta', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
+                      <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
                         <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon'}>
                           <p className="menu-item font-saria">{page.displayName}</p>
                         </Link>

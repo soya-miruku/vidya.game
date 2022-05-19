@@ -28,7 +28,7 @@ const Footer = () => {
               <ul className="pt-4">
                 {PagesByCategory[category].map(page => {
                 return (
-                <li key={page.slug} className="text-cta tracking-cta flex justify-start items-center">
+                <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
                   <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon' }>
                   <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                     )}>{page.displayName}</p>
@@ -49,7 +49,7 @@ const Footer = () => {
             </div>
             <div>
               <ul className="mt-5 -ml-1 space-y-3">
-                <li className="text-cta tracking-cta font-saria">
+                <li className="text-body-sm tracking-cta font-saria">
                   <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-200 hover:text-white space-x-2 flex justify-start items-center">
                     <span className="w-5 h-5">
                       <svg fill="white" viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
@@ -76,7 +76,7 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-light-200 tracking-cta font-saria text-cta">
+        <div className="flex sm:flex-row flex-col gap-y-8 sm:justify-between justify-center items-center w-full pt-16 text-light-200 tracking-cta font-saria body-sm">
           {isMobileView && <div> <SocialLinks /> </div>}
           <p className="uppercase">Copyright © Team3D 2021</p>
           <ul className="flex space-x-7 justify-end">
