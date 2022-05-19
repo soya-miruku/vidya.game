@@ -45,7 +45,7 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
         <PriceCard length={'md'} height={'xs'} label='24HR VOL' price={formatPrice(data?.volume?.[currencySelected].value)} perctChange={data?.volume[currencySelected]?.changePercentage24h || 0} increase="auto"></PriceCard>
         <PriceCardWithCustomFooter length={'md'} height={'xs'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${formatPrice(data?.circulatingSupply)} circulating`}/>
       </div>
-      <div className='p-vlrg flex justify-between items-center w-full h-full'>
+      <div className='pt-0 p-vlrg flex justify-between items-center w-full h-full'>
         <VTabs items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val) => setCurrencySelected(val)}/>
         <div className='flex space-x-4 space-x-reverse items-center hover:cursor-pointer' onClick={() => window.open('https://www.coingecko.com/en/coins/vidya', '_blank')}>
           <VText className='px-2' size="sm">Prices provided by <strong>Coingecko</strong></VText>
