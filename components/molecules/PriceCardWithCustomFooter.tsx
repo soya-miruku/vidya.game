@@ -10,9 +10,9 @@ export interface IPriceCustomProps extends IPriceCardProps {
   footer?: any;
 }
 
-export const PriceCardWithCustomFooter: React.FC<IPriceCustomProps> = ({length='sm', bordered=true, price, footer, label}) => {
+export const PriceCardWithCustomFooter: React.FC<IPriceCustomProps> = ({length='sm', height='sm', bordered=true, price, footer, label}) => {
   return (
-    <BasicCard length={length} bordered={bordered} title={price} label={label} footer={<div className='flex space-x-2 justify-center items-center'>
+    <BasicCard length={length} height={height} bordered={bordered} title={price} label={label} footer={<div className='flex justify-center items-center'>
      {typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}
     </div>}></BasicCard>
   )
