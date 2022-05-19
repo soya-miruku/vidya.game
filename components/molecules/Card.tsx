@@ -27,7 +27,7 @@ export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, round
     <div className={classNames('prose', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
     <VItemContainer showBorder={sameType} showBorderBottom={false} dropShadow={false} roundedButtom={false}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
       <div className='w-full h-full'>
-        {label && <VLabel className='absolute z-50 text-light-300 m-[30px]'>{label}</VLabel>}
+        {label && <VLabel className='absolute z-50 text-light-300 m-vlrg'>{label}</VLabel>}
         <div className='w-full h-full flex justify-center items-center'>
           <div className={roundImage ? 'rounded-[100%] mt-8' : ''} style={{width: roundImage ? '70%' : '100%', height: roundImage ? '90%' : '352px', position: 'relative'}}>
             <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 

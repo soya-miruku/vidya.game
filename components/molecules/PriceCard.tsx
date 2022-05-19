@@ -17,9 +17,10 @@ export const PriceCard: React.FC<IPriceCardProps> = ({increase, length='sm', hei
     if(typeof(increase) === 'boolean') {
       return increase;
     }
+
     const val = parseFloat(perctChange.toString() || '0');
     return val > 0;
-  }, [increase]);
+  }, [increase, perctChange]);
 
   return (
     <BasicCard height={height} length={length} bordered={bordered} title={price} label={label} footer={<div className='flex gap-x-vsm justify-center items-center'>

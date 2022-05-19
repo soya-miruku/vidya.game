@@ -43,12 +43,40 @@ VRBIconCard.schema = {
         display: types.OptionsDisplay.Select,
         options: [
           {
-            label: '-ic-darkmode',
+            label: 'darkmode',
             value: '-ic-darkmode'
           },
           {
-            label: '-ic-lightmode',
+            label: 'lightmode',
             value: '-ic-lightmode'
+          },
+          {
+            label: 'swap',
+            value: '-ic-swap'
+          },
+          {
+            label: 'menu',
+            value: '-ic-menu'
+          },
+          {
+            label: 'close',
+            value: '-ic-close'
+          },
+          {
+            label: 'settings',
+            value: '-ic-settings'
+          },
+          {
+            label: 'up-arrow',
+            value: '-ic-up-arrow'
+          },
+          {
+            label: 'down-arrow',
+            value: '-ic-down-arrow'
+          },
+          {
+            label: 'chevron',
+            value: '-ic-chevron'
           }
         ]
       }
