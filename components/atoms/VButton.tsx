@@ -32,7 +32,7 @@ export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=
           {children}
           {primary && animate && <i aria-hidden="true" className='group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f054"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
           {special && animate && <i aria-hidden="true" className='group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f04b"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
-          {secondary && animate && <i aria-hidden="true" className='group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f103"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
+          {secondary && animate && <i aria-hidden="true" className='dark:text-light-200 group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f103"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
         </div>
       </button>
   )
