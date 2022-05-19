@@ -19,6 +19,7 @@ export interface VRBRichTextProps {
   size?: 'sm' | 'md' | 'lg'
   propName: string
   isTitle?: boolean
+  spacing?: 'sm' | 'md' | 'lg'
 }
 
 const VRBRichText: types.Brick<VRBRichTextProps> = ({
@@ -29,6 +30,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
   className,
   overrideTextColor,
   type,
+  spacing,
   size,
   isTitle=false,
   propName,
@@ -112,7 +114,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             <VTitle type={type} overrideTextColor={overrideTextColor} className={className} {...props.attributes}>
               {props.children}
             </VTitle> 
-            : <VText size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
+            : <VText spacing={spacing} size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
           )}
           placeholder="Type a text..."
         />

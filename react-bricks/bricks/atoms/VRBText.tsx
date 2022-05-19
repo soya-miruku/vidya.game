@@ -10,17 +10,20 @@ export interface VRBTextProps {
   size: 'sm' | 'md' | 'lg'
   className?: string
   overrideTextColor?: boolean
+  spacing?: 'sm' | 'md' | 'lg'
 }
 
 const VRBText: types.Brick<VRBTextProps> = ({
   size,
   propName,
   className,
+  spacing,
   overrideTextColor,
   ...rest
 }) => {
   return (
     <VRBRichText
+      spacing={spacing}
       isTitle={false}
       size={size}
       className={className}

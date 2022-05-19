@@ -31,7 +31,7 @@ export const NewsAlert = ({limit=3}) => {
     <Slider {...settings} className="w-full bg-primary-100 p-3">
       {(data || []).map((post, index) => {
         return (
-          <div className="text-white text-body-sm">
+          <div key={`${post.id}_${index}`} className="text-white text-body-sm">
             <div className="flex justify-center items-center space-x-2">
               <div className="bg-white rounded-sm p-1 px-2">
                 <h1 className="text-black">{post.customValues?.label}</h1>

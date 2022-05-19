@@ -20,8 +20,8 @@ interface IFeaturesSmallListUnitProps {
 const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
   return (
     <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
-      <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
-      <Repeater propName='members' renderWrapper={(items) => {
+      {/* <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle> */}
+      <Repeater propName='feature_items' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-4 flex-wrap">
             {items}
@@ -48,11 +48,11 @@ FeaturesSmallListUnit.schema = {
   }),
   repeaterItems: [
     {
-      name: 'members',
-      itemType: blockNames.TeamCard,
-      itemLabel: 'Team',
+      name: 'feature_items',
+      itemType: blockNames.IconCard,
+      itemLabel: 'Item',
       min: 1,
-      max: 20
+      max: 5
     },
   ],
   sideEditProps: [

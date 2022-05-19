@@ -26,6 +26,7 @@ import TeamListUnit from './molecules/TeamListUnit';
 import VRBTeamCard from './atoms/VRBTeamCard';
 import VRBIconCard from './atoms/VRBIconCard';
 import VRBDetailCard from './atoms/VRBDetailCard';
+import FeaturesSmallListUnit from './molecules/FeaturesSmallListUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -36,6 +37,7 @@ const bricks: types.Brick<any>[] = [
   ProgramListUnit,
   GameListUnit,
   TeamListUnit,
+  FeaturesSmallListUnit,
   IntroUnit,
   SpacerUnit,
   VideoHeroUnit,

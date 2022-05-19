@@ -24,7 +24,7 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
     <Link {...rest}>
       <div>
         <VButton primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
-          {typeof(text) === 'string' ? <VText size='md' overrideTextColor={background || !secondary}>
+          {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
             {text}
           </VText>
         :text  }
@@ -45,7 +45,6 @@ VRBButton.schema = {
     primary: true,
     special: false,
     secondary: false,
-
   }),
   sideEditProps: [
     {
