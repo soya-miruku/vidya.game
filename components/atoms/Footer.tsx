@@ -4,7 +4,7 @@ import Link from "next/link";
 import { classNames, getPageUrlByType } from "../../common/helpers";
 import styles from '@/css/footer.module.scss';
 import { useDetectDeviceSize } from "../../hooks/useDetectIsMobileView";
-import { SocialLinks } from "./socialLinks";
+import { SocialLinks } from "./SocialLinks";
 
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
