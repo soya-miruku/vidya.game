@@ -16,7 +16,7 @@ import VideoHeroUnit from './molecules/VideoHeroUnit';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
 import ProgramHeroUnit from './molecules/ProgramHeroUnit';
-import PricesSectionUnit from './molecules/PricesSectionUnit';
+import CoinGeckoPricesSectionUnit from './molecules/CoinGeckoPricesSectionUnit';
 import Promo1HeroUnit from './molecules/Promo1HeroUnit';
 import Promo2HeroUnit from './molecules/Promo2HeroUnit';
 import SpacerUnit from './molecules/SpacerUnit';
@@ -47,7 +47,7 @@ const bricks: types.Brick<any>[] = [
   SpacerUnit,
   VideoHeroUnit,
   ProgramHeroUnit,
-  PricesSectionUnit,
+  CoinGeckoPricesSectionUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
   VRBFeatureCard,

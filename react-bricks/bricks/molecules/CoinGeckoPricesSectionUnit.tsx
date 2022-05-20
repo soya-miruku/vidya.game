@@ -8,7 +8,7 @@ import { IPricesSectionProps, PricesSection } from '@/components/organisms/price
 import Section, { Border } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
 
-export interface IPricesSectionUnitProps extends IPricesSectionProps {
+export interface ICoinGeckoPricesSectionUnitProps extends IPricesSectionProps {
   bg?: { color: string; className: string };
   borderTop?: Border
   borderBottom?: Border
@@ -16,7 +16,7 @@ export interface IPricesSectionUnitProps extends IPricesSectionProps {
   paddingY?: Padding
   className?: string;
 }
-const PricesSectionUnit: types.Brick<IPricesSectionUnitProps> = ({ tokenId, bg, borderTop, borderBottom, className, paddingX, paddingY }) => {
+const CoinGeckoPricesSectionUnit: types.Brick<ICoinGeckoPricesSectionUnitProps> = ({ tokenId, bg, borderTop, borderBottom, className, paddingX, paddingY }) => {
   return (
     <Section className={classNames(className)} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
       <PricesSection tokenId={tokenId}/>
@@ -24,9 +24,9 @@ const PricesSectionUnit: types.Brick<IPricesSectionUnitProps> = ({ tokenId, bg, 
   )
 }
 
-PricesSectionUnit.schema = {
-  name: blockNames.PricesSectionUnit,
-  label: 'Prices Unit',
+CoinGeckoPricesSectionUnit.schema = {
+  name: blockNames.CoinGeckoPricesSectionUnit,
+  label: 'CoinGecko Prices Unit',
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
@@ -42,4 +42,4 @@ PricesSectionUnit.schema = {
   ],
 }
 
-export default PricesSectionUnit
+export default CoinGeckoPricesSectionUnit

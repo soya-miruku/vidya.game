@@ -11,7 +11,7 @@ export enum blockNames {
   IntroUnit = 'IntroUnit',
   SpacerUnit = 'SpacerUnit',
   ProgramHeroUnit = 'ProgramHeroUnit',
-  PricesSectionUnit = 'PricesSectionUnit',
+  CoinGeckoPricesSectionUnit = 'CoinGeckoPricesSectionUnit',
   Promo1HeroUnit = 'Promo1HeroUnit',
   Promo2HeroUnit = 'Promo2HeroUnit',
   FeaturesSmallUnit = 'FeaturesSmallUnit',
