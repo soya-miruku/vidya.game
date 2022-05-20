@@ -5,6 +5,7 @@ import { bgColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
 import Section, { Border } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
+import VRBRichText from '../atoms/VRBRichText';
 
 interface IFeaturesMedListUnitProps {
   featureItems?: any[];
@@ -13,11 +14,12 @@ interface IFeaturesMedListUnitProps {
   borderBottom?: Border;
   paddingX?: Padding
   paddingY?: Padding
+  disclaimer?: string;
 }
 
-const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, disclaimer, borderTop, borderBottom, paddingX, paddingY}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className="flex flex-col justify-center items-center gap-y-vxl">
       <Repeater propName='featureItems' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-vxl flex-wrap">
@@ -25,6 +27,9 @@ const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, borde
           </div>
         )
       }}></Repeater>
+      <div>
+        <VRBRichText className='px-[180px] text-center' text={disclaimer} propName='disclaimer' size='sm'></VRBRichText>
+      </div>
     </Section>
   )
 }
@@ -36,6 +41,7 @@ FeaturesMedListUnit.schema = {
 
   getDefaultProps: () => ({
     bg: bgColors.none,
+    disclaimer: 'Maecenas venenatis id libero eget dapibus. Mauris ullamcorper maximus enim, et finibus tortor blandit quis. Sed est eros, dignissim et egestas id, convallis a mauris. Mauris in venenatis velit.',
     featureItems: [
       {
         bordered: true,
