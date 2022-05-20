@@ -15,10 +15,11 @@ export enum blockNames {
   Promo1HeroUnit = 'Promo1HeroUnit',
   Promo2HeroUnit = 'Promo2HeroUnit',
   FeaturesSmallUnit = 'FeaturesSmallUnit',
+  FeaturesMedListUnit = 'FeaturesMedListUnit',
   DetailsListUnit = 'DetailsListUnit',
   Column = 'VRBColumn',
   Columns = 'VRBColumns',
-
+  FeatureCard = 'FeatureCard',
   Button = 'VRBButton',
   IconCard = 'VRBIconCard',
   DetailCard = 'VRBDetailCard',

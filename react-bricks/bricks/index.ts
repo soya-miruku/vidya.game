@@ -28,6 +28,8 @@ import VRBIconCard from './atoms/VRBIconCard';
 import VRBDetailCard from './atoms/VRBDetailCard';
 import FeaturesSmallListUnit from './molecules/FeaturesSmallListUnit';
 import DetailsListUnit from './molecules/DetailListUnit';
+import FeaturesMedListUnit from './molecules/FeaturesMedListUnit';
+import VRBFeatureCard from './atoms/VRBFeatureCard';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -38,6 +40,7 @@ const bricks: types.Brick<any>[] = [
   ProgramListUnit,
   GameListUnit,
   TeamListUnit,
+  FeaturesMedListUnit,
   FeaturesSmallListUnit,
   DetailsListUnit,
   IntroUnit,
@@ -47,6 +50,7 @@ const bricks: types.Brick<any>[] = [
   PricesSectionUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
+  VRBFeatureCard,
   VRBTeamCard,
   VRBIconCard,
   VRBDetailCard,
