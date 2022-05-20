@@ -15,9 +15,10 @@ interface IFeaturesMedListUnitProps {
   paddingX?: Padding
   paddingY?: Padding
   disclaimer?: string;
+  showDisclaimer?: boolean;
 }
 
-const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, disclaimer, borderTop, borderBottom, paddingX, paddingY}) => {
+const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, disclaimer, showDisclaimer, borderTop, borderBottom, paddingX, paddingY}) => {
   return (
     <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className="flex flex-col justify-center items-center gap-y-vxl">
       <Repeater propName='featureItems' renderWrapper={(items) => {
@@ -27,9 +28,7 @@ const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, discl
           </div>
         )
       }}></Repeater>
-      <div>
-        <VRBRichText className='px-[180px] text-center' text={disclaimer} propName='disclaimer' size='sm'></VRBRichText>
-      </div>
+      {showDisclaimer && <VRBRichText className='px-[180px] text-center' text={disclaimer} propName='disclaimer' size='sm'></VRBRichText>}
     </Section>
   )
 }
@@ -42,6 +41,7 @@ FeaturesMedListUnit.schema = {
   getDefaultProps: () => ({
     bg: bgColors.none,
     disclaimer: 'Maecenas venenatis id libero eget dapibus. Mauris ullamcorper maximus enim, et finibus tortor blandit quis. Sed est eros, dignissim et egestas id, convallis a mauris. Mauris in venenatis velit.',
+    showDisclaimer: false,
     featureItems: [
       {
         bordered: true,
@@ -78,6 +78,11 @@ FeaturesMedListUnit.schema = {
   ],
   sideEditProps: [
     LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    {
+      name: 'showDisclaimer',
+      label: 'Show Disclaimer',
+      type: types.SideEditPropType.Boolean,
+    }
   ],
 }
 

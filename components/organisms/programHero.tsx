@@ -17,12 +17,12 @@ export interface IProgramHeroProps {
 
 export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, canEdit}) => {
   return (
-    <div className="w-full h-full prose flex flex-col justify-center items-center gap-y-vsm py-12">
+    <div className="w-full h-full prose flex flex-col justify-center items-center gap-y-vsm">
       <div className='absolute'>
         {canEdit || typeof(pageTitle) !== 'string' ? <VRBTitle className='dark:text-dark-300 text-light-300' type='title' propName='pageTitle' ></VRBTitle> : <VTitle className='dark:text-dark-300 text-light-300' type='title'>{pageTitle}</VTitle>}
       </div>
-      <div className='flex justify-center items-center w-fullh h-full'>
-        <div className='sm:w-[244.5px] sm:h-[300px] w-[123px] h-[180px] relative'>
+      <div className='flex justify-center items-center w-full h-full'>
+        <div className='sm:w-[489px] sm:h-[622px] w-[123px] h-[180px] relative'>
           {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
           alt='image' className={classNames('w-full h-full')}/>}
         </div>

@@ -18,7 +18,7 @@ const VRBIconCard: types.Brick<IVRBIconCardProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <IconCard icon={<i className={classNames(icon, 'text-[5rem]')}></i>} label={label} bordered={bordered} />
+      <IconCard icon={<i className={classNames(icon)}></i>} label={label} bordered={bordered} />
     </Link>
   )
 }

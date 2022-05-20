@@ -232,7 +232,7 @@ module.exports = {
       '7xl': '5rem',
       '8xl': '6rem',
       '9xl': '7rem',
-      'title': '150px',
+      'title': '300px',
       'h1': '80px',
       'h2': '60px',
       'h3': '45px',
