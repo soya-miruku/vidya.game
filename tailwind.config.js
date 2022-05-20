@@ -182,6 +182,7 @@ module.exports = {
       },
       lineHeight: {
         'cta': '22px',
+        'standfirst':'45px',
       },
       fontFamily: {
         'saria': ['Saira Semi Condensed', 'Roboto'],

@@ -48,7 +48,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
   })
   return (
     <Link {...rest}>
-      <Column className={classNames('text-white flex flex-wrap justify-start items-center no-underline gap-x-4 gap-y-8 pt-[10px] px-[25px] w-full h-full')}>
+      <Column className={classNames('text-white flex flex-wrap justify-start items-center no-underline gap-x-4 gap-y-8 pt-[0] px-[0] w-full h-full')}>
         {renderItems.sort((a, b) => a.order - b.order).filter(v=>v.show).map((item, index) =>
          <div className={classNames(item.inline ? 'w-full' : '', 'flex flex-row items-center justify-start')} key={`${item.name}-${index}`}>{(item as any).content}</div>)}
         {/* {((items as any || getColumnItems(initialItems)).every(v=>!v.show)) && <div className='w-52 h-52 bg-transparent'></div>} */}
