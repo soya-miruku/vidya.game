@@ -19,6 +19,118 @@ module.exports = {
     scrollbar: ['dark', 'rounded']
   },
   theme: {
+    typography: {
+      DEFAULT: {
+        css: {
+          'scrollbar-thin': {
+            '&::-webkit-scrollbar': {
+              width: '5px',
+            }
+    
+          },
+          margin: '0 auto',
+          padding: '0',
+          'max-width': '100%',
+          'text-decoration': 'none',
+          'color': colors.gray['100'],
+          img: {
+            'margin-top' : '0',
+            'margin-bottom' : '0',
+          },
+          a: {
+            'text-decoration': 'none',
+            'font-size': '14px',
+            'line-height': '22px',
+            'letter-spacing': '2px',
+            'font-family': 'Saira Semi Condensed',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          h1: {
+            'font-weight': 900,
+            'font-size': '80px',
+            'line-height': '80px',
+            'font-family': 'Saira Semi Condensed',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          h2: {
+            'font-weight': 900,
+            'font-size': '60px',
+            'line-height': '60px',
+            'font-family': 'Saira Semi Condensed',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+            'text-decoration': 'none',
+            'border': 'none'
+          },
+          h3: {
+            'font-weight': 900,
+            'font-size': '45px',
+            'line-height': '45px',
+            'font-family': 'Saira Semi Condensed',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          h4: {
+            'font-weight': 900,
+            'font-size': '32px',
+            'font-family': 'Saira Semi Condensed',
+            'line-height': '32px',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          h5: {
+            'font-weight': 900,
+            'font-size': '20px',
+            'line-height': '20px',
+            'font-family': 'Saira Semi Condensed',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          span: {
+            'line-height': 'auto',
+          },
+          h6: {
+            'font-weight': 900,
+            'font-size': '14px',
+            'line-height': '14px',
+            'font-family': 'Saira Semi Condensed',
+            'text-transform': 'uppercase',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          p: {
+            'font-size': '14px',
+            'line-height': '22px',
+            'font-family': 'Saira Semi Condensed',
+            'letter-spacing': '2px',
+            'margin-top': 0,
+            'margin-bottom': 0,
+          },
+          ul: {
+            'padding': '0',
+            'margin': '0'
+          },
+          'ul li': {
+            padding: '0rem'
+          },
+          li: {
+            'list-style': 'none',
+            'padding-left': '0em'
+          },
+          div: {
+            'line-height': '22px',
+            'letter-spacing': '0px',
+          }
+        }
+      }
+    },
     extend: {
       screens: {
         'tablet': {'raw': 'only screen and (max-width: 768px)'},  
@@ -64,118 +176,6 @@ module.exports = {
       },
       minHeight: {
         ...allowableSizes,
-      },
-      typography: {
-        DEFAULT: {
-          css: {
-            'scrollbar-thin': {
-              '&::-webkit-scrollbar': {
-                width: '5px',
-              }
-      
-            },
-            margin: '0 auto',
-            padding: '0',
-            'max-width': '100%',
-            'text-decoration': 'none',
-            'color': colors.gray['100'],
-            img: {
-              'margin-top' : '0',
-              'margin-bottom' : '0',
-            },
-            a: {
-              'text-decoration': 'none',
-              'font-size': '14px',
-              'line-height': '22px',
-              'letter-spacing': '2px',
-              'font-family': 'Saira Semi Condensed',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            h1: {
-              'font-weight': 900,
-              'font-size': '80px',
-              'line-height': '80px',
-              'font-family': 'Saira Semi Condensed',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            h2: {
-              'font-weight': 900,
-              'font-size': '60px',
-              'line-height': '60px',
-              'font-family': 'Saira Semi Condensed',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-              'text-decoration': 'none',
-              'border': 'none'
-            },
-            h3: {
-              'font-weight': 900,
-              'font-size': '45px',
-              'line-height': '45px',
-              'font-family': 'Saira Semi Condensed',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            h4: {
-              'font-weight': 900,
-              'font-size': '32px',
-              'font-family': 'Saira Semi Condensed',
-              'line-height': '32px',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            h5: {
-              'font-weight': 900,
-              'font-size': '20px',
-              'line-height': '20px',
-              'font-family': 'Saira Semi Condensed',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            span: {
-              'line-height': 'auto',
-            },
-            h6: {
-              'font-weight': 900,
-              'font-size': '14px',
-              'line-height': '14px',
-              'font-family': 'Saira Semi Condensed',
-              'text-transform': 'uppercase',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            p: {
-              'font-size': '14px',
-              'line-height': '22px',
-              'font-family': 'Saira Semi Condensed',
-              'letter-spacing': '2px',
-              'margin-top': 0,
-              'margin-bottom': 0,
-            },
-            ul: {
-              'padding': '0',
-              'margin': '0'
-            },
-            'ul li': {
-              padding: '0rem'
-            },
-            li: {
-              'list-style': 'none',
-              'padding-left': '0em'
-            },
-            div: {
-              'line-height': '22px',
-              'letter-spacing': '0px',
-            }
-          }
-        }
       },
       letterSpacing: {
         'cta': '2px',
