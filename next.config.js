@@ -7,4 +7,7 @@ module.exports = {
     defaultLocale: 'en',
     localeDetection: false,
   },
+  env: {
+    infuraId: process.env.INFURA_ID
+  }
 }

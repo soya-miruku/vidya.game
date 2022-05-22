@@ -20,6 +20,7 @@ export enum blockNames {
   Column = 'VRBColumn',
   Columns = 'VRBColumns',
   FeatureCard = 'FeatureCard',
+  PriceCard = 'VRBPriceCard',
   Button = 'VRBButton',
   IconCard = 'VRBIconCard',
   DetailCard = 'VRBDetailCard',
