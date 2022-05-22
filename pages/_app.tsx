@@ -4,9 +4,11 @@ import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import config from '../react-bricks/config'
 
-import '../css/styles.scss'
-import { useDarkMode } from '../hooks/useDarkMode'
-import { ThemeProvider } from '../common/providers/ThemeProvider'
+import { useDarkMode } from '../hooks/useDarkMode';
+import { ThemeProvider } from '../common/providers/ThemeProvider';
+import { UserProvider } from '../common/providers/UserProvider';
+
+import '../css/styles.scss';
 
 const Init = ({Component, pageProps}) => {
   const {isDarkMode, toggleMode} = useDarkMode();
@@ -43,7 +45,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
       <ThemeProvider>
-        <Init Component={Component} pageProps={pageProps} />
+        <UserProvider>
+          <Init Component={Component} pageProps={pageProps} />
+        </UserProvider>
       </ThemeProvider>
     </QueryClientProvider>
   )
