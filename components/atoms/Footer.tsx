@@ -9,7 +9,7 @@ import { SocialLinks } from "./SocialLinks";
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
   return (
-    <footer className={classNames('w-full px-[30px] py-[60px] h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
+    <footer className={classNames('w-full px-vlrg py-vxl h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
       <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>
         <div className="w-full flex flex-row justify-betweem items-center space-x-4">
           <div className="sm:w-full w-72">
