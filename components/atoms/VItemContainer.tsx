@@ -44,7 +44,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'full':
         return {class: isHeight ? 'h-full min-h-full max-h-full' : 'w-full min-w-full max-w-full', px: '100%'};
       default:
-        return {class: isHeight ? 'h-vsm min-h-vsm max-h-vsm' : 'w-vsm min-w-vsm max-w-vsm', px: SIZES['vsm']};
+        return {class: isHeight ? 'h-auto min-h-auto max-h-auto' : 'w-vsm min-w-vsm max-w-vsm', px: SIZES['vsm']};
     }
   }
   
@@ -60,7 +60,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
   }
 
   const borderComponent = ({children}) => (<DivContainer className={
-    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full p-vsm m-vsm rounded-sm',
+    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full p-vmd m-vsm rounded-sm mt-0',
     roundedButtom ? '' : 'rounded-b-[0px]',
     roundedTop ? '' : 'rounded-t-[0px]',
     roundedLeft ? '' : 'rounded-l-[0px]',
@@ -69,7 +69,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     showBorderBottom ? '' : 'border-b-[0px]',
     showBorderLeft ? '' : 'border-l-[0px]',
     showBorderRight ? '' : 'border-r-[0px]',
-    showBorderTop ? '' : 'border-t-[0px] pt-0 -mt-3')}>
+    showBorderTop ? '' : 'border-t-[0px]')}>
     {children}
   </DivContainer>);
 
