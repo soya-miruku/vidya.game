@@ -37,11 +37,11 @@ export interface ICallHeroUnitProps {
 
 const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop, borderBottom, imagePosition, paddingX, paddingY, background }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
-      <div className={classNames('w-full flex flex-row justify-center px-[20px]', 'prose')}>
-        <div className='w-full h-full p-2'>
+    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX="none" paddingY="none" rounded="none">
+      <div className={classNames('w-full flex flex-row justify-center p-0', 'prose')}>
+        <div className='w-full h-full p-0'>
           <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-end items-center`)}>
-          <div className='sm:w-1/2 w-full h-full flex justify-center z-10'>
+          <div className='sm:w-1/2 w-full h-full flex justify-center z-10 p-vlrg'>
             <Image
               propName="image"
               alt="image"
@@ -50,11 +50,11 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
             />
           </div>
           { background && <div className='absolute bg-primary-100 max-w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
-          <div className='sm:w-1/2 w-full sm:p-[30px] flex flex-col justify-start items-start z-10'>
-            <div className='w-full flex justify-start items-start py-4'>
+          <div className='sm:w-1/2 w-full p-vlrg flex flex-col justify-start items-start z-10 gap-vlrg'>
+            <div className='w-full flex justify-start items-start p-0'>
             <Repeater propName='badgeLabels' renderWrapper={(items) => {
               return (
-                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row mt-6 ">
+                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0 ">
                   {items}
                 </div>
               )
@@ -63,7 +63,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
             </div>
             <Text
               renderBlock={(props) => (
-                <VTitle overrideTextColor={background} className='mb-3' type='h2'>{props.children}</VTitle>
+                <VTitle overrideTextColor={background} className='m-0' type='h2'>{props.children}</VTitle>
               )}
               renderPlaceholder={(props) => (
                 <span className="opacity-30">{props.children}</span>
@@ -73,7 +73,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
             />
             <RichText
               renderBlock={(props) => (
-                <VText overrideTextColor={background} size='lg' className='mt-4'>
+                <VText overrideTextColor={background} size='lg' className='m-0'>
                   {props.children}
                 </VText>
               )}
@@ -95,7 +95,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop,
           <div className='w-full flex justify-start'>
             <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
               return (
-                <div className="flex flex-wrap justify-start items-center sm:flex-row mt-6 gap-x-7">
+                <div className="flex flex-wrap justify-start items-center sm:flex-row m-0 gap-x-7">
                   {items}
                 </div>
               )
