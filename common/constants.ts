@@ -2,7 +2,12 @@ export const TABLET_WIDTH = 768;
 export const MOBILE_WIDTH = 420;
 export const DESKTOP_WIDTH = 1140;
 
-export const WETH_ADDRESS = '0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2';
+export const VIDYA_TOKEN_ADDRESS = '0x3d3d35bb9bec23b06ca00fe472b50e7a4c692c30';
+export const ETH_ADDRESS = '0xeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee';
+export const WETH_ADDRESS = '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2';
+export const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
+export const MAX_UNINT = "115792089237316195423570985008687907853269984665640564039457584007913129639935";
+
 export const UNISWAP_GRAPHQL_URL = 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2';
 
 export const CHAIN_SETTINGS = {

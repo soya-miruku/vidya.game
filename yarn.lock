@@ -925,21 +925,20 @@
   resolved "https://registry.yarnpkg.com/@uniswap/token-lists/-/token-lists-1.0.0-beta.28.tgz#76bb6ec25e76ae6bece9efc11b9b68079b2b9402"
   integrity sha512-MmVeoOd/HlZYOn5NT2mlDoOUYjnZb+3V7aCD5/YwSgsqeDRXZmKfKHafEEhiZoMvXuZdqSBg4L/ythvzAf9cwA==
 
-"@usedapp/coingecko@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@usedapp/coingecko/-/coingecko-1.0.2.tgz#b71e349067f1825f6fc02423057d13a1073168d2"
-  integrity sha512-jG4Bwvy/3mJThLDLaDfYrze/zFmC6dgEkv7rt/jh6K/+6xuxwOy2+Q+01MkmXTUazYYkgpZ+SaeYDL7LGeQhyA==
+"@usedapp/coingecko@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@usedapp/coingecko/-/coingecko-1.0.3.tgz#08bcac024a24acf0d99e7bd314153df782ba7a68"
+  integrity sha512-oO59CQlpaObsMH62k57X80Kg2mO/bU2Ca5osEbhw2zyAN53EOX7kWItmaozsdjNglwaq1WCERbQPdt85C9Kwdw==
   dependencies:
     "@ethersproject/contracts" "^5.6.0"
     "@ethersproject/providers" "^5.6.2"
-    "@usedapp/core" "1.0.2"
+    "@usedapp/core" "1.0.3"
     isomorphic-fetch "^3.0.0"
-    react "^17.0.1"
 
-"@usedapp/core@1.0.2", "@usedapp/core@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-1.0.2.tgz#89705fadd999c8933e1ef4a09a62b5ef90384cc2"
-  integrity sha512-pvZnBtDtZvt1AiUbPZALkyiQVXi/qIcb7miQWFhvQKeqeCSDkzGJogzZDyBxgpkgpZW2uVgxOkQqIF/4PltJ0g==
+"@usedapp/core@1.0.3", "@usedapp/core@^1.0.3":
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-1.0.3.tgz#c3b9b5491e540a2c1f147502ad915a7679d7c39d"
+  integrity sha512-alv074QbtzyBi7sRVIZyO4KhRYLRxJR2y8sHdW0gsfK7k3UbA29Uf4urp4RX4KkwQ3x8lDctb1LoahZf806mqA==
   dependencies:
     "@ethersproject/abi" "^5.6.1"
     "@ethersproject/abstract-provider" "^5.6.0"
@@ -3777,7 +3776,7 @@ react-youtube@^9.0.1:
     prop-types "15.8.1"
     youtube-player "5.5.2"
 
-react@^17.0.1, react@^17.0.2:
+react@^17.0.2:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==

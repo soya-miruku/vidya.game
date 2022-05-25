@@ -1,5 +1,5 @@
 import { Contract } from "@ethersproject/contracts"
-import { useCall } from "@usedapp/core"
+import { Mainnet, useCall } from "@usedapp/core"
 import UNISWAP_FACTORY_ABI from "@/common/abis/uniswapFactory.json";
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
 import { useAccount } from "./useAccount";

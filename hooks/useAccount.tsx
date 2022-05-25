@@ -6,7 +6,7 @@ import { UserContext } from "@/common/providers/UserProvider";
 export const useAccount = () => {
   const { connectorName } = useContext(UserContext);
   
-  const {active, isLoading: isAuthenticating, error: authError, activate, activateBrowserWallet: authenticate, deactivate: logout, account: user, chainId} = useEthers();
+  const { library, active, isLoading: isAuthenticating, error: authError, activate, activateBrowserWallet: authenticate, deactivate: logout, account: user, chainId} = useEthers();
 
   const Connect = useCallback(async () => {
     try { 
@@ -32,5 +32,5 @@ export const useAccount = () => {
     }
   }, [logout]);
 
-  return { isAuthenticated: active && user, isAuthenticating, authError, user, Connect, Disconnect, isInitialized:true, initialize: () => {}, chainId};
+  return { library, isAuthenticated: active && user, isAuthenticating, authError, user, Connect, Disconnect, isInitialized:true, initialize: () => {}, chainId: chainId || 1};
 }
