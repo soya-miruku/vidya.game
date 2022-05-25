@@ -97,7 +97,7 @@ module.exports = {
             'line-height': 'auto',
           },
           h6: {
-            'font-weight': 900,
+            'font-weight': 700,
             'font-size': '14px',
             'line-height': '14px',
             'font-family': 'Saira Semi Condensed',
