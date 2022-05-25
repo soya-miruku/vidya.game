@@ -2,7 +2,7 @@ import React from 'react';
 import { classNames } from '@/common/helpers';
 import SIZES from '@/common/static';
 
-export type VItemContainerSize = 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;

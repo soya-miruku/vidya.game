@@ -39,7 +39,7 @@ export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, round
         </div>}
       </div>
     </VItemContainer>
-    <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : footer ? '' : ''}>
+    <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : 'none'}>
       <div className={classNames('w-full flex flex-col justify-center gap-y-vsm', center ? 'items-center' : 'items-start', avatar ? 'mt-vmd pt-vmd' : 'mt-0','ml-0', footer ? 'gap-y-vsm' : 'gap-y-vsm', bordered ? '' : 'px-4 mt-0')}>
         <VTitle type='h4'>{title}</VTitle>
         <VText className= 'overflow-hidden text-body leading-7' size='md' weight='normal'>{subtitle}</VText>
