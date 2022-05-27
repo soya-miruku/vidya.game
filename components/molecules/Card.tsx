@@ -20,32 +20,42 @@ export interface ICardProps {
   roundImage?: boolean;
   sameType?: boolean;
   bordered?: boolean;
+  popoutImage?: boolean;
 }
 
-export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url}) => {
+export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url, popoutImage}) => {
   return (
-    <div className={classNames('prose', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
-    <VItemContainer showBorder={sameType} showBorderBottom={false} dropShadow={false} roundedButtom={false}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={sameType ? 'vhlf' : long ? 'vxl' : 'vlg'}>
-      <div className='w-full h-full'>
-        {label && <VLabel className='absolute z-50 text-light-300 m-vlrg'>{label}</VLabel>}
-        <div className='w-full h-full flex justify-center items-center'>
-          <div className={roundImage ? 'rounded-[100%] mt-8' : ''} style={{width: roundImage ? '70%' : '100%', height: roundImage ? '90%' : '352px', position: 'relative'}}>
-            <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
-            alt='image' className={classNames('w-full h-full', roundImage ? 'rounded-[100%]' : 'rounded-t-sm')}/>
-          </div>
+    <div className={classNames('prose hover:-translate-y-6 transition-all duration-500', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
+      <VItemContainer showBorder={sameType} showBorderBottom={false} showBorderTop={sameType} dropShadow={false} roundedButtom={false}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={(sameType && !long) ? 'vhlf' : long ? 'vxl' : 'vlg'}>
+        <div className='w-full h-full'>
+          {label && <VLabel className='absolute z-50 text-light-300 m-vlrg'>{label}</VLabel>}
+          {popoutImage 
+          ? 
+            <div className=''>
+              {/* <div className={roundImage ? 'rounded-[100%] mt-8' : ''} style={{width: roundImage ? '70%' : '100%', height: roundImage ? '90%' : '100%', position: 'relative'}}> */}
+                <img src={image} width="100%" height="100%"  alt='image' className='-mt-vxl'/>
+              {/* </div> */}
+            </div> 
+          :
+            <div className='w-full h-full flex justify-center items-center'>
+              <div className={roundImage ? 'rounded-[100%] mt-8' : ''} style={{width: roundImage ? '70%' : '100%', height: roundImage ? '90%' : '100%', position: 'relative'}}>
+                <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
+                alt='image' className={classNames('w-full h-full', roundImage ? 'rounded-[100%]' : 'rounded-t-sm')}/>
+              </div>
+            </div>
+          }
+          {avatar && <div className='absolute -mt-8 ml-8 border-2 rounded-full dark:border-dark-300 border-light-300'>
+            <VImage src={avatar} width={60} height={60} alt='icon-image' className='w-full h-full rounded-full'/>
+          </div>}
         </div>
-        {avatar && <div className='absolute -mt-8 ml-8 border-2 rounded-full dark:border-dark-300 border-light-300'>
-          <VImage src={avatar} width={60} height={60} alt='icon-image' className='w-full h-full rounded-full'/>
-        </div>}
-      </div>
-    </VItemContainer>
-    <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ sameType ? 'vhlf' : 'none'}>
-      <div className={classNames('w-full flex flex-col justify-center gap-y-vsm', center ? 'items-center' : 'items-start', avatar ? 'mt-vmd pt-vmd' : 'mt-0','ml-0', footer ? 'gap-y-vsm' : 'gap-y-vsm', bordered ? '' : 'px-4 mt-0')}>
-        <VTitle type='h4'>{title}</VTitle>
-        <VText className= 'overflow-hidden text-body leading-7' size='md' weight='normal'>{subtitle}</VText>
-        {footer && typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}
-      </div>
-    </VItemContainer>
+      </VItemContainer>
+      <VItemContainer center={center} showBorderTop={false} roundedTop={false} showBorder={bordered} widthSize={wide ? 'vxl' : 'vlg'} heightSize={ (sameType && !long) ? 'vhlf' : 'none'}>
+        <div className={classNames('w-full flex flex-col justify-center gap-y-vmd px-vlrg pb-vlrg pt-vsm', center ? 'items-center' : 'items-start', avatar ? 'mt-vmd pt-vmd' : 'mt-0','ml-0', footer ? 'gap-y-vsm' : 'gap-y-vsm', bordered ? '' : 'px-4 mt-0')}>
+          <VTitle type='h4'>{title}</VTitle>
+          <VText className= 'overflow-hidden text-body leading-7 min-h-[80px]' size='md' weight='normal'>{subtitle}</VText>
+          {footer && typeof(footer) === 'string' ? <VText size='sm'>{footer}</VText> : footer}
+        </div>
+      </VItemContainer>
     </div>
   )
 }

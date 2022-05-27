@@ -8,11 +8,15 @@ interface TitleProps {
   type?: TitleType;
   overrideTextColor?: boolean;
   className?: string;
+  maxChar?:number;
   children?: React.ReactNode;
   onChange?: any
 }
 
-export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange}) => {
+export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange, maxChar=15}) => {
+  if(typeof(children) === 'string') {
+    children.slice(0, maxChar)
+  }
   switch(type) {
     case "title":
       return (

@@ -8,13 +8,17 @@ interface TextProps {
   size?: TextSize;
   spacing?: "sm" | "md" | "lg";
   weight?: FontWeight;
+  maxChar?: number;
   overrideTextColor?: boolean;
   className?: string;
   children?: React.ReactNode;
   onClick?: any;
 }
 
-export const VText: React.FC<TextProps> = ({size, weight="normal", spacing, overrideTextColor, className, children, onClick}) => {
+export const VText: React.FC<TextProps> = ({size, weight="normal", spacing, overrideTextColor, className, children, onClick, maxChar=69}) => {
+  if(typeof(children) === 'string') {
+    children = children.slice(0, maxChar)
+  }
   return (
     <div onClick={onClick} className={classNames('font-saria', 
       overrideTextColor ? 'text-light-200 ' : 'dark:text-light-200 text-dark-200', 
