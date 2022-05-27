@@ -29,7 +29,7 @@ const Footer = () => {
                 {PagesByCategory[category].map(page => {
                 return (
                 <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
-                  <Link href={page.active ? `/${getPageUrlByType(page.type, page.slug)}` : '/soon' }>
+                  <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' }>
                   <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
                     )}>{page.displayName}</p>
                   </Link>

@@ -24,6 +24,6 @@ export const getPageUrlByType = (type, slug) => {
   }
   else if(!type) return '/';
 
-  return `${pageNames[type.toUpperCase()].plural}/${slug}`;
+  return `/${pageNames[type.toUpperCase()].plural}/${slug}`;
 
 }
