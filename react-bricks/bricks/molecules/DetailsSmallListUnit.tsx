@@ -23,7 +23,7 @@ const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, b
       <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (
-          <div className="flex justify-center items-center gap-4 flex-wrap">
+          <div className="flex justify-center items-center gap-vxl flex-wrap">
             {items}
           </div>
         )

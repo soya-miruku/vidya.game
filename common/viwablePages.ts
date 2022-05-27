@@ -13,6 +13,12 @@ export const PagesByCategory = {
       active: true
     },
     {
+      displayName: 'MULTIPASS',
+      slug: 'multipass',
+      type: 'program',
+      active: true
+    },
+    {
       displayName: 'MERCHANT',
       slug: 'merchant',
       type: 'program',

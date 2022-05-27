@@ -6,8 +6,8 @@ import { LayoutProp } from '../Shared/LayoutProps';
 import Section, { Border } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
 
-interface IFeaturesSmallListUnitProps {
-  featureItems?: any[];
+interface IDetailsListUnitProps {
+  detailItems?: any[];
   bg?: { color: string; className: string };
   borderTop?: Border;
   borderBottom?: Border;
@@ -15,12 +15,12 @@ interface IFeaturesSmallListUnitProps {
   paddingY?: Padding
 }
 
-const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
   return (
     <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
-      <Repeater propName='featureItems' renderWrapper={(items) => {
+      <Repeater propName='detailItems' renderWrapper={(items) => {
         return (
-          <div className="flex justify-center items-center gap-vxl flex-wrap">
+          <div className="flex justify-center items-center gap-vsm flex-wrap">
             {items}
           </div>
         )
@@ -29,45 +29,45 @@ const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, b
   )
 }
 
-FeaturesSmallListUnit.schema = {
-  name: blockNames.FeaturesSmallUnit,
-  label: 'Features Small List Unit',
+DetailsListUnit.schema = {
+  name: blockNames.DetailsListUnit,
+  label: 'Detail List Unit',
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
     bg: bgColors.none,
-    featureItems: [
+    detailItems: [
       {
         bordered: true,
         label: 'LABEL',
-        icon: '-ic-darkmode'
+        title: 'TITLE'
       },
       {
         bordered: true,
         label: 'LABEL',
-        icon: '-ic-darkmode'
+        title: 'TITLE'
       },
       {
         bordered: true,
         label: 'LABEL',
-        icon: '-ic-darkmode'
+        title: 'TITLE'
       },
       {
         bordered: true,
         label: 'LABEL',
-        icon: '-ic-darkmode'
+        title: 'TITLE'
       },
       {
         bordered: true,
         label: 'LABEL',
-        icon: '-ic-darkmode'
+        title: 'TITLE'
       }
     ]
   }),
   repeaterItems: [
     {
-      name: 'featureItems',
-      itemType: blockNames.IconCard,
+      name: 'detailItems',
+      itemType: blockNames.DetailCard,
       itemLabel: 'Item',
       min: 1,
       max: 5
@@ -78,4 +78,4 @@ FeaturesSmallListUnit.schema = {
   ],
 }
 
-export default FeaturesSmallListUnit
+export default DetailsListUnit

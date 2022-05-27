@@ -9,6 +9,7 @@
     "build": "next build",
     "start": "next start"
   },
+  
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.1.1",
     "@fortawesome/fontawesome-svg-core": "^6.1.1",
@@ -20,6 +21,13 @@
     "@fortawesome/react-fontawesome": "^0.1.18",
     "@tailwindcss/typography": "^0.5.2",
     "@types/react-burger-menu": "^2.8.3",
+    "@usedapp/coingecko": "^1.0.3",
+    "@usedapp/core": "^1.0.3",
+    "@walletconnect/web3-provider": "^1.7.8",
+    "@ethersproject/contracts": "^5.6.1",
+    "@web3-react/walletconnect-connector": "^6.2.13",
+    "@ethersproject/units": "^5.6.0",
+    "@ethersproject/abi": "^5.6.2",
     "array-move": "^4.0.0",
     "next": "^12.1.0",
     "react-youtube": "^9.0.1",
@@ -28,7 +36,7 @@
     "prismjs": "^1.27.0",
     "react": "^17.0.2",
     "swiper": "^8.0.0",
-    "react-bricks": "^3.2.16",
+    "react-bricks": "^3.2.25",
     "react-bricks-ui": "^0.3.20",
     "react-burger-menu": "^3.0.6",
     "react-device-detect": "^2.2.2",

@@ -22,7 +22,7 @@ export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=
       'hover:pr-[40px] hover:pl-[20px]',
       special ? 'bg-gradient-to-r from-accent-dark-200 to-secondary-100 dark:shadow-btn-dark shadow-btn-light' : '',
       primary ? 'bg-primary-100' : '',
-      secondary ? 'text-dark-200 pl-0 hover:pl-0 bg-transparent' : '',
+      secondary ? 'text-dark-200 dark:text-light-200 pl-0 hover:pl-0 bg-transparent' : '',
       rounded ? 'rounded-sm' : '',
       className,
       )}

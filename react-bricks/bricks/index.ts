@@ -16,7 +16,7 @@ import VideoHeroUnit from './molecules/VideoHeroUnit';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
 import ProgramHeroUnit from './molecules/ProgramHeroUnit';
-import PricesSectionUnit from './molecules/PricesSectionUnit';
+import CoinGeckoPricesSectionUnit from './molecules/CoinGeckoPricesSectionUnit';
 import Promo1HeroUnit from './molecules/Promo1HeroUnit';
 import Promo2HeroUnit from './molecules/Promo2HeroUnit';
 import SpacerUnit from './molecules/SpacerUnit';
@@ -27,6 +27,9 @@ import VRBTeamCard from './atoms/VRBTeamCard';
 import VRBIconCard from './atoms/VRBIconCard';
 import VRBDetailCard from './atoms/VRBDetailCard';
 import FeaturesSmallListUnit from './molecules/FeaturesSmallListUnit';
+import DetailsListUnit from './molecules/DetailListUnit';
+import FeaturesMedListUnit from './molecules/FeaturesMedListUnit';
+import VRBFeatureCard from './atoms/VRBFeatureCard';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -37,14 +40,17 @@ const bricks: types.Brick<any>[] = [
   ProgramListUnit,
   GameListUnit,
   TeamListUnit,
+  FeaturesMedListUnit,
   FeaturesSmallListUnit,
+  DetailsListUnit,
   IntroUnit,
   SpacerUnit,
   VideoHeroUnit,
   ProgramHeroUnit,
-  PricesSectionUnit,
+  CoinGeckoPricesSectionUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
+  VRBFeatureCard,
   VRBTeamCard,
   VRBIconCard,
   VRBDetailCard,

@@ -18,6 +18,7 @@ export interface ICardProps {
   wide?: boolean;
   center?: boolean;
   roundImage?: boolean;
+  fullHeightImage?: boolean;
   sameType?: boolean;
   bordered?: boolean;
   popoutImage?: boolean;

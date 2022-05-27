@@ -15,17 +15,19 @@ export interface IFeatureCardProps {
   image?: string;
   bordered?: boolean;
   size?: 'sm' | 'lg'
+  canEdit?: boolean;
+  onClick?: () => void;
 }
 
-export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, size}) => {
+export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, size, canEdit}) => {
   return (
     <VItemContainer showBorder={bordered} widthSize="v2xl" heightSize='v2xl'>
-      <div className='flex flex-wrap space-y-4 p-8 justify-start items-start'>
+      <div className='flex flex-col flex-wrap gap-y-vsm p-vlrg justify-start items-start w-full h-full'>
         <VTitle type='h4'>{title}</VTitle>
-        <VText className='min-h-[52px] max-h-[52px]  overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>{subtitle}</VText>
-        {buttonText && <VButton special={specialBtn} secondary={secondaryBtn} primary={primaryBtn}>{buttonText}</VButton>}
-        <div style={{width: '100%', height: '218px', position: 'relative'}} className="w-full h-full rounded-sm">
-          <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' alt='image' className='w-full h-full rounded-sm'/>
+        <VText className='max-h-[60px] overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>{subtitle}</VText>
+        {buttonText && <VButton onClick={onClick} special={specialBtn} secondary={secondaryBtn} primary={primaryBtn}>{buttonText}</VButton>}
+        <div style={{width: '100%', height: '218px', position: 'relative'}} className="w-full h-full rounded-vsm">
+          <VImage src={image} width="100%" height="218px" objectFit='cover' layout='fill' alt='image' className='w-full h-full rounded-sm'/>
         </div>
       </div>
     </VItemContainer>

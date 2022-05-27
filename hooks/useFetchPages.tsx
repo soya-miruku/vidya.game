@@ -38,6 +38,11 @@ export const useFetchPages = ({type, limit=3}) => {
         'Content-Type': 'application/json',
       }
     });
+    
+    if(!response.ok) {
+      throw new Error(response.statusText);
+    }
+
     const json = await response.json();
     return json.map((page: any) => {
       return {

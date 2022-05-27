@@ -9,7 +9,7 @@ import { SocialLinks } from "./SocialLinks";
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
   return (
-    <footer className={classNames('w-full px-4 py-[30px] h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
+    <footer className={classNames('w-full px-vlrg py-vxl h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
       <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>
         <div className="w-full flex flex-row justify-betweem items-center space-x-4">
           <div className="sm:w-full w-72">
@@ -25,7 +25,7 @@ const Footer = () => {
               <h6>{category.toUpperCase()}</h6>
             </div>
             <div>
-              <ul className="pt-4">
+              <ul className="pt-vmd flex gap-vsm flex-col">
                 {PagesByCategory[category].map(page => {
                 return (
                 <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
