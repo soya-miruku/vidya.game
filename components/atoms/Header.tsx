@@ -157,7 +157,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
                     {PagesByCategory[category].map((page, y) => {
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
-                        <Link href={page.active ? getPageUrlByType(page.type, page.slug) : '/soon'}>
+                        <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'}>
                           <p className="menu-item font-saria">{page.displayName}</p>
                         </Link>
                         {!page.active && <span className='text-xs p-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 rounded-lg'>SOON</span>}

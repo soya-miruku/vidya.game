@@ -7,19 +7,23 @@ import { LayoutProp } from '../Shared/LayoutProps';
 import VRBColumn from '../atoms/VRBColumn';
 import Section, { Border } from '../Layout/Section';
 import CallHeroColumn from './CallHeroColumn';
+import { Padding, Round } from '../Shared/additional';
 
 interface IntroProps {
   bg?: { color: string; className: string }
   borderTop?: Border
   borderBottom?: Border
+  paddingX?: Padding
+  paddingY?: Padding
+  rounded?: Round
 }
 
-const IntroUnit: types.Brick<IntroProps> = ({ bg, borderTop, borderBottom }) => {
+const IntroUnit: types.Brick<IntroProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY, rounded }) => {
   return (
-    <div className='prose w-full h-full flex flex-col gap-y-2'>
-      <CallHeroColumn className='mt-4' propName='header' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='lg'></CallHeroColumn>
-      <CallHeroColumn propName='body' columns={2} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='lg'></CallHeroColumn>
-      <CallHeroColumn className='mb-12' propName='footer' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX="xl" paddingY='sm'></CallHeroColumn>
+    <div className='w-full h-full flex flex-col gap-y-0 max-w-[820px] m-auto'>
+      <CallHeroColumn className='m-0 p-[30px]' propName='header' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
+      <CallHeroColumn propName='body' columns={2} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
+      <CallHeroColumn className='m-0 p-[30px] pt-0' propName='footer' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
     </div>
   )
 }
@@ -36,6 +40,9 @@ IntroUnit.schema = {
     },
     borderTop: 'none',
     borderBottom: 'none',
+    paddingX: 'none',
+    paddingY: 'none',
+    rounded: 'none',
     header: 
     [
       {
