@@ -6,7 +6,7 @@ import { bgColors } from '../Shared/colors';
 import Columns from '../Layout/Columns';
 import Section, {Border} from '../Layout/Section';
 import { LayoutProp } from '../Shared/LayoutProps';
-import { Gap, NumColumns, Padding } from '../Shared/additional';
+import { Gap, NumColumns, Padding, Round } from '../Shared/additional';
 
 //=============================
 // Local Types
@@ -32,11 +32,12 @@ interface CallHeroUnitProps {
   columns?: NumColumns
   borderTop?: Border
   borderBottom?: Border
+  rounded?: Round
 }
 
-const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, borderTop, borderBottom, paddingX, paddingY, background, className }) => {
+const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, borderTop, borderBottom, paddingX, paddingY, background, className, rounded }) => {
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
        <Repeater propName={propName || 'columns'} renderItemWrapper={(item, index) => {
           return (
             <div style={{zIndex: 100}} key={index}>
