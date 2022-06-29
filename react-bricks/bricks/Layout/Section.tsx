@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Parallax } from "react-parallax";
+import { Parallax, ParallaxProps } from "react-parallax";
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
 import { BlurAmount, Padding, Round } from '../Shared/additional'
@@ -24,7 +24,7 @@ export interface SectionProps {
   blur?: BlurAmount
 }
 
-const ParallaxV2 = Parallax as any;
+const ParallaxV2 = (Parallax as any) as React.FC<ParallaxProps>;
 
 const Section: React.FC<SectionProps> = ({
   bg = bgColors.none.value,
@@ -41,25 +41,40 @@ const Section: React.FC<SectionProps> = ({
   blur,
 }) => {
   const bgColor = bg.color;
+  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 5 : blur === 'md' ? 3 : 1;
   return (
     <ParallaxV2 
       disabled={!enableParallax}
-      blur={blur === 'none' ? false : blur === 'lg' ? {min: -14, max: 20} : blur === 'md' ? {min: -16, max: 20} : { min: -18, max: 20 }}
       bgImage={bgImage?.src} strength={parallaxSpeed}
+      renderLayer={percentage => (
+        <div
+            style={{
+                position: 'absolute',
+                left: '0%',
+                top: '0%',
+                backdropFilter: `blur(${percentage * (initialAmount * 1.1)}px)`,
+                width: '100%',
+                height: '100%',
+            }}
+        />
+    )}
       style={{
         minHeight: height ? height : 'auto',
-        backgroundColor: bgColor,
+        backgroundColor: bgImage ? 'black' : bgColor,
         paddingLeft: `${paddingX}px`,
         paddingRight: `${paddingX}px`,
         paddingTop: `${paddingY}px`,
         paddingBottom: `${paddingY}px`,
       }}
+      bgStyle={{
+        transform: 'filter(1.1)'
+      }}
       bgImageStyle={{
         objectFit: 'cover',
-        top: bgOffsetY ? `${bgOffsetY}%` : ''
+        top: bgOffsetY ? `${bgOffsetY}%` : '',
       }}
       contentClassName={
-        classNames( 
+        classNames(
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
         // paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
