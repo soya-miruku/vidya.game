@@ -1,27 +1,19 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
 import { bgColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
-import Section, { Border } from '../Layout/Section';
-import { Padding } from '../Shared/additional';
-import { VTitle } from '@/components/atoms/VTitle';
+import Section, { SectionProps } from '../Layout/Section';
 import VRBTitle from '../atoms/VRBTitle';
 
-interface ITeamListUnitProps {
+interface ITeamListUnitProps extends SectionProps {
   title?: string;
   items?: any[];
-  bg?: { color: string; className: string };
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ bg, bgImage, parallaxSpeed, enableParallax, blur, rounded, paddingX, paddingY}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
+    <Section bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
       <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (

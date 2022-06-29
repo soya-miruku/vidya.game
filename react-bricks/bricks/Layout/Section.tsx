@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Parallax, Background } from "react-parallax";
+import { Parallax } from "react-parallax";
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
 import { Padding, Round } from '../Shared/additional'
@@ -42,7 +42,7 @@ const Section: React.FC<SectionProps> = ({
   return (
     <ParallaxV2 
       disabled={!enableParallax}
-      blur={blur ? { min: -19, max: 20 }: false}
+      blur={blur ? { min: -18, max: 20 }: false}
       bgImage={bgImage?.src} strength={parallaxSpeed}
       style={{
         height: height ? height : 'auto',

@@ -13,7 +13,6 @@ import config from '../react-bricks/config'
 import Layout from '../components/layout'
 import ErrorNoKeys from '../components/errorNoKeys'
 import ErrorNoHomePage from '../components/errorNoHomePage'
-import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
 interface PageProps {
   slug: string,
