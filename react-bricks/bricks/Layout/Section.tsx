@@ -15,8 +15,8 @@ export interface SectionProps {
   bgImage?: IImageSource
   bgOffsetY?: number
   height?: string
-  paddingX?: Padding
-  paddingY?: Padding
+  paddingX?: number
+  paddingY?: number
   rounded?: Round
   className?: string
   enableParallax?: boolean
@@ -47,20 +47,23 @@ const Section: React.FC<SectionProps> = ({
       blur={blur === 'none' ? false : blur === 'lg' ? {min: -14, max: 20} : blur === 'md' ? {min: -16, max: 20} : { min: -18, max: 20 }}
       bgImage={bgImage?.src} strength={parallaxSpeed}
       style={{
-        height: height ? height : 'auto',
+        minHeight: height ? height : 'auto',
         backgroundColor: bgColor,
+        paddingLeft: `${paddingX}rem`,
+        paddingRight: `${paddingX}rem`,
+        paddingTop: `${paddingY}rem`,
+        paddingBottom: `${paddingY}rem`,
       }}
       bgImageStyle={{
         objectFit: 'cover',
         top: bgOffsetY ? `${bgOffsetY}%` : ''
       }}
-    
       contentClassName={
         classNames( 
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
-        paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
-        paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
+        // paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
+        // paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm' : rounded === 'md' ? 'rounded-lgr' : 'rounded-lxl',
         )}
       
@@ -69,7 +72,7 @@ const Section: React.FC<SectionProps> = ({
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
         // paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
-        paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
+        // paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
         )}
         >

@@ -7,6 +7,8 @@ interface LayoutPropProps {
 
 export const DefaultLayoutProps = {
   bg: bgColors.none.value,
+  paddingX: 0,
+  paddingY: 0,
   height: 'auto',
   rounded: 'none',
   enableParallax: true,
@@ -92,33 +94,35 @@ export const LayoutProp = ({
       {
         name: 'paddingX',
         label: 'Padding X',
-        type: types.SideEditPropType.Select,
-        selectOptions: {
-          display: types.OptionsDisplay.Select,
-          options: [
-            { value: 'none', label: 'None' },
-            { value: 'sm', label: 'Small' },
-            { value: 'lg', label: 'Large' },
-            { value: 'xl', label: 'X Large' },
-            { value: 'xxl', label: 'XX Large' },
+        type: types.SideEditPropType.Number,
+        // type: types.SideEditPropType.Select,
+        // selectOptions: {
+        //   display: types.OptionsDisplay.Select,
+        //   options: [
+        //     { value: 'none', label: 'None' },
+        //     { value: 'sm', label: 'Small' },
+        //     { value: 'lg', label: 'Large' },
+        //     { value: 'xl', label: 'X Large' },
+        //     { value: 'xxl', label: 'XX Large' },
 
-          ],
-        },
+        //   ],
+        // },
       },
       {
         name: 'paddingY',
         label: 'Padding Y',
-        type: types.SideEditPropType.Select,
-        selectOptions: {
-          display: types.OptionsDisplay.Select,
-          options: [
-            { value: 'none', label: 'None' },
-            { value: 'sm', label: 'Small' },
-            { value: 'lg', label: 'Large' },
-            { value: 'xl', label: 'X Large' },
-            { value: 'xxl', label: 'XX Large' },
-          ],
-        },
+        type: types.SideEditPropType.Number,
+        // type: types.SideEditPropType.Select,
+        // selectOptions: {
+        //   display: types.OptionsDisplay.Select,
+        //   options: [
+        //     { value: 'none', label: 'None' },
+        //     { value: 'sm', label: 'Small' },
+        //     { value: 'lg', label: 'Large' },
+        //     { value: 'xl', label: 'X Large' },
+        //     { value: 'xxl', label: 'XX Large' },
+        //   ],
+        // },
       }
     ],
   }
