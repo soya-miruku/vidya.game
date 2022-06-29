@@ -1,4 +1,4 @@
-import { ETH_ADDRESS } from "@/contracts/addresses";
+import { EMPTY_ADDRESS, ETH_ADDRESS } from "@/contracts/addresses";
 import { useAccount } from "@/hooks/useAccount";
 import { formatEther } from "@ethersproject/units";
 import { ERC20Interface, MultiCallABI, useCalls, useMulticallAddress } from "@usedapp/core";
@@ -9,7 +9,7 @@ export const useBalances = (tokenAddresses: string[]) => {
   const multicallAddress = useMulticallAddress();
 
   const calls = tokenAddresses?.map(address => {
-    return address && (address === ETH_ADDRESS ?
+    return address && address !== EMPTY_ADDRESS && (address === ETH_ADDRESS ?
     {
       contract: new Contract(multicallAddress, MultiCallABI),
       method: "getEthBalance",

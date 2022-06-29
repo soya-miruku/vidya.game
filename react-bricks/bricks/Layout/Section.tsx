@@ -52,7 +52,7 @@ const Section: React.FC<SectionProps> = ({
                 position: 'absolute',
                 left: '0%',
                 top: '0%',
-                backdropFilter: `blur(${percentage * (initialAmount * 1.1)}px)`,
+                backdropFilter: `blur(${percentage * (initialAmount * 1.4)}px)`,
                 width: '100%',
                 height: '100%',
             }}
