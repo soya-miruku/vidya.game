@@ -2,10 +2,10 @@ import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
+import { bgColors, DefaultColors } from '../Shared/colors';
 import Columns from '../Layout/Columns';
-import Section, {Border} from '../Layout/Section';
-import { LayoutProp } from '../Shared/LayoutProps';
+import Section, { SectionProps } from '../Layout/Section';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { Gap, NumColumns, Padding, Round } from '../Shared/additional';
 
 //=============================
@@ -16,28 +16,21 @@ type TextPositions = 'left' | 'center' | 'right'
 type ImageSizes = 'small' | 'medium' | 'large'
 type FontFamily = 'sans-serif' | 'serif' | 'mono' | 'thin' | 'Saira SemiCondensed' | 'Nunito' | 'roboto' | 'poppins'
 
-interface CallHeroUnitProps {
-  paddingX?: Padding
-  paddingY?: Padding
+interface CallHeroUnitProps extends SectionProps {
   badgeText?: string
   propName?: string
-  className?: string
   fontFamily?: FontFamily
   background?: boolean
   image?: string
   title?: string
   text?: string
   gap: Gap
-  bg?: { color: string; className: string }
   columns?: NumColumns
-  borderTop?: Border
-  borderBottom?: Border
-  rounded?: Round
 }
 
-const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, borderTop, borderBottom, paddingX, paddingY, background, className, rounded }) => {
+const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, bgImage, enableParallax, parallaxSpeed, blur, height, paddingX, paddingY, background, className, rounded }) => {
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
+    <Section className={className} bg={bg} bgImage={bgImage}  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} height={height} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
        <Repeater propName={propName || 'columns'} renderItemWrapper={(item, index) => {
           return (
             <div style={{zIndex: 100}} key={index}>
@@ -66,6 +59,7 @@ CallHeroColumn.schema = {
     gap: 'lg',
     paddingX: 'lg',
     paddingY: 'lg',
+    ...DefaultLayoutProps,
     columns: [
       {
         items: [
@@ -82,12 +76,6 @@ CallHeroColumn.schema = {
         type: 'h2',
       }
     ],
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
-    borderTop: 'none',
-    borderBottom: 'none',
     headerButtons: [
       {
         children: 'Button 1',
@@ -110,7 +98,7 @@ CallHeroColumn.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'background',
       label: 'Background',

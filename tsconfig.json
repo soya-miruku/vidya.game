@@ -11,6 +11,8 @@
       "@/components/*": ["components/*"],
       "@/common/*": ["common/*"],
       "@/css/*": ["css/*"],
+      "@/hooks/*": ["hooks/*"],
+      "@/contracts/*": ["contracts/*"],
     },
     "allowJs": true,
     "skipLibCheck": true,

@@ -2,8 +2,8 @@ import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 
 interface EmptyProps {
 }
@@ -20,9 +20,10 @@ EmptyHero.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
+    ...DefaultLayoutProps,
   }),
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

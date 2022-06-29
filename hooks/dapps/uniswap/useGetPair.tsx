@@ -1,9 +1,9 @@
 import { Contract } from "@ethersproject/contracts"
-import { Mainnet, useCall } from "@usedapp/core"
-import UNISWAP_FACTORY_ABI from "@/common/abis/uniswapFactory.json";
+import { useCall } from "@usedapp/core"
+import UNISWAP_FACTORY_ABI from "@/contracts/abis/uniswapFactory.json";
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
-import { useAccount } from "./useAccount";
-import { CHAIN_SETTINGS } from "@/common/constants";
+import { useAccount } from "../../useAccount";
+import { CHAIN_SETTINGS, EMPTY_ADDRESS } from "@/contracts/addresses";
 
 export const useGetPair = (token0: string | Falsy, token1: string | Falsy) => {
   const { chainId } = useAccount();
@@ -18,5 +18,7 @@ export const useGetPair = (token0: string | Falsy, token1: string | Falsy) => {
     return undefined;
   }
 
-  return value;
+  const exists = value && value[0] !== EMPTY_ADDRESS;
+  const address = value && value[0];
+  return {address, exists};
 }

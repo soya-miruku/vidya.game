@@ -1,20 +1,17 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
+import { bgColors, DefaultColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
-import { Round, Padding } from '../Shared/additional';
-import { Border } from '../Layout/Section';
 import CallHeroUnit, { ICallHeroUnitProps } from './CallHeroImage';
 
-interface IPromo1HeroProps extends ICallHeroUnitProps{
+interface IPromo1HeroProps extends ICallHeroUnitProps {
 
 }
 
-const Promo1HeroUnit: types.Brick<IPromo1HeroProps> = ({ bg, borderBottom, borderTop, rounded, paddingX, paddingY, text, textAlign, image, imageSize, title, badgeText }) => {
+const Promo1HeroUnit: types.Brick<IPromo1HeroProps> = ({ bg, parallaxSpeed, enableParallax, blur, rounded, paddingX, paddingY, text, textAlign, image, imageSize, title, badgeText }) => {
   return (
-    <CallHeroUnit background={true} badgeText={badgeText} bg={bg} borderBottom={borderBottom} borderTop={borderTop} rounded={rounded} paddingX={paddingX} paddingY={paddingY}
+    <CallHeroUnit parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} background={true} badgeText={badgeText} bg={bg} rounded={rounded} paddingX={paddingX} paddingY={paddingY}
     text={text} textAlign={textAlign} image={image} imagePosition='right' imageSize={imageSize} title={title}></CallHeroUnit>
   )
 }
@@ -46,7 +43,7 @@ Promo1HeroUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

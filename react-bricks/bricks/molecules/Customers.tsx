@@ -3,46 +3,48 @@ import classNames from 'classnames'
 
 import { Repeater, types, useAdminContext } from 'react-bricks/frontend'
 import {blockNames} from '../blockNames'
-import { bgColors } from '../Shared/colors'
-import Section, { Border } from '../Layout/Section'
-import Container, { Size } from '../Layout/Container'
-import { LayoutProp } from '../Shared/LayoutProps'
+import { bgColors, DefaultColors } from '../Shared/colors'
+import Section, { SectionProps } from '../Layout/Section'
+import { Size } from '../Layout/Container'
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps'
 import { VTitle } from '@/components/atoms/VTitle'
 import { Padding } from '../Shared/additional'
 import { VCarousel } from '@/components/atoms/VCarousel'
 import { useDetectDeviceSize } from 'hooks/useDetectIsMobileView'
+import { PageViewSize } from '@/components/atoms/PageViewSize'
 
-export interface CustomersProps {
-  bg?: { color: string; className: string }
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding;
-  paddingY?: Padding;
+export interface CustomersProps extends SectionProps {
   size?: 'medium' | 'large'
   width?: Size
   grayscale?: boolean
 }
 
 const Customers: types.Brick<CustomersProps> = ({
-  bg = bgColors.white.value,
-  borderTop = 'none',
-  borderBottom = 'none',
+  bg,
   grayscale = true,
   paddingX,
-  paddingY
+  paddingY,
+  rounded,
+  bgImage,
+  height,
+  parallaxSpeed,
+  enableParallax,
+  blur,
 }) => {
   const { isAdmin } = useAdminContext();
   const { isMobileView } = useDetectDeviceSize();
   return (
-    <Section paddingX={paddingX} paddingY={paddingY} bg={bg} borderTop={borderTop} borderBottom={borderBottom} className="w-full">
-      <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
-        return (
-          <div className='prose flex flex-col justify-center items-center gap-y-12'>
-            <VTitle type='h5'>Featured In</VTitle>
-            <VCarousel slidesPerView={isMobileView ? 3 : 5} navigation={isAdmin} slides={items.props.children}></VCarousel>
-          </div>
-        )
-      }}></Repeater>
+    <Section  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} paddingX={paddingX} paddingY={paddingY} bg={bg} rounded={rounded} bgImage={bgImage} height={height}>
+      <PageViewSize enabled={!bgImage}>
+        <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
+          return (
+            <div className='prose flex flex-col justify-center items-center gap-y-12'>
+              <VTitle type='h5'>Featured In</VTitle>
+              <VCarousel slidesPerView={isMobileView ? 3 : 5} navigation={isAdmin} slides={items.props.children}></VCarousel>
+            </div>
+          )
+        }}></Repeater>
+      </PageViewSize>
     </Section>
   )
 }
@@ -56,13 +58,8 @@ Customers.schema = {
     'https://github.com/ReactBricks/react-bricks-ui/blob/master/src/website/Customers/Customers.tsx',
 
   getDefaultProps: () => ({
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
-    borderTop: 'none',
-    borderBottom: 'none',
     width: 'lg',
+    ...DefaultLayoutProps,
     grayscale: false,
     customers: [
       {
@@ -129,7 +126,7 @@ Customers.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.white, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'grayscale',
       label: 'Greyscale',

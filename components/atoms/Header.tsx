@@ -76,9 +76,14 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
       if (currentY > prevY) {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('translate-y-0');
+        navbarRef.current.classList.add('bg-dark-200/20');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
-      } else {
+      }
+      else if(currentY <= 100) {
+        navbarRef.current.classList.remove('bg-dark-200/20');
+      } 
+      else {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
@@ -108,34 +113,34 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
   }, [isOpen])
 
   return (
-    <div ref={navbarRef} className='fixed w-full h-[120px] top-0 dark:bg-dark-200 bg-light-200 z-[1000] transition-all duration-300'>
+    <div ref={navbarRef} className='fixed w-full h-[120px] top-0  z-[1000] transition-all duration-300'>
       <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg transition-all duration-500',
-      isOpen ? 'dark:shadow-dark-md shadow-light-md z-auto' : 'max-w-page mx-auto', className)}
+      isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
       style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
           <Link href="/">
             <p className='hover:cursor-pointer'>
-              <Logo/>
+              <Logo enableDarkMode={false}/>
             </p>
           </Link>
           <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
             <div className=''>
-              <VButton special className='group shadow-md' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>
+              <VButton special className='group' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>
                 Play
               </VButton>
             </div>
             <div>
-              <button className="hidden sm:block shadow-md dark:text-light-200 text-dark-100 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
+              <button className="hidden sm:block shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
               </button>
             </div>
             <div>
-              <button onClick={toggleMode} className={classNames("hidden sm:block shadow-md dark:text-light-200 text-dark-100 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+              <button onClick={toggleMode} className={classNames("hidden sm:block shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
               </button>
             </div>
             <Menu
           width={WIDTH}
           customBurgerIcon={!isOpen 
-            ?  <span className='dark:text-light-200 text-dark-100 -ic-menu'></span> //<FontAwesomeIcon className='dark:text-light-200 text-dark-100' icon={faBars}></FontAwesomeIcon> 
-            : <span className='dark:text-light-200 text-dark-100 -ic-close'></span> //<FontAwesomeIcon className='dark:text-light-200 text-dark-100' icon={faXmark}></FontAwesomeIcon>
+            ?  <span className='text-light-200 -ic-menu'></span>
+            : <span className='text-light-200 -ic-close'></span> 
           } 
           isOpen={isOpen}
           disableOverlayClick={false}

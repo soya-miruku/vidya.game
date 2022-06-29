@@ -2,25 +2,18 @@ import React from 'react'
 import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
+import { bgColors, DefaultColors } from '../Shared/colors';
 import { LayoutProp } from '../Shared/LayoutProps';
 import { IProgramHeroProps, ProgramHero } from '@/components/organisms/programHero';
-import Section, { Border } from '../Layout/Section';
-import { Padding } from '../Shared/additional';
+import Section, { SectionProps } from '../Layout/Section';
 
-export interface IProgramHeroUnitProps extends IProgramHeroProps {
-  bg?: { color: string; className: string };
-  borderTop?: Border
-  borderBottom?: Border
-  paddingX?: Padding;
-  paddingY?: Padding;
-  className?: string;
+export interface IProgramHeroUnitProps extends SectionProps, IProgramHeroProps {
 }
 
-const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY, className, pageTitle, pageDescription, image }) => {
+const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ bg, enableParallax, parallaxSpeed, blur, rounded, bgImage, paddingX, paddingY, className, pageTitle, pageDescription, image }) => {
   const { isAdmin } = useAdminContext();
   return (
-    <Section className={className} bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} className={className} bg={bg} rounded={rounded} paddingX={paddingX} paddingY={paddingY}>
       <ProgramHero image={image} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
     </Section>
   )
@@ -36,7 +29,7 @@ ProgramHeroUnit.schema = {
     image: '/generator.png',
   }),
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

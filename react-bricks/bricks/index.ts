@@ -30,6 +30,8 @@ import FeaturesSmallListUnit from './molecules/FeaturesSmallListUnit';
 import DetailsListUnit from './molecules/DetailListUnit';
 import FeaturesMedListUnit from './molecules/FeaturesMedListUnit';
 import VRBFeatureCard from './atoms/VRBFeatureCard';
+import SwapUnit from './molecules/SwapUnit';
+import EmptyUnit from './molecules/EmptyUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -45,6 +47,7 @@ const bricks: types.Brick<any>[] = [
   DetailsListUnit,
   IntroUnit,
   SpacerUnit,
+  SwapUnit,
   VideoHeroUnit,
   ProgramHeroUnit,
   CoinGeckoPricesSectionUnit,
@@ -62,7 +65,8 @@ const bricks: types.Brick<any>[] = [
   VRBLabel,
   VRBImage,
   VRBCustomer,
-  Customers
+  Customers,
+  EmptyUnit
 ]
 
 export default bricks

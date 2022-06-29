@@ -14,7 +14,13 @@ export type BgColorName =
   | 'orange'
   | 'green'
   | 'darkBlue'
+  | 'darkBlue200'
   | 'dark'
+  | 'purple'
+  | 'purple200'
+  | 'accent'
+  | 'red'
+  | 'cyan'
   | 'none'
 
 export type GradientName = 'none' | 'ocean' | 'violet' | 'sun'
@@ -63,36 +69,59 @@ export const bgColors: BgColors = {
   },
   light: {
     label: 'Light',
-    value: { color: '#f9fafb', className: 'bg-gray-50 dark:bg-light-200' },
+    value: { color: '#f9fafb', className: 'bg-light-100' },
   },
   gray: {
     label: 'Gray',
-    value: { color: '#f3f4f6', className: 'bg-gray-100 dark:bg-gray-800' },
+    value: { color: '#f3f4f6', className: 'bg-gray-100' },
   },
   lightBlue: {
     label: 'Light Blue',
-    value: { color: '#e0f2fe', className: 'bg-sky-100 dark:bg-gray-800' },
+    value: { color: '#e0f2fe', className: 'bg-sky-100' },
   },
   orange: {
     label: 'Orange',
-    value: { color: '#fef3c7', className: 'bg-amber-100 dark:bg-gray-800' },
+    value: { color: '#fef3c7', className: 'bg-amber-100' },
   },
   green: {
     label: 'Green',
-    value: { color: '#ecfccb', className: 'bg-lime-100 dark:bg-gray-800' },
+    value: { color: '#ecfccb', className: 'bg-lime-100' },
+  },
+  accent:{
+    label: 'Accent',
+    value: { color: '#c574e8', className: 'bg-accent-dark-200' },
+  },
+  red:{
+    label: 'Red',
+    value: { color: '#FF4365', className: 'bg-aimbotsRed-100' },
+  },
+  cyan:{
+    label: 'Cyan',
+    value: { color: '#63ADB7', className: 'bg-aimbotsGreen-100' },
+  },
+  purple: {
+    label: 'Purple',
+    value: { color: '#401F68', className: 'bg-aimbotsPurple-100' },
+  },
+  purple200:{
+    label: 'Purple 200',
+    value: { color: '#651AB7', className: 'bg-accent-dark-800' },
   },
   darkBlue: {
     label: 'Dark Blue',
-    value: {
-      color: '#0c4a6e',
-      className: 'bg-sky-900 dark:bg-gray-800 dark',
-    },
+    value: { color: '#10151F', className: 'bg-aimbotsDark-100' },
+  },
+  darkBlue200: {
+    label: 'Dark Blue 200',
+    value: { color: '#1E242E', className: 'bg-aimbotsDark-200' },
   },
   dark: {
     label: 'Dark',
-    value: { color: '#11081F', className: 'bg-gray-900 dark:bg-dark-200 dark' },
+    value: { color: '#11081F', className: 'bg-gray-900' },
   },
 }
+
+export const DefaultColors = Object.keys(bgColors).map((key) => bgColors[key]);
 
 export const badgeColors: BadgeColors = {
   gray: {

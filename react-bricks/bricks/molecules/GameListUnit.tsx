@@ -1,24 +1,18 @@
 import React from 'react'
 import { types } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import Section, {Border} from '../Layout/Section';
-import { LayoutProp } from '../Shared/LayoutProps';
-import { Padding } from '../Shared/additional';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import Section, { SectionProps } from '../Layout/Section';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { GamesListSection } from '@/components/organisms/gamesListSection';
 
-interface IGameListProps {
+interface IGameListProps extends SectionProps {
   maxItems?: number
-  bg?: { color: string; className: string }
-  borderTop?: Border
-  borderBottom?: Border
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const GameListUnit: types.Brick<IGameListProps> = ({ bg, borderTop, borderBottom, maxItems, paddingX, paddingY }) => {
+const GameListUnit: types.Brick<IGameListProps> = ({ bg, bgImage, height, rounded, maxItems, paddingX, paddingY, parallaxSpeed, enableParallax, blur }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center max-w-page'>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY}>
       <GamesListSection limit={maxItems}/>
     </Section>
   )
@@ -30,16 +24,11 @@ GameListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
-    borderTop: 'none',
-    borderBottom: 'none',
+    ...DefaultLayoutProps,
     maxItems: 3,
   }),
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'maxItems',
       label: 'Max Items',

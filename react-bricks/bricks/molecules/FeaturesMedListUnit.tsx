@@ -1,29 +1,23 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
-import Section, { Border } from '../Layout/Section';
-import { Padding } from '../Shared/additional';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
+import Section, { SectionProps } from '../Layout/Section';
 import VRBRichText from '../atoms/VRBRichText';
 
-interface IFeaturesMedListUnitProps {
+interface IFeaturesMedListUnitProps extends SectionProps {
   featureItems?: any[];
-  bg?: { color: string; className: string };
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding
-  paddingY?: Padding
   disclaimer?: string;
   showDisclaimer?: boolean;
 }
 
-const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, disclaimer, showDisclaimer, borderTop, borderBottom, paddingX, paddingY}) => {
+const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, bgImage, height, rounded, disclaimer, showDisclaimer, paddingX, paddingY, enableParallax, parallaxSpeed, blur}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className="flex flex-col justify-center items-center gap-y-vxl">
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingY={paddingY} rounded={rounded} className="flex flex-col justify-center items-center gap-y-vxl">
       <Repeater propName='featureItems' renderWrapper={(items) => {
         return (
-          <div className="flex justify-center items-center gap-vxl flex-wrap">
+          <div className="flex justify-center items-center gap-vmd flex-wrap">
             {items}
           </div>
         )
@@ -39,7 +33,7 @@ FeaturesMedListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: bgColors.none,
+    ...DefaultLayoutProps,
     disclaimer: 'Maecenas venenatis id libero eget dapibus. Mauris ullamcorper maximus enim, et finibus tortor blandit quis. Sed est eros, dignissim et egestas id, convallis a mauris. Mauris in venenatis velit.',
     showDisclaimer: false,
     featureItems: [
@@ -77,7 +71,7 @@ FeaturesMedListUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'showDisclaimer',
       label: 'Show Disclaimer',

@@ -1,15 +1,14 @@
 import React, { Children } from 'react'
 import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
-import { VButton } from '@/components/atoms/VButton'
-import { VLabel } from '@/components/atoms/VLabel'
 import { VText } from '@/components/atoms/VText'
 import { VTitle } from '@/components/atoms/VTitle'
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import Section, {Border} from '../Layout/Section';
-import { LayoutProp } from '../Shared/LayoutProps';
-import { Padding, Round } from '../Shared/additional';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import Section, {SectionProps} from '../Layout/Section';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
+import { PageViewSize } from '@/components/atoms/PageViewSize';
+import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 
 //=============================
 // Local Types
@@ -18,7 +17,7 @@ type ImagePositions = 'left' | 'right'
 type TextPositions = 'left' | 'center' | 'right'
 type ImageSizes = 'small' | 'medium' | 'large'
 
-export interface ICallHeroUnitProps {
+export interface ICallHeroUnitProps extends SectionProps {
   badgeText: string
   imagePosition: ImagePositions
   textAlign: TextPositions
@@ -27,86 +26,83 @@ export interface ICallHeroUnitProps {
   image: string
   title: string
   text: string
-  bg?: { color: string; className: string }
-  paddingX?: Padding
-  paddingY?: Padding
-  borderTop?: Border
-  rounded?: Round
-  borderBottom?: Border
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ rounded, bg, borderTop, borderBottom, imagePosition, paddingX, paddingY, background }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ enableParallax, parallaxSpeed, blur, rounded, bg, bgImage, height, imagePosition, paddingX, paddingY, background }) => {
+  const { isMobileView } = useDetectIsMobileView();
+
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX="none" paddingY="none" rounded="none">
-      <div className={classNames('w-full flex flex-row justify-center p-0', 'prose')}>
-        <div className='w-full h-full p-0'>
-          <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-end items-center`)}>
-          <div className='sm:w-1/2 w-full h-full flex justify-center z-10 p-vlrg'>
-            <Image
-              propName="image"
-              alt="image"
-              containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
-              imageClassName="h-full mb-5 ml-2"
-            />
-          </div>
-          { background && <div className='absolute bg-primary-100 max-w-page rounded-lgr px-8 py-14 mt-12 mx-auto right-0 left-0 z-0' style={{height: '375px'}}></div>}
-          <div className='sm:w-1/2 w-full p-vlrg flex flex-col justify-start items-start z-10 gap-vlrg'>
-            <div className='w-full flex justify-start items-start p-0'>
-            <Repeater propName='badgeLabels' renderWrapper={(items) => {
-              return (
-                <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0 ">
-                  {items}
-                </div>
-              )
-            }}>
-            </Repeater>
+    <Section  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} height={height} bg={bg} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
+      <PageViewSize enabled={!bgImage}>
+        <div className={classNames('w-full flex flex-row justify-center p-0', 'prose')}>
+          <div className='w-auto h-full p-0'>
+            <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center items-center`)}>
+            <div className='sm:max-w-[500px] w-full h-full flex justify-center z-10 p-vsm'>
+              <Image
+                propName="image"
+                alt="image"
+                containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
+                imageClassName="h-full mb-0 ml-2"
+              />
             </div>
-            <Text
-              renderBlock={(props) => (
-                <VTitle overrideTextColor={background} className='m-0' type='h2'>{props.children}</VTitle>
-              )}
-              renderPlaceholder={(props) => (
-                <span className="opacity-30">{props.children}</span>
-              )}
-              placeholder="Type a title..."
-              propName="title"
-            />
-            <RichText
-              renderBlock={(props) => (
-                <VText overrideTextColor={background} size='lg' className='m-0'>
-                  {props.children}
-                </VText>
-              )}
-              placeholder="Type a text..."
-              propName="text"
-              allowedFeatures={[
-                types.RichTextFeatures.Bold,
-                types.RichTextFeatures.Italic,
-                types.RichTextFeatures.Highlight,
-                types.RichTextFeatures.Code,
-                types.RichTextFeatures.Link,
-              ]}
-              renderCode={(props) => (
-                <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
-                  {props.children}
-                </code>
-              )}
-          />
-          <div className='w-full flex justify-start'>
-            <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
-              return (
-                <div className="flex flex-wrap justify-start items-center sm:flex-row m-0 gap-x-7">
-                  {items}
+            { background && <div className='absolute bg-primary-100 max-w-page rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
+              <div  className="sm:w-1/2 w-full p-vmd flex flex-col justify-start items-start z-10 gap-vlrg">
+                <div className='w-full flex justify-start items-start p-0'>
+                <Repeater propName='badgeLabels' renderWrapper={(items) => {
+                  return (
+                    <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0 ">
+                      {items}
+                    </div>
+                  )
+                }}>
+                </Repeater>
                 </div>
-              )
-            }}>
-            </Repeater>
+                <Text
+                  renderBlock={(props) => (
+                    <VTitle overrideTextColor={background || bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
+                  )}
+                  renderPlaceholder={(props) => (
+                    <span className="opacity-30">{props.children}</span>
+                  )}
+                  placeholder="Type a title..."
+                  propName="title"
+                />
+                <RichText
+                  renderBlock={(props) => (
+                    <VText overrideTextColor={background || bgImage !== undefined} size='lg' className='m-0'>
+                      {props.children}
+                    </VText>
+                  )}
+                  placeholder="Type a text..."
+                  propName="text"
+                  allowedFeatures={[
+                    types.RichTextFeatures.Bold,
+                    types.RichTextFeatures.Italic,
+                    types.RichTextFeatures.Highlight,
+                    types.RichTextFeatures.Code,
+                    types.RichTextFeatures.Link,
+                  ]}
+                  renderCode={(props) => (
+                    <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
+                      {props.children}
+                    </code>
+                  )}
+              />
+              <div className='w-full flex justify-start'>
+                <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
+                  return (
+                    <div className="flex flex-wrap justify-start items-center sm:flex-row m-0 gap-x-7">
+                      {items}
+                    </div>
+                  )
+                }}>
+                </Repeater>
+                </div>
+              </div>
             </div>
-            {/* <VButton primary>Primary</VButton> */}
-          </div>
           </div>
         </div>
-      </div>
+      </PageViewSize>
     </Section>
   )
 }
@@ -116,10 +112,7 @@ CallHeroUnit.schema = {
   label: 'Call Hero Image Unit',
   category: 'TeamOs-Molecules',
   getDefaultProps: () => ({
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
+    ...DefaultLayoutProps,
     borderTop: 'none',
     borderBottom: 'none',
     headerButtons: [
@@ -158,7 +151,7 @@ CallHeroUnit.schema = {
     }
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'grayscale',
       label: 'Greyscale',

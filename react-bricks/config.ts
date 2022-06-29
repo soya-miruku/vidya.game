@@ -12,7 +12,7 @@ const config: types.ReactBricksConfig = {
   bricks,
   logo: '/logo.svg',
   previewPath: '/preview',
-  // contentClassName: 'content', // Defined dynamically
+  contentClassName: 'bricks-content', // Defined dynamically
   // isDarkColorMode: ...,        // in _app.tsx
   // toggleColorMode: ...,        // to manage Dark Mode
   renderLocalLink: NextLink,

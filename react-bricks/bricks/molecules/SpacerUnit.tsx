@@ -13,17 +13,17 @@ const SpacerUnit: types.Brick<ISpacerUnitProps> = ({ size }) => {
 
   if(isMobileView && !isTabletView) {
     return (
-      <div className={classNames('w-full', size === 'lgr' ? 'h-[50px]' :  size === 'med' ? 'h-[25px]' : 'h-[10px]')}/>
+      <div className={classNames('w-full', size === 'lgr' ? 'h-[50px]' :  size === 'med' ? 'h-[25px]' : size === 'sm' ? 'h-[10px]' : 'h-[5px]')}/>
     )
   }
   else if(isTabletView) {
     return (
-      <div className={classNames('w-full', size === 'lgr' ? 'h-[100px]' : size === 'med' ? 'h-[50px]' : 'h-[25px]')}/>
+      <div className={classNames('w-full', size === 'lgr' ? 'h-[100px]' : size === 'med' ? 'h-[50px]' : size === 'sm' ? 'h-[25px]' : 'h-[10px]')}/>
     )
   }
   else {
     return (
-      <div className={classNames('w-full', size === 'lgr' ? 'h-[200px]' : size === 'med' ? 'h-[100px]' :  'h-[50px]')}/>
+      <div className={classNames('w-full', size === 'lgr' ? 'h-[200px]' : size === 'med' ? 'h-[100px]' : size === 'sm' ? 'h-[50px]' : 'h-[10px]')}/>
     )
   }
 }
@@ -48,6 +48,7 @@ SpacerUnit.schema = {
           { label: 'LGR', value: 'lgr' },
           { label: 'MED', value: 'med' },
           { label: 'SM', value: 'sm' },
+          { label: 'XS', value: 'xs' },
         ],
       }
     }

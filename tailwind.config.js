@@ -186,6 +186,7 @@ module.exports = {
       },
       fontFamily: {
         'saria': ['Saira Semi Condensed', 'Roboto'],
+        'roboto': ['Roboto', 'sans-serif'],
         'nunito': ['Nunito', 'Roboto'],
         'poppins': ['Poppins', 'sans-serif'] 
       },
@@ -216,7 +217,9 @@ module.exports = {
       'btn-light': '0 12px 32px -12px rgb(199 207 255 / 100%)',
       'btn-dark': '0px 20px 30px -5px #00000080',
       'light-md': '0px 0px 60px rgba(199, 207, 255, 0.3)',
+      'light-sm': '0px 0px 30px rgba(199, 207, 255, 0.2)',
       'light': '0px 40px 60px -25px #C7CFFF4D',
+      'accent': '0px 30px 40px -15px #734a9e',
       'dark': '0px 40px 80px -25px rgba(0, 0, 0, 0.5)',
     },
     fontSize: {
@@ -270,12 +273,16 @@ module.exports = {
       'dark': {
         100: '#0d0d0d',
         200: '#11081F',
-        300: '#211436'
+        300: '#211436',
+        400: '#2F2F2F',
+        500: '#3F3F3F',
       },
       'light': {
         100: '#fafafa',
         200: '#FAFBFF',
-        300: '#E9EBF3'
+        300: '#E9EBF3',
+        400: '#D8DEE9',
+        500: '#C7CFFF',
       },
       'accent': {
         600: '#401F68',

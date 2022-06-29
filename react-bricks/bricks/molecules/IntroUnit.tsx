@@ -1,30 +1,24 @@
 import React from 'react'
-import { types, Repeater } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
+import { types } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
-import VRBColumn from '../atoms/VRBColumn';
-import Section, { Border } from '../Layout/Section';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import CallHeroColumn from './CallHeroColumn';
-import { Padding, Round } from '../Shared/additional';
+import Section, { SectionProps } from '../Layout/Section';
+import { PageViewSize } from '@/components/atoms/PageViewSize';
 
-interface IntroProps {
-  bg?: { color: string; className: string }
-  borderTop?: Border
-  borderBottom?: Border
-  paddingX?: Padding
-  paddingY?: Padding
-  rounded?: Round
+interface IntroProps extends SectionProps {
 }
 
-const IntroUnit: types.Brick<IntroProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY, rounded }) => {
+const IntroUnit: types.Brick<IntroProps> = ({ bg, bgImage, height, paddingX, paddingY, rounded, enableParallax, parallaxSpeed, blur }) => {
   return (
-    <div className='w-full h-full flex flex-col gap-y-0 max-w-[820px] m-auto'>
-      <CallHeroColumn className='m-0 p-[30px]' propName='header' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
-      <CallHeroColumn propName='body' columns={2} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
-      <CallHeroColumn className='m-0 p-[30px] pt-0' propName='footer' columns={1} gap='sm' bg={bg} borderBottom={borderBottom} borderTop={borderTop} paddingX={paddingX} paddingY={paddingY} rounded={rounded}></CallHeroColumn>
-    </div>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY}>
+      <PageViewSize enabled={!bgImage}>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'sm'} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='body' columns={2} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'lg'} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd pt-0 w-auto' propName='footer' columns={1} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'lg'} rounded={'none'}></CallHeroColumn>
+      </PageViewSize>
+    </Section>
   )
 }
 
@@ -34,15 +28,7 @@ IntroUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
-    borderTop: 'none',
-    borderBottom: 'none',
-    paddingX: 'none',
-    paddingY: 'none',
-    rounded: 'none',
+    ...DefaultLayoutProps,
     header: 
     [
       {
@@ -153,7 +139,7 @@ IntroUnit.schema = {
     }
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

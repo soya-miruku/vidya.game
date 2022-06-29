@@ -1,23 +1,18 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
-import Section, { Border } from '../Layout/Section';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
+import Section, { SectionProps } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
 
-interface IDetailsListUnitProps {
+interface IDetailsListUnitProps extends SectionProps {
   detailItems?: any[];
-  bg?: { color: string; className: string };
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ bg, bgImage, height, rounded, paddingX, paddingY, enableParallax, parallaxSpeed, blur}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY}>
       <Repeater propName='detailItems' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-vsm flex-wrap">
@@ -35,7 +30,7 @@ DetailsListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: bgColors.none,
+    ...DefaultLayoutProps,
     detailItems: [
       {
         bordered: true,
@@ -74,7 +69,7 @@ DetailsListUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

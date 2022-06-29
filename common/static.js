@@ -1,5 +1,6 @@
 const SIZES = {
   v2xl: 510,
+  vhxl: 404,
   vxl: 352,
   vlg: 320,
   vhlf: 260,

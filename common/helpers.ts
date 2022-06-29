@@ -25,5 +25,13 @@ export const getPageUrlByType = (type, slug) => {
   else if(!type) return '/';
 
   return `/${pageNames[type.toUpperCase()].plural}/${slug}`;
+}
 
+export const equalsFloat = (a: number|string, b: number|string) => {
+  return Math.abs(parseFloat(typeof(a) === 'string' ? a : a.toString()) - parseFloat(typeof(b) === 'string' ? b : b.toString())) < 0.00001;
+}
+
+export const toFixedNumber = (digits: number | string, decimals: number) => {
+  const number = typeof(digits) === 'string' ? parseFloat(digits || '0') : digits;
+  return parseFloat((number).toFixed(decimals));
 }

@@ -22,9 +22,14 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
         {canEdit || typeof(pageTitle) !== 'string' ? <VRBTitle className='dark:text-dark-300 text-light-300' type='title' propName='pageTitle' ></VRBTitle> : <VTitle className='dark:text-dark-300 text-light-300' type='title'>{pageTitle}</VTitle>}
       </div>
       <div className='flex justify-center items-center w-full h-full'>
-        <div className='sm:w-[489px] sm:h-[622px] w-[123px] h-[180px] relative'>
-          {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
-          alt='image' className={classNames('w-full h-full')}/>}
+        <div  style={{
+          width: '40vw',
+          height: '50vw',
+          maxWidth: '489px',
+          maxHeight: '622px',
+        }} className='relative'>
+          {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit='cover' layout='fill' 
+         className={classNames('w-full h-full')}/>}
         </div>
       </div>
       {canEdit || typeof(pageDescription) !== 'string' ? <VRBText size='lg' propName='pageDescription' ></VRBText> : <VText size='lg'>{pageDescription}</VText>}

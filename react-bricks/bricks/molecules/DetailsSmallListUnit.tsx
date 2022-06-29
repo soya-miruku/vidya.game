@@ -1,25 +1,20 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
-import Section, { Border } from '../Layout/Section';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
+import Section, { SectionProps } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
 import VRBTitle from '../atoms/VRBTitle';
 
-interface IFeaturesSmallListUnitProps {
+interface IFeaturesSmallListUnitProps extends SectionProps {
   title?: string;
   items?: any[];
-  bg?: { color: string; className: string };
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, bgImage, height, rounded, paddingX, paddingY, parallaxSpeed, enableParallax, blur}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} paddingX={paddingX} paddingY={paddingY} height={height} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
       <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (
@@ -38,8 +33,8 @@ FeaturesSmallListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
+    ...DefaultLayoutProps,
     title: 'Core Team',
-    bg: bgColors.none,
     members: [
       {
 
@@ -56,7 +51,7 @@ FeaturesSmallListUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 

@@ -10,7 +10,8 @@ import { UserProvider } from '../common/providers/UserProvider';
 import { getDefaultProvider } from 'ethers'
 
 import '../css/styles.scss';
-import { DAppProvider, Mainnet, Ropsten } from '@usedapp/core'
+import { DAppProvider, Mainnet, Ropsten, Rinkeby } from '@usedapp/core'
+import { TokenListProvider } from '@/common/providers/TokenListProvider'
 
 const Init = ({Component, pageProps}) => {
   const {isDarkMode, toggleMode} = useDarkMode();
@@ -29,7 +30,7 @@ const Init = ({Component, pageProps}) => {
     ...config,
     isDarkColorMode: isDarkMode,
     toggleColorMode: toggleMode,
-    contentClassName: `antialiased font-content ${isDarkMode ? 'dark' : 'light'} ${
+    contentClassName: `antialiased w-full h-full font-content ${isDarkMode ? 'dark' : 'light'} ${
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`,
   }
@@ -42,21 +43,26 @@ const Init = ({Component, pageProps}) => {
 }
 
 const queryClient = new QueryClient();
+const dappConfig = {
+  readOnlyChainId: Mainnet.chainId,
+  readOnlyUrls: {
+    [Mainnet.chainId]: process.env.alchemyApiKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyApiKey}` : getDefaultProvider('mainnet'),
+    [Ropsten.chainId]: process.env.infuraId ? `https://ropsten.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('ropsten'),
+    [Rinkeby.chainId]: process.env.infuraId ? `https://rinkeby.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('rinkeby')
+  },
+  refresh: 10,
+}
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <QueryClientProvider client={queryClient}>
-      <DAppProvider config={{
-          readOnlyChainId: Mainnet.chainId,
-          readOnlyUrls: {
-            [Mainnet.chainId]: process.env.MAINNET_URL || getDefaultProvider('mainnet'),
-            [Ropsten.chainId]: getDefaultProvider('ropsten'),
-          },
-      }}>
+      <DAppProvider config={dappConfig}>
         <ThemeProvider>
-          <UserProvider>
-            <Init Component={Component} pageProps={pageProps} />
-          </UserProvider>
+          <TokenListProvider>
+            <UserProvider>
+              <Init Component={Component} pageProps={pageProps} />
+            </UserProvider>
+          </TokenListProvider>
         </ThemeProvider>
       </DAppProvider>
     </QueryClientProvider>

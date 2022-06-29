@@ -21,7 +21,7 @@ const VRBFeatureCard: types.Brick<IVRBFeatureCardProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <FeatureCard title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
+      <FeatureCard image={image} title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
     </Link>
   )
 }

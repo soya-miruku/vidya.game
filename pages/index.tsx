@@ -1,11 +1,10 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useRef } from 'react'
 import {
   ReactBricksContext,
   PageViewer,
   fetchPage,
   cleanPage,
   types,
-  fetchPages,
 } from 'react-bricks/frontend'
 import Head from 'next/head'
 import { GetStaticProps } from 'next'
@@ -14,7 +13,7 @@ import config from '../react-bricks/config'
 import Layout from '../components/layout'
 import ErrorNoKeys from '../components/errorNoKeys'
 import ErrorNoHomePage from '../components/errorNoHomePage'
-import { useDarkMode } from '../hooks/useDarkMode'
+import { Parallax, ParallaxLayer } from '@react-spring/parallax'
 
 interface PageProps {
   slug: string,
@@ -30,20 +29,20 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ page, error }) => {
-  const { pageTypes, bricks, apiKey } = useContext(ReactBricksContext)
-  const {isDarkMode, toggleMode} = useDarkMode();
-  
+  const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
+  const countElements = page.content.filter((element) => element.type !== 'SpacerUnit').length;
+  const pageRef = useRef();
 
   return (
-    <Layout displayCallout={true}>
+    <Layout displayCallout={false}>
       {pageOk && (
         <div className='w-full h-full'>
           <Head>
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />
           </Head>
-          <PageViewer page={pageOk}/>
+            <PageViewer page={pageOk}/>
         </div>
       )}
       {error === 'NOKEYS' && <ErrorNoKeys />}

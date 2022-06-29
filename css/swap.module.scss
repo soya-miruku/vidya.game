@@ -1,0 +1,13 @@
+.gradient-border {
+  border: 2px solid;
+    
+  // rounded border image
+  // border-image: linear-gradient(var(--angle), #12c2e9, #f64f59) 27 23 / 50px 30px / 1rem round space;
+
+  // border-image: linear-gradient(40deg, #12c2e9, #c471ed, #f64f59) 1 stretch;
+  // -webkit-border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 25 25 round;
+  // -moz-border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 25 25 round;
+  // -ms-border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 1 round;
+  // -o-border-image: linear-gradient(var(--angle), #12c2e9, #c471ed, #f64f59) 1 round;
+  // animation: 5s rotate linear infinite;
+}

@@ -1,19 +1,11 @@
-import { Contract } from "@ethersproject/contracts"
-import { useCall } from "@usedapp/core"
-import ERC20ABI from "@/common/abis/commonERC20.json";
+import { useEtherBalance, useTokenBalance } from "@usedapp/core"
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
+import { useAccount } from "./useAccount";
+import { ETH_ADDRESS } from "@/contracts/addresses";
+import { formatEther } from "@ethersproject/units";
+import { BigNumber } from "ethers";
 
-export const useTokenBalance = (tokenAddress: string | Falsy, accountAddress: string | Falsy) => {
-  const { value, error } = useCall(accountAddress && tokenAddress && {
-    contract: new Contract(tokenAddress, ERC20ABI),
-    method: "balanceOf",
-    args: [accountAddress]
-  }) ?? {}
-
-  if(error) {
-    console.error(error)
-    return undefined;
-  }
-
-  return value?.[0];
+export const useEthOrTokenBalance = (tokenAddress: string | Falsy) => {
+  const { user } = useAccount();
+  return parseFloat(tokenAddress === ETH_ADDRESS ? formatEther(useEtherBalance(user) || BigNumber.from(0)) : formatEther(useTokenBalance(tokenAddress, user) || BigNumber.from(0)));
 }

@@ -1,24 +1,18 @@
 import React from 'react'
 import { types } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import Section, {Border} from '../Layout/Section';
-import { LayoutProp } from '../Shared/LayoutProps';
-import { Padding } from '../Shared/additional';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import Section, { SectionProps } from '../Layout/Section';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { BlogListSection } from '@/components/organisms/blogsListSection';
 
-interface IBlogListProps {
+interface IBlogListProps extends SectionProps {
   maxItems?: number
-  bg?: { color: string; className: string }
-  borderTop?: Border
-  borderBottom?: Border
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const BlogListUnit: types.Brick<IBlogListProps> = ({ bg, borderTop, borderBottom, maxItems, paddingX, paddingY }) => {
+const BlogListUnit: types.Brick<IBlogListProps> = ({ bg, bgImage, parallaxSpeed, enableParallax, blur, rounded, height, maxItems, paddingX, paddingY }) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY} className='py-14 flex flex-col space-x-2 space-y-3 flex-wrap justify-center items-center max-w-page'>
+    <Section bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY} className=''>
       <BlogListSection limit={maxItems}/>
     </Section>
   )
@@ -30,16 +24,13 @@ BlogListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: {
-      color: '#',
-      className: 'bg-gray-100 dark:bg-dark-200 bg-light-200',
-    },
+    ...DefaultLayoutProps,
     borderTop: 'none',
     borderBottom: 'none',
     maxItems: 3,
   }),
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
     {
       name: 'maxItems',
       label: 'Max Items',

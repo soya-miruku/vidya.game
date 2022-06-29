@@ -1,6 +1,6 @@
 import { Contract } from "@ethersproject/contracts"
 import { useCall } from "@usedapp/core"
-import ERC20ABI from "@/common/abis/commonERC20.json";
+import ERC20ABI from "@/contracts/abis/commonERC20.json";
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
 
 export const useTokenAllowance = (tokenAddress: string | Falsy, ownerAddress: string | Falsy, spenderAddress: string | Falsy) => {

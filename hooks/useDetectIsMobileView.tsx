@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { isTablet } from "react-device-detect";
-import { isMobileSmall } from "../common/helpers";
+import { isMobileSmall } from "@/common/helpers";
 import {TABLET_WIDTH, MOBILE_WIDTH, DESKTOP_WIDTH} from '@/common/constants';
 
 export const useDetectDeviceSize = () => {

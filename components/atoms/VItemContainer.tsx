@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@/common/helpers';
 
-export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;
@@ -37,9 +37,11 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'vlg':
         return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'w-vlg min-w-vlg max-w-vlg'};
       case 'vxl':
-        return {class: isHeight ? 'h-vxl min-h-vxl max-h-vxl' : 'w-vxl min-w-vxl max-w-vxl'};
+        return {class: isHeight ? 'min-h-vxl max-h-vxl' : ' max-w-vxl'};
+      case 'vhxl':
+        return {class: isHeight ? 'min-h-vhxl' : 'w-vhxl min-w-vhxl max-w-vhxl'};
       case 'v2xl':
-        return {class: isHeight ? 'h-vxl min-h-v2xl max-h-v2xl' : 'w-vxl min-w-v2xl max-w-v2xl'};
+        return {class: isHeight ? 'min-h-vxl max-h-v2xl' : 'max-w-v2xl'};
       case 'full':
         return {class: isHeight ? 'h-full min-h-full max-h-full' : 'w-full min-w-full max-w-full'};
       default:
@@ -78,7 +80,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       roundedTop ? '' : 'rounded-t-[0px]',
       roundedLeft ? '' : 'rounded-l-[0px]',
       roundedRight ? '' : 'rounded-r-[0px]',
-      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-300',
+      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-300 text-dark-200 dark:text-light-100 backdrop-blur-lg',
       showBorderBottom ? 'pb-vsm' : 'border-b-[0px]',
       showBorderLeft ? '' : 'border-l-[0px]',
       showBorderRight ? '' : 'border-r-[0px]',

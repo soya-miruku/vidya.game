@@ -1,26 +1,21 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors } from '../Shared/colors';
-import { LayoutProp } from '../Shared/LayoutProps';
-import Section, { Border } from '../Layout/Section';
+import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
+import Section, { SectionProps } from '../Layout/Section';
 import { Padding } from '../Shared/additional';
 
-interface IFeaturesSmallListUnitProps {
+interface IFeaturesSmallListUnitProps extends SectionProps {
   featureItems?: any[];
-  bg?: { color: string; className: string };
-  borderTop?: Border;
-  borderBottom?: Border;
-  paddingX?: Padding
-  paddingY?: Padding
 }
 
-const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, borderTop, borderBottom, paddingX, paddingY}) => {
+const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, bgImage, height, rounded, paddingX, paddingY, enableParallax, parallaxSpeed, blur}) => {
   return (
-    <Section bg={bg} borderTop={borderTop} borderBottom={borderBottom} paddingX={paddingX} paddingY={paddingY}>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} height={height} rounded={rounded} paddingX={paddingX} paddingY={paddingY}>
       <Repeater propName='featureItems' renderWrapper={(items) => {
         return (
-          <div className="flex justify-center items-center gap-vxl flex-wrap">
+          <div className="flex justify-center items-center sm:gap-vxl gap-vsm flex-wrap">
             {items}
           </div>
         )
@@ -35,7 +30,7 @@ FeaturesSmallListUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    bg: bgColors.none,
+    ...DefaultLayoutProps,
     featureItems: [
       {
         bordered: true,
@@ -74,7 +69,7 @@ FeaturesSmallListUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: [bgColors.none, bgColors.dark, bgColors.light, bgColors.gray] }),
+    LayoutProp({ colors: DefaultColors }),
   ],
 }
 
