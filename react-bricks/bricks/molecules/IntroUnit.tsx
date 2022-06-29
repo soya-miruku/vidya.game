@@ -14,9 +14,9 @@ const IntroUnit: types.Brick<IntroProps> = ({ bg, bgImage, height, paddingX, pad
   return (
     <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY}>
       <PageViewSize enabled={!bgImage}>
-        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'sm'} rounded={'none'}></CallHeroColumn>
-        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='body' columns={2} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'lg'} rounded={'none'}></CallHeroColumn>
-        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd pt-0 w-auto' propName='footer' columns={1} gap='sm' bg={bgColors.none.value} paddingX={'none'} paddingY={'lg'} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingY={1} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='body' columns={2} gap='sm' bg={bgColors.none.value} paddingX={0} paddingY={2} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd pt-0 w-auto' propName='footer' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingY={2} rounded={'none'}></CallHeroColumn>
       </PageViewSize>
     </Section>
   )

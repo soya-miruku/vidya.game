@@ -49,10 +49,10 @@ const Section: React.FC<SectionProps> = ({
       style={{
         minHeight: height ? height : 'auto',
         backgroundColor: bgColor,
-        paddingLeft: `${paddingX}rem`,
-        paddingRight: `${paddingX}rem`,
-        paddingTop: `${paddingY}rem`,
-        paddingBottom: `${paddingY}rem`,
+        paddingLeft: `${paddingX}px`,
+        paddingRight: `${paddingX}px`,
+        paddingTop: `${paddingY}px`,
+        paddingBottom: `${paddingY}px`,
       }}
       bgImageStyle={{
         objectFit: 'cover',

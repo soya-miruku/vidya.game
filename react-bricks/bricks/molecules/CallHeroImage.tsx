@@ -45,7 +45,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParall
                 imageClassName="h-full mb-0 ml-2"
               />
             </div>
-            { background && <div className='absolute bg-primary-100 max-w-page rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
+            { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
               <div  className="sm:w-1/2 w-full p-vmd flex flex-col justify-start items-start z-10 gap-vlrg">
                 <div className='w-full flex justify-start items-start p-0'>
                 <Repeater propName='badgeLabels' renderWrapper={(items) => {
