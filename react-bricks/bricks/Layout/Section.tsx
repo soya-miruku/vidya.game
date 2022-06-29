@@ -42,7 +42,7 @@ const Section: React.FC<SectionProps> = ({
   return (
     <ParallaxV2 
       disabled={!enableParallax}
-      blur={blur ? { min: -15, max: 10 }: false}
+      blur={blur ? { min: -19, max: 20 }: false}
       bgImage={bgImage?.src} strength={parallaxSpeed}
       style={{
         height: height ? height : 'auto',
