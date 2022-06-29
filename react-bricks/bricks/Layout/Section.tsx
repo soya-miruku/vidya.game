@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Parallax } from "react-parallax";
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
-import { Padding, Round } from '../Shared/additional'
+import { BlurAmount, Padding, Round } from '../Shared/additional'
 export interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -13,6 +13,7 @@ export interface IImageSource {
 export interface SectionProps {
   bg?: { color: string; className: string }
   bgImage?: IImageSource
+  bgOffsetY?: number
   height?: string
   paddingX?: Padding
   paddingY?: Padding
@@ -20,7 +21,7 @@ export interface SectionProps {
   className?: string
   enableParallax?: boolean
   parallaxSpeed?: number
-  blur?: boolean
+  blur?: BlurAmount
 }
 
 const ParallaxV2 = Parallax as any;
@@ -28,6 +29,7 @@ const ParallaxV2 = Parallax as any;
 const Section: React.FC<SectionProps> = ({
   bg = bgColors.none.value,
   bgImage,
+  bgOffsetY,
   height,
   className = '',
   paddingX,
@@ -42,7 +44,7 @@ const Section: React.FC<SectionProps> = ({
   return (
     <ParallaxV2 
       disabled={!enableParallax}
-      blur={blur ? { min: -18, max: 20 }: false}
+      blur={blur === 'none' ? false : blur === 'lg' ? {min: -14, max: 20} : blur === 'md' ? {min: -16, max: 20} : { min: -18, max: 20 }}
       bgImage={bgImage?.src} strength={parallaxSpeed}
       style={{
         height: height ? height : 'auto',
@@ -50,7 +52,7 @@ const Section: React.FC<SectionProps> = ({
       }}
       bgImageStyle={{
         objectFit: 'cover',
-        objectPosition: 'center',  
+        top: bgOffsetY ? `${bgOffsetY}%` : ''
       }}
     
       contentClassName={

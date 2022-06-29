@@ -12,14 +12,17 @@ export interface IProgramHeroProps {
   pageTitle?: string;
   pageDescription?: string;
   image?: string;
+  overrideColor?:boolean
   canEdit?: boolean;
 }
 
-export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, canEdit}) => {
+export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, overrideColor, canEdit}) => {
   return (
     <div className="w-full h-full prose flex flex-col justify-center items-center gap-y-vsm">
       <div className='absolute'>
-        {canEdit || typeof(pageTitle) !== 'string' ? <VRBTitle className='dark:text-dark-300 text-light-300' type='title' propName='pageTitle' ></VRBTitle> : <VTitle className='dark:text-dark-300 text-light-300' type='title'>{pageTitle}</VTitle>}
+        {canEdit || typeof(pageTitle) !== 'string' 
+        ? <VRBTitle className={classNames(overrideColor ? 'text-dark-300/80 dark:text-dark-300/80' : 'dark:text-dark-300/80 text-light-300/80')} type='title' propName='pageTitle'></VRBTitle> 
+        : <VTitle className={classNames(overrideColor ? 'text-dark-300/80 dark:text-dark-300/80' : 'dark:text-dark-300/80 text-light-300/80')} type='title'>{pageTitle}</VTitle>}
       </div>
       <div className='flex justify-center items-center w-full h-full'>
         <div  style={{
@@ -32,8 +35,10 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
          className={classNames('w-full h-full')}/>}
         </div>
       </div>
-      {canEdit || typeof(pageDescription) !== 'string' ? <VRBText size='lg' propName='pageDescription' ></VRBText> : <VText size='lg'>{pageDescription}</VText>}
-      <VMouseIcon className='py-2'/>
+      {canEdit || typeof(pageDescription) !== 'string' 
+      ? <VRBText size='lg' propName='pageDescription' overrideTextColor={overrideColor}></VRBText> 
+      : <VText size='lg' overrideTextColor={overrideColor}>{pageDescription}</VText>}
+      <VMouseIcon className='py-2' overrideColor={overrideColor}/>
     </div>
   )
 } 

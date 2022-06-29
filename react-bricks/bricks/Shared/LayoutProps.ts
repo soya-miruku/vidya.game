@@ -11,7 +11,7 @@ export const DefaultLayoutProps = {
   rounded: 'none',
   enableParallax: true,
   parallaxSpeed:500,
-  blur:true,
+  blur:'sm',
 }
 
 export const LayoutProp = ({
@@ -41,9 +41,23 @@ export const LayoutProp = ({
         type: types.SideEditPropType.Number,
       },
       {
+        name: 'bgOffsetY',
+        label: 'Background Offset Y',
+        type: types.SideEditPropType.Number,
+      },
+      {
         name: 'blur',
         label: 'Enable Blur',
-        type: types.SideEditPropType.Boolean,
+        type: types.SideEditPropType.Select,
+        selectOptions: {
+          display: types.OptionsDisplay.Select,
+          options: [
+            { value: 'none', label: 'None' },
+            { value: 'sm', label: 'Small' },
+            { value: 'md', label: 'Medium' },
+            { value: 'lg', label: 'Large' },
+          ],
+        },
       },
       {
         name: 'bgImage',

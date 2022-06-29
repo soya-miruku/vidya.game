@@ -18,13 +18,15 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ enableParallax, parallaxSpeed, blur,
   const { isMobileView } = useDetectIsMobileView();
   return (
     <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingY={paddingY} className='prose'>
-        <div className='flex max-w-page w-full justify-start items-center mb-8 mt-[100px]'>
-          <div className='max-w-[500px] flex flex-col justify-start items-center gap-y-2'>
-            <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
-            <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
+        <div className='flex flex-col max-w-page w-full justify-start items-center mb-8 mt-[100px]'>
+          <div className='flex w-full'>
+            <div className='max-w-[600px] flex flex-col justify-start items-center gap-y-2'>
+              <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
+              <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
+            </div>
           </div>
+          <SwapSection defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
         </div>
-      <SwapSection defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
     </Section>
   )
 }
