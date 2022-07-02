@@ -5,7 +5,13 @@ import { NewsAlert } from './atoms/NewsAlert';
 import Footer from './atoms/Footer';
 import Header from './atoms/Header';
 
-const Layout = ({ children, displayCallout, pageCategories }) => {
+interface ILayoutProps {
+  children: React.ReactNode;
+  displayCallout?: boolean;
+  pageCategories?: any[];
+}
+
+const Layout = ({ children, displayCallout, pageCategories }: ILayoutProps) => {
   const [opened, setOnMenu] = useState(false);
 
   return (

@@ -26,7 +26,7 @@ interface PageProps {
 interface HomeProps {
   page: types.Page
   pages: Array<PageProps>
-  pageCategories: any
+  pageCategories?: any
   error: string
 }
 
