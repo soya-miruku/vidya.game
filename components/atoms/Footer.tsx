@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             <div>
               <ul className="pt-vmd flex gap-vsm flex-col">
-                {PagesByCategory[category].map(page => {
+                {PagesByCategory[category].pages.map(page => {
                 return (
                 <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
                   <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' }>

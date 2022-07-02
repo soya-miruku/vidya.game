@@ -1,0 +1,107 @@
+.button__container {
+  height: 42px;
+	margin: 0 auto;
+  position: relative;
+  width: calc(142px - 2vh);
+  filter: brightness(280%);
+
+  .bordered__button {
+    .svg__button {
+      fill: transparent;
+      stroke-dasharray: 960;
+      stroke-dashoffset: 0;
+      stroke-width: 4px;
+      stroke: url('#logo-gradient');  
+    }
+    &:hover {
+      cursor: pointer;
+      .svg__button {
+        animation: dash 2s reverse cubic-bezier(0.45, 0.03, 0.51, 0.95) 0s infinite; 
+        -webkit-animation: dash 2s reverse cubic-bezier(0.45, 0.03, 0.51, 0.95) 0s infinite;
+        -moz-animation: dash 2s reverse cubic-bezier(0.45, 0.03, 0.51, 0.95) 0s infinite;
+        -webkit-animation-fill-mode: forwards;
+        animation-fill-mode: forwards;
+      }
+      p {
+        animation: scale 2s ease-in-out infinite;
+      }
+    }
+    
+    p {
+      color: #fff;
+      background: linear-gradient(-60deg, #F79533, #F37055, #EF4E7B, #A166AB, #5073B8, #1098AD, #07B39B, #6DBA82, #F79533);
+      animation: flow 4s ease-in-out infinite;
+      background-clip: text;
+      background-size: 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-transform: uppercase;
+      font-size: 19px;
+      font-weight: 600;
+      font-family: 'Saira Semi Condensed', sans-serif;
+      letter-spacing: 4px;
+      line-height: 32px;
+      text-align: center;
+      position: relative;
+      top: -36px;
+      left: 4px;
+      right: 0;
+      margin: 0 auto;
+    }
+  }
+}
+
+@keyframes scale {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flow {
+  0% {
+    background-position: 0 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0 50%;
+  }
+}
+
+@-webkit-keyframes dash{
+  to {
+    fill: transparent;
+    // stroke: theme('colors.light.100');
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 600;
+    stroke-dasharray: 600 0;
+    }
+}
+@keyframes dash{
+  to {
+    fill: transparent;
+    // stroke: theme('colors.light.100');
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 600;
+    stroke-dasharray: 600 0;
+  }
+}
+@-moz-keyframes dash{
+  to {
+    fill: transparent;
+    // stroke: theme('colors.light.100');
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dashoffset: 600;
+    stroke-dasharray: 600 0;
+  }
+}

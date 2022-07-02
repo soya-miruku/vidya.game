@@ -1,5 +1,7 @@
 export const PagesByCategory = {
-  programs: [
+  programs: {
+    image: '/nav/program.jpg',
+    pages: [
     {
       displayName: 'TEAMOS',
       slug: 'teamos',
@@ -30,8 +32,10 @@ export const PagesByCategory = {
       type: 'program',
       active: false
     }
-  ],
-  games: [
+  ]},
+  games: {
+    image: '/nav/game.webp',
+    pages:[
     {
       displayName: 'AIMBOTS',
       slug: 'aimbots',
@@ -44,8 +48,10 @@ export const PagesByCategory = {
       type: 'game',
       active: false
     }
-  ],
-  about: [
+  ]},
+  about: {
+    image: '/nav/about.jpg',
+    pages:[
     {
       displayName: 'ROADMAP',
       slug: 'roadmap',
@@ -70,5 +76,5 @@ export const PagesByCategory = {
       type: 'about',
       active: true
     }
-  ]
+  ]}
 }

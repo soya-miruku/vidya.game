@@ -5,10 +5,10 @@ import { blockNames } from '../blockNames'
 import { bgColors, DefaultColors } from '../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 
-interface EmptyProps {
+interface IEmptyProps {
 }
 
-const EmptyHero: types.Brick<EmptyProps> = ({ }) => {
+const EmptyHero: types.Brick<IEmptyProps> = ({ }) => {
   return (
     <div></div>
   )

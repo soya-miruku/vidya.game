@@ -41,23 +41,26 @@ const Section: React.FC<SectionProps> = ({
   blur,
 }) => {
   const bgColor = bg.color;
-  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 5 : blur === 'md' ? 3 : 1;
+  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 3 : blur === 'md' ? 2 : 1;
+  
   return (
     <ParallaxV2 
       disabled={!enableParallax}
       bgImage={bgImage?.src} strength={parallaxSpeed}
-      renderLayer={percentage => (
+      renderLayer={percentage => {
+      return (
         <div
             style={{
                 position: 'absolute',
                 left: '0%',
                 top: '0%',
-                backdropFilter: `blur(${percentage * (initialAmount * 1.4)}px)`,
-                width: '100%',
+                backdropFilter: `blur(${percentage * (initialAmount * 1.5)}px)`,
+                width: '100%', //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 height: '100%',
             }}
         />
-    )}
+      )
+    }}
       style={{
         minHeight: height ? height : 'auto',
         backgroundColor: bgImage ? 'black' : bgColor,
@@ -77,18 +80,13 @@ const Section: React.FC<SectionProps> = ({
         classNames(
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
-        // paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
-        // paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm' : rounded === 'md' ? 'rounded-lgr' : 'rounded-lxl',
         )}
       
       className={classNames( 
-          // 'before:conttent-[""] before:rounded-tl-full before:rounded-tr-[50%] before:block before:absolute before:translate-x-[5%] before:translate-y-[450px] before:bg-dark-200 before:right-0 before:w-[55%] before:h-[550px]',
-        'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
-        className, 'overflow-hidden', 'w-full',
-        // paddingX === 'none' ? 'py-0' : paddingX === 'xxl' ? 'xs:px-96 md:px-64 px-6' : paddingX === 'xl' ? 'xs:px-40 md:px-24 px-4' : paddingX === 'lg' ? 'sm:px-4 px-2' : 'sm:px-2 px-3',
-        // paddingY === 'none' ? 'px-0' : paddingY === 'xxl' ? 'sm:py-12 py-4' : paddingY === 'xl' ? 'sm:py-8 py-2' : paddingY === 'lg' ? 'sm:py-2 py-1' : paddingY === 'sm' ? '' : 'sm:py-1 py-1',
-        rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
+          'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
+          className, 'overflow-hidden', 'w-full',
+          rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
         )}
         >
         {children}

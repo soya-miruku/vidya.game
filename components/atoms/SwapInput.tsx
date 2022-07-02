@@ -58,7 +58,7 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
   return(
     <div ref={divRef} className='w-full flex flex-row justify-end items-center dark:bg-dark-100 dark:text-light-100 text-dark-100 bg-light-100 rounded-[15px]'>
       <div className='flex flex-col w-full px-[20px] py-[12px] min-h-[70px] gap-y-0 rounded-[15px]'>
-        <NumberInput className={classNames('w-full selection:bg-accent-dark-600 dark:bg-dark-100 bg-light-100 text-standfirst focus:outline-none')} id={id} disabled={disabled} min={min} max={balance} placeholder={placeholder} value={value} onWheel={(e) => e.target.blur()} onChange={onChange} step='any' onInputError={onInputError} />
+        <NumberInput className={classNames('w-full selection:bg-accent-dark-600 dark:bg-dark-100 bg-light-100 text-2xl focus:outline-none')} id={id} disabled={disabled} min={min} max={balance} placeholder={placeholder} value={value} onWheel={(e) => e.target.blur()} onChange={onChange} step='any' onInputError={onInputError} />
           <div className='flex items-center justify-start gap-x-1 flex-wrap'>
             {balance > 0 && <button className='text-[10px] dark:bg-dark-300 bg-light-300 dark:text-light-200 px-3 rounded-xs' onClick={onMaxClick}>
               Max
@@ -67,7 +67,7 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
             <p className='text-[10px] dark:text-light-500 text-dark-400'>{label}: {balance?.toFixed(4) || 0}</p>
           </div>
       </div>
-        <div className={classNames('flex flex-row justify-center items-center gap-x-vsm dark:bg-dark-300 bg-light-300 sm:px-vmd px-vsm py-vsm min-h-[80px] min-w-[130px] rounded-sm mr-[5px]')}>
+        <div className={classNames('flex flex-row justify-center items-center gap-x-vsm dark:bg-dark-300 bg-light-300 sm:px-vmd px-vsm py-vsm min-h-[70px] min-w-[130px] rounded-sm mr-[5px]')}>
           <div className='w-[20px] h-[20px]'>
             {renderLogo()}
           </div>

@@ -3,6 +3,7 @@ import {
   ReactBricksContext,
   PageViewer,
   fetchPage,
+  fetchPages,
   cleanPage,
   types,
 } from 'react-bricks/frontend'
@@ -13,6 +14,7 @@ import config from '../react-bricks/config'
 import Layout from '../components/layout'
 import ErrorNoKeys from '../components/errorNoKeys'
 import ErrorNoHomePage from '../components/errorNoHomePage'
+import { groupByKey } from '@/common/helpers';
 
 interface PageProps {
   slug: string,
@@ -24,17 +26,17 @@ interface PageProps {
 interface HomeProps {
   page: types.Page
   pages: Array<PageProps>
+  pageCategories: any
   error: string
 }
 
-const Home: React.FC<HomeProps> = ({ page, error }) => {
+const Home: React.FC<HomeProps> = ({ page, pageCategories, error }) => {
   const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-  const countElements = page.content.filter((element) => element.type !== 'SpacerUnit').length;
-  const pageRef = useRef();
-
+  console.log(pageCategories);
+  
   return (
-    <Layout displayCallout={false}>
+    <Layout displayCallout={false} pageCategories={pageCategories}>
       {pageOk && (
         <div className='w-full h-full'>
           <Head>
@@ -58,24 +60,29 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
   try {
     // const pagesResult = await fetchPages(config.apiKey, {types: ['program', 'about', 'game']});
-    // console.log(pagesResult)
     // const groupedPages = groupByKey(pagesResult, 'type', {omitKey: false});
-    // const pages = Object.keys(groupedPages).map(type => {
+    // const pageCategories = Object.keys(groupedPages).map(type => {
     //   return {
-    //     type,
-    //     pages:  groupedPages[type].map(pl => {
-    //       return {
-    //         slug: pl.slug,
-    //         name: pl.name,
-    //         url: '/' + pl.slug,
-    //         type: pl.type
-    //       }
-    //     })
+    //     [type]: 
+    //       groupedPages[type].map(p => {
+    //         return {
+    //           slug: p.slug,
+    //           displayName: p.name,
+    //           url: '/' + p.slug,
+    //           type: p.type,
+    //           active: p.status === 'PUBLISHED' || !p.tags.includes('inactive'),
+    //         }
+    //       })
     //   };
+    // }).reduce((acc, curr) => {
+    //   return {
+    //     ...acc,
+    //     ...curr
+    //   }
     // });
 
     const page = await fetchPage('home', config.apiKey, context.locale)
-    return { props: { page } }
+    return { props: { page, pageCategories:{} } }
   } catch {
     return { props: { error: 'NOPAGE' } }
   }

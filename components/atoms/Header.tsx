@@ -1,5 +1,6 @@
-import { faPlay } from '@fortawesome/free-solid-svg-icons';
+import { faChevronDoubleRight } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Image from 'next/image';
 import Link from 'next/link'
 import React, { useEffect, useRef } from 'react'
 import { push as Menu } from 'react-burger-menu';
@@ -8,13 +9,13 @@ import { PagesByCategory } from '../../common/viwablePages';
 import { useDarkMode } from '../../hooks/useDarkMode';
 import { useDetectDeviceSize } from '../../hooks/useDetectIsMobileView';
 import { Logo } from '../logo';
-import { VButton } from './VButton';
+import { GradientButton } from './GradientButton';
 
-const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({className, isOpen, onOpen}) => {
+const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCategories: any}> = ({className, isOpen, onOpen, pageCategories}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const navbarRef = useRef<HTMLDivElement>(null);
   const { isMobileView } = useDetectDeviceSize();
-  const WIDTH = isMobileView ? 250 : 600;
+  const WIDTH = isMobileView ? 250 : 550;
 
   var styles = {
     bmBurgerButton: {
@@ -43,10 +44,11 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
     },
     bmMenu: {
       zIndex: '1',
-      paddingTop: '2.5em',
+      paddingTop: isMobileView ? '0em' : '2.5em',
       fontSize: '1.15em',
       height: '80vh',
       overflow: 'hidden',
+      overflowY: isMobileView ? 'auto' : 'hidden',
     },
     bmMorphShape: {
       fill: '#373a47'
@@ -66,7 +68,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
 
 
   useEffect(() => {
-    if(!(navbarRef && navbarRef.current)) return;
+    if(!(navbarRef && navbarRef.current) || isOpen) return;
     let prevY = 0;
     const handleScroll = () => {
       if(!navbarRef && !navbarRef.current) return;
@@ -98,7 +100,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
       window.removeEventListener('scroll', handleScroll);
     }
 
-  }, [navbarRef])
+  }, [navbarRef, isOpen])
 
   useEffect(() => {
     // prevent scroll when open
@@ -113,7 +115,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
   }, [isOpen])
 
   return (
-    <div ref={navbarRef} className='fixed w-full h-[120px] top-0  z-[1000] transition-all duration-300'>
+    <div ref={navbarRef} className='fixed w-full h-[120px] top-0 z-[1000] transition-all duration-300'>
       <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg transition-all duration-500',
       isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
       style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
@@ -124,9 +126,9 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
           </Link>
           <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
             <div className=''>
-              <VButton special className='group' role='group' onClick={() => window.open('https://team3d.io', '_blank')}>
+              <GradientButton onClick={() => window.open('https://team3d.io', '_blank')}>
                 Play
-              </VButton>
+              </GradientButton>
             </div>
             <div>
               <button className="hidden sm:block shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
@@ -154,18 +156,26 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any}> = ({c
           // noTransition
           >
           <div className='w-full'>
-            <div className='px-14 py-4 flex w-full flex-wrap justify-between dark:text-white text-dark-100'>
-              {Object.keys(PagesByCategory).map((category, index) => {
+            <div className='sm:px-10 px-3 sm:py-4 py-0 flex w-full flex-wrap justify-start gap-x-5 dark:text-white text-dark-100 gap-y-5'>
+              {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                 return( 
-                  <div key={`cat-${category}-${index}`} className='w-[225px] px-2'>
-                    <h1 className='font-bold font-saria text-body-sm p-3'>{category.toUpperCase()}</h1>
-                    {PagesByCategory[category].map((page, y) => {
+                  <div key={`cat-${category}-${index}`} className='w-[225px] px-4 flex flex-col justify-start items-start'>
+                    <h1 className='font-bold font-saria text-standfirst py-3 px-1 uppercase'>{category}</h1>
+                    <div className='relative dark:shadow-dark shadow-light rounded-xl w-[190px] h-[180px] mb-4'>
+                    <Image src={PagesByCategory[category].image} objectFit='cover' width={190} height={180} style={{
+                      borderRadius: '15px',
+                    }}/>
+                    </div>
+                    {PagesByCategory[category].pages.map((page, y) => {
                     return (
-                      <div key={`${page.slug}-${y}`} className={classNames('py-2 px-[12px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600 flex justify-between items-center')}>
+                      <div key={`${page.slug}-${y}`} className={classNames('group py-[7px] px-[5px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600/50 flex justify-between items-center')}>
                         <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'}>
-                          <p className="menu-item font-saria">{page.displayName}</p>
+                          <div className='flex items-center gap-x-2'>
+                            <FontAwesomeIcon className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
+                            <p className="menu-item font-saria uppercase"> {page.displayName}</p>
+                          </div>
                         </Link>
-                        {!page.active && <span className='text-xs p-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 rounded-lg'>SOON</span>}
+                        {!page.active && <span className='text-xs p-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300/50 dark:bg-dark-300/50 bg-light-300/50 rounded-lg'>SOON</span>}
                       </div>
                     )
                   })} 

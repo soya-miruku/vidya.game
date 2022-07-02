@@ -80,7 +80,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       roundedTop ? '' : 'rounded-t-[0px]',
       roundedLeft ? '' : 'rounded-l-[0px]',
       roundedRight ? '' : 'rounded-r-[0px]',
-      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-300 text-dark-200 dark:text-light-100 backdrop-blur-lg',
+      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-250 text-dark-200 dark:text-light-100 backdrop-blur-lg',
       showBorderBottom ? 'pb-vsm' : 'border-b-[0px]',
       showBorderLeft ? '' : 'border-l-[0px]',
       showBorderRight ? '' : 'border-r-[0px]',

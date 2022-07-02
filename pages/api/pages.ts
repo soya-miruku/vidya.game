@@ -14,7 +14,8 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     if (req.method === 'GET') {
-      const result = await fetchPages(API_KEY, { sort: "-publishedAt", type: (req.query.type as any), pageSize: (req.query?.limit || 3) as any });
+      const types = (req.query.type as string).split(',');
+      const result = await fetchPages(API_KEY, { sort: "-publishedAt", types, pageSize: (req.query?.limit || 3) as any });
       const body = result;
       res.status(200).json(body);
     } else {

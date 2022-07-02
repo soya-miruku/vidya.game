@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { Link, types } from 'react-bricks/frontend'
+import { Link, types, useAdminContext } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VButton, ButtonProps } from '@/components/atoms/VButton'
 import { VText } from '@/components/atoms/VText'
@@ -8,6 +8,7 @@ import { VText } from '@/components/atoms/VText'
 
 export interface IVRBButtonProps extends ButtonProps {
   background?: boolean
+  btnLink?: string
 }
 
 const VRBButton: types.Brick<IVRBButtonProps> = ({
@@ -15,22 +16,31 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
   primary=true,
   special,
   secondary,
-  onClick,
+  btnLink='https://team3d.io/',
   rounded,
   background,
   ...rest
 }) => {
-  return (
-    <Link {...rest}>
-      <div>
-        <VButton primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
+  const { isAdmin } = useAdminContext();
+  if(isAdmin) {
+    return (
+      <Link {...rest}>
+        <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
           {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
             {text}
           </VText>
-        :text  }
+          :text  }
         </VButton>
-      </div>
-    </Link>
+      </Link>
+    )
+  }
+  return (
+    <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
+      {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
+        {text}
+      </VText>
+      :text  }
+    </VButton>
   )
 }
 
@@ -41,6 +51,7 @@ VRBButton.schema = {
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     children: 'Something',
+    btnLink: 'https://team3d.io/',
     rounded: true,
     primary: true,
     special: false,
@@ -50,6 +61,11 @@ VRBButton.schema = {
     {
       name: 'children',
       label: 'Button text',
+      type: types.SideEditPropType.Text,
+    },
+    {
+      name: 'btnLink',
+      label: 'Button link',
       type: types.SideEditPropType.Text,
     },
     {

@@ -1,4 +1,3 @@
-import { VButton } from "@/components/atoms/VButton"
 import { ICustomKnobProps } from "./additional"
 
 
@@ -10,7 +9,7 @@ export const VideoFileViewer = ({propName, value, isValid, onChange, errorMessag
   return(
     <div className="flex flex-col">
       <input type='file'></input>
-      <VButton primary>Upload</VButton>
+      <button> Upload </button>
     </div>
   )
 }

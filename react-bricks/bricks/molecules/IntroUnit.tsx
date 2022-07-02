@@ -87,6 +87,7 @@ IntroUnit.schema = {
             inline: false,
             itemProp: {
               primary: true,
+              btnLink: ''
             },
           },
           {
@@ -97,6 +98,8 @@ IntroUnit.schema = {
             inline: false,
             itemProp: {
               special: true,
+              btnLink: ''
+
             },
           },
           {
@@ -107,6 +110,8 @@ IntroUnit.schema = {
             inline: false,
             itemProp: {
               secondary: true,
+              btnLink: ''
+
             },
           }
         ],

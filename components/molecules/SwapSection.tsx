@@ -20,11 +20,12 @@ import styles from '@/css/swap.module.scss';
 export interface ISwapSectionProps {
   defaultToken0?: string;
   defaultToken1?: string;
+  className?: string;
 }
 
 const DECIMALS = 7;
 
-export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", defaultToken1="VIDYA"}) => {
+export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", defaultToken1="VIDYA", className}) => {
   const { tokenList } = useContext(TokenListContext);
   const { Connect, chainId, library } = useAccount();
 
@@ -136,7 +137,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   }
 
   return (
-    <div className='py-8 pb-12 px-2'>
+    <div className={className}>
       <TokenListSearch forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} show={showCoinSearch} onClose={() => handleSelectShowCoinSearch(false, -1)}/>
       <VItemContainer widthSize='v2xl' heightSize='vhxl' dropShadow className='w-full bg-gradient-to-br p-[1px] from-aimbotsRed-100/95 to-accent-dark-200/95 backdrop-blur-sm'>
         <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg'>

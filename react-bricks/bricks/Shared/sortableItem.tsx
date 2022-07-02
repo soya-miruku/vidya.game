@@ -21,7 +21,7 @@ export interface SortableListComponentProps {
 
 export const SortableListComponent: React.FC<SortableListComponentProps> = ({ itemProps, props, maxAddPerItem=3}) => {
   const { value, onChange } = props;
-  
+  console.log(value, 'value is')
   const items = value || [];
   // if(!items) return null;
   const DragHandle:any = SortableHandle(() => <div className="drag absolute flex justify-center items-center" 
@@ -42,7 +42,23 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
           [prop.propName]: null
         }
       }
+      console.log(item.itemProp)
       switch(prop.type) {
+        case types.SideEditPropType.Text: {
+          renders.push(<div key={i} className="flex flex-col">
+            <label>{prop.label}</label>
+            <input autoFocus type="text" value={item.itemProp[prop.propName]} onChange={(e) => {
+              item.props = {
+                ...item.props,
+                [prop.propName]: e.target.value
+              }
+              item.itemProp[prop.propName] = e.target.value;
+              onChange(items);
+            }
+            }/>
+          </div>)
+          break;
+        }
         case types.SideEditPropType.Boolean:{
           renders.push(
             <div key={`${prop.propName}-${item.name}`} className="flex justify-start space-x-2">
@@ -131,11 +147,12 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
           </div>
         </div>
         <div className="ml-3 flex">
-          <button className='p-2' style={{backgroundColor: '#94167F', color:'white', borderRadius: '20px'}} onClick={(e) => {
+          <button className='p-2' style={{fontSize: '12px', backgroundColor: 'red', color:'white', borderRadius: '10px'}} onClick={(e) => {
             const newValues = items.filter((item, i) => i !== order);
             onChange(newValues)
           } }>Remove</button>
         </div>
+        <hr className="mt-1 bg-dark-300"></hr>
         <div className="mt-1 p-2 flex flex-col">
           {itemProps && <><h1 className="font-bold">Item Prop</h1> <div>{renderItemProps(item, itemProps)}</div></>}
         </div>

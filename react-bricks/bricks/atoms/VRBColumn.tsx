@@ -123,6 +123,12 @@ VRBColumn.schema = {
         },
         {
           name: blockNames.Button,
+          propName: 'btnLink',
+          label: 'Button Link',
+          type: types.SideEditPropType.Text
+        },
+        {
+          name: blockNames.Button,
           propName: 'primary',
           label: 'Button',
           type: types.SideEditPropType.Boolean,
