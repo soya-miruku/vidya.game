@@ -33,7 +33,6 @@ interface HomeProps {
 const Home: React.FC<HomeProps> = ({ page, pageCategories, error }) => {
   const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-  console.log(pageCategories);
   
   return (
     <Layout displayCallout={false} pageCategories={pageCategories}>

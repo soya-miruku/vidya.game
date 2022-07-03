@@ -42,7 +42,6 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
 
   React.useEffect(() => {
     const toolbar: any = document.getElementsByClassName('toolbar')[0];
-    console.log(toolbar);
     if (toolbar) {
       toolbar.style.width = '1000px';
     }

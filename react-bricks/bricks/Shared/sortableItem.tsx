@@ -21,7 +21,6 @@ export interface SortableListComponentProps {
 
 export const SortableListComponent: React.FC<SortableListComponentProps> = ({ itemProps, props, maxAddPerItem=3}) => {
   const { value, onChange } = props;
-  console.log(value, 'value is')
   const items = value || [];
   // if(!items) return null;
   const DragHandle:any = SortableHandle(() => <div className="drag absolute flex justify-center items-center" 
@@ -42,7 +41,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
           [prop.propName]: null
         }
       }
-      console.log(item.itemProp)
       switch(prop.type) {
         case types.SideEditPropType.Text: {
           renders.push(<div key={i} className="flex flex-col">

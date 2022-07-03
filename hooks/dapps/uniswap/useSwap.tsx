@@ -27,7 +27,6 @@ export const useSwapETHForExactTokens = (slippage:number =1): [(amount: number, 
     const path = [CHAIN_SETTINGS?.[chainId]?.WETH_ADDRESS, token1Address];
     const amountIn = toWei(amount.toString());
 
-    console.log(amountIn, path, minAmountOut, deadline);
     send(minAmountOut, path, user, deadline, {value: parseEther(amount.toString())});
   }
 

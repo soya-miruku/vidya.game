@@ -21,7 +21,7 @@ export const useAccount = () => {
         authenticate();
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, [authenticate, connectorName]);
 

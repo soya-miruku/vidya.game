@@ -16,7 +16,7 @@ export const ProgramCard: React.FC<ICardProps> = ({bordered, title, subtitle, im
             <h5>{title}</h5>
           </div>
           <p className='leading-4 font-roboto text-body-xs'>{subtitle}</p>
-          <VButton secondary animate={false} padding={false} className='text-body-xs' onClick={() => url ? window.open(url, '_self') : null}>Go here</VButton>
+          {url && <VButton secondary animate={false} padding={false} className='text-body-xs' onClick={() => url ? window.open(url, '_self') : null}>Go here</VButton>}
         </div>
       </div>
     </VItemContainer>

@@ -24,7 +24,7 @@ export const getAmountsOut = async (chainId: number, provider: any, amountIn: nu
     return amountOut && parseFloat(formatEther(amountOut[amountOut.length - 1])) || 0;
   }
   catch(e) {
-    console.log(e);
+    console.error(e);
     return 0;
   }
 }
