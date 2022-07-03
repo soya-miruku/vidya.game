@@ -19,7 +19,8 @@ export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=
   return (
     <button 
       className={classNames('group font-saria text-light-200 text-body-sm tracking-cta uppercase',
-      'px-[30px] py-[7px] b-0 transition-all duration-500 overflow-hidden relative',
+      'px-[30px]  b-0 transition-all duration-500 overflow-hidden relative',
+      padding ? 'py-[19px]' :'py-[7px]',
       special ? 'bg-gradient-to-r from-accent-dark-200 to-secondary-100 dark:shadow-btn-dark shadow-btn-light' : '',
       primary ? 'bg-primary-100' : '',
       secondary ? 'text-dark-200 dark:text-light-200 pl-0 hover:pl-0 bg-transparent' : '',
