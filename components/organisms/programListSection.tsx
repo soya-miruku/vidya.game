@@ -39,14 +39,5 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
     <div className='w-full h-[380px] py-vmd px-vmd border-[1px] mx-2 rounded-lgr border-light-300/20 backdrop-blur-sm' style={{maxWidth: totalWidth}}>
       <CarouselV2 slides={cards} goToSlide={goToSlide} showNavigation={false} offsetRadius={50} animationConfig={config.gentle}/>
     </div>
-    // <div className='flex gap-vlrg flex-wrap justify-center items-center py-vmd px-vmd border-2 rounded-lgr h-full' style={{
-    //   maxWidth: totalWidth
-    // }}>
-    //   {(data || []).map((post, index) => {
-    //     return (
-    //       <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.featuredImage} title={post.meta.title} subtitle={post.meta.description} />
-    //     )
-    //   })}
-    // </div>
   )
 }
