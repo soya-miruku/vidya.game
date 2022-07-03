@@ -28,11 +28,11 @@ export interface ICallHeroUnitProps extends SectionProps {
   text: string
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParallax, parallaxSpeed, blur, rounded, bg, bgImage, height, imagePosition, paddingX, paddingY, background }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParallax, parallaxSpeed, blur, rounded, bg, bgImage, height, imagePosition, paddingX, paddingTop, paddingBottom, background }) => {
   const { isMobileView } = useDetectIsMobileView();
 
   return (
-    <Section bgOffsetY={bgOffsetY} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} height={height} bg={bg} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
+    <Section bgOffsetY={bgOffsetY} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} height={height} bg={bg} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded}>
       <PageViewSize enabled={!bgImage}>
         <div className={classNames('max-w-page w-full flex flex-row justify-center p-0', 'prose')}>
           <div className='w-auto h-full p-0'>

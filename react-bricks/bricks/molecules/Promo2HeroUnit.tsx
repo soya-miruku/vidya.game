@@ -9,9 +9,9 @@ interface IPromo2HeroProps extends ICallHeroUnitProps {
 
 }
 
-const Promo2HeroUnit: types.Brick<IPromo2HeroProps> = ({ bg, bgImage, blur, enableParallax, parallaxSpeed, paddingX, paddingY, text, textAlign, image, imageSize, title, badgeText }) => {
+const Promo2HeroUnit: types.Brick<IPromo2HeroProps> = ({ bg, bgImage, blur, enableParallax, parallaxSpeed, paddingX, paddingTop, paddingBottom, text, textAlign, image, imageSize, title, badgeText }) => {
   return (
-    <CallHeroUnit background={false} badgeText={badgeText} bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded='lg' paddingX={paddingX} paddingY={paddingY}
+    <CallHeroUnit background={false} badgeText={badgeText} bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded='lg' paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}
     text={text} textAlign={textAlign} image={image} imagePosition='right' imageSize={imageSize} title={title}></CallHeroUnit>
   )
 }

@@ -23,7 +23,8 @@ const Customers: types.Brick<CustomersProps> = ({
   bg,
   grayscale = true,
   paddingX,
-  paddingY,
+  paddingTop,
+  paddingBottom,
   rounded,
   bgImage,
   height,
@@ -34,7 +35,7 @@ const Customers: types.Brick<CustomersProps> = ({
   const { isAdmin } = useAdminContext();
   const { isMobileView } = useDetectDeviceSize();
   return (
-    <Section  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} paddingX={paddingX} paddingY={paddingY} bg={bg} rounded={rounded} bgImage={bgImage} height={height}>
+    <Section  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} bg={bg} rounded={rounded} bgImage={bgImage} height={height}>
       <PageViewSize enabled={!bgImage}>
         <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
           return (

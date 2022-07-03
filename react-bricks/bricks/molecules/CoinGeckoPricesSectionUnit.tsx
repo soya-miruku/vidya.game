@@ -1,20 +1,19 @@
 import React from 'react'
-import { types, Repeater } from 'react-bricks/frontend';
+import { types } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { blockNames } from '../blockNames'
-import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultColors } from '../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { IPricesSectionProps, PricesSection } from '@/components/organisms/pricesSection';
 import Section, { SectionProps } from '../Layout/Section';
-import { Padding } from '../Shared/additional';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 
 export interface ICoinGeckoPricesSectionUnitProps extends IPricesSectionProps, SectionProps {
 }
 
-const CoinGeckoPricesSectionUnit: types.Brick<ICoinGeckoPricesSectionUnitProps> = ({ tokenId, bgImage, parallaxSpeed, enableParallax, blur, height, bg, className, paddingX, paddingY, rounded }) => {
+const CoinGeckoPricesSectionUnit: types.Brick<ICoinGeckoPricesSectionUnitProps> = ({ tokenId, bgImage, parallaxSpeed, enableParallax, blur, height, bg, className, paddingX, paddingTop, paddingBottom, rounded }) => {
   return (
-    <Section className={classNames(className)} bg={bg} bgImage={bgImage}  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} height={height} paddingX={paddingX} paddingY={paddingY} rounded={rounded}>
+    <Section className={classNames(className)} bg={bg} bgImage={bgImage}  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded}>
       <PageViewSize enabled={!bgImage}>
         <PricesSection tokenId={tokenId}/>
       </PageViewSize>

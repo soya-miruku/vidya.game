@@ -11,9 +11,9 @@ interface IProgramListUnit extends SectionProps {
   maxItems?: number
 }
 
-const ProgramListUnit: types.Brick<IProgramListUnit> = ({ bg, bgImage, rounded, enableParallax, parallaxSpeed, blur, maxItems, paddingX, paddingY }) => {
+const ProgramListUnit: types.Brick<IProgramListUnit> = ({ bg, bgImage, rounded, enableParallax, parallaxSpeed, blur, maxItems, paddingX, paddingBottom, paddingTop }) => {
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} paddingX={paddingX} paddingY={paddingY}>
+    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}>
       <ProgramListSection limit={maxItems}/>
     </Section>
   )

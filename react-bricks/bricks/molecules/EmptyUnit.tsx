@@ -8,9 +8,9 @@ import Section, { SectionProps } from '../Layout/Section';
 interface IEmptySectionProps extends SectionProps {
 }
 
-const EmptySection: types.Brick<IEmptySectionProps> = ({bg, bgImage, height, paddingX, paddingY, rounded, enableParallax, parallaxSpeed=500, blur}) => {
+const EmptySection: types.Brick<IEmptySectionProps> = ({bg, bgImage, height, paddingX, paddingTop, paddingBottom, rounded, enableParallax, parallaxSpeed=500, blur}) => {
   return (
-    <Section bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingY={paddingY} rounded={rounded} enableParallax={enableParallax} parallaxSpeed={parallaxSpeed} blur={blur}>
+    <Section bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded} enableParallax={enableParallax} parallaxSpeed={parallaxSpeed} blur={blur}>
       <div></div>
     </Section>
   )

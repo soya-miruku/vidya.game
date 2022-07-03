@@ -8,7 +8,8 @@ interface LayoutPropProps {
 export const DefaultLayoutProps = {
   bg: bgColors.none.value,
   paddingX: 0,
-  paddingY: 0,
+  paddingTop: 0,
+  paddingBottom: 0,
   height: 'auto',
   rounded: 'none',
   enableParallax: true,
@@ -95,34 +96,16 @@ export const LayoutProp = ({
         name: 'paddingX',
         label: 'Padding X',
         type: types.SideEditPropType.Number,
-        // type: types.SideEditPropType.Select,
-        // selectOptions: {
-        //   display: types.OptionsDisplay.Select,
-        //   options: [
-        //     { value: 'none', label: 'None' },
-        //     { value: 'sm', label: 'Small' },
-        //     { value: 'lg', label: 'Large' },
-        //     { value: 'xl', label: 'X Large' },
-        //     { value: 'xxl', label: 'XX Large' },
-
-        //   ],
-        // },
       },
       {
-        name: 'paddingY',
-        label: 'Padding Y',
+        name: 'paddingTop',
+        label: 'Padding Top',
         type: types.SideEditPropType.Number,
-        // type: types.SideEditPropType.Select,
-        // selectOptions: {
-        //   display: types.OptionsDisplay.Select,
-        //   options: [
-        //     { value: 'none', label: 'None' },
-        //     { value: 'sm', label: 'Small' },
-        //     { value: 'lg', label: 'Large' },
-        //     { value: 'xl', label: 'X Large' },
-        //     { value: 'xxl', label: 'XX Large' },
-        //   ],
-        // },
+      },
+      {
+        name: 'paddingBottom',
+        label: 'Padding Bottom',
+        type: types.SideEditPropType.Number,
       }
     ],
   }

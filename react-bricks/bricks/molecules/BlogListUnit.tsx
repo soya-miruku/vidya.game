@@ -10,9 +10,9 @@ interface IBlogListProps extends SectionProps {
   maxItems?: number
 }
 
-const BlogListUnit: types.Brick<IBlogListProps> = ({ bg, bgImage, parallaxSpeed, enableParallax, blur, rounded, height, maxItems, paddingX, paddingY }) => {
+const BlogListUnit: types.Brick<IBlogListProps> = ({ bg, bgImage, parallaxSpeed, enableParallax, blur, rounded, height, maxItems, paddingX, paddingTop, paddingBottom }) => {
   return (
-    <Section bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} height={height} paddingX={paddingX} paddingY={paddingY} className=''>
+    <Section bg={bg} bgImage={bgImage} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} className=''>
       <BlogListSection limit={maxItems}/>
     </Section>
   )
