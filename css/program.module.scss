@@ -1,0 +1,33 @@
+.program-card {
+  perspective: 1000px;
+  
+  .program-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 1.2s;
+    transform-style: preserve-3d;
+    
+    &:hover {
+      transform: rotateY(180deg);
+    }
+
+    .program-card-front, .program-card-back {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+    }
+    
+    .program-card-front {
+      color: white;
+    }
+    
+    .program-card-back {
+      // background-color: #2980b9;
+      color: white;
+      transform: rotateY(180deg);
+    }
+  }
+}

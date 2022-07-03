@@ -144,6 +144,17 @@ module.exports = {
         'vxl': '60px'
       },
       keyframes: {
+        brightGlow: {
+          '0%': {
+            filter: 'brightness(1.1)',
+          },
+          '50%' : {
+            filter: 'brightness(1.0)',
+          },
+          '100%': {
+            filter: 'brightness(1.7)',
+          }
+        },
         scroll: {
           '0%': {
             opacity: 1
@@ -155,7 +166,8 @@ module.exports = {
         }
       },
       animation: {
-        scroll: 'scroll 1.5s infinite'
+        scroll: 'scroll 1.5s infinite',
+        brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
       },
       width: {
         ...allowableSizes,
@@ -163,7 +175,8 @@ module.exports = {
       },
       maxWidth: {
         ...allowableSizes,
-        'page': '1140px'
+        'page': '1240px',
+        'page-header': '1280px',
       },
       minWidth: {
         ...allowableSizes,

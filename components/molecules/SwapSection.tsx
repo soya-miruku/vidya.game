@@ -48,8 +48,8 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
 
   useEffect(() => {
     if(!tokenList) return;
-    const token0 = findToken(defaultToken0);
-    const token1 = findToken(defaultToken1);
+    const token0 = findToken(defaultToken0) || tokenList[0];
+    const token1 = findToken(defaultToken1) || tokenList[1];
 
     setToken0(() => token0 as TokenInfo)
     setToken1(() => token1 as TokenInfo)
@@ -62,7 +62,6 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
 
   const calculateAmountsOut = async (isFrom: boolean, amount: number) => {
     if(!token0 || !token1) return;
-    console.log(token0, 'token0');
     return isFrom ? await getAmountsOut(chainId, library, amount, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, [token1.address, token0.address], exists);
  
   };
@@ -122,10 +121,6 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     setShowCoinSearch(() => open);
     setSelectedFor(() => inputSource);
   }
-
-  useEffect(() => {
-    console.log(state);
-  }, [state])
 
   const handleSwap = async () => {
     if(!token0 || !token1) return;

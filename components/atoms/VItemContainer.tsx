@@ -9,6 +9,7 @@ export interface ItemContainerProps {
   heightSize?: VItemContainerSize;
   dropShadow?: boolean;
   className?: string;
+  innerClassName?: string;
   showBorder?: boolean;
   showBorderBottom?: boolean;
   showBorderTop?: boolean;
@@ -21,7 +22,7 @@ export interface ItemContainerProps {
   center?: boolean;
 }
 
-export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dropShadow=true, roundedLeft=true, roundedRight=true, roundedTop=true, roundedButtom=true, showBorderBottom=true, showBorderLeft=true, showBorderRight=true, showBorderTop=true, showBorder, children, className, widthSize, heightSize }) => {
+export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dropShadow=true, roundedLeft=true, roundedRight=true, roundedTop=true, roundedButtom=true, showBorderBottom=true, showBorderLeft=true, showBorderRight=true, showBorderTop=true, showBorder, children, className, innerClassName, widthSize, heightSize }) => {
   const getSizeClass:any = (size, isHeight) => {
     switch(size) {
       case 'vhlf':
@@ -85,6 +86,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       showBorderLeft ? '' : 'border-l-[0px]',
       showBorderRight ? '' : 'border-r-[0px]',
       showBorderTop ? 'pt-vsm' : 'border-t-[0px]',
+      innerClassName
         )}>
         {showBorder ? borderComponent({children}): <div className='flex flex-col gap-vsm justify-center items-start w-full h-full rounded-sm'>{children}</div>}
         

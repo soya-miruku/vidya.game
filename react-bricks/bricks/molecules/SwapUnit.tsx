@@ -7,6 +7,8 @@ import Section, { SectionProps } from '../Layout/Section';
 import { ISwapSectionProps, SwapSection } from '@/components/molecules/SwapSection';
 import VRBTitle from '../atoms/VRBTitle';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
+import { VMouseIcon } from '@/components/atoms/VMouseIcon';
+import { ProgramListSection } from '@/components/organisms/programListSection';
 
 interface ISwapUnit extends SectionProps, ISwapSectionProps {
   height?: string
@@ -18,15 +20,19 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ enableParallax, parallaxSpeed, blur,
   const { isMobileView } = useDetectIsMobileView();
   return (
     <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingY={paddingY} className='prose'>
-        <div className='flex flex-col max-w-page w-full justify-start items-center mb-8 '>
+        <div className='flex flex-col max-w-page w-full justify-between items-center'>
           <div className='flex w-full'>
-            <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4'>
+            <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 pt-12'>
               <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
               <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
             </div>
           </div>
-          <SwapSection className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
+          <div className='w-full h-full flex flex-row-reverse items-center justify-center pt-12 gap-x-[70px] flex-wrap'>
+            <SwapSection className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
+            <ProgramListSection/>
+          </div>
         </div>
+        <VMouseIcon overrideColor/>
     </Section>
   )
 }

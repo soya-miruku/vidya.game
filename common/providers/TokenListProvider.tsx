@@ -190,7 +190,7 @@ export const TokenListProvider = ({ children }: { children: React.ReactNode }) =
     const newResults = [...uniqueTokens.filter((token) => token.chainId === chainId && token.active)];
 
     return newResults;
-  }, [tokens]);
+  }, [tokens, chainId]);
 
   useEffect(() => {
     if(!processedTokens) return;
