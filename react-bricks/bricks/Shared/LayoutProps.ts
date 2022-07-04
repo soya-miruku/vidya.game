@@ -14,6 +14,8 @@ export const DefaultLayoutProps = {
   rounded: 'none',
   enableParallax: true,
   parallaxSpeed:500,
+  bgOffsetY: 0,
+  parallaxMoveTo: 'bottom',
   blur:'sm',
 }
 
@@ -59,6 +61,20 @@ export const LayoutProp = ({
             { value: 'sm', label: 'Small' },
             { value: 'md', label: 'Medium' },
             { value: 'lg', label: 'Large' },
+          ],
+        },
+      },
+      {
+        name: 'parallaxMoveTo',
+        label: 'Parallax Move Direction',
+        type: types.SideEditPropType.Select,
+        selectOptions: {
+          display: types.OptionsDisplay.Select,
+          options: [
+            { value: 'top', label: 'Top' },
+            { value: 'bottom', label: 'Bottom' },
+            { value: 'left', label: 'Left' },
+            { value: 'right', label: 'Right' },
           ],
         },
       },

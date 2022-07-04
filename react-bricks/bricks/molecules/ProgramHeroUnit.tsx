@@ -10,11 +10,11 @@ import Section, { SectionProps } from '../Layout/Section';
 export interface IProgramHeroUnitProps extends SectionProps, IProgramHeroProps {
 }
 
-const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ bg, enableParallax, height, parallaxSpeed, blur, rounded, bgImage, paddingX, paddingTop, paddingBottom, className, pageTitle, pageDescription, image }) => {
+const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ className, pageTitle, pageDescription, image, ...sectionProps }) => {
   const { isAdmin } = useAdminContext();
   return (
-    <Section height={height} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} className={className} bg={bg} rounded={rounded} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}>
-      <ProgramHero overrideColor={bgImage !== undefined} image={image} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
+    <Section className={className} {...sectionProps}>
+      <ProgramHero overrideColor={sectionProps.bgImage !== undefined} image={image} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
     </Section>
   )
 }

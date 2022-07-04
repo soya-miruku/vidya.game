@@ -10,6 +10,8 @@ export interface IImageSource {
   alt?: string
   seoName?: string
 }
+
+export type ParallaxMoveTo = 'top' | 'bottom' | 'left' | 'right';
 export interface SectionProps {
   bg?: { color: string; className: string }
   bgImage?: IImageSource
@@ -21,6 +23,7 @@ export interface SectionProps {
   rounded?: Round
   className?: string
   enableParallax?: boolean
+  parallaxMoveTo?: ParallaxMoveTo
   parallaxSpeed?: number
   blur?: BlurAmount
 }
@@ -35,20 +38,21 @@ const Section: React.FC<SectionProps> = ({
   className = '',
   paddingX,
   paddingTop,
-  paddingBottom,
+  paddingBottom='bottom',
   rounded,
   children,
   enableParallax,
   parallaxSpeed=500,
+  parallaxMoveTo,
   blur,
 }) => {
   const bgColor = bg.color;
   const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 3 : blur === 'md' ? 2 : 1;
-  
   return (
     <ParallaxV2 
       disabled={!enableParallax}
-      bgImage={bgImage?.src} strength={parallaxSpeed}
+      bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && bgImage?.src || ''} 
+      strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
       renderLayer={percentage => {
       return (
         <div
@@ -56,6 +60,12 @@ const Section: React.FC<SectionProps> = ({
                 position: 'absolute',
                 left: '0%',
                 top: '0%',
+                ...{...(parallaxMoveTo === 'left' || parallaxMoveTo === 'right') && enableParallax && {
+                  backgroundImage: `url(${bgImage?.src})`,
+                  backgroundSize: 'contain',
+                  backgroundPositionX: `${(percentage * (parallaxSpeed/1000)) * 100}%`,
+                  backgroundRepeat: 'no-repeat',
+                }},
                 backdropFilter: `blur(${percentage * (initialAmount * 1.5)}px)`,
                 width: '100%', //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 height: '100%',
@@ -65,7 +75,7 @@ const Section: React.FC<SectionProps> = ({
     }}
       style={{
         minHeight: height ? height : 'auto',
-        backgroundColor: bgImage ? 'black' : bgColor,
+        backgroundColor: bgColor,
         paddingLeft: `${paddingX}px`,
         paddingRight: `${paddingX}px`,
         paddingTop: `${paddingTop}px`,

@@ -45,7 +45,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
         case types.SideEditPropType.Text: {
           renders.push(<div key={i} className="flex flex-col">
             <label>{prop.label}</label>
-            <input autoFocus type="text" value={item.itemProp[prop.propName]} onChange={(e) => {
+            <input  type="text" value={item.itemProp[prop.propName]} onChange={(e) => {
               item.props = {
                 ...item.props,
                 [prop.propName]: e.target.value

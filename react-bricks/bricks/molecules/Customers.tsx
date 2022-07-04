@@ -19,29 +19,17 @@ export interface CustomersProps extends SectionProps {
   grayscale?: boolean
 }
 
-const Customers: types.Brick<CustomersProps> = ({
-  bg,
-  grayscale = true,
-  paddingX,
-  paddingTop,
-  paddingBottom,
-  rounded,
-  bgImage,
-  height,
-  parallaxSpeed,
-  enableParallax,
-  blur,
-}) => {
+const Customers: types.Brick<CustomersProps> = ({ grayscale = true, ...sectionProps}) => {
   const { isAdmin } = useAdminContext();
   const { isMobileView } = useDetectDeviceSize();
   return (
-    <Section  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} bg={bg} rounded={rounded} bgImage={bgImage} height={height}>
-      <PageViewSize enabled={!bgImage}>
+    <Section {...sectionProps}>
+      <PageViewSize enabled={!sectionProps.bgImage}>
         <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
           return (
-            <div className='prose flex flex-col justify-center items-center gap-y-12'>
-              <VTitle type='h5'>Featured In</VTitle>
-              <VCarousel slidesPerView={isMobileView ? 3 : 5} navigation={isAdmin} slides={items.props.children}></VCarousel>
+            <div className='prose flex flex-col justify-center items-center gap-y-12 h-full'>
+              <VTitle type='h5'>As Featured In</VTitle>
+              <VCarousel slidesPerView={isMobileView ? 2 : 5} navigation={true} slides={items.props.children}></VCarousel>
             </div>
           )
         }}></Repeater>

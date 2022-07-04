@@ -10,9 +10,9 @@ interface IGameListProps extends SectionProps {
   maxItems?: number
 }
 
-const GameListUnit: types.Brick<IGameListProps> = ({ bg, bgImage, height, rounded, maxItems, paddingX, paddingTop, paddingBottom, parallaxSpeed, enableParallax, blur }) => {
+const GameListUnit: types.Brick<IGameListProps> = ({ maxItems, ...sectionProps }) => {
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}>
+    <Section {...sectionProps}>
       <GamesListSection limit={maxItems}/>
     </Section>
   )

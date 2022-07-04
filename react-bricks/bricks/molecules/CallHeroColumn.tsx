@@ -28,9 +28,9 @@ interface CallHeroUnitProps extends SectionProps {
   columns?: NumColumns
 }
 
-const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, bg, bgImage, enableParallax, parallaxSpeed, blur, height, paddingX, paddingTop, paddingBottom, background, className, rounded }) => {
+const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, background, className, ...sectionProps }) => {
   return (
-    <Section className={className} bg={bg} bgImage={bgImage}  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded}>
+    <Section className={className} {...sectionProps}>
        <Repeater propName={propName || 'columns'} renderItemWrapper={(item, index) => {
           return (
             <div style={{zIndex: 100}} key={index}>

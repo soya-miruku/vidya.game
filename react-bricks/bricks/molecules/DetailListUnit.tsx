@@ -10,9 +10,9 @@ interface IDetailsListUnitProps extends SectionProps {
   detailItems?: any[];
 }
 
-const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ bg, bgImage, height, rounded, paddingX, paddingTop, paddingBottom, enableParallax, parallaxSpeed, blur}) => {
+const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ ...sectionProps }) => {
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} rounded={rounded} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}>
+    <Section {...sectionProps}>
       <Repeater propName='detailItems' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-vsm flex-wrap">

@@ -28,12 +28,12 @@ export interface ICallHeroUnitProps extends SectionProps {
   text: string
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParallax, parallaxSpeed, blur, rounded, bg, bgImage, height, imagePosition, paddingX, paddingTop, paddingBottom, background }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, background, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
 
   return (
-    <Section bgOffsetY={bgOffsetY} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bgImage={bgImage} height={height} bg={bg} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded}>
-      <PageViewSize enabled={!bgImage}>
+    <Section {...sectionProps}>
+      <PageViewSize enabled={!sectionProps.bgImage}>
         <div className={classNames('max-w-page w-full flex flex-row justify-center p-0', 'prose')}>
           <div className='w-auto h-full p-0'>
             <div className={classNames('', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center items-center`)}>
@@ -59,7 +59,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParall
                 </div>
                 <Text
                   renderBlock={(props) => (
-                    <VTitle overrideTextColor={background || bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
+                    <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
                   )}
                   renderPlaceholder={(props) => (
                     <span className="opacity-30">{props.children}</span>
@@ -69,7 +69,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ bgOffsetY, enableParall
                 />
                 <RichText
                   renderBlock={(props) => (
-                    <VText overrideTextColor={background || bgImage !== undefined} size='lg' className='m-0'>
+                    <VText overrideTextColor={background || sectionProps.bgImage !== undefined} size='lg' className='m-0'>
                       {props.children}
                     </VText>
                   )}

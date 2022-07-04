@@ -25,7 +25,7 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
   if(isAdmin) {
     return (
       <Link {...rest}>
-        <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
+        <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary}  rounded={rounded}>
           {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
             {text}
           </VText>
@@ -35,7 +35,7 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
     )
   }
   return (
-    <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} animate={!background} rounded={rounded}>
+    <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} rounded={rounded}>
       {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
         {text}
       </VText>

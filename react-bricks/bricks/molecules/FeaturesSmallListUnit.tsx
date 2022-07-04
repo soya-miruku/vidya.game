@@ -10,9 +10,9 @@ interface IFeaturesSmallListUnitProps extends SectionProps {
   featureItems?: any[];
 }
 
-const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ bg, bgImage, height, rounded, paddingX, paddingTop, paddingBottom, enableParallax, parallaxSpeed, blur}) => {
+const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ ...sectionProps }) => {
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} height={height} rounded={rounded} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom}>
+    <Section {...sectionProps}>
       <Repeater propName='featureItems' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center sm:gap-vxl gap-vsm flex-wrap">

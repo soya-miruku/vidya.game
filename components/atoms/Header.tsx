@@ -78,12 +78,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       if (currentY > prevY) {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('translate-y-0');
-        navbarRef.current.classList.add('bg-dark-200/20');
+        navbarRef.current.classList.add('bg-dark-200/80');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
       }
       else if(currentY <= 100) {
-        navbarRef.current.classList.remove('bg-dark-200/20');
+        navbarRef.current.classList.remove('bg-dark-200/80');
       } 
       else {
         if(!navbarRef.current) return;

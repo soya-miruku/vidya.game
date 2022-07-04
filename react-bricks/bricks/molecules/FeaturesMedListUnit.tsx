@@ -12,9 +12,9 @@ interface IFeaturesMedListUnitProps extends SectionProps {
   showDisclaimer?: boolean;
 }
 
-const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ bg, bgImage, height, rounded, disclaimer, showDisclaimer, paddingX, paddingTop, paddingBottom, enableParallax, parallaxSpeed, blur}) => {
+const FeaturesMedListUnit: types.Brick<IFeaturesMedListUnitProps> = ({ disclaimer, showDisclaimer, ...sectionProps }) => {
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded} className="flex flex-col justify-center items-center gap-y-vxl">
+    <Section {...sectionProps} className="flex flex-col justify-center items-center gap-y-vxl">
       <Repeater propName='featureItems' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-vmd flex-wrap">

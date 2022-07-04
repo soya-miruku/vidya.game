@@ -17,7 +17,7 @@ export interface IVCarouselProps {
   slides: JSX.Element[];
 }
 
-export const VCarousel: React.FC<IVCarouselProps> = ({ slides, autoplay=true, slidesPerView=5, spaceBetween=2, speed=300, loop=false, navigation=false}) => {
+export const VCarousel: React.FC<IVCarouselProps> = ({ slides, autoplay=true, slidesPerView=4, spaceBetween=2, speed=300, loop=false, navigation=false}) => {
   const modules = [Virtual];
   if (navigation) {
     modules.push(Navigation);
@@ -25,7 +25,7 @@ export const VCarousel: React.FC<IVCarouselProps> = ({ slides, autoplay=true, sl
   
   return (
     <div className='w-full h-full'>
-      <Swiper loop={loop} speed={speed} autoplay={autoplay} modules={modules} navigation={navigation ? {} : undefined} spaceBetween={spaceBetween} slidesPerView={slidesPerView} virtual>
+      <Swiper loop={loop} speed={speed} autoplay={autoplay} modules={modules} navigation={navigation ? true : false} spaceBetween={spaceBetween} slidesPerView={slidesPerView} virtual>
         {slides.map((slide, index) => {
           return (
             <SwiperSlide key={`slide-${index}`} virtualIndex={index} className="">

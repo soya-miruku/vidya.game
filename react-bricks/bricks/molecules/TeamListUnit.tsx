@@ -11,9 +11,9 @@ interface ITeamListUnitProps extends SectionProps {
   items?: any[];
 }
 
-const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ bg, bgOffsetY, bgImage, parallaxSpeed, enableParallax, blur, rounded, paddingX, paddingTop, paddingBottom}) => {
+const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ ...sectionProps }) => {
   return (
-    <Section bg={bg} bgImage={bgImage} bgOffsetY={bgOffsetY} parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
+    <Section className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]' {...sectionProps}>
       <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (

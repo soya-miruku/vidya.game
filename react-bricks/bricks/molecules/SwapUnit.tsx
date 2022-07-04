@@ -16,10 +16,10 @@ interface ISwapUnit extends SectionProps, ISwapSectionProps {
   pageSubtitle?: string
 }
 
-const SwapUnit: types.Brick<ISwapUnit> = ({ enableParallax, parallaxSpeed, blur, rounded, bg, bgImage, height, paddingX, paddingTop, paddingBottom, defaultToken0, defaultToken1 }) => {
+const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
   return (
-    <Section parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} rounded={rounded} bg={bg} bgImage={bgImage} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} className='prose'>
+    <Section className='prose' {...sectionProps}>
         <div className='flex flex-col max-w-page w-full justify-between items-center'>
           <div className='flex w-full'>
             <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 sm:pt-12 pt-5'>

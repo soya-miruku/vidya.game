@@ -8,7 +8,7 @@ export interface IPageViewSizeProps {
 
 export const PageViewSize = ({children, enabled}: IPageViewSizeProps) => {
   return (
-    <div className={classNames(enabled ? 'max-w-page' : 'w-auto', 'h-full flex flex-col justify-center items-start gap-y-vmd')}>
+    <div className={classNames(enabled ? 'max-w-page w-full' : 'w-auto', 'h-full flex flex-col justify-center items-start gap-y-vmd')}>
       {children}
     </div>
   )

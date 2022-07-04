@@ -1,3 +1,4 @@
+import { classNames } from '@/common/helpers';
 import styles from '@/css/gradientButton.module.scss';
 
 export interface IGradientButtonProps {
@@ -8,7 +9,7 @@ export interface IGradientButtonProps {
 
 export const GradientButton = ({onClick, disabled, children}: IGradientButtonProps) => {
   return (
-    <div className={styles.button__container}>
+    <div className={classNames('sm:w-[135px] w-[110px]', styles.button__container)}>
       <a onClick={onClick} className={styles.bordered__button}>
       <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>

@@ -11,10 +11,10 @@ import { PageViewSize } from '@/components/atoms/PageViewSize';
 export interface ICoinGeckoPricesSectionUnitProps extends IPricesSectionProps, SectionProps {
 }
 
-const CoinGeckoPricesSectionUnit: types.Brick<ICoinGeckoPricesSectionUnitProps> = ({ tokenId, bgImage, parallaxSpeed, enableParallax, blur, height, bg, className, paddingX, paddingTop, paddingBottom, rounded }) => {
+const CoinGeckoPricesSectionUnit: types.Brick<ICoinGeckoPricesSectionUnitProps> = ({ tokenId, className, ...sectionProps }) => {
   return (
-    <Section className={classNames(className)} bg={bg} bgImage={bgImage}  parallaxSpeed={parallaxSpeed} enableParallax={enableParallax} blur={blur} height={height} paddingX={paddingX} paddingTop={paddingTop} paddingBottom={paddingBottom} rounded={rounded}>
-      <PageViewSize enabled={!bgImage}>
+    <Section className={classNames(className)} {...sectionProps}>
+      <PageViewSize enabled={!sectionProps.bgImage}>
         <PricesSection tokenId={tokenId}/>
       </PageViewSize>
     </Section>

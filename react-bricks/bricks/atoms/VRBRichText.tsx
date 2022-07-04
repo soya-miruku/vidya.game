@@ -38,7 +38,6 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
 }) => {
   const { bold, italic, unorderedList, link, quote, heading1, heading2, heading3, heading4, heading5, heading6, highlight, code } = plugins
   const { isAdmin } = useAdminContext();
-  const divRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     const toolbar: any = document.getElementsByClassName('toolbar')[0];
@@ -49,7 +48,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
 
   if(isAdmin){
     return (
-      // <div ref={divRef} {...rest} >
+      <Link  {...rest} >
         <RichTextExt
             plugins={[
               // blockPluginConstructor({
@@ -128,7 +127,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
             )}
             placeholder="Type a text..."
           />
-      // </div>
+       </Link>
     )
   }
   return (
