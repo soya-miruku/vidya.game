@@ -58,37 +58,39 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                 }}>
                 </Repeater>
                 </div>
-                <Text
-                  renderBlock={(props) => (
-                    <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
-                  )}
-                  renderPlaceholder={(props) => (
-                    <span className="opacity-30">{props.children}</span>
-                  )}
-                  placeholder="Type a title..."
-                  propName="title"
+                <div className='flex flex-col justify-center h-full pt-vlrg'>
+                  <Text
+                    renderBlock={(props) => (
+                      <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
+                    )}
+                    renderPlaceholder={(props) => (
+                      <span className="opacity-30">{props.children}</span>
+                    )}
+                    placeholder="Type a title..."
+                    propName="title"
+                  />
+                  <RichText
+                    renderBlock={(props) => (
+                      <VText overrideTextColor={background || sectionProps.bgImage !== undefined} size='lg' className='m-0'>
+                        {props.children}
+                      </VText>
+                    )}
+                    placeholder="Type a text..."
+                    propName="text"
+                    allowedFeatures={[
+                      types.RichTextFeatures.Bold,
+                      types.RichTextFeatures.Italic,
+                      types.RichTextFeatures.Highlight,
+                      types.RichTextFeatures.Code,
+                      types.RichTextFeatures.Link,
+                    ]}
+                    renderCode={(props) => (
+                      <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
+                        {props.children}
+                      </code>
+                    )}
                 />
-                <RichText
-                  renderBlock={(props) => (
-                    <VText overrideTextColor={background || sectionProps.bgImage !== undefined} size='lg' className='m-0'>
-                      {props.children}
-                    </VText>
-                  )}
-                  placeholder="Type a text..."
-                  propName="text"
-                  allowedFeatures={[
-                    types.RichTextFeatures.Bold,
-                    types.RichTextFeatures.Italic,
-                    types.RichTextFeatures.Highlight,
-                    types.RichTextFeatures.Code,
-                    types.RichTextFeatures.Link,
-                  ]}
-                  renderCode={(props) => (
-                    <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
-                      {props.children}
-                    </code>
-                  )}
-              />
+              </div>
               <div className='w-full flex justify-start'>
                 <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
                   return (
