@@ -17,6 +17,7 @@ const VRBCustomer: types.Brick<CustomerProps> = ({
       {...rest}
     >
       <Image
+        noLazyLoad={false}
         propName="image"
         alt="customer"
         imageClassName="w-[165px] h-[40px]"

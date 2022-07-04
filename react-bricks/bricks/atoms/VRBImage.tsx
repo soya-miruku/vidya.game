@@ -27,7 +27,7 @@ const VRBImage: types.Brick<ImageProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <Image propName={propName || 'image'} 
+      <Image noLazyLoad={false} propName={propName || 'image'} 
         alt="image"
         containerClassName={containerClassName}
         imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
