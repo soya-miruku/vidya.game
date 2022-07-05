@@ -12,9 +12,10 @@ export interface ISmallHeroProps {
   bgColor?: string;
   canEdit?: boolean;
   className?: string;
+  backgroundFit?: 'cover' | 'contain' | 'fill' | 'none';
 }
 
-export const SmallHero: React.FC<ISmallHeroProps> = ({ title, desc, imgSrc, canEdit, className}) => {
+export const SmallHero: React.FC<ISmallHeroProps> = ({ title, desc, imgSrc, canEdit, className, backgroundFit}) => {
   return(
     <div className={classNames('w-full h-full min-h-[500px] bg-gradient-to-b from-black/80 to-primary-100 bg-blend-multiply prose flex flex-col justify-end items-start', className)}>
       <div className='flex flex-col relative mx-auto items-start w-full h-full space-y-4'>
@@ -25,7 +26,8 @@ export const SmallHero: React.FC<ISmallHeroProps> = ({ title, desc, imgSrc, canE
               background: `url("${imgSrc}")`,
               backgroundColor: 'rgb(101 26 183)',
               backgroundPosition: 'center center',
-              objectFit: 'cover',
+              backgroundSize: backgroundFit,
+              backgroundRepeat: 'no-repeat',
               backgroundBlendMode: 'multiply'
             }}></div>
             {/* <VImage src={imgSrc} width="100%" height="100%" objectFit='cover' layout='fill' alt='image' className='bg-primary-100 bg-blend-multiply'/> */}
