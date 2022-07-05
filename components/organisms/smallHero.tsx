@@ -30,7 +30,6 @@ export const SmallHero: React.FC<ISmallHeroProps> = ({ title, desc, imgSrc, canE
               backgroundRepeat: 'no-repeat',
               backgroundBlendMode: 'multiply'
             }}></div>
-            {/* <VImage src={imgSrc} width="100%" height="100%" objectFit='cover' layout='fill' alt='image' className='bg-primary-100 bg-blend-multiply'/> */}
           </div>
         </div>
         <div className='absolute mx-auto w-full h-full sm:px-16 px-2 sm:py-14 py-14'>
