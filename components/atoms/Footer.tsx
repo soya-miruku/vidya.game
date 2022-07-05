@@ -6,9 +6,11 @@ import styles from '@/css/footer.module.scss';
 import { useDetectDeviceSize } from "../../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./SocialLinks";
 import Image from "next/image";
+import { useDarkMode } from "@/hooks/useDarkMode";
 
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
+  const {isDarkMode} = useDarkMode();
   return (
     <div className="w-full h-full bg-a00">
       <footer className={classNames('w-full px-vlrg py-vlrg h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
@@ -20,15 +22,15 @@ const Footer = () => {
         <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>
           <div className="w-full flex flex-row justify-betweem items-center space-x-4">
             <div className="sm:w-full w-72">
-              <Logo enableDarkMode={false}/>
+              <Logo enableDarkMode/>
             </div>
-            {!isMobileView && <SocialLinks />}
+            {!isMobileView && <SocialLinks enableDarkMode={true}/>}
           </div>
           <div className="flex flex-row w-full flex-wrap sm:gap-x-[100px] gap-x-[50px] z-[100]">
             {Object.keys(PagesByCategory).map((category, i) => {
             return (
             <div key={category} className="flex flex-col justify-start w-[130px] pt-10">
-              <div className="text-light-200 sm:text-xl font-bold">
+              <div className="dark:text-light-200 text-dark-300 sm:text-xl font-bold">
                 <h6>{category.toUpperCase()}</h6>
               </div>
               <div>
@@ -37,10 +39,10 @@ const Footer = () => {
                   return (
                   <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
                     <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' }>
-                    <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 hover:text-white" : "text-accent-dark-100/50"
+                    <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 dark:hover:text-light-100 hover:text-dark-100" : "text-accent-dark-100/50"
                       )}>{page.displayName}</p>
                     </Link>
-                    {!page.active && <span className='text-xs px-1 mx-2 tracking-cta text-dark-100 bg-light-200/50 rounded-xs'>SOON</span>}
+                    {!page.active && <span className='text-xs ml-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 bg-light-300/50 rounded-lg'>SOON</span>}
 
                   </li>
                   )
@@ -51,7 +53,7 @@ const Footer = () => {
             )
             })}
             <div className="flex flex-col justify-start w-[130px] mt-10">
-              <div className="text-light-200 sm:text-xl font-bold font-saria">
+              <div className="dark:text-light-200 text-dark-300 sm:text-xl font-bold font-saria">
                 <h6>BUY AT</h6>
               </div>
               <div>
@@ -59,7 +61,7 @@ const Footer = () => {
                   <li className="text-body-sm tracking-cta font-saria">
                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-200 hover:text-white space-x-2 flex justify-start items-center">
                       <span className="w-5 h-5">
-                        <svg fill="white" viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
+                        <svg fill={isDarkMode ? 'white': 'black'} viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M4.152 1.551c-.188-.029-.196-.032-.107-.045.17-.026.57.009.846.074.644.152 1.23.542 1.856 1.235l.166.184.238-.038c1.002-.16 2.02-.033 2.873.358.235.108.605.322.65.377.016.018.043.13.06.251.064.418.033.737-.096.976-.07.13-.074.171-.027.283a.274.274 0 0 0 .246.154c.212 0 .44-.34.545-.814l.042-.189.083.094c.457.514.815 1.214.876 1.712l.016.13-.076-.118a1.462 1.462 0 0 0-.435-.453c-.306-.201-.63-.27-1.486-.315-.774-.04-1.212-.106-1.646-.247-.739-.24-1.111-.558-1.989-1.702-.39-.509-.63-.79-.87-1.016-.545-.515-1.08-.785-1.765-.89Z">
                           </path>
@@ -69,7 +71,7 @@ const Footer = () => {
                           <path
                             d="M9.952 9.641c-.237-.506-.292-.995-.162-1.451.014-.05.036-.089.05-.089.013 0 .07.03.124.067.11.073.328.196.912.512.728.395 1.144.7 1.426 1.05.247.305.4.654.474 1.078.042.24.017.82-.045 1.062-.196.764-.65 1.364-1.3 1.714-.095.051-.18.093-.19.093-.009 0 .026-.087.077-.194.219-.454.244-.895.079-1.386-.102-.301-.308-.668-.724-1.289-.484-.72-.602-.913-.721-1.167ZM3.25 12.374c.663-.556 1.486-.95 2.237-1.072a3.51 3.51 0 0 1 1.161.045c.48.122.91.396 1.133.721.218.319.312.596.41 1.214.038.243.08.488.092.543.073.32.216.576.392.704.28.204.764.217 1.239.033a.618.618 0 0 1 .155-.048c.017.017-.222.176-.39.26a1.334 1.334 0 0 1-.648.156c-.435 0-.796-.22-1.098-.668a5.3 5.3 0 0 1-.296-.588c-.318-.721-.475-.94-.844-1.181-.322-.21-.737-.247-1.049-.095-.41.2-.524.72-.23 1.05a.911.911 0 0 0 .512.266.545.545 0 0 0 .619-.544c0-.217-.084-.34-.295-.436-.289-.129-.598.022-.597.291 0 .115.051.187.167.24.074.033.076.035.015.023-.264-.055-.326-.372-.114-.582.256-.252.784-.141.965.204.076.145.085.433.019.607-.15.39-.582.595-1.022.483-.3-.076-.421-.158-.782-.527-.627-.642-.87-.767-1.774-.907l-.174-.027.197-.165Z">
                           </path>
-                          <path fillRule="evenodd" clipRule="evenodd"
+                          <path fillRule="evenodd" clipRule="evenodd" 
                             d="M.308.884C2.402 3.41 3.845 4.452 4.005 4.672c.132.182.082.346-.144.474a1.381 1.381 0 0 1-.515.143c-.147 0-.198-.056-.198-.056-.085-.08-.133-.066-.57-.837A132.96 132.96 0 0 0 1.45 2.67c-.032-.03-.031-.03 1.067 1.923.177.407.035.556.035.614 0 .118-.033.18-.179.343-.244.27-.353.574-.432 1.203-.088.705-.336 1.203-1.024 2.056-.402.499-.468.59-.57.792-.128.253-.163.395-.177.714-.015.339.014.557.118.88.09.284.186.47.429.844.21.323.33.563.33.657 0 .074.014.074.34.001.776-.174 1.407-.48 1.762-.857.22-.233.271-.361.273-.68.001-.208-.006-.252-.063-.372-.092-.195-.26-.358-.63-.61-.486-.33-.694-.595-.75-.96-.048-.3.007-.511.275-1.07.278-.58.347-.827.394-1.41.03-.377.071-.526.18-.646.114-.124.216-.166.498-.204.459-.063.75-.18.99-.4a.853.853 0 0 0 .31-.652l.01-.21-.117-.134C4.098 4.004.026.5 0 .5-.005.5.133.673.308.884Zm.976 9.815a.37.37 0 0 0-.115-.489c-.15-.1-.385-.052-.385.077 0 .04.022.069.072.094.084.043.09.091.024.19-.067.099-.061.186.015.246.123.095.297.043.389-.118ZM4.925 5.999c-.215.065-.424.292-.49.53-.039.145-.016.4.043.478.096.127.188.16.439.159.49-.003.916-.212.966-.474.04-.214-.147-.51-.405-.641a.965.965 0 0 0-.553-.052Zm.574.445c.075-.107.042-.222-.087-.3-.244-.149-.615-.026-.615.204 0 .115.193.24.37.24.118 0 .28-.07.332-.144Z">
                           </path>
                         </svg>
@@ -83,15 +85,15 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-row flex-col gap-y-vmd sm:justify-between justify-center items-center w-full pt-14 text-light-200 tracking-cta font-saria body-sm z-10">
-            {isMobileView && <div> <SocialLinks /> </div>}
+          <div className="flex sm:flex-row flex-col gap-y-vmd sm:justify-between justify-center items-center w-full pt-14 font-bold dark:text-light-200 text-dark-300 tracking-cta font-saria body-sm z-10">
+            {isMobileView && <div> <SocialLinks enableDarkMode={true}/> </div>}
             <p className="uppercase">Copyright © Team3D 2021</p>
-            <ul className="flex space-x-7 justify-end">
+            <ul className="flex space-x-7 justify-end font-bold dark:text-light-200 text-dark-300">
               <li>
-                <a href="/terms" className="text-light-200"> TERMS OF SERVICE </a>
+                <a href="/terms"> TERMS OF SERVICE </a>
               </li>
               <li>
-                <a href="/policy" className="text-light-200"> PRIVACY POLICY </a>
+                <a href="/policy"> PRIVACY POLICY </a>
               </li>
             </ul>
           </div>

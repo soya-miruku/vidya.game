@@ -37,7 +37,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       position: 'fixed',
       paddingBottom: '2.5rem',
       width: `${WIDTH}px`,
-      height: isMobileView ? '100vh' : '80vh',
+      height: '100vh',
       top: '0px',
       zIndex: '0',
       overflow: 'hidden',
@@ -68,8 +68,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
 
 
   useEffect(() => {
-    if(!(navbarRef && navbarRef.current) || isOpen) return;
+    if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
+    if(isOpen) {
+      console.log('openned')
+      navbarRef.current.classList.remove('bg-dark-200/80');
+    }
     const handleScroll = () => {
       if(!navbarRef && !navbarRef.current) return;
       
@@ -82,7 +86,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
       }
-      else if(currentY <= 100) {
+      else if(currentY <= 100 || isOpen) {
         navbarRef.current.classList.remove('bg-dark-200/80');
       } 
       else {
