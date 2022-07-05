@@ -22,10 +22,10 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
     return <div>Error...</div>
   }
 
-  const placeholders = Array(displayNumber).fill((_, index) => {
+  const placeholders = Array(5).fill(0).map((_, index) => {
     return {
-      key: `placeholder-${index}k`,
-      content: <ProgramCard key={`placeholder-${index}`} title="Loading" subtitle="program loading..." image="/placeholders/img.png" />
+      key: index,
+      content: <ProgramCard key={`placeholder-${index}`} title={`Loading: ${index}`} subtitle="program loading..." image="/placeholders/img.png" />
     }
   });
   
