@@ -15,6 +15,7 @@ export interface IBasicCardProps {
   height?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
 }
 
+
 export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered, title, label, center, footer}) => {
   return (
     <VItemContainer showBorderBottom showBorderTop showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
