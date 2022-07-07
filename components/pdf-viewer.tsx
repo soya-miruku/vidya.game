@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { isMobile, isTablet } from "react-device-detect";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useDrag } from '@use-gesture/react';
+import { classNames } from "@/common/helpers";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export interface IPDFViewerProps {
@@ -86,15 +87,15 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
   return (
     <div className="w-full flex flex-col justify-center items-center prose gap-y-vmd">
       <div ref={docRef} onMouseEnter={onMouseEnter} onMouseOut={onMouseEnter} onMouseMove={onMouseMove} className="relative" style={{maxHeight: (height*scale)+100}} {...bind()}>
-        {!isDeviceMobile && <div className="w-full h-full">
-          <div ref={leftRef} className="h-full w-32 bg-accent-dark-800/30 z-50 absolute left-0 hover:cursor-pointer" onClick={() => setPageNumber(pageNumber - 1)}>
+        <div className="w-full h-full">
+          <div ref={leftRef} className={classNames('h-full w-32 z-50 absolute left-0 hover:cursor-pointer', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber - 1)}>
             <div className="h-full w-full flex flex-col justify-center items-center text-white">
               <button className="text-light-100 font-bold">
                 Previous
               </button>
             </div>
           </div>
-          <div ref={rightRef} className="h-full w-32 bg-accent-dark-800/30  z-50 absolute right-0 hover:cursor-pointer" onClick={() => setPageNumber(pageNumber + 1)}>
+          <div ref={rightRef} className={classNames('h-full w-32 z-50 absolute right-0 hover:cursor-pointer', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber + 1)}>
             <div className="h-full w-full flex flex-col justify-center items-center text-white">
               <button className="text-light-100 font-bold">
                 Next
@@ -102,7 +103,6 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
             </div>
           </div>
           </div>
-        }
         <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="canvas">
           <Page className={scale === 1.5 ? 'hover:cursor-zoom-out' : 'hover:cursor-zoom-in'} onClick={() => {
             !isDeviceMobile && setScale(scale === 1.5 ? 1 : 1.5);
