@@ -24,13 +24,13 @@ export const PagesByCategory = {
       displayName: 'MERCHANT',
       slug: 'merchant',
       type: 'program',
-      active: false
+      active: true
     },
     {
       displayName: 'FABRICATOR',
       slug: 'fabricator',
       type: 'program',
-      active: false
+      active: true
     }
   ]},
   games: {

@@ -174,10 +174,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('group py-[7px] px-[5px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600/50 flex justify-between items-center')}>
                         <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'}>
-                          <div className='flex items-center gap-x-2'>
-                            <FontAwesomeIcon className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
-                            <p className="menu-item font-saria uppercase"> {page.displayName}</p>
-                          </div>
+                          <a onClick={() => onOpen(false)}>
+                            <div className='flex items-center gap-x-2'>
+                              <FontAwesomeIcon className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
+                              <p className="menu-item font-saria uppercase"> {page.displayName}</p>
+                            </div>
+                          </a>
                         </Link>
                         {!page.active && <span className='text-xs p-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300/50 dark:bg-dark-300/50 bg-light-300/50 rounded-lg'>SOON</span>}
                       </div>

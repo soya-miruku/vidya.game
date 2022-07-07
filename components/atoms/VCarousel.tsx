@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Virtual, Pagination, Navigation } from 'swiper';
+import { Virtual, Pagination, Navigation, Grid } from 'swiper';
 
 import "swiper/css";
 import "swiper/css/pagination";
@@ -21,14 +21,14 @@ export const VCarousel: React.FC<IVCarouselProps> = ({ slides, autoplay=true, sl
   const modules = [Virtual];
   if (navigation) {
     modules.push(Navigation);
-  }
-  
+  } 
+
   return (
     <div className='w-full h-full'>
-      <Swiper loop={loop} speed={speed} autoplay={autoplay} modules={modules} navigation={navigation ? true : false} spaceBetween={spaceBetween} slidesPerView={slidesPerView} virtual>
+      <Swiper loop={loop} speed={speed} autoplay={autoplay} modules={[...modules]} navigation={navigation ? true : false} spaceBetween={spaceBetween} slidesPerView={slidesPerView}>
         {slides.map((slide, index) => {
           return (
-            <SwiperSlide key={`slide-${index}`} virtualIndex={index} className="">
+            <SwiperSlide key={`slide-${index}`} className="">
               {slide}
             </SwiperSlide>
           )

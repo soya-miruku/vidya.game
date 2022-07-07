@@ -58,7 +58,7 @@ const Section: React.FC<SectionProps> = ({
         <div
             style={{
                 position: 'absolute',
-                left: '0%',
+                left: '-20%',
                 top: '0%',
                 ...{...(parallaxMoveTo === 'left' || parallaxMoveTo === 'right') && enableParallax && {
                   backgroundImage: `url(${bgImage?.src})`,
@@ -67,7 +67,7 @@ const Section: React.FC<SectionProps> = ({
                   backgroundRepeat: 'no-repeat',
                 }},
                 backdropFilter: `blur(${percentage * (initialAmount * 1.5)}px)`,
-                width: '100%', //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
+                width: `${100+(percentage*20)}%`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 height: '100%',
             }}
         />

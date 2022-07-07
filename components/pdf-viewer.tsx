@@ -3,6 +3,7 @@ import { isMobile, isTablet } from "react-device-detect";
 import { Document, Page, pdfjs } from "react-pdf";
 import { useDrag } from '@use-gesture/react';
 import { classNames } from "@/common/helpers";
+import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
 
 export interface IPDFViewerProps {
@@ -18,6 +19,7 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
   const [scale, setScale] = useState(1);
+  const { isMobileView } = useDetectIsMobileView();
   const [pageNumber, setPageNumber] = useState(initialPageNumber);
   
   const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
@@ -66,7 +68,7 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
     rightRef.current.style.display = 'none';
   }
 
-  const isDeviceMobile = isMobile || isTablet;
+  const isDeviceMobile = isMobile || isMobileView || isTablet;
 
   return (
     <div className="w-full flex flex-col justify-center items-center prose gap-y-vmd">

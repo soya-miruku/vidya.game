@@ -26,7 +26,7 @@ const Footer = () => {
             </div>
             {!isMobileView && <SocialLinks enableDarkMode={true}/>}
           </div>
-          <div className="flex flex-row w-full flex-wrap sm:gap-x-[100px] gap-x-[50px] z-[100]">
+          <div className="flex flex-row w-full flex-wrap sm:gap-x-[100px] gap-x-[30px] z-[100]">
             {Object.keys(PagesByCategory).map((category, i) => {
             return (
             <div key={category} className="flex flex-col justify-start w-[130px] pt-10">

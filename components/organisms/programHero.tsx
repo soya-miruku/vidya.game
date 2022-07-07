@@ -14,9 +14,12 @@ export interface IProgramHeroProps {
   image?: string;
   overrideColor?:boolean
   canEdit?: boolean;
+  objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  imageHeight?: string;
+  imageWidth?: string;
 }
 
-export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, overrideColor, canEdit}) => {
+export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, imageHeight='622px', imageWidth='489px', overrideColor, canEdit, objectFit}) => {
   return (
     <div className="w-full h-full prose flex flex-col justify-center items-center gap-y-vsm">
       <div className='absolute'>
@@ -28,10 +31,10 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
         <div  style={{
           width: '40vw',
           height: '50vw',
-          maxWidth: '489px',
-          maxHeight: '622px',
+          maxWidth: imageWidth,
+          maxHeight: imageHeight,
         }} className='relative'>
-          {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit='cover' layout='fill' 
+          {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit={objectFit} layout='fill' 
          className={classNames('w-full h-full')}/>}
         </div>
       </div>
