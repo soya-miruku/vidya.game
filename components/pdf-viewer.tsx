@@ -61,41 +61,25 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
 
   }
 
-  const onMouseEnter = (e) => {
-    if(!docRef?.current || !rightRef?.current || !leftRef?.current) return;
+  const onMouseLeave = () => {
     leftRef.current.style.display = 'none';
     rightRef.current.style.display = 'none';
   }
-
-  useEffect(() => {
-    if(!docRef?.current || !rightRef?.current || !leftRef?.current) return;
-
-    const timeout = setTimeout(() => {
-      // if mouse is within docRef
-      rightRef.current.style.display = 'block';
-      leftRef.current.style.display = 'block';
-      
-    }, 600)
-
-    return () => {
-      clearTimeout(timeout);
-    }
-  }, [docRef])
 
   const isDeviceMobile = isMobile || isTablet;
 
   return (
     <div className="w-full flex flex-col justify-center items-center prose gap-y-vmd">
-      <div ref={docRef} onMouseEnter={onMouseEnter} onMouseOut={onMouseEnter} onMouseMove={onMouseMove} className="relative" style={{maxHeight: (height*scale)+100}} {...bind()}>
+      <div ref={docRef} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className="relative" style={{maxHeight: (height*scale)+100}} {...bind()}>
         <div className="w-full h-full">
-          <div ref={leftRef} className={classNames('h-full w-32 z-50 absolute left-0 hover:cursor-pointer', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber - 1)}>
+          <div ref={leftRef} className={classNames('h-full w-32 z-50 absolute left-0 hover:cursor-pointer hidden', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber - 1)}>
             <div className="h-full w-full flex flex-col justify-center items-center text-white">
               <button className="text-light-100 font-bold">
                 Previous
               </button>
             </div>
           </div>
-          <div ref={rightRef} className={classNames('h-full w-32 z-50 absolute right-0 hover:cursor-pointer', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber + 1)}>
+          <div ref={rightRef} className={classNames('h-full w-32 z-50 absolute right-0 hover:cursor-pointer hidden', isDeviceMobile ? '' : 'bg-accent-dark-800/30')} onClick={() => setPageNumber(pageNumber + 1)}>
             <div className="h-full w-full flex flex-col justify-center items-center text-white">
               <button className="text-light-100 font-bold">
                 Next
