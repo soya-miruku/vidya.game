@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import {  useCalls } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 
@@ -11,7 +11,7 @@ import { formatEther } from "@ethersproject/units";
 export const useGeneratorStats = (): IGeneratorStats => {
   const { chainId } = useAccount();
   const { setStats } = useContext(GeneratorContext);
-
+  console.log(chainId)
   const defaultValues = {
     totalDistributed: 0,
     timeToCalculateRate: 0,
@@ -41,19 +41,19 @@ export const useGeneratorStats = (): IGeneratorStats => {
     }
   ],)
 
+  useEffect(() => {
+    console.log(results);
+  }, [JSON.stringify(results)])
+
   results.forEach((result, index) => {
     if (result && result.error) {
       console.error(result.error);
     }
-  }, { refresh: 'never'});
+  }, { refresh: 100});
 
   const totalDistributed = parseFloat(formatEther(results[0]?.value?.[0] || BigNumber.from(0)) || '0');
   // const timeToCalculateRate = parseFloat(formatEther(results[1]?.value?.[0] || BigNumber.from(0)) || '0') * 1000000000000000000;
   const vidyaRate = parseFloat(formatEther(results[1]?.value?.[0] || BigNumber.from(0)) || '0');
-
-  console.log('totalDistributed', totalDistributed);
-  // console.log('timeToCalculateRate', timeToCalculateRate);
-  console.log('vidyaRate', vidyaRate);
 
   setStats({
     totalDistributed,
