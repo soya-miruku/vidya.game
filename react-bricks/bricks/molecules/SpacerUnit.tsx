@@ -13,7 +13,7 @@ const SpacerUnit: types.Brick<ISpacerUnitProps> = ({ size }) => {
 
   if(isMobileView && !isTabletView) {
     return (
-      <div className={classNames('w-full', size === 'lgr' ? 'h-[50px]' :  size === 'med' ? 'h-[25px]' : size === 'sm' ? 'h-[10px]' : 'h-[5px]')}/>
+      <div className={classNames('w-full', size === 'lgr' ? 'h-[30px]' :  size === 'med' ? 'h-[25px]' : size === 'sm' ? 'h-[10px]' : 'h-[5px]')}/>
     )
   }
   else if(isTabletView) {

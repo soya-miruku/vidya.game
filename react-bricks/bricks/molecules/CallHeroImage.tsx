@@ -48,7 +48,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
             </div>
             { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
               <div className="sm:w-[55%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vlrg">
-                <div className='w-full flex justify-start items-start p-0'>
+                <div className='w-full flex justify-start items-start p-0 '>
                 <Repeater propName='badgeLabels' renderWrapper={(items) => {
                   return (
                     <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0">
@@ -61,7 +61,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                 <div className='flex flex-col justify-center h-full pt-vlrg w-full'>
                   <Text
                     renderBlock={(props) => (
-                      <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type='h2'>{props.children}</VTitle>
+                      <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
                     )}
                     renderPlaceholder={(props) => (
                       <span className="opacity-30">{props.children}</span>

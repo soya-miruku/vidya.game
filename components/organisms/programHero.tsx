@@ -29,8 +29,8 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
       </div>
       <div className='flex justify-center items-center w-full h-full'>
         <div  style={{
-          width: '40vw',
-          height: '50vw',
+          width: '63vw',
+          height: '80vw',
           maxWidth: imageWidth,
           maxHeight: imageHeight,
         }} className='relative'>

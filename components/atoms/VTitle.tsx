@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { classNames } from "@/common/helpers"
+import { useDetectDeviceSize } from '@/hooks/useDetectIsMobileView';
 
 export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "title";
 
@@ -13,7 +14,8 @@ interface TitleProps {
   onChange?: any
 }
 
-export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange, maxChar=15}) => {
+export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange, maxChar=20}) => {
+  const { isMobileView } = useDetectDeviceSize();
   if(typeof(children) === 'string') {
     children.slice(0, maxChar)
   }
@@ -21,8 +23,8 @@ export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className
     case "title":
       return (
         <h1 onChange={onChange} style={{
-          // fontSize: '300px',
-        }} className={classNames('font-saria xl:text-title lg:text-title text-[18vw]', overrideTextColor ? 'text-light-200' : 'dark:text-light-200 text-dark-200', className)}>
+          fontSize: `calc(29vw * (9/16) + ${(maxChar - (children?.toString()?.length || 0)) * .25}em - 1vh)`,
+        }} className={classNames('font-saria 2xl:!text-title', overrideTextColor ? 'text-light-200' : 'dark:text-light-200 text-dark-200', className)}>
           {children}
         </h1>
       )
