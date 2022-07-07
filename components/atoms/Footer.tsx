@@ -38,13 +38,13 @@ const Footer = () => {
                   {PagesByCategory[category].pages.map(page => {
                   return (
                   <li key={page.slug} className="text-body-sm tracking-cta flex justify-start items-center">
-                    <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' } passHref>
+                    {/* <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' } passHref> */}
                       <a href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon' }>
                         <p className={classNames('hover:cursor-pointer', page.active ? "text-accent-dark-200 dark:hover:text-light-100 hover:text-dark-100" : "text-accent-dark-100/50"
                           )}>{page.displayName}
                         </p>
                       </a>
-                    </Link>
+                    {/* </Link> */}
                     
                     {!page.active && <span className='text-xs ml-1 px-2 tracking-cta dark:text-light-200/50 text-dark-300 dark:bg-dark-300/50 bg-light-300/50 rounded-lg'>SOON</span>}
 
