@@ -173,8 +173,10 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                     {PagesByCategory[category].pages.map((page, y) => {
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('group py-[7px] px-[5px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600/50 flex justify-between items-center')}>
-                        <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'}>
-                          <a onClick={() => onOpen(false)}>
+                        <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'} passHref>
+                          <a href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'} onClick={() => {
+                            onOpen(() => false);
+                          }}>
                             <div className='flex items-center gap-x-2'>
                               <FontAwesomeIcon className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
                               <p className="menu-item font-saria uppercase"> {page.displayName}</p>
