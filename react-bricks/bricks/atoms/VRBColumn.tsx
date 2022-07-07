@@ -15,6 +15,7 @@ import VRBText from './VRBText';
 import VRBTitle from './VRBTitle';
 import { SortableItemProps, SortableListComponent } from '../Shared/sortableItem';
 import VRBImage from './VRBImage';
+import { VText } from '@/components/atoms/VText';
 
 export interface VRBColumnProps {
   className?: string;
@@ -40,7 +41,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
       ? item.show && <VRBImage containerClassName='w-full h-full min-w-[200px] min-h-[200px]' imageHeight="100%" imageWidth="100%" propName={item.name}></VRBImage>
       : item.type === 'VRBButton'
       ? item.show && <VRBButton primary={false} secondary={false} special={false} { ...item.itemProp}>
-        <VRBText spacing="md" overrideTextColor={item.itemProp?.primary === true || item.itemProp?.special === true} propName={`${item.name}_btn`} size='md'></VRBText>
+        <VText overrideTextColor={item.itemProp?.primary === true || item.itemProp?.special === true} spacing="md" size='md'>{item.itemProp?.btnText}</VText>
       </VRBButton>
       : null
     }
@@ -124,6 +125,12 @@ VRBColumn.schema = {
           name: blockNames.Button,
           propName: 'btnLink',
           label: 'Button Link',
+          type: types.SideEditPropType.Text
+        },
+        {
+          name: blockNames.Button,
+          propName: 'btnText',
+          label: 'Button Text',
           type: types.SideEditPropType.Text
         },
         {

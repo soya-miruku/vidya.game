@@ -34,4 +34,6 @@ export enum blockNames {
   Customer = 'VRBCustomer',
   Customers = 'VRBCustomers',
   TeamCard = 'VRBTeamCard',
+  GeneratorStatsUnit = 'GeneratorStatsUnit',
+  PDFViewUnit = 'PDFViewUnit',
 }

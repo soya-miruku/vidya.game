@@ -46,6 +46,7 @@ FeaturesMedListUnit.schema = {
         secondaryBtn: true,
         primaryBtn: false,
         specialBtn: false,
+        objectFit: 'cover',
         btnLink: '#'
       },
       {
@@ -57,6 +58,7 @@ FeaturesMedListUnit.schema = {
         secondaryBtn: true,
         primaryBtn: false,
         specialBtn: false,
+        objectFit: 'cover',
         btnLink: '#'
       }
     ]
@@ -67,7 +69,7 @@ FeaturesMedListUnit.schema = {
       itemType: blockNames.FeatureCard,
       itemLabel: 'Item',
       min: 2,
-      max: 2
+      max: 10
     },
   ],
   sideEditProps: [

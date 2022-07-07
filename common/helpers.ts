@@ -35,3 +35,9 @@ export const toFixedNumber = (digits: number | string, decimals: number) => {
   const number = typeof(digits) === 'string' ? parseFloat(digits || '0') : digits;
   return parseFloat((number).toFixed(decimals));
 }
+
+export const ToReadableNumber = (number: number) => {
+  if(number >= 1000000) return `${(number / 1000000).toFixed(2)}M`;
+  if(number >= 1000) return `${(number / 1000).toFixed(2)}K`;
+  return number.toString();
+}

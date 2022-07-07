@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { types } from "react-bricks";
 import { SortableContainer, SortableElement, SortableHandle } from "react-sortable-hoc";
 import { generateUniqueId } from "../../../common/helpers";
@@ -30,7 +31,6 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
 
   const renderItemProps = (item: any, itemProps: [any]) => {
     const renders = [];
-
     for (let i = 0; i < itemProps.length; i++) {
       const prop:any = itemProps[i];
       
@@ -45,7 +45,7 @@ export const SortableListComponent: React.FC<SortableListComponentProps> = ({ it
         case types.SideEditPropType.Text: {
           renders.push(<div key={i} className="flex flex-col">
             <label>{prop.label}</label>
-            <input  type="text" value={item.itemProp[prop.propName]} onChange={(e) => {
+            <input type="text" value={item.itemProp[prop.propName]} onChange={(e) => {
               item.props = {
                 ...item.props,
                 [prop.propName]: e.target.value

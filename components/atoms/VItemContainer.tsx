@@ -34,17 +34,17 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'vsm':
         return {class: isHeight ? 'h-vsm min-h-vsm max-h-vsm' : 'max-w-vsm w-vsm min-w-vsm '};
       case 'vmd':
-        return {class: isHeight ? 'h-vmd min-h-vmd max-h-vmd' : 'max-w-vsm mobile:max-w-vlg tablet:max-w-vlg min-w-vxs max-w-vmd'};
+        return {class: isHeight ? 'h-vmd min-h-vmd max-h-vmd' : 'mobile:max-w-vlg tablet:max-w-vlg min-w-vxs max-w-vmd'};
       case 'vlg':
-        return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'w-vlg min-w-vlg max-w-vlg'};
+        return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'min-w-xs max-w-vlg'};
       case 'vxl':
-        return {class: isHeight ? 'min-h-vxl max-h-vxl' : ' max-w-vxl'};
+        return {class: isHeight ? 'min-h-vxl max-h-vxl' : 'max-w-vxl'};
       case 'vhxl':
         return {class: isHeight ? 'min-h-vhxl' : 'w-vhxl min-w-vhxl max-w-vhxl'};
       case 'v2xl':
         return {class: isHeight ? 'min-h-vxl max-h-v2xl' : 'max-w-v2xl'};
       case 'full':
-        return {class: isHeight ? 'h-full min-h-full max-h-full' : 'w-full min-w-full max-w-full'};
+        return {class: isHeight ? 'h-full min-h-full' : 'w-full min-w-full'};
       default:
         return {class: isHeight ? 'h-auto min-h-auto max-h-auto' : 'w-vsm min-w-vsm max-w-vsm'};
     }

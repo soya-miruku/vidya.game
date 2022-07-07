@@ -32,6 +32,8 @@ import FeaturesMedListUnit from './molecules/FeaturesMedListUnit';
 import VRBFeatureCard from './atoms/VRBFeatureCard';
 import SwapUnit from './molecules/SwapUnit';
 import EmptyUnit from './molecules/EmptyUnit';
+import GeneratorStatsUnit from './molecules/GeneratorStatsUnit';
+import PDFViewUnit from './molecules/PDFViewUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -66,7 +68,9 @@ const bricks: types.Brick<any>[] = [
   VRBImage,
   VRBCustomer,
   Customers,
-  EmptyUnit
+  EmptyUnit,
+  GeneratorStatsUnit,
+  PDFViewUnit
 ]
 
 export default bricks

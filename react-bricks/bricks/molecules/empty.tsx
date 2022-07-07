@@ -8,7 +8,7 @@ import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 interface IEmptyProps {
 }
 
-const EmptyHero: types.Brick<IEmptyProps> = ({ }) => {
+const EmptyHero: types.Brick<IEmptyProps> = ({  }) => {
   return (
     <div></div>
   )

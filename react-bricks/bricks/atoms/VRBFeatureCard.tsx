@@ -17,11 +17,12 @@ const VRBFeatureCard: types.Brick<IVRBFeatureCardProps> = ({
   buttonText,
   btnLink,
   image,
+  objectFit,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <FeatureCard image={image} title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
+      <FeatureCard objectFit={objectFit} image={image} title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
     </Link>
   )
 }
@@ -40,6 +41,7 @@ VRBFeatureCard.schema = {
     secondaryBtn: true,
     primaryBtn: false,
     specialBtn: false,
+    objectFit: 'cover',
     btnLink: '#'
   }),
   sideEditProps: [
@@ -67,6 +69,20 @@ VRBFeatureCard.schema = {
       name: 'buttonText',
       type: types.SideEditPropType.Text,
       label: 'Button Text'
+    },
+    {
+      name: 'objectFit',
+      type: types.SideEditPropType.Select,
+      label: 'Image Fit',
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          { label: 'Cover', value: 'cover' },
+          { label: 'Contain', value: 'contain' },
+          { label: 'Fill', value: 'fill' },
+          { label: 'None', value: 'none' },
+        ], 
+      }
     },
     {
       name: 'secondaryBtn',

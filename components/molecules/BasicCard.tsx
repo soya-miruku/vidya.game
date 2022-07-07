@@ -7,7 +7,7 @@ import { VTitle } from '../atoms/VTitle';
 
 export interface IBasicCardProps {
   label?: string;
-  title?: string | number;
+  title?: string | number | React.ReactNode;
   footer?: any;
   center?: boolean;
   bordered?: boolean;
@@ -21,7 +21,8 @@ export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered,
     <VItemContainer showBorderBottom showBorderTop showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
       <div className={classNames('w-full h-full flex flex-col justify-center items-start p-vmd gap-y-vsm', center ? 'items-center' : '')}>
       <VLabel padding={false} secondary>{label}</VLabel>
-      <VTitle type='h4'>{title}</VTitle>
+      {(typeof(title) === 'string' || typeof(title) ==='number') && <VTitle type={'h4'}>{title}</VTitle>}
+      {typeof(title) === 'object' && title}
       {footer && typeof(footer) === 'string' ?  <VText size='sm'>{footer}</VText> : footer}
       </div>
     </VItemContainer>

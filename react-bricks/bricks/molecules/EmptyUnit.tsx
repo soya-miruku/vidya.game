@@ -4,6 +4,7 @@ import { blockNames } from '../blockNames'
 import { DefaultColors } from '../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import Section, { SectionProps } from '../Layout/Section';
+import { PageViewSize } from '@/components/atoms/PageViewSize';
 
 interface IEmptySectionProps extends SectionProps {
 }
@@ -11,7 +12,8 @@ interface IEmptySectionProps extends SectionProps {
 const EmptySection: types.Brick<IEmptySectionProps> = ({...sectionProps}) => {
   return (
     <Section {...sectionProps}>
-      <div></div>
+      <PageViewSize enabled={!sectionProps.bgImage}>
+      </PageViewSize>
     </Section>
   )
 }
