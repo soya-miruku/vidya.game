@@ -71,7 +71,6 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
     if(isOpen) {
-      console.log('openned')
       navbarRef.current.classList.remove('bg-dark-200/80');
     }
     const handleScroll = () => {
@@ -173,7 +172,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                     {PagesByCategory[category].pages.map((page, y) => {
                     return (
                       <div key={`${page.slug}-${y}`} className={classNames('group py-[7px] px-[5px] text-body-sm', page.active ? 'hover:text-indigo-400 w-full hover:cursor-pointer': 'text-zinc-600/50 flex justify-between items-center')}>
-                        <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'} passHref prefetch>
+                        <Link href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'} passHref={page.type !== 'programs'} >
                           <a href={page.active ? `${getPageUrlByType(page.type, page.slug)}` : '/soon'} onClick={() => {
                             onOpen(() => false);
                           }}>

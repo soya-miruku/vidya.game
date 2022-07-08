@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { classNames } from "@/common/helpers"
-import { useDetectDeviceSize } from '@/hooks/useDetectIsMobileView';
 
 export type TitleType = "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "title";
 
@@ -15,7 +14,6 @@ interface TitleProps {
 }
 
 export const VTitle: React.FC<TitleProps> = ({type, overrideTextColor, className, children, onChange, maxChar=20}) => {
-  const { isMobileView } = useDetectDeviceSize();
   if(typeof(children) === 'string') {
     children.slice(0, maxChar)
   }

@@ -7,9 +7,14 @@ import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
 import { formatEther, parseUnits } from "@ethersproject/units";
 import { BigNumber } from "ethers";
 import { toChecksumAddress, toWei } from "web3-utils";
+import { ChainExists } from "@/contracts/helpers";
 
 
 export const getAmountsOut = async (chainId: number, provider: any, amountIn: number, path: string [], pairExists:boolean) => {
+  if(ChainExists(chainId) === false) {
+    return 0;
+  }
+
   const contract = new Contract(CHAIN_SETTINGS[chainId || 1].UNISWAPV2_ROUTER02_ADDRESS, UNISWAP_ROUTER_ABI, provider);
   const updatedPath = path.map((token) => token === ETH_ADDRESS ? CHAIN_SETTINGS[chainId].WETH_ADDRESS: toChecksumAddress(token));
   // if the path does not contain weth address add this in the middle
@@ -31,7 +36,7 @@ export const getAmountsOut = async (chainId: number, provider: any, amountIn: nu
 
 export const useGetAmountsOut = (amountIn: number | Falsy, path: string []) => {
   const { chainId } = useAccount();
-  const { value, error } = useCall(amountIn && path && chainId && {
+  const { value, error } = useCall(amountIn && path && chainId && ChainExists(chainId) && {
     contract: new Contract(CHAIN_SETTINGS[chainId].UNISWAPV2_ROUTER02_ADDRESS, UNISWAP_ROUTER_ABI),
     method: "getAmountsOut",
     args: [parseUnits(amountIn.toString(), 'ether'), path.map((token) => token === ETH_ADDRESS ? CHAIN_SETTINGS[chainId].WETH_ADDRESS: token)]

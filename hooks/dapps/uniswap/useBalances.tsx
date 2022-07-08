@@ -9,7 +9,7 @@ export const useBalances = (tokenAddresses: string[]) => {
   const multicallAddress = useMulticallAddress();
 
   const calls = tokenAddresses?.map(address => {
-    return address && address !== EMPTY_ADDRESS && (address === ETH_ADDRESS ?
+    return user && multicallAddress && address && address !== EMPTY_ADDRESS && (address === ETH_ADDRESS ?
     {
       contract: new Contract(multicallAddress, MultiCallABI),
       method: "getEthBalance",

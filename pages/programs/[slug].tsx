@@ -18,8 +18,6 @@ import { PageProps } from '@/common/pageProps'
 
 
 const ProgramPage: React.FC<PageProps> = ({ page, error }) => {
-  // Clean the received content
-  // Removes unknown or not allowed bricks
   const { pageTypes, bricks } = useContext(ReactBricksContext);
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
 

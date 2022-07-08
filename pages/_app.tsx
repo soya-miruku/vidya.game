@@ -10,8 +10,9 @@ import { UserProvider } from '../common/providers/UserProvider';
 import { getDefaultProvider } from 'ethers'
 
 import '../css/styles.scss';
-import { DAppProvider, Mainnet, Ropsten, Rinkeby } from '@usedapp/core'
+import { DAppProvider, Mainnet, Ropsten, Rinkeby, Goerli, Kovan } from '@usedapp/core'
 import { TokenListProvider } from '@/common/providers/TokenListProvider'
+import { GeneratorProvider } from '@/common/providers/GeneratorProvider'
 
 const Init = ({Component, pageProps}) => {
   const {isDarkMode, toggleMode} = useDarkMode();
@@ -34,10 +35,9 @@ const Init = ({Component, pageProps}) => {
       isDarkMode ? 'bg-gray-900' : 'bg-white'
     }`,
   }
-
   return (
     <ReactBricks {...reactBricksConfig}>
-      <Component {...pageProps} />
+      <Component {...pageProps}/>
     </ReactBricks>
   )
 }
@@ -48,7 +48,9 @@ const dappConfig = {
   readOnlyUrls: {
     [Mainnet.chainId]: process.env.alchemyApiKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyApiKey}` : getDefaultProvider('mainnet'),
     [Ropsten.chainId]: process.env.infuraId ? `https://ropsten.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('ropsten'),
-    [Rinkeby.chainId]: process.env.infuraId ? `https://rinkeby.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('rinkeby')
+    [Rinkeby.chainId]: process.env.infuraId ? `https://rinkeby.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('rinkeby'),
+    [Goerli.chainId] : process.env.infuraId ? `https://goerli.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('goerli'),
+    [Kovan.chainId] : process.env.infuraId ? `https://kovan.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('kovan'),
   },
   refresh: 10,
 }
@@ -60,7 +62,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         <ThemeProvider>
           <TokenListProvider>
             <UserProvider>
-              <Init Component={Component} pageProps={pageProps} />
+              <GeneratorProvider>
+                <Init Component={Component} pageProps={pageProps} />
+              </GeneratorProvider>
             </UserProvider>
           </TokenListProvider>
         </ThemeProvider>
