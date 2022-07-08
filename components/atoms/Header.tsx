@@ -71,7 +71,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
     if(isOpen) {
-      navbarRef.current.classList.remove('bg-dark-200/80');
+      navbarRef.current.classList.remove(...['bg-dark-300/70', 'backdrop-blur-lg']);
     }
     const handleScroll = () => {
       if(!navbarRef && !navbarRef.current) return;
@@ -81,12 +81,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       if (currentY > prevY) {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('translate-y-0');
-        navbarRef.current.classList.add('bg-dark-200/80');
+        navbarRef.current.classList.add('bg-dark-300/70', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
       }
       else if(currentY <= 100 || isOpen) {
-        navbarRef.current.classList.remove('bg-dark-200/80');
+        navbarRef.current.classList.remove(...['bg-dark-300/70', 'backdrop-blur-lg']);
       } 
       else {
         if(!navbarRef.current) return;
@@ -118,7 +118,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
   }, [isOpen])
 
   return (
-    <div ref={navbarRef} className='fixed w-full h-[120px] top-0 z-[1000] transition-all duration-300'>
+    <div ref={navbarRef} className='fixed w-full h-[120px] top-0 z-[100] transition-all duration-300'>
       <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg transition-all duration-500',
       isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
       style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>

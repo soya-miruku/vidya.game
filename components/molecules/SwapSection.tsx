@@ -13,9 +13,10 @@ import { AuthenticatedView, UnAuthenticatedView } from '../atoms/AuthenticatedVi
 import { SwapInput } from '../atoms/SwapInput';
 import { VButton } from '../atoms/VButton';
 import { VItemContainer } from '../atoms/VItemContainer';
-import { TokenListSearch } from './TokenListSearch';
 
 import styles from '@/css/swap.module.scss';
+import { TokenSearchModal } from './TokenSearchModal';
+import { AnimatePresenceModal } from '../atoms/Modal';
 
 export interface ISwapSectionProps {
   defaultToken0?: string;
@@ -133,7 +134,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
 
   return (
     <div className={className}>
-      <TokenListSearch forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} show={showCoinSearch} onClose={() => handleSelectShowCoinSearch(false, -1)}/>
+       <AnimatePresenceModal>{showCoinSearch &&<TokenSearchModal forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} onClose={() => handleSelectShowCoinSearch(false, -1)}/> }</AnimatePresenceModal>
       <VItemContainer widthSize='v2xl' heightSize='vhxl' dropShadow className='w-full bg-gradient-to-br p-[1px] from-aimbotsRed-100/95 to-accent-dark-200/95 backdrop-blur-sm'>
         <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg'>
           <div className='flex justify-between items-center'>

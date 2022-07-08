@@ -24,7 +24,6 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
   
   const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
     const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
-    console.log('draggg')
     if (!active && trigger) {
       if(xDir === 1)  { //left
         if(pageNumber > 1) {

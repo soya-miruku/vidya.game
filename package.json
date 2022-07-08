@@ -36,6 +36,7 @@
     "next": "^12.1.0",
     "prism-theme-night-owl": "^1.4.0",
     "prismjs": "^1.27.0",
+    "framer-motion": "^6.4.3",
     "react": "^17.0.2",
     "react-bricks": "^3.2.29",
     "react-bricks-ui": "^0.4.3",

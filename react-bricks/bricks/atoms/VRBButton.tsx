@@ -1,9 +1,11 @@
-import * as React from 'react'
+import React, { useEffect, useState } from 'react'
 import classNames from 'classnames'
 import { Link, types, useAdminContext } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VButton, ButtonProps } from '@/components/atoms/VButton'
 import { VText } from '@/components/atoms/VText'
+import { AnimatePresenceModal } from '@/components/atoms/Modal'
+import { ProgramModalEntry } from '@/components/organisms/ProgramModalEntry'
 
 
 export interface IVRBButtonProps extends ButtonProps {
@@ -22,25 +24,52 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
   ...rest
 }) => {
   const { isAdmin } = useAdminContext();
+  const [showModal, setShowModal] = useState(false);
+  const handleClickEvent = () => {
+    if(isAdmin || !btnLink) return;
+    if(btnLink === '!openModal') {
+      setShowModal(true);
+    }
+    else {
+      window.open(btnLink, '_blank');
+    }
+  }
+
+  useEffect(() => {
+    // disable scroll when modal is open
+    if (showModal) {
+      document.getElementById('root_html').style.overflow = 'hidden';
+    }
+    else {
+      document.getElementById('root_html').style.overflow = 'auto';
+    }
+    
+  }, [showModal]);
+
   if(isAdmin) {
     return (
+      <>
       <Link {...rest}>
-        <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary}  rounded={rounded}>
+        <VButton onClick={handleClickEvent} primary={primary} special={special} secondary={secondary}  rounded={rounded}>
           {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
             {text}
           </VText>
           :text  }
         </VButton>
       </Link>
+      </>
     )
   }
   return (
-    <VButton onClick={() => {!isAdmin && btnLink && window.open(btnLink, '_blank')}} primary={primary} special={special} secondary={secondary} rounded={rounded}>
+    <>
+    <AnimatePresenceModal>{showModal && <ProgramModalEntry onClose={() => setShowModal(false)}></ProgramModalEntry>}</AnimatePresenceModal>
+    <VButton onClick={handleClickEvent} primary={primary} special={special} secondary={secondary} rounded={rounded}>
       {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
         {text}
       </VText>
       :text  }
     </VButton>
+    </>
   )
 }
 

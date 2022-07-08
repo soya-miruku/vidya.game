@@ -40,29 +40,29 @@ body {
   overflow-x: hidden;
 }
 
-// .scrollbar-thin::-webkit-scrollbar  {
-//   width: 3px;
-// }
+.scrollbar-thin::-webkit-scrollbar  {
+  width: 3px;
+}
 
-// :root {
-//   ::-webkit-scrollbar {
-//     width: 5px;
-//   }
-//   &.dark {
-//     ::-webkit-scrollbar-thumb {
-//       @apply bg-light-200 ;
-//     }
-//     ::-webkit-scrollbar-thumb:hover {
-//       @apply bg-light-200 ;
-//     }
-//   }
-//   ::-webkit-scrollbar-thumb {
-//     @apply bg-primary-100 ;
-//   }
-//   ::-webkit-scrollbar-thumb:hover {
-//     @apply bg-primary-100 ;
-//   }
-// }
+:root {
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+  &.dark {
+    ::-webkit-scrollbar-thumb {
+      @apply bg-light-200 ;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      @apply bg-light-200 ;
+    }
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-primary-100 ;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-primary-100 ;
+  }
+}
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
