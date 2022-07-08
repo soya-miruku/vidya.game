@@ -7,7 +7,7 @@ export interface ITokenSearchModal extends ITokenListSearchProps {
 
 export const TokenSearchModal = ({ onClose, forToken, tokenList, onSelect }) => {
   return (
-    <Modal onClose={onClose}>
+    <Modal onClose={onClose} className="w-full h-full">
       <div className={classNames('relative dark:bg-dark-200 bg-light-100 backdrop-blur-xl p-1 max-w-2xl rounded-lgr shadow-xl sm:w-[27rem] w-full sm:h-auto h-full')}>
         <div className='flex justify-between items-start p-5 rounded-t border-b dark:border-dark-300 border-light-300'>
           <h3 className='text-xl font-semibold lg:text-2xl dark:text-light-200 text-dark-200'>{'Find Token'}</h3>

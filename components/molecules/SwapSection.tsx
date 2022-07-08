@@ -132,6 +132,18 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     swapEthForTokens(token0Amount, token1Amount, token1?.address);
   }
 
+  useEffect(() => {
+    // disable scroll when modal is open
+    if (showCoinSearch) {
+      document.getElementById('root_html').style.overflow = 'hidden';
+    }
+    else {
+      document.getElementById('root_html').style.overflow = 'auto';
+    }
+    
+  }, [showCoinSearch]);
+
+
   return (
     <div className={className}>
        <AnimatePresenceModal>{showCoinSearch &&<TokenSearchModal forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} onClose={() => handleSelectShowCoinSearch(false, -1)}/> }</AnimatePresenceModal>
