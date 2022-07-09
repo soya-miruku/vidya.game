@@ -12,6 +12,7 @@ import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 import { VText } from '../atoms/VText';
 
 export interface IStakingCardProps {
+  pool?: string;
   image?: string;
   label1?: string;
   title1?: string;
@@ -19,7 +20,7 @@ export interface IStakingCardProps {
   bordered?: boolean;
 }
 
-export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, label1, title1, rate, image}) => {
+export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, label1, title1, rate, image, pool}) => {
   const { isMobileView, isTabletView } = useDetectIsMobileView(1000);
   const {
     getArrowProps,
@@ -41,7 +42,7 @@ export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, label1
       <div className={classNames('flex w-full flex-wrap gap-x-vsm gap-y-vsm justify-between items-center', bordered ? '' : 'px-4')}>
         <div className='flex w-[40%] lg:w-[40%] md:w-full sm:w-full mobile:w-full justify-start items-center gap-x-vsm'>
           <div className='w-[82px]'>
-            <VImage width={80} height={80} className="rounded-full"></VImage>
+            <VImage objectFit='contain' src={`/generator/${pool}.png`} width={80} height={80} className="rounded-full"></VImage>
           </div>
           <div className='flex flex-col gap-y-vsm justify-start items-start text-left w-[120px]'>
             <VLabel padding={false} secondary>{label1}</VLabel>
