@@ -150,3 +150,38 @@ body {
 .swiper-button-prev {
   color: theme('colors.light.400') !important;
 }
+
+.tooltip-container {
+  border-width: 2px;
+  border-radius: 10px;
+}
+
+.tooltip-container {
+  background-color: theme('colors.light.200');
+  border-color: theme('colors.accent-dark.200');
+  color: theme('colors.dark.200');
+}
+.tooltip-container[data-popper-placement*="bottom"] .tooltip-arrow::after {
+  border-color: transparent transparent theme('colors.accent-dark.200') transparent;
+}
+.tooltip-container[data-popper-placement*="bottom"] .tooltip-arrow::before {
+  border-color: transparent transparent theme('colors.accent-dark.200') transparent;
+}
+
+.tooltip-container[data-popper-placement*="left"] .tooltip-arrow::after {
+  border-color: transparent transparent transparent theme('colors.accent-dark.200');
+}
+.tooltip-container[data-popper-placement*="left"] .tooltip-arrow::before {
+  border-color: transparent transparent transparent theme('colors.accent-dark.200');
+}
+
+html.dark {
+  .tooltip-container {
+    background-color: theme('colors.dark.300');
+    color: theme('colors.light.200');
+  }
+}
+
+.tooltip-container[data-popper-placement*='left'] .tooltip-arrow {
+  margin-right: -.82rem;
+}

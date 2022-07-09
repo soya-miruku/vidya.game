@@ -33,6 +33,7 @@ import VRBFeatureCard from './atoms/VRBFeatureCard';
 import SwapUnit from './molecules/SwapUnit';
 import EmptyUnit from './molecules/EmptyUnit';
 import GeneratorStatsUnit from './molecules/GeneratorStatsUnit';
+import GeneratorStakingInfoUnit from './molecules/GeneratorStakingInfoUnit';
 import PDFViewUnit from './molecules/PDFViewUnit';
 
 const bricks: types.Brick<any>[] = [
@@ -70,6 +71,7 @@ const bricks: types.Brick<any>[] = [
   Customers,
   EmptyUnit,
   GeneratorStatsUnit,
+  GeneratorStakingInfoUnit,
   PDFViewUnit
 ]
 

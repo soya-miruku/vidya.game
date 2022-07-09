@@ -177,6 +177,7 @@ module.exports = {
         ...allowableSizes,
         'page': '1240px',
         'page-header': '1280px',
+        'page-modal': '1840px'
       },
       minWidth: {
         ...allowableSizes,

@@ -16,10 +16,10 @@ export interface VRBRichTextProps {
   className?: string,
   overrideTextColor?: boolean
   type?: TitleType
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'sm' | 'md' | 'lg' | 'xl'
   propName: string
   isTitle?: boolean
-  spacing?: 'sm' | 'md' | 'lg'
+  spacing?: 'sm' | 'md' | 'lg' 
 }
 
 const VRBRichText: types.Brick<VRBRichTextProps> = ({

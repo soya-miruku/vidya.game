@@ -4,7 +4,7 @@ import { pageNames } from "./pageNames";
 export const groupByKey = (list, key, {omitKey=false}) => list.reduce((hash, {[key]:value, ...rest}) => ({...hash, [value]:( hash[value] || [] ).concat(omitKey ? {...rest} : {[key]:value, ...rest})} ), {})
 export const classNames = (...classes) => classes.filter(Boolean).join(' ');
 export const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-export const isMobileSmall = () => (isMobile || isTablet);
+export const isMobileSmall = () => (isMobile && !isTablet);
 
 export const generateUniqueId = () => {
   var lut = []; for (var i=0; i<256; i++) { lut[i] = (i<16?'0':'')+(i).toString(16); }

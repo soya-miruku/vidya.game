@@ -47,7 +47,7 @@ export const Modal: React.FC<IModalProps> = ({children, className, style, onClos
       <motion.div style={{
         ...style,
         zIndex: 9999,
-      }} variants={dropIn} initial='hidden' animate='visible' exit='exit' onClick={(e) => e.stopPropagation()} className={classNames(styles.modal, 'flex justify-center items-center', className)}>
+      }} variants={dropIn} initial='hidden' animate='visible' exit='exit' onClick={(e) => e.stopPropagation()} className={classNames(styles.modal, 'flex justify-center items-center max-w-page-modal', className)}>
         {children}
       </motion.div>
     </Backdrop>
