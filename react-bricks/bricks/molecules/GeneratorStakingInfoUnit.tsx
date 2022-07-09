@@ -19,7 +19,7 @@ const GeneratorStakingInfoUnit: types.Brick<IGeneratorStakingUnitProps> = ({subt
       <PageViewSize enabled={!sectionProps.bgImage} className="flex justify-center items-center text-center gap-y-vxl">
         <VRBRichText isTitle={false} size='xl' propName='subtitle' text={subtitle} className="px-[180px] lg:px-[180px] tablet:px-[60px] md:px-[60px] sm:px-[25px] mobile:px-[25px]"> </VRBRichText>
         <GeneratingStakingInfo/>
-        <VRBRichText isTitle={false} size='sm' propName='disclaimer' text={disclaimer} className="px-[120px]"> </VRBRichText>
+        <VRBRichText isTitle={false} size='sm' propName='disclaimer' text={disclaimer} className="px-[120px] lg:px-[120px] tablet:px-[40px] md:px-[40px] sm:px-[15px] mobile:px-[15px]"> </VRBRichText>
       </PageViewSize>
     </Section>
   )
