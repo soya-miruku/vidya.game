@@ -54,9 +54,9 @@ export const GeneratorDapp = ({}) => {
                   return (
                     <div key={index} className={classNames('w-full flex flex-col justify-center', index % 2 === 0 ? 'items-start' : 'items-end')}>
                       <VTitle type='h4'>{pool.name}</VTitle>
-                      <VText size="lg">Balance : {pool.accountBalance.toFixed(3)}</VText>
-                      <VText size="lg">Total deposited : {pool.deposited.toFixed(3)}</VText>
-                      <VText size="lg">Total committed : {pool.amountCommitted.toFixed(3)}</VText>
+                      <VText size="lg">Balance : <span className="font-bold">{pool.accountBalance.toFixed(3)}</span></VText>
+                      <VText size="lg">Total deposited : <span className="font-bold">{pool.deposited.toFixed(3)}</span></VText>
+                      <VText size="lg">Total committed : <span className="font-bold">{pool.amountCommitted.toFixed(3)}</span></VText>
                     </div>
                   )
                 })}
