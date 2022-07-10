@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import {  useCalls } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 
@@ -6,17 +5,15 @@ import { useAccount } from "@/hooks/useAccount";
 import { CHAIN_GENERATOR_SETTINGS } from "@/contracts/generator";
 import VAULT_ABI from '@/contracts/abis/vaultAbi.json';
 import { formatEther } from "@ethersproject/units";
-export interface IGeneratorStats {
-  totalDistributed: number;
-  vidyaRate: number;
-}
+import { IGeneratorStats } from "@/common/providers/GeneratorProvider";
 
 export const useGeneratorStats = (): IGeneratorStats => {
   const { chainId } = useAccount();
 
   const defaultValues = {
     totalDistributed: 0,
-    vidyaRate: 0
+    rewardRate: 0,
+    totalPriority: 0
   }
 
   const calls = chainId === 1 && [
@@ -29,7 +26,12 @@ export const useGeneratorStats = (): IGeneratorStats => {
       contract: new Contract(CHAIN_GENERATOR_SETTINGS[chainId].vaultAddress, VAULT_ABI),
       method: "vidyaRate",
       args: []
-    }
+    },
+    {
+      contract: new Contract(CHAIN_GENERATOR_SETTINGS[chainId].vaultAddress, VAULT_ABI),
+      method: "totalPriority",
+      args: []
+    },
   ] || [];
 
   const results = useCalls(calls, {refresh: 'never', isStatic: false})
@@ -42,10 +44,12 @@ export const useGeneratorStats = (): IGeneratorStats => {
   });
 
   const totalDistributed = parseFloat(formatEther(results[0]?.value?.[0] || BigNumber.from(0)) || '0');
-  const vidyaRate = parseFloat(formatEther(results[1]?.value?.[0] || BigNumber.from(0)) || '0');
+  const rewardRate = parseFloat(formatEther(results[1]?.value?.[0] || BigNumber.from(0)) || '0');
+  const totalPriority = parseFloat(formatEther(results[2]?.value?.[0] || BigNumber.from(0)) || '0');
 
   return {
     totalDistributed,
-    vidyaRate
+    rewardRate,
+    totalPriority
   }
 }

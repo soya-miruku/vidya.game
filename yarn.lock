@@ -1862,10 +1862,10 @@
     lodash.pickby "^4.6.0"
     nanoid "3.1.22"
 
-"@usedapp/core@^1.0.15":
-  version "1.0.15"
-  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-1.0.15.tgz#66c982c13cf9aeb061b74fa6ad1f8ef6f7cd4fd2"
-  integrity sha512-dvjLiYVyutM25BiwiFlPjyhPVlLQA4Dg/WnN0Q8XPnWtyasM0mytxerGQMl0Um1WCtqQynV2R8SU5iQY723cCA==
+"@usedapp/core@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@usedapp/core/-/core-1.1.0.tgz#0636affb32a7935e691fbbb67559d13dec825751"
+  integrity sha512-nITHJkilOXIqwOzynww4cMPEnl/OS612GJE1AK0ResP3+rDD2ix/nGbA/kSnjgwtBi+9zHZiYc0R7XsajFcBLg==
   dependencies:
     "@metamask/detect-provider" "^1.2.0"
     "@uniswap/token-lists" "^1.0.0-beta.27"

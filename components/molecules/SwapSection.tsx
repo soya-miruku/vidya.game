@@ -1,7 +1,7 @@
 import { toFixedNumber } from '@/common/helpers';
 import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
 import { EMPTY_ADDRESS } from '@/contracts/addresses';
-import { useHasSetAllowance } from '@/hooks/dapps/uniswap/tokenContract';
+import { useHasSetAllowance } from '@/hooks/dapps/uniswap/useTokenContract';
 import { useBalances } from '@/hooks/dapps/uniswap/useBalances';
 import { getAmountsOut } from '@/hooks/dapps/uniswap/useGetAmountsOut';
 import { useGetPair } from '@/hooks/dapps/uniswap/useGetPair';

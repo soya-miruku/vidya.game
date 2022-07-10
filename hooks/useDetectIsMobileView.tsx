@@ -76,7 +76,7 @@ export const useDetectIsMobileView = (maxWidth:number=640) => {
     if(isTablet) {
       setIsTabletView(true);
     }
-  }, [isMobileSmall]);
+  }, [isMobileView]);
 
   return {isMobileView, isTabletView};
 }
