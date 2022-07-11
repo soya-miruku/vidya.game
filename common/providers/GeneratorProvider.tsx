@@ -7,6 +7,7 @@ export interface IPoolState {
   lptoken: string;
   teller: string;
   image: string;
+  symbol: string;
   commitmentStatus: boolean;
   isClaimingRewards: boolean;
   accountBalance: number;
