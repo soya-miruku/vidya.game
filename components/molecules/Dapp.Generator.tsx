@@ -41,7 +41,7 @@ export const GeneratorDapp = ({}) => {
       <AuthenticatedView>
         <div className="flex flex-col justify-between items-center py-vsm h-full gap-y-vsm">
           <div className="flex justify-between w-full sm:flex-nowrap flex-wrap">
-            <div className="flex flex-col w-full justify-start items-start gap-x-vlrg px-vlrg">
+            <div className="flex flex-col w-full justify-start items-start gap-x-vlrg sm:px-vlrg px-vsm">
               <VTitle type='h4'>Current Pool - <span className="text-accent-dark-200">{state.currentPool}</span></VTitle>
               <div className="flex gap-x-vsm">
                 <VText className="py-vsm" size="lg">Switch Pool: </VText>
@@ -64,7 +64,7 @@ export const GeneratorDapp = ({}) => {
             </div>
           </div>
           <div className="px-vsm">
-            <VItemContainer widthSize='full' heightSize='vhxl' dropShadow className='w-full h-full bg-gradient-to-br p-[1px] from-aimbotsRed-100/95 to-accent-dark-200/95 backdrop-blur-sm'>
+            <VItemContainer widthSize='full' heightSize='vhxl' dropShadow innerClassName="!rounded-[0]" className='w-full h-full bg-gradient-to-br p-[1px] from-aimbotsRed-100/95 to-accent-dark-200/95 backdrop-blur-sm !rounded-[0]'>
               <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg h-full'>
                 <SwapInput></SwapInput>
                 <SwapInput></SwapInput>
