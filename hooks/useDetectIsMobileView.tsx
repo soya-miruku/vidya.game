@@ -57,7 +57,7 @@ export const useDetectIsMobileView = (maxWidth:number=640) => {
     }
 
     const handleResize = () => {
-      if(innerWidth < maxWidth || isMobileView) {
+      if(innerWidth <= maxWidth || isMobileView) {
         setIsMobileView(true);
       } else {
         setIsMobileView(false);
@@ -69,14 +69,14 @@ export const useDetectIsMobileView = (maxWidth:number=640) => {
     }
   }, [])
 
-  useEffect(() => {
-    if(isMobileSmall() !== isMobileView) {
-      setIsMobileView(isMobileSmall());
-    }
-    if(isTablet) {
-      setIsTabletView(true);
-    }
-  }, [isMobileView]);
+  // useEffect(() => {
+  //   if(isMobileSmall() !== isMobileView) {
+  //     setIsMobileView(isMobileSmall());
+  //   }
+  //   if(isTablet) {
+  //     setIsTabletView(true);
+  //   }
+  // }, [isMobileView]);
 
-  return {isMobileView, isTabletView};
+  return {isMobileView, isTabletView: isTablet};
 }

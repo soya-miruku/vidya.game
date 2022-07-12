@@ -52,7 +52,7 @@ export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, pool})
   // });
 
   if(!currentPool) return null;
-
+  console.log(isMobileView)
   return (
     <VItemContainer showBorder={bordered} widthSize="v2xl" heightSize={(isMobileView || isTabletView) ? 'vsm' : 'vxxs'} className='px-vsm'>
       <div className={classNames('flex w-full flex-wrap gap-x-vsm gap-y-vsm justify-between items-center', bordered ? '' : 'px-4')}>
