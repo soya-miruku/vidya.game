@@ -2,6 +2,7 @@ import { classNames } from "@/common/helpers"
 import { GeneratorContext } from "@/common/providers/GeneratorProvider"
 import { useLoadUserPools } from "@/hooks/dapps/generator/useLoadUser"
 import { useAccount } from "@/hooks/useAccount"
+import { useDetectDeviceSize } from "@/hooks/useDetectIsMobileView"
 import { useContext, useEffect, useMemo } from "react"
 import { AuthenticatedView, UnAuthenticatedView } from "../atoms/AuthenticatedView"
 import { GradientButton } from "../atoms/GradientButton"
@@ -18,6 +19,7 @@ export interface IGeneratorDappProps {
 export const GeneratorDapp = ({}) => {
   const { Connect } = useAccount();
   const { state, updatePool, setCurrentPool } = useContext(GeneratorContext);
+  const { isMobileView } = useDetectDeviceSize();
   const userResults = useLoadUserPools(Object.keys(state.pools));
 
   useEffect(() => {
@@ -47,10 +49,10 @@ export const GeneratorDapp = ({}) => {
         <div className="flex flex-col justify-start items-center py-vsm h-full gap-y-vmd">
           <div className="flex justify-between w-full sm:flex-nowrap flex-wrap">
             <div className="flex flex-col w-full justify-start items-start gap-x-vlrg sm:px-vlrg px-vsm">
-              <VTitle type='h4'>Current Pool - <span className="text-accent-dark-200">{state.currentPool}</span></VTitle>
+              <VTitle type={isMobileView ? 'h5' : 'h4'}>Current Pool - <span className="text-accent-dark-200">{currentPool.symbol} ({currentPool.type})</span></VTitle>
               <div className="flex gap-x-vsm">
                 <VText className="py-vsm" size="lg">Switch Pool: </VText>
-                {pools.filter(pool => pool.name !== state.currentPool).map(pool => (<VButton padding={false} secondary animate={false} onClick={() => setCurrentPool(pool.name)}>{pool.name}</VButton>))}
+                {pools.filter(pool => pool.name !== state.currentPool).map(pool => (<VButton key={pool.name} padding={false} secondary animate={false} onClick={() => setCurrentPool(pool.name)}>{`${pool.symbol} (${pool.type})`}</VButton>))}
               </div>
               {/* <VText>Create Liquidity</VText> */}
             </div>
@@ -58,10 +60,9 @@ export const GeneratorDapp = ({}) => {
               <div className="border-[1px] border-violet-600 md:w-[380px] mobile:w-full sm:w-full  gap-y-vsm flex flex-col">
                 {pools.map((pool, index) => {
                   return (
-                    <div className="w-full flex flex-col border-t-[1px] border-violet-700 p-vmd">
+                    <div className="w-full flex flex-col border-t-[1px] border-violet-700 p-vmd" key={`${pool.name}_${index}`}>
                       <div key={index} className={classNames('w-full flex flex-col justify-center', index % 2 === 0 ? 'items-start' : 'items-end')}>
-                        <VTitle type='h5' className="border-b-[1px] border-b-light-400">{pool.name} pool</VTitle>
-                        {/* <VText size="lg">Balance : <span className="font-bold text-accent-dark-100">{pool.accountBalance.toFixed(3)}</span></VText> */}
+                        <VTitle type='h5' className="border-b-[1px] border-b-light-400">{pool.symbol} ({pool.type}) pool</VTitle>
                         <VText size="lg">Total deposited : <span className="font-bold text-accent-dark-100">{pool.deposited.toFixed(3)}</span></VText>
                         <VText size="lg">Total committed : <span className="font-bold text-accent-dark-100">{pool.amountCommitted.toFixed(3)}</span></VText>
                         <div className="flex gap-x-vsm justify-center items-center">

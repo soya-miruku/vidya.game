@@ -1,7 +1,7 @@
 import { classNames, ToReadableNumber } from '@/common/helpers';
 import { faCircleInfo } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useMemo } from 'react';
 import { usePopperTooltip } from 'react-popper-tooltip';
 import { VImage } from '../atoms/VImage';
 import { VItemContainer } from '../atoms/VItemContainer';
@@ -25,9 +25,12 @@ export interface IStakingCardProps {
 export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, pool}) => {
   const { isMobileView, isTabletView } = useDetectIsMobileView(1000);
   const { state, updatePool } = useContext(GeneratorContext);
-  const currentPool = state.pools[pool];
-  const {apr, tellerPriority, tellerBalance, distributionRate} = useGeneratorPoolCtx(currentPool, state.stats.rewardRate, state.stats.totalPriority);
 
+  const currentPool = useMemo(() => {
+    return state.pools[pool];
+  }, [JSON.stringify(state.pools), pool])
+
+  const {apr, tellerPriority, tellerBalance, distributionRate} = useGeneratorPoolCtx(currentPool, state.stats.rewardRate, state.stats.totalPriority);
 
   useEffect(() => {
     if(!currentPool) return;
@@ -58,8 +61,8 @@ export const StakingCard: React.FC<IStakingCardProps> = ({ bordered=true, pool})
             <VImage layout='responsive' objectFit='cover' src={currentPool.image} width={80} height={80} className="rounded-full"></VImage>
           </div>
           <div className='flex flex-col gap-y-vsm justify-start items-start text-left w-[120px]'>
-            <VLabel padding={false} secondary>{pool === 'single' ? 'Single Sided' : 'Liquidity Provided'}</VLabel>
-            <VTitle type='h5'>{pool === 'single' ? state.singleCoinSymbol : `${pool}/${state.singleCoinSymbol}`}</VTitle>
+            <VLabel padding={false} secondary>{currentPool.type === 'single' ? 'Single Sided' : 'Liquidity Provided'}</VLabel>
+            <VTitle type='h5'>{currentPool.symbol}</VTitle>
           </div>
         </div>
         <div className='flex max-w-[230px] lg:max-w-[230px] md:max-w-full sm:max-w-full mobile:max-w-full w-full justify-center items-center'>

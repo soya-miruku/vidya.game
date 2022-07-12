@@ -8,6 +8,7 @@ export interface IPoolState {
   teller: string;
   image: string;
   symbol: string;
+  type: string;
   commitmentStatus: boolean;
   isClaimingRewards: boolean;
   accountBalance: number;

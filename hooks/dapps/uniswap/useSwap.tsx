@@ -25,7 +25,6 @@ export const useSwapETHForExactTokens = (slippage:number =1): [(amount: number, 
     const deadline = getDeadline();
     const minAmountOut = calculateMinReceieved(amountOut, slippage);
     const path = [CHAIN_SETTINGS?.[chainId]?.WETH_ADDRESS, token1Address];
-    const amountIn = toWei(amount.toString());
 
     send(minAmountOut, path, user, deadline, {value: parseEther(amount.toString())});
   }
@@ -39,7 +38,7 @@ export const useSwapETHForExactTokens = (slippage:number =1): [(amount: number, 
 export const useSwapExactTokensForEth = (slippage:number=1): [(amount: number, amountOut: number, token1Address: string) => void, TransactionStatus] => {
   const { chainId, user } = useAccount();
   const contract = new Contract(CHAIN_SETTINGS[chainId || 1].UNISWAPV2_ROUTER02_ADDRESS, UNISWAP_ROUTER_ABI);
-  const { state, send } = useContractFunction(contract, 'swapExactETHForTokens', {transactionName: 'swapEthForTokens'});
+  const { state, send } = useContractFunction(contract, 'swapExactTokensForETH', {transactionName: 'swapEthForTokens'});
 
   const swapTokensForEth = (amount: number, amountOut: number, token1Address: string) => {
     const deadline = getDeadline();
@@ -57,6 +56,26 @@ export const useSwapExactTokensForEth = (slippage:number=1): [(amount: number, a
   ]
 }
 
+export const useSwapExactTokensForTokens = (token0Address: string, slippage:number=1): [(amount: number, amountOut: number, token1Address: string) => void, TransactionStatus] => {
+  const { chainId, user } = useAccount();
+  const contract = new Contract(CHAIN_SETTINGS[chainId || 1].UNISWAPV2_ROUTER02_ADDRESS, UNISWAP_ROUTER_ABI);
+  const { state, send } = useContractFunction(contract, 'swapExactTokensForTokens', {transactionName: 'swapTokensForTokens'});
+
+  const swapTokensForTokens = (amount: number, amountOut: number, token1Address: string) => {
+    const deadline = getDeadline();
+    const amountIn = toWei(amount.toString());
+    const minAmountOut = calculateMinReceieved(amountOut, slippage);
+
+    const path = [token0Address, token1Address];
+    send(amountIn, minAmountOut, path, user, deadline);
+  }
+
+  return [
+    swapTokensForTokens,
+    state
+  ]
+}
+
 export const useSwap = (token0: string, token1:string, slippage: number = 1):  [(amount: number, amountOut: number, token1Address: string) => void, TransactionStatus] => {
-  return token0 === ETH_ADDRESS ? useSwapETHForExactTokens(slippage) : token1 === ETH_ADDRESS ?  useSwapExactTokensForEth(slippage) : useSwapExactTokensForEth(slippage);
+  return token0 === ETH_ADDRESS ? useSwapETHForExactTokens(slippage) : token1 === ETH_ADDRESS ?  useSwapExactTokensForEth(slippage) : useSwapExactTokensForTokens(token0, slippage);
 }

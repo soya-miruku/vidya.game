@@ -1,5 +1,7 @@
 import React from 'react';
 import { classNames } from "@/common/helpers";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/pro-regular-svg-icons';
 
 export interface ButtonProps {
   primary?: boolean;
@@ -13,9 +15,10 @@ export interface ButtonProps {
   children?: any;
   role?: string;
   animate?: boolean;
+  isLoading?: boolean;
 }
 
-export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=true, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
+export const VButton: React.FC<ButtonProps> = ({children, isLoading, padding=true, rounded=true, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
   return (
     <button 
       className={classNames('group font-saria text-body-sm tracking-cta uppercase',
@@ -33,7 +36,10 @@ export const VButton: React.FC<ButtonProps> = ({children, padding=true, rounded=
       }} 
       {...props}> 
         <div className={classNames('flex', secondary ? 'border-b-2 border-b-accent-dark-200' : '')}>
-          {children}
+          <div className='flex justify-center items-center gap-x-vsm'>
+            {children}
+            {isLoading && <FontAwesomeIcon className='w-5 h-5 animate-spin text-dark-300' icon={faSpinner}></FontAwesomeIcon>}
+          </div>
           {primary && animate && !disabled && <i aria-hidden="true" className='group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f054"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
           {special && animate && !disabled && <i aria-hidden="true" className='group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f04b"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}
           {secondary && animate && !disabled && <i aria-hidden="true" className='dark:text-light-200 group-hover:before:opacity-100 group-hover:before:visible fas group-hover:before:right-[20px] before:invisible before:content-["\f103"] before:absolute before:opacity-0 before:top-[38%] before:-right-[20px] before:duration-500'/>}

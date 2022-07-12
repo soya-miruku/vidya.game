@@ -1,13 +1,13 @@
 import { toFixedNumber } from '@/common/helpers';
 import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
 import { EMPTY_ADDRESS } from '@/contracts/addresses';
-import { useHasSetAllowance } from '@/hooks/dapps/uniswap/useTokenContract';
+import { useApprove, useHasSetAllowance } from '@/hooks/dapps/uniswap/useTokenContract';
 import { useBalances } from '@/hooks/dapps/uniswap/useBalances';
 import { getAmountsOut } from '@/hooks/dapps/uniswap/useGetAmountsOut';
 import { useGetPair } from '@/hooks/dapps/uniswap/useGetPair';
-import { useSwap, useSwapETHForExactTokens } from '@/hooks/dapps/uniswap/useSwap';
+import { useSwap } from '@/hooks/dapps/uniswap/useSwap';
 import { useAccount } from 'hooks/useAccount';
-import React, { useState, useEffect, useMemo, useCallback } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { useContext } from 'react';
 import { AuthenticatedView, UnAuthenticatedView } from '../atoms/AuthenticatedView';
 import { SwapInput } from '../atoms/SwapInput';
@@ -35,15 +35,17 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   const [isUpdating, setIsUpdating] = useState(false);
   const [selectedFor, setSelectedFor] = useState<number>(-1);
   const [showCoinSearch, setShowCoinSearch] = useState(false);
+  const typingTimeoutRef = useRef<any>();
   
   const [token0Balance, token1Balance] = useBalances([token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS]);
   const { exists } = useGetPair(token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS);
-  const [ swapEthForTokens, state ] = useSwap(token0?.address, token1?.address, 1);
+  const [ swapTokens, state ] = useSwap(token0?.address, token1?.address, 1);
 
   const hasSetAllowance = useHasSetAllowance(token0?.address);
+  const [approve, approvalState] = useApprove(token0?.address);
 
-  const [token0Amount, setToken0Amount] = useState(0);
-  const [token1Amount, setToken1Amount] = useState(0);
+  const [token0Amount, setToken0Amount] = useState<string | number>(0);
+  const [token1Amount, setToken1Amount] = useState<string | number>(0);
 
   const findToken = (symbol: string) => tokenList?.find(token => token.symbol === symbol);
 
@@ -58,13 +60,35 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   }, [JSON.stringify(tokenList)])
 
   const isValid = useMemo(() => {
-    return token0 && token1 && token0Amount > 0 && token1Amount > 0 && token0Balance > 0 && token1Balance > 0 && hasSetAllowance && !isUpdating;
+    return token0 && token1 && token0Amount > 0 && token1Amount > 0 && token0Balance > 0 && hasSetAllowance && !isUpdating;
   }, [token0, token1, token0Amount, token1Amount, isUpdating]);
+
+  const stateError = useMemo(() => {
+    if(!state || !approvalState) return;
+    if(state?.errorMessage) return state.errorMessage;
+    if(approvalState?.errorMessage) return approvalState.errorMessage;
+  }, [state, approvalState]);
+
+  const stateLoading = useMemo(() => {
+    if(!state || !approvalState) return;
+    return state.status === 'Mining' || approvalState.status === 'Mining' || state.status === 'PendingSignature' || approvalState.status === 'PendingSignature';
+  }, [state, approvalState]);
+
+  useEffect(() => {
+    console.log(state);
+    if(state?.status === 'Success') {
+      setIsUpdating(() => false);
+      setToken0Amount(() => 0);
+      setToken1Amount(() => 0);
+    }
+  }, [state])
 
   const calculateAmountsOut = async (isFrom: boolean, amount: number) => {
     if(!token0 || !token1) return;
+    if(isNaN(amount)) return;
+    if(amount <= 0) return;
+
     return isFrom ? await getAmountsOut(chainId, library, amount, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, [token1.address, token0.address], exists);
- 
   };
 
   const handleSwitchTokens = () => {
@@ -77,23 +101,46 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   }
 
   const handleChangeToken0Amount = async (e) => {
-    setIsUpdating(() => true);
+    if(e.target.value === '') {
+      setToken0Amount(() => '');
+      return;
+    }
+
+    if(typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    
     const amount = toFixedNumber(e.target.value, DECIMALS);
     setToken0Amount(() => amount);
 
-    const amounts = await calculateAmountsOut(true, amount);
-    setToken1Amount(() => toFixedNumber(amounts, DECIMALS));
-    setIsUpdating(() => false);
+    typingTimeoutRef.current = setTimeout(async () => {
+      setIsUpdating(() => true);
+      const amounts = await calculateAmountsOut(true, amount);
+      setToken1Amount(() => toFixedNumber(amounts, DECIMALS));
+      setIsUpdating(() => false);
+    }, 500);
+
   }
 
   const handleChangeToken1Amount = async (e) => {
-    setIsUpdating(() => true);
+    if(e.target.value === '') {
+      setToken1Amount(() => '');
+      return;
+    }
+
+    if(typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+
     const amount = toFixedNumber(e.target.value, DECIMALS);
     setToken1Amount(() => amount);
 
-    const amounts = await calculateAmountsOut(false, amount);
-    setToken0Amount(() => toFixedNumber(amounts, DECIMALS));
-    setIsUpdating(() => false);
+    typingTimeoutRef.current = setTimeout(async () => {
+      setIsUpdating(() => true);
+      const amounts = await calculateAmountsOut(false, amount);
+      setToken0Amount(() => toFixedNumber(amounts, DECIMALS));
+      setIsUpdating(() => false);
+    }, 500);
   }
 
   const handleSelectTokenChange = async (forToken:number, token: TokenInfo) => {
@@ -125,11 +172,11 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
 
   const handleSwap = async () => {
     if(!token0 || !token1) return;
-    if(!token0Balance || !token1Balance) return;
     if(!hasSetAllowance) return;
     if(!isValid) return;
 
-    swapEthForTokens(token0Amount, token1Amount, token1?.address);
+    setIsUpdating(() => true);
+    swapTokens(token0Amount as number, token1Amount as number, token1?.address);
   }
 
   useEffect(() => {
@@ -182,9 +229,9 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
           </div>
           <AuthenticatedView>
             <div className='flex flex-col w-full justify-center items-center gap-y-1'>
-              {state?.errorMessage && <p className='text-aimbotsRed-100 uppercase text-body-xs'>{state.errorMessage}</p>}
-              {hasSetAllowance && <VButton disabled={!isValid} className='w-full flex justify-center' special onClick={handleSwap}>Swap</VButton>}
-              {!hasSetAllowance && <VButton className='w-full flex justify-center' primary onClick={() => {}}>Allow {token0?.symbol}</VButton>}
+              {stateError && <p className='text-aimbotsRed-100 uppercase text-body-xs'>{stateError}</p>}
+              {hasSetAllowance && <VButton disabled={!isValid || stateLoading} isLoading={stateLoading} className='w-full flex justify-center' special onClick={handleSwap}>Swap</VButton>}
+              {!hasSetAllowance && <VButton disabled={stateLoading} isLoading={stateLoading} className='w-full flex justify-center' primary onClick={approve}>Allow {token0?.symbol}</VButton>}
             </div>
           </AuthenticatedView>
           <UnAuthenticatedView>

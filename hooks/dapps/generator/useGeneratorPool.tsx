@@ -18,8 +18,8 @@ export interface IGeneratorPoolStats {
 
 export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPriority: number): IGeneratorPoolStats => {
   const { chainId } = useAccount();
-  const { reserve0 } = useReserves(pool?.lptoken && pool.lptoken);
-  const totalSupply = useTotalSupply(pool?.lptoken && pool.lptoken);
+  const { reserve0 } = useReserves(pool?.lptoken && chainId === 1 && pool.lptoken);
+  const totalSupply = useTotalSupply(pool?.lptoken && chainId === 1 && pool.lptoken);
 
   const calls = chainId === 1 && pool && pool.teller && [
     {
@@ -35,6 +35,15 @@ export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPr
   ] || [];
 
   const results = useCalls(calls, {refresh: 'never', isStatic: false})
+  
+  if(results?.length === 0) {
+    return {
+      tellerBalance: 0,
+      tellerPriority: 0,
+      distributionRate: 0,
+      apr: 0,
+    }
+  }
 
   results.forEach((result, index) => {
     if (result && result.error) {
@@ -45,9 +54,9 @@ export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPr
 
   const tellerPriority = parseFloat(formatEther(results[0]?.value?.[0] || BigNumber.from(0)) || '0');
   const tellerBalance = parseFloat(formatEther(results[1]?.value?.[0] || BigNumber.from(0)) || '0');
-  
+
   let rwt = 0;
-  if(pool?.lptoken) {
+  if(pool.type === 'LP') {
     const lmao = (reserve0 * 2) * (tellerBalance/totalSupply);
     rwt = (rewardRate * 60 * 60 * 24 * 365 * tellerPriority) / (totalPriority * lmao) * 100;
   }
