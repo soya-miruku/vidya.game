@@ -1,4 +1,5 @@
 import { CHAIN_GENERATOR_SETTINGS } from '@/contracts/generator';
+import { useEthers } from '@usedapp/core';
 import React, { createContext, useReducer, useEffect } from 'react';
 
 export interface IPoolState {
@@ -239,6 +240,7 @@ const reducer = (state: IGeneratorState, action: Action) => {
 }
 
 export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
+  const { chainId } = useEthers();
   const [state, dispatch] = useReducer(reducer, [], () => {
     if(typeof(window) !== 'undefined') {
       initialState.currentPool = localStorage.getItem('currentPool') ? JSON.parse(localStorage.getItem('currentPool')) : initialState.currentPool;
@@ -262,6 +264,14 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
   useEffect(() => {
     localStorage.setItem('currentPool', JSON.stringify(state.currentPool));
   }, [state.currentPool])
+
+  useEffect(() => {
+    for(const pool in state.pools) {
+      updatePool(pool, {
+        ...CHAIN_GENERATOR_SETTINGS[chainId].pool[pool],
+      })
+    }
+  }, [chainId])
   
   return (
     <GeneratorContext.Provider value={{state, updatePool, reset, setClaimAmount, setStats, setDeposited, setAmountCommitted, setCommitmentIndex, setAccountBalance, setApproval, setReady, setCurrentPool, setIsClaimingRewards}}>

@@ -26,7 +26,7 @@ export const CHAIN_GENERATOR_SETTINGS = {
     }
   },
   [Ropsten.chainId]: {
-    vaultAddress: '0x5BfCc3ad8e5ad7A710174837AD84E5029e714eDB',
+    vaultAddress: '0x5bfcc3ad8e5ad7a710174837ad84e5029e714edb',
     pool: {
       eth: {
         name: 'eth',

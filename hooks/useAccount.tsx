@@ -31,6 +31,5 @@ export const useAccount = () => {
       localStorage.removeItem('walletconnect');
     }
   }, [logout]);
-
   return { library, isAuthenticated: active && user, isAuthenticating, authError, user, Connect, Disconnect, isInitialized:true, initialize: () => {}, chainId: chainId || 1};
 }

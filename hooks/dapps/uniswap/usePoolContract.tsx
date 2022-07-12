@@ -14,7 +14,8 @@ export const useReserves = (poolAddress: string) => {
   }
 
   if(error) {
-    console.error('reserver error!', error)
+    // console.log(poolAddress)
+    // console.error('reserver error!', error)
     return {
       reserve0: 0,
       reserve1: 0

@@ -8,6 +8,7 @@ import { formatEther } from "@ethersproject/units";
 import { useAccount } from "@/hooks/useAccount";
 import { IPoolState } from "@/common/providers/GeneratorProvider";
 import { useReserves, useTotalSupply } from "../uniswap/usePoolContract";
+import { GeneratorValidForChain } from "@/contracts/helpers";
 
 export interface IGeneratorPoolStats {
   tellerBalance?: number;
@@ -17,11 +18,12 @@ export interface IGeneratorPoolStats {
 }
 
 export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPriority: number): IGeneratorPoolStats => {
+  // console.log(pool);
   const { chainId } = useAccount();
-  const { reserve0 } = useReserves(pool?.lptoken && chainId === 1 && pool.lptoken);
-  const totalSupply = useTotalSupply(pool?.lptoken && chainId === 1 && pool.lptoken);
+  const { reserve0 } = useReserves(pool?.lptoken && GeneratorValidForChain(chainId) && pool.lptoken);
+  const totalSupply = useTotalSupply(pool?.lptoken && GeneratorValidForChain(chainId) && pool.lptoken);
 
-  const calls = chainId === 1 && pool && pool.teller && [
+  const calls = GeneratorValidForChain(chainId) && pool && pool.teller && [
     {
       contract: new Contract(CHAIN_GENERATOR_SETTINGS[chainId].vaultAddress, VAULT_ABI),
       method: "tellerPriority",
