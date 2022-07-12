@@ -7,6 +7,7 @@ import { VText } from "../atoms/VText";
 import { VTitle } from "../atoms/VTitle";
 import { GeneratorDapp } from "../molecules/Dapp.Generator";
 import { useState } from "react";
+import { MultiPassDapp } from "../molecules/Dapp.Multipass";
 
 export interface IProgramModalEntryProps {
   onClose: () => void;
@@ -78,8 +79,8 @@ export const ProgramModalEntry = ({onClose}) => {
   }
   else if(slug === 'multipass') {
     return (
-      <ProgramModalWrapper title="Program: Multipass" onClose={onClose}>
-        <VTitle type="h1">Multipass Multipass Multipass!!</VTitle>
+      <ProgramModalWrapper title="Program: Multipass" description="MultiPass is an experimental new concept where NFTs are backed by Ethereum which can be redeemed at any time by the owner." onClose={onClose}>
+        <MultiPassDapp/>
       </ProgramModalWrapper>
     )
   }
