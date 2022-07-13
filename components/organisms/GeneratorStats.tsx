@@ -11,7 +11,6 @@ export const GeneratorStats = ({}) => {
 
   useEffect(() => {
     if(state.stats.totalDistributed !== totalDistributed || state.stats.rewardRate !== rewardRate || state.stats.totalPriority !== totalPriority) {
-      console.log('statarino')
       setStats({
         totalDistributed,
         rewardRate,
