@@ -1,7 +1,6 @@
 import { classNames } from "@/common/helpers"
 import { GeneratorContext } from "@/common/providers/GeneratorProvider"
 import { useLoadUserPools } from "@/hooks/dapps/generator/useLoadUser"
-import { useAccount } from "@/hooks/useAccount"
 import { useDetectDeviceSize } from "@/hooks/useDetectIsMobileView"
 import { useContext, useEffect, useMemo } from "react"
 import { AuthenticatedView, UnAuthenticatedView } from "../atoms/AuthenticatedView"
@@ -11,13 +10,13 @@ import { VButton } from "../atoms/VButton"
 import { VItemContainer } from "../atoms/VItemContainer"
 import { VText } from "../atoms/VText"
 import { VTitle } from "../atoms/VTitle"
+import { DappLogin } from "./DappLogin"
 
 export interface IGeneratorDappProps {
 
 }
 
 export const GeneratorDapp = ({}) => {
-  const { Connect } = useAccount();
   const { state, updatePool, setCurrentPool } = useContext(GeneratorContext);
   const { isMobileView } = useDetectDeviceSize();
   const userResults = useLoadUserPools(Object.keys(state.pools));
@@ -39,11 +38,7 @@ export const GeneratorDapp = ({}) => {
   return (
     <>
       <UnAuthenticatedView>
-        <div className="flex flex-col justify-center items-center text-center w-full h-full gap-y-vsm">
-          <VTitle type='h4'>Please connect to your wallet</VTitle>
-          <VText size="sm">Your wallet needs to be connected in order to use this feature</VText>
-          <VButton onClick={Connect} className='flex justify-center' special>Connect Wallet</VButton>
-        </div>
+        <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
         <div className="flex flex-col justify-start items-center py-vsm h-full gap-y-vmd">

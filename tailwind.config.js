@@ -132,6 +132,13 @@ module.exports = {
       }
     },
     extend: {
+      gridAutoColumns: {
+        '2fr': 'minmax(0, 2fr)',
+      },
+      gridTemplateColumns: {
+        'fill-100': 'repeat(auto-fill, minmax(144px, 1fr))',
+        'fill-keep-4': 'repeat(auto-fit, minmax(min(100%/2, max(144px, 100%/5), 1fr))',
+      },
       screens: {
         'tablet': {'raw': 'only screen and (max-width: 768px)'},  
         // 'tablet': '768px',

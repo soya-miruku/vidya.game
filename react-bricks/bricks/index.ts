@@ -34,6 +34,7 @@ import SwapUnit from './molecules/SwapUnit';
 import EmptyUnit from './molecules/EmptyUnit';
 import GeneratorStatsUnit from './molecules/GeneratorStatsUnit';
 import GeneratorStakingInfoUnit from './molecules/GeneratorStakingInfoUnit';
+import MultiPassStatsUnit from './molecules/MultipassStatsUnit';
 import PDFViewUnit from './molecules/PDFViewUnit';
 
 const bricks: types.Brick<any>[] = [
@@ -72,6 +73,7 @@ const bricks: types.Brick<any>[] = [
   EmptyUnit,
   GeneratorStatsUnit,
   GeneratorStakingInfoUnit,
+  MultiPassStatsUnit,
   PDFViewUnit
 ]
 

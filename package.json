@@ -27,7 +27,7 @@
     "@uniswap/sdk-core": "^3.0.1",
     "@uniswap/v3-sdk": "^3.8.3",
     "@usedapp/coingecko": "^1.0.3",
-    "@usedapp/core": "^1.1.0",
+    "@usedapp/core": "^1.1.1",
     "@walletconnect/web3-provider": "^1.7.8",
     "@web3-react/walletconnect-connector": "^6.2.13",
     "@web3auth/web3auth": "^1.1.0",

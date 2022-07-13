@@ -3,7 +3,6 @@ import { useAccount } from "@/hooks/useAccount";
 import { formatEther } from "@ethersproject/units";
 import { ERC20Interface, MultiCallABI, useCalls, useMulticallAddress } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
-import { useEffect } from "react";
 
 export const useBalances = (tokenAddresses: string[]) => {
   const { user } = useAccount();
@@ -30,6 +29,6 @@ export const useBalances = (tokenAddresses: string[]) => {
       console.error(result.error);
     }
   });
-
-  return results.map((result) => parseFloat(formatEther(result?.value?.[0] || BigNumber.from(0)) || '0'));
+  
+  return results.map((result) => parseFloat(result?.value?.[0]?._hex?.length <=4 ? result?.value?.[0].toNumber() : formatEther(result?.value?.[0] || BigNumber.from(0)) || '0'));
 }

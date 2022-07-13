@@ -2,9 +2,7 @@ import {  MultiCallABI, useCalls, useMulticallAddress } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 import { useAccount } from "@/hooks/useAccount";
 import { formatEther } from "@ethersproject/units";
-import { MultipassValidForChain } from "@/contracts/helpers";
-import { CHAIN_MULTIPASS_SETTINGS } from "@/contracts/multipass";
-import MULTIPASS_ABI from '@/contracts/abis/multipassABI.json';
+import { CHAIN_MULTIPASS_SETTINGS, multiPassContract } from "@/contracts/multipass";
 
 
 export interface IMultiPassStats {
@@ -15,13 +13,10 @@ export interface IMultiPassStats {
   levelsBurned: number;
   highestLevel: number;
   pooledEther: number;
-
+  totalLevels: number;
 }
 
-export const multiPassContract = (chainId: number) => {
-  if(!MultipassValidForChain(chainId)) return undefined;
-  return new Contract(CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress, MULTIPASS_ABI);
-}
+
 
 export const useMultiPassStats = (): IMultiPassStats => {
   const { chainId } = useAccount();
@@ -34,7 +29,8 @@ export const useMultiPassStats = (): IMultiPassStats => {
     levelsBrought: 0,
     levelsBurned: 0,
     highestLevel: 0,
-    pooledEther: 0
+    pooledEther: 0,
+    totalLevels: 0
   }
 
   const contract = multiPassContract(chainId);
@@ -74,6 +70,11 @@ export const useMultiPassStats = (): IMultiPassStats => {
       contract: new Contract(multicallAddress, MultiCallABI),
       method: "getEthBalance",
       args: [CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress]
+    },
+    {
+      contract: new Contract(multicallAddress, MultiCallABI),
+      method: "totalLevels",
+      args: []
     }
   ] || [];
 
@@ -93,6 +94,7 @@ export const useMultiPassStats = (): IMultiPassStats => {
   const levelsBought = results[4]?.value?.[0] || BigNumber.from(0);
   const levelsBurned = results[5]?.value?.[0] || BigNumber.from(0);
   const pooledEther = results[6]?.value?.[0] || BigNumber.from(0);
+  const totalLevels = results[7]?.value?.[0] || BigNumber.from(0);
 
   return {
     circulatingSupply: totalSupply?.toNumber() || 0,
@@ -101,6 +103,7 @@ export const useMultiPassStats = (): IMultiPassStats => {
     levelsBrought: levelsBought?.toNumber() || 0,
     levelsBurned: levelsBurned?.toNumber() || 0,
     highestLevel: topLevel?.toNumber() || 0,
-    pooledEther: parseFloat(formatEther(pooledEther) || '0')
+    pooledEther: parseFloat(formatEther(pooledEther) || '0'),
+    totalLevels: totalLevels?.toNumber() || 0
   }
 }
