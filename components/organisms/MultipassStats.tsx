@@ -69,7 +69,7 @@ export const MultiPassStats = ({}) => {
       <div className="my-12 mx-auto prose gap-y-vmd flex flex-col px-vsm ">
         <VTitle type="h4">Statistics</VTitle>
         <div className="relative overflow-hidden h-[390px]">
-          { !isNextDisabled || !isPrevDisabled  &&
+          { !(isNextDisabled && isPrevDisabled)  &&
             <div className="flex absolute bottom-0 justify-center items-center w-full gap-x-vmd">
             <button onClick={movePrev} className="border-[1px] disabled:text-accent-light-100/40 disabled:border-accent-light-100/50 text-accent-dark-100 border-accent-dark-100/60 px-vsm py-1 z-10" disabled={isPrevDisabled}> Prev</button>
             <button onClick={moveNext} className="border-[1px] disabled:text-accent-light-100/40 disabled:border-accent-light-100/50 text-accent-dark-100 border-accent-dark-100/60 px-vsm py-1 z-10" disabled={isNextDisabled}> Next</button>
