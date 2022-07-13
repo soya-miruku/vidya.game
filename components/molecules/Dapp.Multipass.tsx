@@ -54,10 +54,10 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
             )}>
               <div className="h-full w-full flex justify-center items-center gap-vsm">
                 <div className="">
-                  <VLabel>{token.tokenId}</VLabel>
+                  <VLabel overrideColors>{token.tokenId}</VLabel>
                 </div>
                 <div className="flex">
-                  <VText size="sm">{token.name} - Lv.{token.tokenRank}</VText>
+                  <VText overrideTextColor size="sm">{token.name} - Lv.{token.tokenRank}</VText>
                 </div>
               </div>
             </div>
@@ -137,11 +137,11 @@ export const MultiPassDapp = ({}) => {
           <div className="w-full flex justify-between sm:flex-row flex-col gap-vsm p-vmd">
             <div className="flex flex-col border-[1px] border-accent-dark-800 bg-black sm:w-[300px] w-full">
               <div className="flex justify-between items-center p-vsm">
-                <VTitle type="h5"><span className="border-[1px] px-2 border-accent-dark-100 text-accent-dark-100">{nft?.tokenId}</span> - {nft?.name || 'PLACEHOLDER'}</VTitle>
-                <VLabel>Lv. {nft?.tokenRank || 0}</VLabel>
+                <VTitle overrideTextColor type="h5"><span className="border-[1px] px-2 border-accent-dark-100 text-accent-dark-100">{nft?.tokenId}</span> - {nft?.name || 'PLACEHOLDER'}</VTitle>
+                <VLabel overrideColors>Lv. {nft?.tokenRank || 0}</VLabel>
               </div>
               <div className="w-full px-vsm flex flex-col justify-center items-center">
-                <VText size='md'>{nft?.description}</VText>
+                <VText overrideTextColor size='md'>{nft?.description}</VText>
                 <div className="w-[200px] sm:h-[223px] h-[250px] relative">
                   {nft?.mediaSrc ? <video style={{
                     objectFit: 'contain',
@@ -151,8 +151,8 @@ export const MultiPassDapp = ({}) => {
                 </div>
               </div>
               <div className="w-[100.5%] h-auto bg-accent-dark-800 px-vsm text-center hover:brightness-150 hover:cursor-pointer">
-                <VText size="md" className="w-full font-bold">BURN</VText>
-                <VText className="!text-[10px] uppercase !text-light-300" size="sm">Destroy this multipass and redeem its reserved ETH value</VText>
+                <VText size="md" overrideTextColor className="w-full font-bold">BURN</VText>
+                <VText className="!text-[11px] uppercase !text-light-300" size="sm">Destroy this multipass and redeem its reserved ETH value</VText>
               </div>
             </div>
             <div className="w-full border-[1px] flex p-vsm">
