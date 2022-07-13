@@ -38,7 +38,7 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
   }
 
   return (
-    <div className='w-full h-full flex flex-col justify-center items-center flex-wrap'>
+    <div className='w-full h-full flex flex-col justify-center items-center '>
       <div className='w-full grid justify-center place-items-center justify-items-center grid-cols-4 tablet:grid-cols-2 mobile:grid-cols-2 gap-vxl tablet:gap-vlrg mobile:gap-vlrg p-vlrg'>
         <PriceCard length={ 'md'} height={'xs'} label='PRICE' price={formatDecimals(data?.currentPrice[currencySelected]?.value)} perctChange={formatDecimals(data?.currentPrice[currencySelected].changePercentage24h)} increase="auto"></PriceCard>
         <PriceCard length={'md'} height={'xs'} label='MARKET CAP' price={formatPrice(data?.marketCap[currencySelected]?.value)} perctChange={data?.marketCap[currencySelected]?.changePercentage24h.toFixed(2) || 0} increase="auto"></PriceCard>

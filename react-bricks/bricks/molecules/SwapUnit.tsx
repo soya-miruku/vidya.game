@@ -28,7 +28,7 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sec
             </div>
           </div>
           <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-x-[70px] flex-wrap'>
-            <SwapSection className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
+            <SwapSection showBorder={true} className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
             <ProgramListSection/>
           </div>
         </div>
