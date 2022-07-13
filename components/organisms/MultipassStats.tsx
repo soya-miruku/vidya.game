@@ -33,7 +33,8 @@ export const MultiPassStats = ({}) => {
 
     if (direction === 'next' && carousel.current !== null) {
       return (
-        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current
+        console.log(carousel.current.offsetWidth * currentIndex, maxScrollWidth.current),
+        carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current - 100
       );
     }
 
@@ -52,7 +53,7 @@ export const MultiPassStats = ({}) => {
     maxScrollWidth.current = carousel.current ? carousel.current.scrollWidth - carousel.current.offsetWidth : 0;
     setIsNextDisabled(isDisabled('next'));
     setIsPrevDisabled(isDisabled('prev'));
-    
+
     window.onresize = () => {
       maxScrollWidth.current = carousel.current ? carousel.current.scrollWidth - carousel.current.offsetWidth : 0;
       setIsNextDisabled(isDisabled('next'));
@@ -74,13 +75,13 @@ export const MultiPassStats = ({}) => {
             <button onClick={moveNext} className="border-[1px] disabled:text-accent-light-100/40 disabled:border-accent-light-100/50 text-accent-dark-100 border-accent-dark-100/60 px-vsm py-1 z-10" disabled={isNextDisabled}> Next</button>
           </div>
           <div ref={carousel} className="relative flex overflow-hidden scroll-smooth snap-x snap-mandatory touch-pan-x z-0 gap-x-vsm">
-            <div className="relative min-w-[400px] h-full snap-start grid grid-cols-2 gap-vsm">
+            <div className="relative min-w-full h-full snap-start grid grid-cols-2 gap-vsm">
               <StatCard dropShadow={false} bordered={true} title={<VTitle type="h4" className="!text-accent-dark-200">{circulatingSupply.toFixed(0)}</VTitle>} md label='Circulating Supply'></StatCard>
               <StatCard dropShadow={false} bordered={false} title={<VTitle type="h4" className="!text-accent-dark-200">{levelsBrought.toFixed(0)}</VTitle>} md label='Levels Brought'></StatCard>
               <StatCard dropShadow={false} bordered={false} title={<VTitle type="h4" className="!text-accent-dark-200">{levelsBurned.toFixed(0)}</VTitle>} md label='Leves Burned'></StatCard>
               <StatCard dropShadow={false} bordered={true} title={<VTitle type="h4" className="!text-accent-dark-200">{pooledEther.toFixed(3)}</VTitle>} md label='Pooled Ether'></StatCard>
             </div>
-            <div className="relative min-w-[400px] h-full snap-start grid grid-cols-2 gap-vsm">
+            <div className="relative min-w-full h-full snap-start grid grid-cols-2 gap-vsm">
               <StatCard dropShadow={false} bordered={true} title={<VTitle type="h4" className="!text-accent-dark-200">{multipassBurned.toFixed(0)}</VTitle>} md label='MultiPass Burned'></StatCard>
               <StatCard dropShadow={false} bordered={false} title={<VTitle type="h4" className="!text-accent-dark-200">{multipassMinted.toFixed(0)}</VTitle>} md label='MultiPass Minted'></StatCard>
               <StatCard dropShadow={false} bordered={false} title={<VTitle type="h4" className="!text-accent-dark-200">{highestLevel.toFixed(0)}</VTitle>} md label='Highest Level'></StatCard>
