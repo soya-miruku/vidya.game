@@ -33,7 +33,6 @@ export const MultiPassStats = ({}) => {
 
     if (direction === 'next' && carousel.current !== null) {
       return (
-        console.log(carousel.current.offsetWidth * currentIndex, maxScrollWidth.current),
         carousel.current.offsetWidth * currentIndex >= maxScrollWidth.current - 100
       );
     }
