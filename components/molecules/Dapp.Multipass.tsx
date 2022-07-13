@@ -147,7 +147,7 @@ export const MultiPassDapp = ({}) => {
                     objectFit: 'contain',
                     width: '100%',
                     height: '100%',
-                  }} src={nft.mediaSrc} autoPlay loop></video> : <Image layout="fill" objectFit='contain' src='/placeholders/img.png'></Image> }
+                  }} src={nft.mediaSrc} autoPlay loop muted></video> : <Image layout="fill" objectFit='contain' src='/placeholders/img.png'></Image> }
                 </div>
               </div>
               <div className="w-[100.5%] h-auto bg-accent-dark-800 px-vsm text-center hover:brightness-150 hover:cursor-pointer">

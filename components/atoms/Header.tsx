@@ -167,9 +167,9 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
             </div>
           </motion.div>}
         </AnimatePresenceModal>
-      <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg',
-      isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
-      style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
+        <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg',
+          isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
+          style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
           <Link href="/">
             <p className='hover:cursor-pointer'>
               <Logo enableDarkMode={false}/>
