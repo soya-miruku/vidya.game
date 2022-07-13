@@ -21,7 +21,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
   const { isDarkMode, toggleMode } = useDarkMode();
   const navbarRef = useRef<HTMLDivElement>(null);
   const [showSwapScreen, setShowSwapScreen] = useState(false);
-  const { isAuthenticated, Connect, Disconnect} = useAccount();
+  const { isAuthenticated, isAuthenticating, Connect, Disconnect} = useAccount();
   const { isMobileView } = useDetectDeviceSize();
   const WIDTH = isMobileView ? 250 : 550;
 
@@ -182,8 +182,10 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
             {!isMobileView && <div role='group' className='group flex justify-center items-center gap-x-[5px] hover:cursor-pointer' onClick={async () => {
               isAuthenticated ? Disconnect() : await Connect();
             }}>
-              <div className={classNames(isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)] ' : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
-              <VText overrideTextColor size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : 'Connect Wallet'}</VText>
+              <div className={classNames(
+                isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)]' 
+                : isAuthenticating ? 'bg-amber-400 shadow-[0_0_13px_4px_rgba(251,191,36,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(251,191,36,0.4)] animate-pulse' : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
+              <VText overrideTextColor size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
             </div>}
             <div>
               <button onClick={() => setShowSwapScreen(true)} className="hidden sm:block shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
