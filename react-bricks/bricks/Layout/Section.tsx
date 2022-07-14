@@ -76,6 +76,7 @@ const Section: React.FC<SectionProps> = ({
       )
     }}
       style={{
+        zIndex:0,
         minHeight: height ? height : 'auto',
         backgroundColor: bgColor,
         paddingLeft: `${paddingX}px`,

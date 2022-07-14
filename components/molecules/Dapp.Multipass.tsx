@@ -128,7 +128,7 @@ export const MultiPassDapp = ({}) => {
   }, [nfts, currentTokenIndex])
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full relative">
       <UnAuthenticatedView>
         <DappLogin/>
       </UnAuthenticatedView>

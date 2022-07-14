@@ -16,7 +16,7 @@ export const GradientButton = ({onClick, disabled, children, className, fontSize
     <div style={{
       // width: width ? `${width}px` : '135px',
       // height: height ? `${height}px` : '40px',
-    }} className={classNames('sm:w-[135px] w-[110px]', styles.button__container, className)}>
+    }} className={classNames('sm:w-[135px] w-[90px]', styles.button__container, className)}>
       <a onClick={onClick} className={styles.bordered__button}>
       <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>

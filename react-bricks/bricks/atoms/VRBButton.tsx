@@ -62,13 +62,13 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
   }
   return (
     <>
-    <AnimatePresenceModal>{showModal && <ProgramModalEntry onClose={() => setShowModal(false)}></ProgramModalEntry>}</AnimatePresenceModal>
-    <VButton onClick={handleClickEvent} primary={primary} special={special} secondary={secondary} rounded={rounded}>
-      {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
-        {text}
-      </VText>
-      :text  }
-    </VButton>
+      <AnimatePresenceModal>{showModal && <ProgramModalEntry onClose={() => setShowModal(false)}></ProgramModalEntry>}</AnimatePresenceModal>
+      <VButton onClick={handleClickEvent} primary={primary} special={special} secondary={secondary} rounded={rounded}>
+        {typeof(text) === 'string' ? <VText size='md' spacing="md" overrideTextColor={background || !secondary}>
+          {text}
+        </VText>
+        :text  }
+      </VButton>
     </>
   )
 }
