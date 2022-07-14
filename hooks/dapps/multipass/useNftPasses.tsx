@@ -1,6 +1,8 @@
 import { multiPassContract } from "@/contracts/multipass";
 import { useAccount } from "@/hooks/useAccount"
+import { formatEther } from "@ethersproject/units";
 import { useCall, useCalls } from "@usedapp/core";
+import { BigNumber } from "ethers";
 
 export const useTokenURI = (tokenId: number) => {
   const { user, chainId } = useAccount();
@@ -141,4 +143,24 @@ export const useGetMultipleTokenRanks = (tokenIds: number[]) => {
 
   const tokenRanks = results.map((result) => result?.value?.[0] || null);
   return { tokenRanks, error: null };
+}
+
+export const useGetReservedETHForTokenLevel = (tokenLevel: number) => {
+  const { user, chainId } = useAccount();
+  const contract = multiPassContract(chainId);
+
+  const { value, error } = useCall(user && contract && {
+    contract,
+    method: 'ETHToReceive',
+    args: [tokenLevel]
+  }, {refresh: 'never'}) ?? {}
+
+  if(error) {
+    console.error(error);
+    return { reservedETH: null, error };
+  }
+
+  const reservedETH = parseFloat(formatEther(value?.[0] || BigNumber.from(0)));
+
+  return { reservedETH, error };
 }

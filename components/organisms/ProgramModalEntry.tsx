@@ -5,9 +5,9 @@ import { useRouter } from "next/router"
 import { Modal } from "../atoms/Modal";
 import { VText } from "../atoms/VText";
 import { VTitle } from "../atoms/VTitle";
-import { GeneratorDapp } from "../molecules/Dapp.Generator";
 import { useState } from "react";
-import { MultiPassDapp } from "../molecules/Dapp.Multipass";
+import { MultiPassDapp } from "./Dapp/MultiPass";
+import { GeneratorDapp } from "./Dapp/Generator";
 
 export interface IProgramModalEntryProps {
   onClose: () => void;

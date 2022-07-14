@@ -16,9 +16,11 @@ export interface ButtonProps {
   role?: string;
   animate?: boolean;
   isLoading?: boolean;
+  style?: any;
+  customColor?: string;
 }
 
-export const VButton: React.FC<ButtonProps> = ({children, isLoading, padding=true, rounded=true, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
+export const VButton: React.FC<ButtonProps> = ({children, style, isLoading, padding=true, rounded=true, customColor, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
   return (
     <button 
       className={classNames('group font-saria text-body-sm tracking-cta uppercase',
@@ -31,6 +33,12 @@ export const VButton: React.FC<ButtonProps> = ({children, isLoading, padding=tru
       disabled ? 'opacity-50 cursor-not-allowed' : animate ? 'hover:pr-[40px] hover:pl-[20px]' : '',
       className,
       )}
+      style={{
+        ...style,
+        ...(disabled ? {cursor: 'not-allowed'} : {}),
+        ...(isLoading ? {'pointer-events': 'none'} : {}),
+        backgroundColor: customColor ? customColor : '',
+      }}
       onClick={() => {
         if(onClick && !disabled) onClick();
       }} 

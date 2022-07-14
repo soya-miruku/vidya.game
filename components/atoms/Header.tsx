@@ -83,7 +83,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
     if(isBusy) {
-      navbarRef.current.classList.remove(...['bg-dark-300/70', 'backdrop-blur-lg']);
+      navbarRef.current.classList.remove(...['dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
     }
     const handleScroll = () => {
       if(!navbarRef && !navbarRef.current) return;
@@ -93,12 +93,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       if (currentY > prevY) {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('translate-y-0');
-        navbarRef.current.classList.add('bg-dark-300/70', 'backdrop-blur-lg');
+        navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
       }
       else if(currentY <= 100 || isOpen) {
-        navbarRef.current.classList.remove(...['bg-dark-300/70', 'backdrop-blur-lg']);
+        navbarRef.current.classList.remove(...['dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
       } 
       else {
         if(!navbarRef.current) return;
@@ -132,7 +132,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
   useEffect(() => {
     if(showSwapScreen) {
       navbarRef.current.style.transform = isMobileView ? `translateY(${outerHeight - 92}px)` : 'translateY(90vh)';
-      navbarRef.current.classList.add('bg-dark-300/70', 'backdrop-blur-lg');
+      navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     else{
       navbarRef.current.style.transform = 'translateY(0)';
@@ -144,7 +144,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       y: '-100vh',
     },
     visible: {
-      y: showSwapScreen ? '-10vh' : '-100vh',
+      y: showSwapScreen ? '-9.8vh' : '-100vh',
       opacity: 1,
       transition: {
         duration: 0.025,
