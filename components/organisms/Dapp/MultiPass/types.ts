@@ -16,8 +16,11 @@ export interface IMultiPassesListViewProps {
   tokens: INFT[];
   currentlySelectedTokenIndex: number;
   onTokenClick: (tokenId: number, hasProgress: boolean) => void;
+  onMergingBegan: () => void;
+  onMergingEnded: () => void;
 }
 
 export interface IMultiPassViewProps {
   token: INFT;
+  isMerging: boolean;
 }

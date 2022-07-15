@@ -25,6 +25,7 @@ export const MultiPassDapp = ({}) => {
   const { tokenRanks } = useGetMultipleTokenRanks(tokenIds);
   const [ nextToken, setNextToken ] = useState<number>(0);
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
+  const [ isMerging, setIsMerging ] = useState(false);
 
   const nfts: INFT[] = useMemo(() => {
     if(!tokenRanks || tokenRanks.length <= 0) return [];
@@ -72,6 +73,7 @@ export const MultiPassDapp = ({}) => {
     }
     else {
       setCurrentTokenIndex(index)
+      setIsMerging(false);
     }
   }
 
@@ -85,7 +87,8 @@ export const MultiPassDapp = ({}) => {
             <div className="flex justify-between gap-x-vmd">
               <VButton primary animate={false} customColor='#FF4365' onClick={() => {
                 setShowConfirmModal(false);
-                setCurrentTokenIndex(nextToken)
+                setCurrentTokenIndex(nextToken);
+                setIsMerging(false);
               }}>Leave</VButton>
               <VButton primary onClick={() => setShowConfirmModal(false)}> Stay
               </VButton>
@@ -98,58 +101,19 @@ export const MultiPassDapp = ({}) => {
         <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
-        <div id="modal-multipass-inner" className="w-full h-full flex overflow-hidden justify-between flex-col overflow-y-auto">
-          <div className="w-full h-full flex justify-between items-start sm:flex-row flex-col gap-vlrg p-vsm">
-            <div className="flex flex-col gap-vmd h-full sm:w-auto w-full justify-center items-center">
-              {nft && <MultiPassView token={nft}/>}
-              <ControlPanel nft={nft}/>
+        <div id="modal-multipass-inner" className="w-full h-full flex overflow-hidden sm:justify-center justify-between flex-col overflow-y-auto">
+          <div className="w-full h-auto flex justify-between items-start sm:flex-row flex-col gap-vlrg p-vsm">
+            <div className="flex flex-col gap-vmd h-full sm:w-auto w-full justify-start items-center ">
+              {nft && <MultiPassView token={nft} isMerging={isMerging}/>}
+              <ControlPanel nft={nft} balance={balance}/>
             </div>
             <div className="flex flex-col w-full h-full items-end justify-between gap-vmd">
-              <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank).bgColor }}>
-                  <div>
-                    <VText size="md">BUY LEVELS</VText>
-                    <div className="flex justify-start items-center h-[55px] gap-[5px]">
-                      <div className="flex flex-col gap-y-[5px]">
-                        <button className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg" style={{
-                          borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                        }}>
-                          <VText size='md'>+</VText>
-                        </button>
-                        <button className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg" style={{
-                          borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                        }}>
-                          <VText size='md'>-</VText>
-                        </button>
-                      </div>
-                      <NumberInput style={{
-                        borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                      }} className="focus:outline-none bg-transparent sm:w-36 w-16 h-full border-[2px] rounded-bl-lg rounded-tr-lg text-body dark:text-light-100 text-dark-100 appearance-none outline-none p-1" min={0} max={balance} step='1'></NumberInput>
-                      </div>
-                  </div>
-                  <div>
-                    <VText size="md">BURN LEVELS</VText>
-                    <div className="flex justify-start items-center h-[55px] gap-[5px]">
-                      <div className="flex flex-col gap-y-[5px]">
-                        <button className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg" style={{
-                          borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                        }}>
-                          <VText size='md'>+</VText>
-                        </button>
-                        <button className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg" style={{
-                          borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                        }}>
-                          <VText size='md'>-</VText>
-                        </button>
-                      </div>
-                      <NumberInput style={{
-                        borderColor: mapRankToColors(nft?.tokenRank).bgColor,
-                      }} className="focus:outline-none bg-transparent sm:w-36 w-16 h-full border-[2px] rounded-bl-lg rounded-tr-lg text-body dark:text-light-100 text-dark-100 appearance-none outline-none p-1" min={0} max={balance} step='1'></NumberInput>
-                      </div>
-                  </div>
-              </div>
-              <div className="w-full h-auto flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank).bgColor }}>
-                <VText className="px-vsm" size="lg">BALANCE - <span className="font-bold">{balance}</span></VText>
-                <MultiPassesListView currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
+              <div className="w-full h-full flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank).bgColor }}>
+                <div className="flex gap-x-vsm justify-between w-full items-center px-vsm">
+                  <VText className="px-vsm sm:w-auto w-full" size="lg">BALANCE - <span className="font-bold">{balance}</span></VText>
+                  {nft && isMerging && <VTitle className="w-auto" type="h6">Merging has been initiated for (#{nft.tokenId})</VTitle>}
+                </div>
+                <MultiPassesListView onMergingEnded={() => setIsMerging(false)} onMergingBegan={() => setIsMerging(true)} currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
               </div>
             </div>
           </div>
