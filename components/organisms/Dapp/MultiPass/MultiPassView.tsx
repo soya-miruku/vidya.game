@@ -41,7 +41,7 @@ export const MultiPassView = ({token, isMerging}: IMultiPassViewProps) => {
           scale: 1
         }} whileHover={{
           scale: 0.97
-        }} className={`w-[110%] -ml-[0px] h-10 px-vsm flex text-center justify-center items-center hover:cursor-pointer`} style={{
+        }} className={`w-[100%] -ml-[0px] h-10 px-vsm flex text-center justify-center items-center hover:cursor-pointer`} style={{
           backgroundColor: isMerging ? '#000' : mapRankToColors(token?.tokenRank).bgColor
         }}>
           <VText style={{
