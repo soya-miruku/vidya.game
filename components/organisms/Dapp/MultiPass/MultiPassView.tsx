@@ -48,11 +48,11 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
               ></Image>
               <p className="pt-1">{(reservedETH || 0).toFixed(2) || 0}</p>
             </div>
-            <motion.button onClick={() => setShowConfirmModal(true)} initial={{
+            <motion.button disabled={isMerging} onClick={() => setShowConfirmModal(true)} initial={{
               scale: 1
             }} whileHover={{
               scale: 0.97
-            }} className={`w-[100%] h-11 flex text-center justify-center items-center hover:cursor-pointer rounded-b-2xl`} style={{
+            }} className={`w-[100%] h-11 flex text-center justify-center items-center hover:cursor-pointer disabled:cursor-not-allowed rounded-b-2xl`} style={{
               // backgroundColor: isMerging ? '#000' : mapRankToColors(token?.tokenRank).bgColor
             }}>
               <VText style={{
