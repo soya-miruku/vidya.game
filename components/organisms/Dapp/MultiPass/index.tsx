@@ -1,5 +1,5 @@
 import { CHAIN_MULTIPASS_SETTINGS } from "@/contracts/multipass";
-import { useGetMultipleTokenIds, useGetMultipleTokenRanks, useGetMultipleTokenURIs } from "@/hooks/dapps/multipass/useNftPasses";
+import { useGetMultipleTokenIds, useGetMultipleTokenRanks, useGetMultipleTokenURIs, useGetReservedETHForTokenLevel } from "@/hooks/dapps/multipass/useNftPasses";
 import { useBalances } from "@/hooks/dapps/uniswap/useBalances";
 import { useAccount } from "@/hooks/useAccount";
 import { useState, useMemo } from "react";
@@ -15,6 +15,7 @@ import { AnimatePresenceModal, Modal } from "@/components/atoms/Modal";
 import { VTitle } from "@/components/atoms/VTitle";
 import { VButton } from "@/components/atoms/VButton";
 import { NumberInput } from "@/components/atoms/NumberInput";
+import { ConfirmationModal } from "@/components/molecules/ConfirmationModal";
 
 export const MultiPassDapp = ({}) => {
   const { chainId } = useAccount();
@@ -26,6 +27,7 @@ export const MultiPassDapp = ({}) => {
   const [ nextToken, setNextToken ] = useState<number>(0);
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
   const [ isMerging, setIsMerging ] = useState(false);
+  const [canBurnOrBuyLevels, setCanBurnOrBuyLevels] = useState(true);
 
   const nfts: INFT[] = useMemo(() => {
     if(!tokenRanks || tokenRanks.length <= 0) return [];
@@ -65,6 +67,8 @@ export const MultiPassDapp = ({}) => {
     return nfts[currentTokenIndex];
   }, [nfts, currentTokenIndex])
 
+  const { reservedETH } = useGetReservedETHForTokenLevel(nft?.tokenRank || 1);
+
   const handleNextToken = (tokenId: number, hasProgress: boolean) => {
     const index = nfts.findIndex(nft => nft.tokenId === tokenId);
     setNextToken(index);
@@ -80,22 +84,11 @@ export const MultiPassDapp = ({}) => {
   return (
     <div className="w-full h-full relative">
       <AnimatePresenceModal>
-        {showConfirmModal && <Modal>
-          <div className="flex flex-col justify-center items-center dark:bg-dark-300 bg-light-200 rounded-xl p-vxl drop-shadow-xl gap-vsm">
-            <VTitle type='h4'>You are about to leave the merge phase</VTitle>
-            <VText size="lg">Are you sure you want to leave the merge phase?</VText>
-            <div className="flex justify-between gap-x-vmd">
-              <VButton primary animate={false} customColor='#FF4365' onClick={() => {
-                setShowConfirmModal(false);
-                setCurrentTokenIndex(nextToken);
-                setIsMerging(false);
-              }}>Leave</VButton>
-              <VButton primary onClick={() => setShowConfirmModal(false)}> Stay
-              </VButton>
-            </div>
-          </div>
-
-        </Modal>}
+        {showConfirmModal && <ConfirmationModal onClose={() => setShowConfirmModal(false)} onConfirm={() => {
+            setShowConfirmModal(false);
+            setCurrentTokenIndex(nextToken);
+            setIsMerging(false);
+          }} title="You are about to leave the merge phase" description="Are you sure you want to leave the merge phase?" confirmText="Leave" cancelText="Stay"/>}
       </AnimatePresenceModal>
       <UnAuthenticatedView>
         <DappLogin/>
@@ -104,8 +97,8 @@ export const MultiPassDapp = ({}) => {
         <div id="modal-multipass-inner" className="w-full h-full flex overflow-hidden sm:justify-center justify-between flex-col overflow-y-auto">
           <div className="w-full h-auto flex justify-between items-start sm:flex-row flex-col gap-vlrg p-vsm">
             <div className="flex flex-col gap-vmd h-full sm:w-auto w-full justify-start items-center ">
-              {nft && <MultiPassView token={nft} isMerging={isMerging}/>}
-              <ControlPanel nft={nft} balance={balance}/>
+              {nft && <MultiPassView reservedETH={reservedETH} token={nft} isMerging={isMerging}/>}
+              <ControlPanel nft={nft} reservedETH={reservedETH} canBurnOrBuyLevels={canBurnOrBuyLevels}/>
             </div>
             <div className="flex flex-col w-full h-full items-end justify-between gap-vmd">
               <div className="w-full h-full flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank).bgColor }}>
@@ -113,7 +106,9 @@ export const MultiPassDapp = ({}) => {
                   <VText className="px-vsm sm:w-auto w-full" size="lg">BALANCE - <span className="font-bold">{balance}</span></VText>
                   {nft && isMerging && <VTitle className="w-auto" type="h6">Merging has been initiated for (#{nft.tokenId})</VTitle>}
                 </div>
-                <MultiPassesListView onMergingEnded={() => setIsMerging(false)} onMergingBegan={() => setIsMerging(true)} currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
+                <MultiPassesListView onMerginInProgress={(isProgressing) => {
+                  setCanBurnOrBuyLevels(!isProgressing);
+                }} onMergingEnded={() => setIsMerging(false)} onMergingBegan={() => setIsMerging(true)} currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
               </div>
             </div>
           </div>

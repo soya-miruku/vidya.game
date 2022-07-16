@@ -13,6 +13,7 @@ import { VButton } from "@/components/atoms/VButton";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faInfinity } from "@fortawesome/pro-regular-svg-icons";
 import { GradientBorder } from "@/components/atoms/GradientBorder";
+import { useMergePasses } from "@/hooks/dapps/multipass/useMege";
 
 export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?: boolean, displayImage?: boolean}) => {
   return (
@@ -35,12 +36,18 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
   )
 }
 
-export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onTokenClick, onMergingBegan, onMergingEnded}: IMultiPassesListViewProps) => {
+export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onTokenClick, onMergingBegan, onMergingEnded, onMerginInProgress}: IMultiPassesListViewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
   const [ mergeList, setMergeList ] = useState<INFT[]>([]);
   const [ isDragging, setIsDragging ] = useState(false);
   const [ availableTokens, setAvailableTokens ] = useState<INFT[]>(tokens);
+  const { mergePasses, state } = useMergePasses(mergeList?.map(token => token.tokenId) || []);
+  const isMerginInProgress = useMemo(() => {
+    const inProgress = state.status === 'Mining' || state.status === 'PendingSignature';
+    onMerginInProgress(inProgress);
+    return inProgress;
+  }, [state.status]);
 
   const selectedToken = useMemo(() => {
     return tokens && tokens[currentlySelectedTokenIndex];
@@ -93,7 +100,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
         <div ref={containerRef} className="flex w-full h-full flex-col justify-between gap-vsm overflow-x-scroll scrollbar-thin relative z-100 py-vsm">
           {availableTokens.length <= 0 && mergeList.length <=0 && <VText size="lg">You do not own any passes</VText>}
           {(availableTokens.length > 0 || mergeList.length > 0) && <div className="flex w-full justify-center items-start z-0 h-auto">
-          <div ref={dropZoneRef} className="w-full h-[280px] border-[1px] border-dashed flex justify-center items-center p-vmd -z-[1]">
+          <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed flex justify-center items-center p-vmd -z-[1]">
             {mergeList.length <= 0 && <div className="flex justify-center w-full"><VText size="md" className="font-mono">Drag and drop passes here to begin merging with the selected pass <span className="font-bold">({selectedToken?.tokenId})</span></VText></div>}
             {mergeList.length > 0 && <div className="w-full h-full overflow-hidden flex">
               <Deck items={mergeList} onRemove={(nft) => {
@@ -101,20 +108,25 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                 setAvailableTokens([...availableTokens, nft]);
               }}/>
                <div className="flex flex-col gap-vsm justify-center items-center">
-                <VButton rounded={false} primary animate={false} customColor={mapRankToColors(selectedToken.tokenRank).bgColor} 
-                  className="h-full w-[50px] rounded-tr-2xl rounded-br-2xl flex justify-center items-center hover:!bg-accent-dark-200">
+                <VButton disabled={isMerginInProgress} onClick={async () => {
+                  await mergePasses();
+                }} rounded={false} primary animate={false} customColor={mapRankToColors(selectedToken.tokenRank).bgColor} 
+                  className="h-full w-[50px] rounded-tr-2xl rounded-br-2xl flex justify-center items-center font-bold hover:!bg-accent-dark-200">
                   <p className="rotate-90" style={{color: mapRankToColors(selectedToken.tokenRank).textColor}}>Merge</p>
                 </VButton>
               </div>
             </div>}
           </div>
           </div>}
+          <div className="flex flex-col h-full w-full items-center justify-end gap-vsm">
+            {state.errorMessage && <VText size="lg" className="font-mono w-auto !text-aimbotsRed-100">{state.errorCode === -32000 ? 'Cannot estimate gas' : state.errorMessage}</VText>}
+            {state.status === 'Success' && <VText size="lg" className="font-mono w-auto !text-aimbotsGreen-100">Merge successful</VText>}
           <div className="flex gap-vmd justify-center items-end flex-wrap px-vsm h-auto w-full">
             {availableTokens.map((token, index) => {
               if(!token) return null;
               return (
                 <motion.li 
-                  drag={token.tokenId !== selectedToken.tokenId}
+                  drag={token.tokenId !== selectedToken.tokenId && !isMerginInProgress}
                   dragConstraints={{left: 0, right: 0, top: 0, bottom: 0}}
                   dragElastic={1}
                   onDragStart={() => setIsDragging(() => true)}
@@ -141,6 +153,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                 </motion.li>
               )
             })}
+          </div>
           </div>
         </div>
       </div>

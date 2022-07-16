@@ -153,7 +153,7 @@ export const useGetReservedETHForTokenLevel = (tokenLevel: number) => {
     contract,
     method: 'ETHToReceive',
     args: [tokenLevel]
-  }, {refresh: 'never'}) ?? {}
+  }, {refresh: 1}) ?? {}
 
   if(error) {
     console.error(error);
