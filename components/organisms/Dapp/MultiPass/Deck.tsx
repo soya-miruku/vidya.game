@@ -29,7 +29,7 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove }) => {
   const [gone] = useState(() => new Set());
   const [props, api] = useSprings(items.length, i => ({
     ...to(i),
-    from: from(i),
+    from: from(i)
   }));
 
   const bind: any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
@@ -59,11 +59,12 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove }) => {
       }, 600)
   })
   return (
-    <div className={classNames('flex w-full h-full justify-center items-center relative', className)}>
+    <div className={classNames('flex w-full h-full justify-center items-center relative animate-spin', className)}>
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div className={styles.deck} key={i} style={{ x, y }}>
           {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
           <animated.div
+            className=" animate-brightGlow"
             {...bind(i)}
             style={{
               transform: interpolate([rot, scale], trans),
