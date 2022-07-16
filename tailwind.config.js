@@ -160,7 +160,18 @@ module.exports = {
           },
           '100%': {
             filter: 'brightness(1.7)',
-          }
+          },
+        },
+        brightGlower: {
+          '0%': {
+            filter: 'brightness(1.1)',
+          },
+          '50%' : {
+            filter: 'brightness(1.0)',
+          },
+          '100%': {
+            filter: 'brightness(2.2)',
+          },
         },
         scroll: {
           '0%': {
@@ -175,6 +186,8 @@ module.exports = {
       animation: {
         scroll: 'scroll 1.5s infinite',
         brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
+        brightGlower: 'brightGlower 1s ease-in-out infinite alternate',
+        'spin-fast': 'spin 0.7s linear infinite',
       },
       width: {
         ...allowableSizes,

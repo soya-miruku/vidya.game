@@ -56,7 +56,7 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
               // backgroundColor: isMerging ? '#000' : mapRankToColors(token?.tokenRank).bgColor
             }}>
               <VText style={{
-                color: mapRankToColors(token?.tokenRank).textColor
+                color: isMerging ? 'gray' : mapRankToColors(token?.tokenRank).textColor
               }} size="lg" overrideTextColor className='w-full !font-bold'>BURN/DESTROY</VText>
             </motion.button>
             {state.errorMessage && <VText size="md" overrideTextColor className="text-aimbotsRed-100 pb-2">{state.errorCode === -32000 ? 'Cannot estimate gas' : state.errorMessage}</VText>}
