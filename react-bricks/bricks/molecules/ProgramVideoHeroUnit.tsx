@@ -14,7 +14,9 @@ interface IProgramVideoHeroUnitProps extends SectionProps, IVideoHeroProps {
 const ProgramVideoHeroUnit: types.Brick<IProgramVideoHeroUnitProps> = ({videoUrl, videoDesc, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay, ...sectionProps}) => {
   const {isAdmin, previewMode} = useAdminContext();
   return (
-    <Section {...sectionProps} className="h-full">
+    <Section {...sectionProps} style={{
+      height: sectionProps.height ? sectionProps.height : 'auto',
+    }} className="h-full">
       <VideoHero videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
     </Section>
   )

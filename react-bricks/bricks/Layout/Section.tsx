@@ -26,7 +26,8 @@ export interface SectionProps {
   enableParallax?: boolean
   parallaxMoveTo?: ParallaxMoveTo
   parallaxSpeed?: number
-  blur?: BlurAmount
+  blur?: BlurAmount,
+  style?: React.CSSProperties
 }
 
 const ParallaxV2 = (Parallax as any) as React.FC<ParallaxProps>;
@@ -46,6 +47,7 @@ const Section: React.FC<SectionProps> = ({
   parallaxSpeed=500,
   parallaxMoveTo,
   blur,
+  style
 }) => {
   const { isMobileView } = useDetectDeviceSize();
   const bgColor = bg.color;
@@ -76,8 +78,9 @@ const Section: React.FC<SectionProps> = ({
       )
     }}
       style={{
+        ...style,
         zIndex:0,
-        height: height ? height : 'auto',
+        minHeight: height ? height : 'auto',
         backgroundColor: bgColor,
         paddingLeft: `${paddingX}px`,
         paddingRight: `${paddingX}px`,
