@@ -194,7 +194,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
 
   return (
     <div className={className}>
-       <AnimatePresenceModal>{showCoinSearch &&<TokenSearchModal forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} onClose={() => handleSelectShowCoinSearch(false, -1)}/> }</AnimatePresenceModal>
+      <AnimatePresenceModal>{showCoinSearch &&<TokenSearchModal forToken={selectedFor} onSelect={handleSelectTokenChange} tokenList={tokenList} onClose={() => handleSelectShowCoinSearch(false, -1)}/> }</AnimatePresenceModal>
       <VItemContainer widthSize='v2xl' heightSize='vhxl' dropShadow className={showBorder ? 'w-full bg-gradient-to-br p-[1px] from-aimbotsRed-100/95 to-accent-dark-200/95 backdrop-blur-sm': ''}>
         <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg'>
           <div className='flex justify-between items-center'>

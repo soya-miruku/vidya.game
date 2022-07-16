@@ -25,3 +25,5 @@ yarn-debug.log*
 yarn-error.log*
 
 .npmrc
+
+# ignore all mp4 files in all folders
