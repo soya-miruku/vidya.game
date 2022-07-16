@@ -11,6 +11,7 @@ import { mapRankToColors } from './helpers';
 export interface IDeckProps {
   className?: string;
   items: INFT[]
+  isLoading?: boolean;
   onRemove ?: (item: INFT) => void;
 }
 
@@ -25,7 +26,7 @@ const to = (i: number) => ({
 const from = (_i: number) => ({ x: 0, rot: 0, scale: 1.5, y: -1000 })
 const trans = (r: number, s: number) => `perspective(1500px) rotateX(30deg) rotateY(${r / 10}deg) rotateZ(${r}deg) scale(${s})`
 
-export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove }) => {
+export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove, isLoading }) => {
   const [gone] = useState(() => new Set());
   const [props, api] = useSprings(items.length, i => ({
     ...to(i),
@@ -59,7 +60,7 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove }) => {
       }, 600)
   })
   return (
-    <div className={classNames('flex w-full h-full justify-center items-center relative animate-spin-fast', className)}>
+    <div className={classNames('flex w-full h-full justify-center items-center relative', isLoading ? 'animate-spin-fast': 'animate-spin-slow', className)}>
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div className={styles.deck} key={i} style={{ x, y }}>
           {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}

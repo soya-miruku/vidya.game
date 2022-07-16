@@ -103,7 +103,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
           <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed flex justify-center items-center p-vmd -z-[1]">
             {mergeList.length <= 0 && <div className="flex justify-center w-full"><VText size="md" className="font-mono">Drag and drop passes here to begin merging with the selected pass <span className="font-bold">({selectedToken?.tokenId})</span></VText></div>}
             {mergeList.length > 0 && <div className="w-full h-full overflow-hidden flex">
-              <Deck items={mergeList} onRemove={(nft) => {
+              <Deck isLoading={isMerginInProgress} items={mergeList} onRemove={(nft) => {
                 setMergeList(mergeList.filter(token => token.tokenId !== nft.tokenId));
                 setAvailableTokens([...availableTokens, nft]);
               }}/>

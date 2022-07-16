@@ -188,6 +188,7 @@ module.exports = {
         brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
         brightGlower: 'brightGlower 1s ease-in-out infinite alternate',
         'spin-fast': 'spin 0.7s linear infinite',
+        'spin-slow': 'spin 1.5s linear infinite',
       },
       width: {
         ...allowableSizes,

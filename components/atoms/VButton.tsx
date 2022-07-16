@@ -18,11 +18,13 @@ export interface ButtonProps {
   isLoading?: boolean;
   style?: any;
   customColor?: string;
+  type?: 'button' | 'submit' | 'reset';
 }
 
-export const VButton: React.FC<ButtonProps> = ({children, style, isLoading, padding=true, rounded=true, customColor, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
+export const VButton: React.FC<ButtonProps> = ({type, children, style, isLoading, padding=true, rounded=true, customColor, special, primary, secondary, className, disabled, animate=true, onClick=undefined, role, ...props}) => {
   return (
     <button 
+      type={type}
       className={classNames('group font-saria text-body-sm tracking-cta uppercase',
       'px-[30px]  b-0 transition-all duration-500 overflow-hidden relative',
       padding ? 'py-[19px]' :'py-[7px]',
