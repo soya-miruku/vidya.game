@@ -129,7 +129,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                   onDragEnd={(e) => handleDragEnd(token, index, e)}
                   onClick={() => {
                     if(isDragging || token.tokenId === selectedToken.tokenId) return;
-                    // document.getElementById('modal-multipass-inner').scrollTo(0,0)
+                    //document.getElementById('modal-multipass-inner').scrollTo(0,0)
                     onTokenClick(token.tokenId, mergeList.length > 0);
                   }}  
                   key={`${token.tokenId}_${index}`}
