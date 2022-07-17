@@ -80,9 +80,9 @@ const Section: React.FC<SectionProps> = ({
                   backgroundSize: 'contain',
                   backgroundPositionX: `${(percentage * (parallaxSpeed/1000)) * 100}%`,
                   backgroundRepeat: 'no-repeat',
-                  width: `${100+(percentage*20)}%!important`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
+                  width: `${100+(percentage*20)}%important`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 }},
-              backdropFilter:`blur(${percentage * (initialAmount * 1.5)}px)`,
+                backdropFilter:`blur(${percentage * (initialAmount * 1.5)}px)`,
                 height: '100%',
                 width: '100%'
             }}
