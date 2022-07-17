@@ -22,13 +22,13 @@ export const useBalances = (tokenAddresses: string[]) => {
     }) || undefined;
   }) ?? []
 
-  const results = useCalls(calls) ?? tokenAddresses.map(() => BigNumber.from(0));
+  const results = useCalls(calls, {refresh: 1}) ?? tokenAddresses.map(() => BigNumber.from(0));
 
   results.forEach((result, index) => {
     if (result && result.error) {
       console.error(result.error);
     }
   });
-
-  return results.map((result) => parseFloat(formatEther(result?.value?.[0] || BigNumber.from(0)) || '0'));
+  
+  return results.map((result) => parseFloat(result?.value?.[0]?._hex?.length <=4 ? result?.value?.[0].toNumber() : formatEther(result?.value?.[0] || BigNumber.from(0)) || '0'));
 }

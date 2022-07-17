@@ -5,11 +5,18 @@ export interface IGradientButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   children?: React.ReactNode;
+  className?: string;
+  fontSize?: 'sm' | 'md' | 'lg';
+  width?: number;
+  height?: number;
 }
 
-export const GradientButton = ({onClick, disabled, children}: IGradientButtonProps) => {
+export const GradientButton = ({onClick, disabled, children, className, fontSize, width, height}: IGradientButtonProps) => {
   return (
-    <div className={classNames('sm:w-[135px] w-[110px]', styles.button__container)}>
+    <div style={{
+      // width: width ? `${width}px` : '135px',
+      // height: height ? `${height}px` : '40px',
+    }} className={classNames('sm:w-[135px] w-[90px]', styles.button__container, className)}>
       <a onClick={onClick} className={styles.bordered__button}>
       <svg height="100%" width="100%" xmlns="http://www.w3.org/2000/svg">
         <defs>
@@ -24,7 +31,7 @@ export const GradientButton = ({onClick, disabled, children}: IGradientButtonPro
         </defs>
           <rect className={styles.svg__button} height="100%" width="100%" />
         </svg>
-        <p className='text-dark-200'>{children}</p>
+        <p className={fontSize === 'lg' ? '!text-lg' : fontSize === 'md' ? '!text-body-sm' : fontSize === 'sm' ? '!text-body-xs' : ''}>{children}</p>
       </a>
     </div>
   )

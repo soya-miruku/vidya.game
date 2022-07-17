@@ -19,8 +19,8 @@ const PDFViewUnit: types.Brick<IPDFViewUnitProps> = ({title, pdfUrl, ...sectionP
   const {isMobileView, isTabletView} = useDetectIsMobileView();
   return (
     <Section {...sectionProps} className="prose">
-      <PageViewSize enabled={!sectionProps.bgImage} className="items-center">
-        <VTitle type='h3'>{title}</VTitle>
+      <PageViewSize enabled={!sectionProps.bgImage} className="items-center justify-center">
+        <VTitle type='h4'>{title}</VTitle>
         <PDFViewer url={pdfUrl} height={isMobileView ? 640 : 780} width={isMobileView ? innerWidth - 10 : 680}/>
         {/* <object data={pdfUrl} width='100%' height={1009} ></object> */}
       </PageViewSize>

@@ -4,10 +4,11 @@ import { BasicCard, IBasicCardProps } from './BasicCard';
 
 export interface IStatCardProps extends IBasicCardProps {
   long?: boolean
+  md?: boolean
 }
 
-export const StatCard: React.FC<IStatCardProps> = ({bordered=true, center, long, title, label}) => {
+export const StatCard: React.FC<IStatCardProps> = ({bordered=true, center, long, md, title, label, dropShadow=true}) => {
   return (
-    <BasicCard center={center} bordered={bordered} title={title} label={label} length={long ? 'xl' : 'xs'}></BasicCard>
+    <BasicCard dropShadow={dropShadow} center={center} bordered={bordered} title={title} label={label} length={long ? 'xl' : md ? 'md' : 'xs'}></BasicCard>
   )
 }

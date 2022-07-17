@@ -1,10 +1,15 @@
 import { CHAIN_GENERATOR_SETTINGS } from '@/contracts/generator';
+import { useEthers } from '@usedapp/core';
 import React, { createContext, useReducer, useEffect } from 'react';
 
 export interface IPoolState {
+  name: string;
   token: string;
   lptoken: string;
   teller: string;
+  image: string;
+  symbol: string;
+  type: string;
   commitmentStatus: boolean;
   isClaimingRewards: boolean;
   accountBalance: number;
@@ -21,8 +26,16 @@ export interface IPoolState {
   ready: boolean;
 }
 
+export interface IGeneratorStats {
+  totalDistributed: number;
+  rewardRate: number;
+  totalPriority: number;
+}
+
 export interface IGeneratorState {
   currentPool: string
+  singleCoinSymbol: string
+  stats: IGeneratorStats
   pools: {
     [key: string]: IPoolState
   }
@@ -30,7 +43,7 @@ export interface IGeneratorState {
 
 export interface IGeneratorContext {
   state: IGeneratorState;
-  setNew: (pool: string, update: IPoolState | any) => void;
+  updatePool: (pool: string, update: IPoolState | any) => void;
   reset: () => void;
   setClaimAmount: (pool: string, claimAmount: number) => void;
   setDeposited: (pool: string, depositedAmount: number) => void;
@@ -41,10 +54,17 @@ export interface IGeneratorContext {
   setReady: (pool: string, ready: boolean) => void;
   setIsClaimingRewards: (pool: string, isClaimingRewards: boolean) => void;
   setCurrentPool: (pool: string) => void;
+  setStats: (stats: IGeneratorStats) => void;
 }
 
 const initialState = {
   currentPool: 'single',
+  singleCoinSymbol: 'VIDYA',
+  stats: {
+    totalDistributed: 0,
+    rewardRate: 0,
+    totalPriority: 0
+  },
   pools: 
   {
     eth: {
@@ -96,6 +116,7 @@ const ACTIONS = {
   SET_READY: 'SET_READY',
   SET_CURRENT_POOL_INDEX: 'SET_CURRENT_POOL_INDEX',
   SET_IS_CLAIMING_REWARDS: 'SET_IS_CLAIMING_REWARDS',
+  SET_STATS: 'SET_STATS'
 }
 
 export const GeneratorContext = createContext<IGeneratorContext | null>(null);
@@ -120,6 +141,12 @@ export type Action = {
 
 const reducer = (state: IGeneratorState, action: Action) => {
   switch(action.type) {
+    case ACTIONS.SET_STATS: {
+      return {
+        ...state,
+        stats: action.payload
+      }
+    }
     case ACTIONS.SET_NEW:{
       return {
         ...state,
@@ -213,6 +240,7 @@ const reducer = (state: IGeneratorState, action: Action) => {
 }
 
 export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
+  const { chainId } = useEthers();
   const [state, dispatch] = useReducer(reducer, [], () => {
     if(typeof(window) !== 'undefined') {
       initialState.currentPool = localStorage.getItem('currentPool') ? JSON.parse(localStorage.getItem('currentPool')) : initialState.currentPool;
@@ -220,7 +248,7 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
     return initialState;
   });  
 
-  const setNew = (pool: string, update: IPoolState | any) : void => dispatch({ type: ACTIONS.SET_NEW, payload:update, pool });
+  const updatePool = (pool: string, update: IPoolState | any) : void => dispatch({ type: ACTIONS.SET_NEW, payload:update, pool });
   const reset = () : void => dispatch({ type: ACTIONS.RESET });
   const setClaimAmount = (pool: string, claimAmount: number) : void => dispatch({ type: ACTIONS.SET_CLAIM_AMOUNT, payload:claimAmount, pool });
   const setDeposited = (pool: string, depositedAmount: number) : void => dispatch({ type: ACTIONS.SET_DEPOSITED, payload:depositedAmount, pool });
@@ -231,13 +259,22 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
   const setReady = (pool: string, isReady: boolean) : void => dispatch({ type: ACTIONS.SET_READY, payload:isReady, pool });
   const setCurrentPool = (pool: string) : void => dispatch({ type: ACTIONS.SET_CURRENT_POOL_INDEX, pool });
   const setIsClaimingRewards = (pool: string, isClaimingRewards: boolean) : void => dispatch({ type: ACTIONS.SET_IS_CLAIMING_REWARDS, payload:isClaimingRewards, pool });
+  const setStats = (stats: IGeneratorStats) : void => dispatch({ type: ACTIONS.SET_STATS, payload:stats });
 
   useEffect(() => {
     localStorage.setItem('currentPool', JSON.stringify(state.currentPool));
   }, [state.currentPool])
+
+  useEffect(() => {
+    for(const pool in state.pools) {
+      updatePool(pool, {
+        ...CHAIN_GENERATOR_SETTINGS[chainId].pool[pool],
+      })
+    }
+  }, [chainId])
   
   return (
-    <GeneratorContext.Provider value={{state, setNew, reset, setClaimAmount, setDeposited, setAmountCommitted, setCommitmentIndex, setAccountBalance, setApproval, setReady, setCurrentPool, setIsClaimingRewards}}>
+    <GeneratorContext.Provider value={{state, updatePool, reset, setClaimAmount, setStats, setDeposited, setAmountCommitted, setCommitmentIndex, setAccountBalance, setApproval, setReady, setCurrentPool, setIsClaimingRewards}}>
       {children}
     </GeneratorContext.Provider>
   )

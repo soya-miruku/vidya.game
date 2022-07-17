@@ -13,9 +13,10 @@ interface TextProps {
   className?: string;
   children?: React.ReactNode;
   onClick?: any;
+  style?: React.CSSProperties;
 }
 
-export const VText: React.FC<TextProps> = ({size, weight="normal", spacing, overrideTextColor, className, children, onClick, maxChar=69}) => {
+export const VText: React.FC<TextProps> = ({size, weight="normal", spacing, overrideTextColor, className, children, onClick, style, maxChar=69}) => {
   // if(typeof(children) === 'string') {
   //   children = children.slice(0, maxChar)
   // }
@@ -25,7 +26,7 @@ export const VText: React.FC<TextProps> = ({size, weight="normal", spacing, over
       spacing === 'sm' ? 'tracking-cta' : spacing === 'md' ? 'tracking-cta' : 'tracking-7',
       size === 'sm' ? 'text-body-xs leading-5' : size === 'md' ? 'text-body-sm leading-cta' : size === 'lg'  ? 'text-body leading-7' : 'text-standfirst leading-[45px]', 
       weight === 'thin' ? 'font-thin' : weight === 'extralight' ? 'font-extralight' : weight === 'light' ? 'font-light' : weight === 'normal' ? 'font-normal' : weight === 'medium' ? 'font-medium' : weight === 'semibold' ? 'font-semibold' : weight === 'bold' ? 'font-bold' : weight === 'extrabold' ? 'font-extrabold' : '',
-      className)}>
+      className)} style={style}>
       {children}
     </div>
   )

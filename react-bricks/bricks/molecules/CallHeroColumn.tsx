@@ -33,7 +33,7 @@ const CallHeroColumn: types.Brick<CallHeroUnitProps> = ({ propName, gap, backgro
     <Section className={className} {...sectionProps}>
        <Repeater propName={propName || 'columns'} renderItemWrapper={(item, index) => {
           return (
-            <div style={{zIndex: 100}} key={index}>
+            <div style={{zIndex: 2}} key={index}>
               {item}
             </div>
           )

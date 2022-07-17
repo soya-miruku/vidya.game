@@ -3,6 +3,7 @@ import { Parallax, ParallaxProps } from "react-parallax";
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
 import { BlurAmount, Round } from '../Shared/additional'
+import { useDetectDeviceSize } from '@/hooks/useDetectIsMobileView';
 export interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -25,7 +26,8 @@ export interface SectionProps {
   enableParallax?: boolean
   parallaxMoveTo?: ParallaxMoveTo
   parallaxSpeed?: number
-  blur?: BlurAmount
+  blur?: BlurAmount,
+  style?: React.CSSProperties
 }
 
 const ParallaxV2 = (Parallax as any) as React.FC<ParallaxProps>;
@@ -45,12 +47,14 @@ const Section: React.FC<SectionProps> = ({
   parallaxSpeed=500,
   parallaxMoveTo,
   blur,
+  style
 }) => {
+  const { isMobileView } = useDetectDeviceSize();
   const bgColor = bg.color;
   const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 3 : blur === 'md' ? 2 : 1;
   return (
     <ParallaxV2 
-      disabled={!enableParallax}
+      disabled={!enableParallax || isMobileView}
       bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && bgImage?.src || ''} 
       strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
       renderLayer={percentage => {
@@ -74,6 +78,8 @@ const Section: React.FC<SectionProps> = ({
       )
     }}
       style={{
+        ...style,
+        zIndex:0,
         minHeight: height ? height : 'auto',
         backgroundColor: bgColor,
         paddingLeft: `${paddingX}px`,

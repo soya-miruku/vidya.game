@@ -12,10 +12,11 @@ export interface INumberInputProps {
   placeholder?: string;
   disabled?: boolean;
   onWheel?: (event: any) => void;
-  onInputError?:any
+  onInputError?:any;
+  style?: React.CSSProperties;
 }
 
-export const NumberInput: React.FC<INumberInputProps> = ({id, min=1, max=100000, pattern='^((0|[1-9]\d*)?(\.\d+)?(?:\d)(e-?(0|[1-9]\d*))?|0x[0-9a-f]+)$', step='any', disabled, className, value, placeholder, onWheel, onChange, onInputError, ...rest}) => {
+export const NumberInput: React.FC<INumberInputProps> = ({id, min=1, max=100000, pattern='^((0|[1-9]\d*)?(\.\d+)?(?:\d)(e-?(0|[1-9]\d*))?|0x[0-9a-f]+)$', step='any', disabled, className, style, value, placeholder, onWheel, onChange, onInputError, ...rest}) => {
   const preCheckNumberInputThenCallOnChange = (e) => {
     // if(e.target.value === '.') {
     //   e.target.value = '0.';
@@ -45,6 +46,7 @@ export const NumberInput: React.FC<INumberInputProps> = ({id, min=1, max=100000,
 
     }} min={min} onWheel={onWheel} max={max} type='number' step={step} id={id} 
     className={className}
+    style={style}
     value={value} onChange={preCheckNumberInputThenCallOnChange} placeholder={placeholder} {...rest}></input>
   )
 }

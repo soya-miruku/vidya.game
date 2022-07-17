@@ -132,6 +132,13 @@ module.exports = {
       }
     },
     extend: {
+      gridAutoColumns: {
+        '2fr': 'minmax(0, 2fr)',
+      },
+      gridTemplateColumns: {
+        'fill-100': 'repeat(auto-fill, minmax(144px, 1fr))',
+        'fill-keep-4': 'repeat(auto-fit, minmax(min(100%/2, max(144px, 100%/5), 1fr))',
+      },
       screens: {
         'tablet': {'raw': 'only screen and (max-width: 768px)'},  
         // 'tablet': '768px',
@@ -153,7 +160,18 @@ module.exports = {
           },
           '100%': {
             filter: 'brightness(1.7)',
-          }
+          },
+        },
+        brightGlower: {
+          '0%': {
+            filter: 'brightness(1.1)',
+          },
+          '50%' : {
+            filter: 'brightness(1.0)',
+          },
+          '100%': {
+            filter: 'brightness(2.2)',
+          },
         },
         scroll: {
           '0%': {
@@ -168,6 +186,9 @@ module.exports = {
       animation: {
         scroll: 'scroll 1.5s infinite',
         brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
+        brightGlower: 'brightGlower 1s ease-in-out infinite alternate',
+        'spin-fast': 'spin 0.7s linear infinite',
+        'spin-slow': 'spin 1.5s linear infinite',
       },
       width: {
         ...allowableSizes,

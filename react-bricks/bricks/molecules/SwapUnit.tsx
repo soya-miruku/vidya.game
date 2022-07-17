@@ -20,19 +20,19 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sec
   const { isMobileView } = useDetectIsMobileView();
   return (
     <Section className='prose' {...sectionProps}>
-        <div className='flex flex-col max-w-page w-full justify-between items-center'>
-          <div className='flex w-full'>
-            <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 sm:pt-12 pt-5'>
-              <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
-              <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
-            </div>
-          </div>
-          <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-x-[70px] flex-wrap'>
-            <SwapSection className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
-            <ProgramListSection/>
+      <div className='flex flex-col max-w-page w-full justify-between items-center'>
+        <div className='flex w-full'>
+          <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 sm:pt-12 pt-5'>
+            <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
+            <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
           </div>
         </div>
-        <VMouseIcon overrideColor/>
+        <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-x-[70px] flex-wrap'>
+          <SwapSection showBorder={true} className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
+          <ProgramListSection/>
+        </div>
+      </div>
+      <VMouseIcon overrideColor/>
     </Section>
   )
 }

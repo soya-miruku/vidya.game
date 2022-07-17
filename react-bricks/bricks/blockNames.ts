@@ -37,4 +37,6 @@ export enum blockNames {
   GeneratorStatsUnit = 'GeneratorStatsUnit',
   PDFViewUnit = 'PDFViewUnit',
   GeneratingStakingInfoUnit = 'GeneratingStakingInfoUnit',
+  MultiPassStatsUnit = 'MultiPassStatsUnit',
+  ProgramVideoHeroUnit = 'ProgramVideoHeroUnit',
 }

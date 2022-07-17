@@ -9,7 +9,7 @@ export interface ISwapInputProps {
   label?: string;
   balance?: number;
   placeholder?: string;
-  value?: number;
+  value?: number | string;
   min?: number;
   onSelectCoin?: any;
   onChange?: (value: number) => void;

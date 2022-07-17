@@ -1,0 +1,29 @@
+.deck {
+  position: absolute;
+  z-index: 2;
+  width: 110px;
+  height: 50px;
+  will-change: transform;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  :hover {
+    cursor: pointer;
+  }
+}
+
+.deck > div {
+  touch-action: none;
+  background-color: black;
+  border: 2px solid theme('colors.accent-dark.700');
+  background-size: auto 85%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  width: 45vh;
+  max-width: 200px;
+  height: 85vh;
+  max-height: 190px;
+  will-change: transform;
+  border-radius: 10px;
+  // box-shadow: 0 12.5px 100px -10px rgba(50, 50, 73, 0.4), 0 10px 10px -10px rgba(50, 50, 73, 0.3);
+}

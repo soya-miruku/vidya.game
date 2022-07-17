@@ -1,26 +1,13 @@
 import React from 'react'
-import { types, Repeater, useVisualEdit } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
+import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
+import { VideoFileViewer } from '../Shared/VideoFileViewer';
 import { IVideoHeroProps, VideoHero } from '@/components/organisms/videoHero';
-import { useAdminContext } from 'react-bricks/frontend';
 
-const VideoHeroUnit: types.Brick<IVideoHeroProps> = ({ hideTitleWhenPlaying, fetchTitleFromVideo, videoDesc, videoId, videoTitle }) => {
-  const { isAdmin, previewMode } = useAdminContext();
-
-  let id = videoId;
-  try {
-    const url = new URL(videoId)
-    id = url.searchParams.get('v')
-  }
-  catch(err) {
-    id = videoId;
-  }
-
+const VideoHeroUnit: types.Brick<IVideoHeroProps> = ({ videoDesc, videoUrl, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay }) => {
+  const {isAdmin, previewMode} = useAdminContext();
   return (
-    <div className='bg-zinc-800 w-full h-full prose'>
-      <VideoHero hideTitleWhenPlaying={hideTitleWhenPlaying} fetchTitleFromVideo={fetchTitleFromVideo} videoId={id} videoTitle={videoTitle} videoDesc={videoDesc} canEdit={isAdmin}/>
-    </div>
+    <VideoHero videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
   )
 }
 
@@ -33,25 +20,19 @@ VideoHeroUnit.schema = {
     videoId: 'dRKZJo5tmqs',
     videoTitle: 'Video Title',
     videoDesc: 'Video Description',
+    centerTxt: false,
+    showMouseIndicator: false,
     fetchTitleFromVideo: true,
-    hideTitleWhenPlaying: true
+    hideTitleWhenPlaying: true,
+    showGradientOverlay: true,
   }),
   sideEditProps: [
     {
-      name: 'videoId',
-      label: 'Video Src',
-      type: types.SideEditPropType.Text
+      name: 'videoUrl',
+      label: 'Background Video',
+      type: types.SideEditPropType.Custom,
+      component: (props) => VideoFileViewer({ ...props}),
     },
-    {
-      name: 'fetchTitleFromVideo',
-      label: 'Fetch Title From Video',
-      type: types.SideEditPropType.Boolean
-    },
-    {
-      name: 'hideTitleWhenPlaying',
-      label: 'Hide Title When Playing',
-      type: types.SideEditPropType.Boolean
-    }
   ],
 }
 

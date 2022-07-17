@@ -13,12 +13,13 @@ export interface IBasicCardProps {
   bordered?: boolean;
   length?: 'xs'| 'sm' | 'md' | 'lg' | 'xl';
   height?: 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+  dropShadow?: boolean;
 }
 
 
-export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered, title, label, center, footer}) => {
+export const BasicCard: React.FC<IBasicCardProps> = ({ length, height, bordered, title, label, center, footer, dropShadow=true}) => {
   return (
-    <VItemContainer showBorderBottom showBorderTop showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
+    <VItemContainer dropShadow={dropShadow} showBorderBottom showBorderTop showBorder={bordered} widthSize={length === 'xl' ? 'v2xl' : length === 'lg' ? 'vlg' : length === 'md' ? 'vmd' : length === 'sm' ? 'vsm' : 'vxs'} heightSize={height === 'xl' ? 'v2xl' : height === 'lg' ? 'vlg' : height === 'md' ? 'vmd' : height === 'sm' ? 'vsm' : 'vxs'}>
       <div className={classNames('w-full h-full flex flex-col justify-center items-start p-vmd gap-y-vsm', center ? 'items-center' : '')}>
       <VLabel padding={false} secondary>{label}</VLabel>
       {(typeof(title) === 'string' || typeof(title) ==='number') && <VTitle type={'h4'}>{title}</VTitle>}

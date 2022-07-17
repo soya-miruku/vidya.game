@@ -83,12 +83,6 @@ export const LayoutProp = ({
         label: 'Background Image',
         type: types.SideEditPropType.Image,
       },
-      // {
-      //   name: 'bgVideo',
-      //   label: 'Background Video',
-      //   type: types.SideEditPropType.Custom,
-      //   component: (props) => VideoFileViewer({propName: 'bgVideo', ...props}),
-      // },
       {
         name: 'height',
         label: 'Height',

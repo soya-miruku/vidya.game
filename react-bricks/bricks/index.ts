@@ -34,7 +34,9 @@ import SwapUnit from './molecules/SwapUnit';
 import EmptyUnit from './molecules/EmptyUnit';
 import GeneratorStatsUnit from './molecules/GeneratorStatsUnit';
 import GeneratorStakingInfoUnit from './molecules/GeneratorStakingInfoUnit';
+import MultiPassStatsUnit from './molecules/MultipassStatsUnit';
 import PDFViewUnit from './molecules/PDFViewUnit';
+import ProgramVideoHeroUnit from './molecules/ProgramVideoHeroUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -72,6 +74,8 @@ const bricks: types.Brick<any>[] = [
   EmptyUnit,
   GeneratorStatsUnit,
   GeneratorStakingInfoUnit,
+  MultiPassStatsUnit,
+  ProgramVideoHeroUnit,
   PDFViewUnit
 ]
 

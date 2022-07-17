@@ -7,11 +7,13 @@ interface LabelProps {
   className?: string;
   padding?: boolean
   children?: React.ReactNode;
+  overrideColors?: boolean;
+  rounded?: boolean;
 }
 
-export const VLabel: React.FC<LabelProps> = ({secondary, className, children, padding=true}) => {
+export const VLabel: React.FC<LabelProps> = ({secondary, className, children, overrideColors, rounded=true, padding=true}) => {
   return (
-    <div className={classNames('font-saria text-body-sm uppercase', padding ? 'py-2 px-4' : '', 'rounded-sm dark:text-light-200 text-dark-200', secondary ? '' : 'border-2 border-primary-100', className)}>
+    <div className={classNames('font-saria text-body-sm uppercase', padding ? 'py-2 px-4' : '', rounded ? 'rounded-sm': '', overrideColors ? '!text-light-200' : 'dark:text-light-200 text-dark-200', secondary ? '' : 'border-2 border-primary-100', className)}>
       {children}
     </div>
   )

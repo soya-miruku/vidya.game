@@ -32,7 +32,7 @@ export const equalsFloat = (a: number|string, b: number|string) => {
 }
 
 export const toFixedNumber = (digits: number | string, decimals: number) => {
-  const number = typeof(digits) === 'string' ? parseFloat(digits || '0') : digits;
+  const number = typeof(digits) === 'string' ? parseFloat(digits || '0') : isNaN(digits) ? 0 : digits;
   return parseFloat((number).toFixed(decimals));
 }
 
