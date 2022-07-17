@@ -131,11 +131,13 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
 
   useEffect(() => {
     if(showSwapScreen) {
-      navbarRef.current.style.transform = 'translateY(90vh)'
+      navbarRef.current.style.transform = 'translateY(70vh)';
+      document.getElementById('page-wrap').classList.add('blur-xl');
       navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     else{
       navbarRef.current.style.transform = 'translateY(0)';
+      document.getElementById('page-wrap').classList.remove('blur-xl');
     }
   }, [showSwapScreen])
   
@@ -157,8 +159,8 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
 
   return (
     <>
-      <motion.div variants={dropIn} initial='hidden' animate='visible' exit='exit' className='w-screen h-[100vh] overflow-y-auto dark:bg-dark-200 bg-light-100 fixed transition-transform duration-500 z-[1000] flex justify-end items-end'>
-        <div className='h-[89vh] w-full relative'>
+      <motion.div variants={dropIn} initial='hidden' animate='visible' exit='exit' className='w-screen h-[80vh] overflow-y-auto dark:bg-dark-200 bg-light-100 fixed transition-transform duration-500 z-[1000] flex justify-end items-end'>
+        <div className='h-[69vh] w-full relative'>
           <div className='overflow-y-scroll flex justify-center flex-col items-center'>
             <SwapSection showBorder={false} className="p-0 px-[5px]"/>
             <div className='flex flex-col'>

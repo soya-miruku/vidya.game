@@ -1,9 +1,10 @@
-import * as React from 'react'
+import React, { useState } from 'react'
 import { Parallax, ParallaxProps } from "react-parallax";
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
 import { BlurAmount, Round } from '../Shared/additional'
 import { useDetectDeviceSize } from '@/hooks/useDetectIsMobileView';
+import { useInView } from 'react-intersection-observer';
 export interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -50,16 +51,25 @@ const Section: React.FC<SectionProps> = ({
   style
 }) => {
   const { isMobileView } = useDetectDeviceSize();
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    rootMargin: '100px'
+  });
+
   const bgColor = bg.color;
   const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 3 : blur === 'md' ? 2 : 1;
   return (
-    <ParallaxV2 
+    <>
+    <ParallaxV2
+      onLoad={() => {
+        
+      }}
       disabled={!enableParallax || isMobileView}
-      bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && bgImage?.src || ''} 
+      bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && inView && bgImage?.src || ''} 
       strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
       renderLayer={percentage => {
       return (
-        <div
+        <div ref={ref}
             style={{
                 position: 'absolute',
                 left: '-20%',
@@ -69,10 +79,11 @@ const Section: React.FC<SectionProps> = ({
                   backgroundSize: 'contain',
                   backgroundPositionX: `${(percentage * (parallaxSpeed/1000)) * 100}%`,
                   backgroundRepeat: 'no-repeat',
+                  width: `${100+(percentage*20)}%!important`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 }},
-                backdropFilter: `blur(${percentage * (initialAmount * 1.5)}px)`,
-                width: `${100+(percentage*20)}%`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
+              backdropFilter: isMobileView ? `blur(${initialAmount*1.5})` : `blur(${percentage * (initialAmount * 1.5)}px)`,
                 height: '100%',
+                width: '100%'
             }}
         />
       )
@@ -102,6 +113,7 @@ const Section: React.FC<SectionProps> = ({
         )}
       
       className={classNames( 
+        'transition-opacity duration-[1000ms]', inView? 'opacity-1' : 'opacity-0',
           'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
           className, 'overflow-hidden', 'w-full',
           rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
@@ -109,6 +121,7 @@ const Section: React.FC<SectionProps> = ({
         >
         {children}
     </ParallaxV2>
+    </>
   )
 }
 
