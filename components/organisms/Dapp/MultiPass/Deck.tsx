@@ -63,7 +63,6 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove, isLoadi
     <div className={classNames('flex w-full h-full justify-center items-center relative', isLoading ? 'animate-spin-fast': 'animate-spin-slow', className)}>
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div className={styles.deck} key={i} style={{ x, y }}>
-          {/* This is the card itself, we're binding our gesture to it (and inject its index so we know which is which) */}
           <animated.div
             className=" animate-brightGlower"
             {...bind(i)}
