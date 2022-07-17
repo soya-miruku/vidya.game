@@ -82,7 +82,7 @@ const Section: React.FC<SectionProps> = ({
                   backgroundRepeat: 'no-repeat',
                   width: `${100+(percentage*20)}%!important`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 }},
-              backdropFilter: isMobileView ? `blur(${initialAmount*1.5})` : `blur(${percentage * (initialAmount * 1.5)}px)`,
+              backdropFilter:`blur(${percentage * (initialAmount * 1.5)}px)`,
                 height: '100%',
                 width: '100%'
             }}
