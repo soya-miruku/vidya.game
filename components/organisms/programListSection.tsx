@@ -22,7 +22,6 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
     const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
     const max = data?.length || 0;
     if (!active && trigger) {
-      console.log('triggered');
       if(xDir === 1)  { //left
         if(goToSlide > 1) {
           setGoToSlide(goToSlide - 1);

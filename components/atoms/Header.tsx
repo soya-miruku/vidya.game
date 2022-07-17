@@ -1,8 +1,7 @@
 import { useAccount } from '@/hooks/useAccount';
 import { faChevronDoubleRight } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { AnimatePresence, motion } from 'framer-motion';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 import Link from 'next/link'
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import { push as Menu } from 'react-burger-menu';
@@ -14,7 +13,7 @@ import { Logo } from '../logo';
 import { SwapSection } from '../molecules/SwapSection';
 import { PricesSection } from '../organisms/pricesSection';
 import { GradientButton } from './GradientButton';
-import { AnimatePresenceModal } from './Modal';
+import Image from 'next/image';
 import { VText } from './VText';
 
 const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCategories: any}> = ({className, isOpen, onOpen, pageCategories}) => {
@@ -28,6 +27,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
   var styles = {
     bmBurgerButton: {
       position: 'relative',
+      paddingTop: '0px',
       height: '20px',
       width: '20px'
     },
@@ -52,7 +52,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     },
     bmMenu: {
       zIndex: '1',
-      paddingTop: isMobileView ? '0em' : '2.5em',
+      paddingTop: isMobileView ? '0em' : '3em',
       fontSize: '1.15em',
       height: isMobileView ? '100vh': '80vh',
       overflow: 'hidden',
@@ -131,7 +131,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
 
   useEffect(() => {
     if(showSwapScreen) {
-      navbarRef.current.style.transform = isMobileView ? `translateY(${outerHeight - 92}px)` : 'translateY(90vh)';
+      navbarRef.current.style.transform = 'translateY(90vh)'
       navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     else{
@@ -144,7 +144,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       y: '-100vh',
     },
     visible: {
-      y: showSwapScreen ? '-9.8vh' : '-100vh',
+      y: showSwapScreen ? '-10vh' : '-100vh',
       opacity: 1,
       transition: {
         duration: 0.025,
@@ -157,10 +157,10 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
 
   return (
     <>
-      <motion.div variants={dropIn} initial='hidden' animate='visible' exit='exit' className='w-screen h-screen dark:bg-dark-200 bg-light-100 fixed transition-transform duration-500 z-[1000] flex justify-end items-end'>
-        <div className='flex flex-col w-full h-[820px] justify-end items-center !overflow-y-scroll px-[5px]'>
-          <div className='overflow-y-scroll flex justify-center flex-col items-center sm:pt-0 pt-[82px]'>
-            <SwapSection showBorder={false} className="p-0"/>
+      <motion.div variants={dropIn} initial='hidden' animate='visible' exit='exit' className='w-screen h-[100vh] overflow-y-auto dark:bg-dark-200 bg-light-100 fixed transition-transform duration-500 z-[1000] flex justify-end items-end'>
+        <div className='h-[89vh] w-full relative'>
+          <div className='overflow-y-scroll flex justify-center flex-col items-center'>
+            <SwapSection showBorder={false} className="p-0 px-[5px]"/>
             <div className='flex flex-col'>
               <PricesSection source='coinGecko'/>
             </div>
@@ -190,12 +190,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                 <VText overrideTextColor size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
               </div>}
               <div>
-                {!showSwapScreen && <button onClick={() => setShowSwapScreen(true)} className="shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
+                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className="shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
                 </button>}
               </div>
               <div>
-                <button onClick={toggleMode} className={classNames("shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
-                </button>
+                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+                </button>}
               </div>
               <Menu
                 width={WIDTH}
@@ -206,7 +206,6 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                 isOpen={isOpen}
                 disableOverlayClick={false}
                 onOpen={() => {
-                  console.log('open', isOpen);
                   if(!showSwapScreen){
                     onOpen(!isOpen);
                   }
@@ -216,7 +215,6 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                   
                 }}
                 onClose={() => {
-                  console.log(showSwapScreen, isOpen)
                   if(showSwapScreen) setShowSwapScreen(false)
                   else onOpen(false);
                 }}

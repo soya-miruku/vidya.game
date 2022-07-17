@@ -1,13 +1,10 @@
 import React, { useContext, useEffect, useState } from 'react'
-import classNames from 'classnames'
 import { Link, types, useAdminContext } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VButton, ButtonProps } from '@/components/atoms/VButton'
 import { VText } from '@/components/atoms/VText'
 import { AnimatePresenceModal } from '@/components/atoms/Modal'
 import { ProgramModalEntry } from '@/components/organisms/ProgramModalEntry'
-import { VideoContext } from '@/common/providers/VideoProvider'
-
 
 export interface IVRBButtonProps extends ButtonProps {
   background?: boolean
@@ -26,7 +23,7 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
 }) => {
   const { isAdmin } = useAdminContext();
   const [showModal, setShowModal] = useState(false);
-  const { setShouldPause } = useContext(VideoContext);
+
   const handleClickEvent = () => {
     if(isAdmin || !btnLink) return;
     if(btnLink === '!openModal') {
@@ -40,11 +37,9 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
   useEffect(() => {
     // disable scroll when modal is open
     if (showModal) {
-      setShouldPause(true);
       document.getElementById('root_html').style.overflow = 'hidden';
     }
     else {
-      setShouldPause(false);
       document.getElementById('root_html').style.overflow = 'auto';
     }
     

@@ -5,8 +5,8 @@ import { classNames, getPageUrlByType } from "../../common/helpers";
 import styles from '@/css/footer.module.scss';
 import { useDetectDeviceSize } from "../../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./SocialLinks";
-import Image from "next/image";
 import { useDarkMode } from "@/hooks/useDarkMode";
+import { VImage } from "./VImage";
 
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
@@ -16,7 +16,7 @@ const Footer = () => {
       <footer className={classNames('w-full px-vlrg py-vlrg h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
         <div className="absolute right-0 bottom-0 m-auto z-0">
             <div className="relative w-[550px] h-[400px] translate-x-4">
-              <Image loading="lazy" src="/aimbots/sword.png" width='100%' height='100%' objectFit='contain' layout='responsive'></Image>
+              <VImage src="/aimbots/sword.png" width='100%' height='100%' objectFit='contain' layout='responsive'></VImage>
             </div>
         </div>
         <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>

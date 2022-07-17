@@ -1,9 +1,9 @@
 import { faInfoCircle } from '@fortawesome/pro-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Image from 'next/image';
 import { FixedSizeList as List } from "react-window";
 import React, { useState, useEffect, useContext } from 'react';
 import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
+import { VImage } from '../atoms/VImage';
 
 export interface ITokenListSearchProps {
   forToken?: number;
@@ -53,7 +53,7 @@ export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onS
     return (
       <div style={{...style, top: style.top}} onClick={() => {onSelectToken(token)}} key={index} className="w-full p-3 hover:shadow-sm flex flex-row justify-start items-center space-x-3 hover:rounded-xl hover:bg-zinc-200/10 hover:cursor-pointer">
         <div className='pt-2'>
-          <Image loading="lazy" className='rounded-full' src={token?.logoURI ?? ''} width={32} height={32} alt="search-symbol-icon"/>
+          <VImage className='rounded-full' src={token?.logoURI ?? ''} width={32} height={32} alt="search-symbol-icon"/>
         </div>
         <div className='flex flex-col justify-center items-start p-0 m-0 w-full'>
           <h6 className='text-body-sm font-semibold dark:text-light-200 text-dark-200'>{token.symbol}</h6>
@@ -73,7 +73,7 @@ export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onS
           {commonTokenList.map((token, i) => (
           <div onClick={() => {onSelectToken(token)}} className='hover:bg-accent-dark-200 border-[1px] hover:cursor-pointer dark:text-light-200 text-dark-200 dark:border-light-300 border-dark-500 rounded-full ml-1 pl-2 pr-2 pb-2 mt-2 flex flex-row justify-center items-center min-w-[73px]' key={`${token.name}_${i}`}>
             <div className='pt-2 w-[20px] relative'>
-              <Image loading="lazy" className='rounded-full' src={token?.logoURI} width={100} height={100} layout="responsive" objectFit='cover' alt="common-symbol-icon"/>
+              <VImage className='rounded-full' src={token?.logoURI} width={100} height={100} layout="responsive" objectFit='cover' alt="common-symbol-icon"/>
             </div>
             <div className='mt-2 pl-1'>
               <h6 className='text-body-xs font-semibold'>{token.symbol}</h6>

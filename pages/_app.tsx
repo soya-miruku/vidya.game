@@ -13,7 +13,6 @@ import '../css/styles.scss';
 import { DAppProvider, Mainnet, Ropsten, Rinkeby, Goerli, Kovan } from '@usedapp/core'
 import { TokenListProvider } from '@/common/providers/TokenListProvider'
 import { GeneratorProvider } from '@/common/providers/GeneratorProvider'
-import { VideoProvider } from '@/common/providers/VideoProvider'
 
 const Init = ({Component, pageProps}) => {
   const {isDarkMode, toggleMode} = useDarkMode();
@@ -38,9 +37,7 @@ const Init = ({Component, pageProps}) => {
   }
   return (
     <ReactBricks {...reactBricksConfig}>
-      <VideoProvider>
-        <Component {...pageProps}/>
-      </VideoProvider>
+      <Component {...pageProps}/>
     </ReactBricks>
   )
 }

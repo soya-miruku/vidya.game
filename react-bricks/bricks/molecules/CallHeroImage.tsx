@@ -1,10 +1,10 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { VText } from '@/components/atoms/VText'
 import { VTitle } from '@/components/atoms/VTitle'
 import { blockNames } from '../blockNames'
-import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultColors } from '../Shared/colors';
 import Section, {SectionProps} from '../Layout/Section';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
@@ -42,7 +42,15 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                 noLazyLoad={false}
                 propName="image"
                 alt="image"
-                containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
+                useWebP={true}
+                useNativeLazyLoading={true}
+                renderWrapper={({ children }) => {
+                  return (
+                    <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
+                      {children}
+                    </div>
+                  )
+                }}
                 imageClassName="h-full mb-0 ml-2"
               />
             </div>

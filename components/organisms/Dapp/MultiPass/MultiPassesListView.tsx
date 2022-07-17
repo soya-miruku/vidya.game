@@ -5,15 +5,11 @@ import { classNames } from "@/common/helpers";
 import { VText } from "@/components/atoms/VText";
 import { VTitle } from "@/components/atoms/VTitle";
 import { IMultiPassesListViewProps, INFT } from "./types";
-import { VLabel } from "@/components/atoms/VLabel";
-import Image from "next/image";
 import { Deck } from "@/components/organisms/Dapp/MultiPass/Deck";
 import { mapRankToColors } from "./helpers";
 import { VButton } from "@/components/atoms/VButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfinity } from "@fortawesome/pro-regular-svg-icons";
-import { GradientBorder } from "@/components/atoms/GradientBorder";
 import { useMergePasses } from "@/hooks/dapps/multipass/useMege";
+import { VImage } from "@/components/atoms/VImage";
 
 export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?: boolean, displayImage?: boolean}) => {
   return (
@@ -29,7 +25,7 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
         <VTitle type="h6">#{token.tokenId}</VTitle>
       </div>
       {displayImage && <div className="flex flex-col h-full w-full justify-center items-center">
-        <Image objectFit="contain" src={token?.imgSrc} width={80} height={100}></Image>
+        <VImage objectFit="contain" src={token?.imgSrc} width={80} height={100}></VImage>
       </div>}
       <VText overrideTextColor size="sm">{token.name}</VText>
     </div>

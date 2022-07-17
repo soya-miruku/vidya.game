@@ -76,7 +76,6 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   }, [state, approvalState]);
 
   useEffect(() => {
-    console.log(state);
     if(state?.status === 'Success') {
       setIsUpdating(() => false);
       setToken0Amount(() => 0);

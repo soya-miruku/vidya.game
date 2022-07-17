@@ -34,7 +34,9 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
           maxWidth: imageWidth,
           maxHeight: imageHeight,
         }} className='relative'>
-          {canEdit ? <VRBImage propName='image' containerClassName='w-full h-full' imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit={objectFit} layout='fill' 
+          {canEdit ? <VRBImage propName='image' renderWrapper={({children}) => {
+            return <div className="w-full h-full">{children}</div>
+          }} imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit={objectFit} layout='fill' 
          className={classNames('w-full h-full')}/>}
         </div>
       </div>

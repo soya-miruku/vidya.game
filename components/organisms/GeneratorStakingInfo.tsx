@@ -5,7 +5,6 @@ export interface IStakingCardProps {
 }
 
 export const GeneratingStakingInfo = ({}) => {
-  console.log('GeneratingStakingInfo')
   return(
     <div className="w-full h-full flex flex-col">
       <div className="flex gap-vlrg w-full h-full justify-center flex-wrap lg:flex-nowrap md:flex-nowrap sm:flex-wrap mobile:flex-wrap">

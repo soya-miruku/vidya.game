@@ -1,7 +1,6 @@
 import { VText } from "@/components/atoms/VText";
 import { VTitle } from "@/components/atoms/VTitle";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { mapRankToColors } from "./helpers";
 import { IMultiPassViewProps } from "./types";
 
@@ -10,6 +9,7 @@ import { useState } from "react";
 import { AnimatePresenceModal } from "@/components/atoms/Modal";
 import { ConfirmationModal } from "@/components/molecules/ConfirmationModal";
 import { useBurnLevels } from "@/hooks/dapps/multipass/useMint";
+import { VImage } from "@/components/atoms/VImage";
 
 export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewProps) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -39,13 +39,13 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
                 objectFit: 'contain',
                 width: '100%',
                 height: '100%',
-              }} src={token.mediaSrc} autoPlay loop muted></video> : <Image layout="fill" objectFit='contain' src='/placeholders/img.png'></Image> }
+              }} src={token.mediaSrc} autoPlay loop muted></video> : <VImage layout="fill" objectFit='contain' src='/placeholders/img.png'></VImage> }
             </div>
           </div>
           <div className="flex flex-col w-full justify-end items-center">
             <div className="w-full flex justify-end items-center px-vsm py-[4px]">
-              <Image src="/ethsm.png" width={20} height={20}
-              ></Image>
+              <VImage src="/ethsm.png" width={20} height={20}
+              ></VImage>
               <p className="pt-1">{(reservedETH || 0).toFixed(2) || 0}</p>
             </div>
             <motion.button disabled={isMerging} onClick={() => setShowConfirmModal(true)} initial={{

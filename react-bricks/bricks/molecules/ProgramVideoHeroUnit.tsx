@@ -11,13 +11,13 @@ import { VideoFileViewer } from '../Shared/VideoFileViewer';
 interface IProgramVideoHeroUnitProps extends SectionProps, IVideoHeroProps {
 }
 
-const ProgramVideoHeroUnit: types.Brick<IProgramVideoHeroUnitProps> = ({videoUrl, videoDesc, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay, ...sectionProps}) => {
+const ProgramVideoHeroUnit: types.Brick<IProgramVideoHeroUnitProps> = ({videoUrl, placeholderImage, videoDesc, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay, ...sectionProps}) => {
   const {isAdmin, previewMode} = useAdminContext();
   return (
     <Section {...sectionProps} style={{
       height: sectionProps.height ? sectionProps.height : 'auto',
     }} className="h-full">
-      <VideoHero videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
+      <VideoHero placeholderImage={placeholderImage} autoplay={!isAdmin} videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
     </Section>
   )
 }
@@ -44,6 +44,11 @@ ProgramVideoHeroUnit.schema = {
       type: types.SideEditPropType.Custom,
       component: (props) => VideoFileViewer({ ...props}),
     },
+    {
+      name: 'placeholderImage',
+      label: 'Placeholder Image',
+      type: types.SideEditPropType.Image
+    }
   ],
 }
 
