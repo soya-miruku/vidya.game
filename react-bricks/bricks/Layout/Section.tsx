@@ -65,7 +65,7 @@ const Section: React.FC<SectionProps> = ({
         
       }}
       lazy={true}
-      disabled={!enableParallax || isMobileView && !inView}
+      disabled={!enableParallax || isMobileView}
       bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && inView && bgImage?.src || ''} 
       strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
       renderLayer={percentage => {
@@ -75,18 +75,18 @@ const Section: React.FC<SectionProps> = ({
                 position: 'absolute',
                 left: '-20%',
                 top: '0%',
+                height: '100%',
+                width: '120%',
                 ...{...(parallaxMoveTo === 'left' || parallaxMoveTo === 'right') && enableParallax && {
                   backgroundImage: `url(${bgImage?.src})`,
                   backgroundSize: 'contain',
                   backgroundPositionX: `${(percentage * (parallaxSpeed/1000)) * 100}%`,
                   backgroundRepeat: 'no-repeat',
-                  width: `${100+(percentage*20)}%important`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
+                  width: `${100+(percentage*20)}%`, //`${100 - (Math.abs((1 - percentage)) * 100)}%`,
                 }},
                 backdropFilter:`blur(${percentage * (initialAmount * 1.5)}px)`,
-                height: '100%',
-                width: '100%'
             }}
-        />
+        ></div>
       )
     }}
       style={{
