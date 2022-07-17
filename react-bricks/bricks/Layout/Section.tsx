@@ -64,7 +64,7 @@ const Section: React.FC<SectionProps> = ({
       onLoad={() => {
         
       }}
-      disabled={!enableParallax || isMobileView}
+      disabled={!enableParallax || isMobileView && !inView}
       bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && inView && bgImage?.src || ''} 
       strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
       renderLayer={percentage => {
@@ -113,10 +113,10 @@ const Section: React.FC<SectionProps> = ({
         )}
       
       className={classNames( 
-        'transition-opacity duration-[1000ms]', inView? 'opacity-1' : 'opacity-0',
-          'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
-          className, 'overflow-hidden', 'w-full',
-          rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
+        'transition-opacity duration-[1250ms]', inView? 'opacity-1' : 'opacity-0',
+        'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
+        className, 'overflow-hidden', 'w-full',
+        rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
         )}
         >
         {children}
