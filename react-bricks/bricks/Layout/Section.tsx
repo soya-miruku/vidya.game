@@ -52,8 +52,8 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const { isMobileView } = useDetectDeviceSize();
   const { ref, inView } = useInView({
-    triggerOnce: true,
-    rootMargin: '100px'
+    triggerOnce: false,
+    rootMargin: '125px'
   });
 
   const bgColor = bg.color;
@@ -114,7 +114,7 @@ const Section: React.FC<SectionProps> = ({
         )}
       
       className={classNames( 
-        'transition-opacity duration-[1250ms]', inView? 'opacity-1' : 'opacity-0',
+        'transition-opacity duration-[1500ms]', inView? 'opacity-1' : 'opacity-0',
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
