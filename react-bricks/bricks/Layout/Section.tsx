@@ -64,6 +64,7 @@ const Section: React.FC<SectionProps> = ({
       onLoad={() => {
         
       }}
+      lazy={true}
       disabled={!enableParallax || isMobileView && !inView}
       bgImage={(parallaxMoveTo === 'bottom' || parallaxMoveTo === 'top') && inView && bgImage?.src || ''} 
       strength={parallaxMoveTo === 'bottom' ? parallaxSpeed : parallaxMoveTo === 'top' ? -parallaxSpeed : 0}
