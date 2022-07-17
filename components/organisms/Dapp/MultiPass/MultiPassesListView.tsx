@@ -96,7 +96,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
         <div ref={containerRef} className="flex w-full h-full flex-col justify-between gap-vsm overflow-x-scroll scrollbar-thin relative z-100 py-vsm">
           {availableTokens.length <= 0 && mergeList.length <=0 && <VText size="lg">You do not own any passes</VText>}
           {(availableTokens.length > 0 || mergeList.length > 0) && <div className="flex w-full justify-center items-start z-0 h-auto">
-          <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed flex justify-center items-center p-vmd -z-[1]">
+          <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed rounded-tl-2xl flex justify-center items-center p-vmd -z-[1]">
             {mergeList.length <= 0 && <div className="flex justify-center w-full"><VText size="md" className="font-mono">Drag and drop passes here to begin merging with the selected pass <span className="font-bold">({selectedToken?.tokenId})</span></VText></div>}
             {mergeList.length > 0 && <div className="w-full h-full overflow-hidden flex">
               <Deck isLoading={isMerginInProgress} items={mergeList} onRemove={(nft) => {
@@ -145,7 +145,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                     borderWidth: token.tokenId === selectedToken.tokenId ? '4px' : '2px',
                   }}
                   className={classNames('min-w-[115px] rounded-xl bg-black flex flex-col justify-center items-center p-vsm gap-vsm', token.tokenId === selectedToken.tokenId ? '' : 'hover:brightness-150 hover:cursor-pointer')}>
-                  <SmallCard token={token} displayImage={innerHeight >= 600}></SmallCard>
+                  <SmallCard  token={token} displayImage={innerHeight >= 600}></SmallCard>
                 </motion.li>
               )
             })}

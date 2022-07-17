@@ -165,12 +165,15 @@ module.exports = {
         brightGlower: {
           '0%': {
             filter: 'brightness(1.1)',
+            transform:' scale(.7)'
           },
           '50%' : {
             filter: 'brightness(1.0)',
+            transform: 'scale(.6)'
           },
           '100%': {
             filter: 'brightness(2.2)',
+            transform: 'scale(.9)'
           },
         },
         scroll: {
@@ -188,7 +191,7 @@ module.exports = {
         brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
         brightGlower: 'brightGlower 1s ease-in-out infinite alternate',
         'spin-fast': 'spin 0.7s linear infinite',
-        'spin-slow': 'spin 1.5s linear infinite',
+        'spin-slow': 'spin 2s linear infinite',
       },
       width: {
         ...allowableSizes,

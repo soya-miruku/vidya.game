@@ -94,7 +94,7 @@ export const MultiPassDapp = ({}) => {
         <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
-        <div id="modal-multipass-inner" className="w-full h-full flex overflow-hidden sm:justify-center justify-between flex-col overflow-y-auto">
+        <div id="modal-multipass-inner" className="w-full h-auto flex overflow-hidden sm:justify-center justify-between flex-col overflow-y-auto">
           <div className="w-full h-auto flex justify-between items-start sm:flex-row flex-col gap-vlrg p-vsm">
             <div className="flex flex-col gap-vmd h-full sm:w-auto w-full justify-start items-center ">
               {nft && <MultiPassView reservedETH={reservedETH} token={nft} isMerging={isMerging}/>}
