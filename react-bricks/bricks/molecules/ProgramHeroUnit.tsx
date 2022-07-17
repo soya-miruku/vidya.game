@@ -14,7 +14,7 @@ const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ className, pageTi
   const { isAdmin } = useAdminContext();
   return (
     <Section className={className} {...sectionProps}>
-      <ProgramHero overrideColor={sectionProps.bgImage !== undefined} image={image} imageHeight={imageHeight} imageWidth={imageWidth} objectFit={objectFit} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
+      <ProgramHero overrideColor={!!sectionProps.bgImage} image={image} imageHeight={imageHeight} imageWidth={imageWidth} objectFit={objectFit} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>
     </Section>
   )
 }

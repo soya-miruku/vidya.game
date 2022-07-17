@@ -7,6 +7,7 @@ import { classNames } from '@/common/helpers';
 import { INFT } from './types';
 import { SmallCard } from './MultiPassesListView';
 import { mapRankToColors } from './helpers';
+import { isMobile } from 'react-device-detect';
 
 export interface IDeckProps {
   className?: string;

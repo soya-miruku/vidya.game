@@ -16,7 +16,7 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
     <div className="h-full w-full relative flex flex-col justify-between items-start gap-vsm" style={{
       padding: padding ? '0.5rem' : '0',
     }}>
-      <div className=" w-full h-full absolute z-[100]"></div>
+      <div className="w-full h-full absolute z-[100]"></div>
       <div className="flex w-full justify-between z-0 p-[5px]">
         <VTitle overrideTextColor type="h6"><span className="border-[1px] px-2 " style={{
           borderColor: mapRankToColors(token?.tokenRank).bgColor,
@@ -145,7 +145,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                     borderWidth: token.tokenId === selectedToken.tokenId ? '4px' : '2px',
                   }}
                   className={classNames('min-w-[115px] rounded-xl bg-black flex flex-col justify-center items-center p-vsm gap-vsm', token.tokenId === selectedToken.tokenId ? '' : 'hover:brightness-150 hover:cursor-pointer')}>
-                  <SmallCard  token={token} displayImage={innerHeight >= 600}></SmallCard>
+                  <SmallCard  token={token} displayImage={!isMobile}></SmallCard>
                 </motion.li>
               )
             })}
