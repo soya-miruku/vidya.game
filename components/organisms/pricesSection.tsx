@@ -15,7 +15,6 @@ export interface IPricesSectionProps {
 
 export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya', source="coinGecko"}) => {
   const { data, isError, isLoading } = useCoinGeckoTokenData(tokenId);
-  const { isMobileView, isTabletView, isWideTabletView } = useDetectDeviceSize();
   const [currencySelected, setCurrencySelected] = useState('usd');
 
   const formatPrice = (price: number) => {

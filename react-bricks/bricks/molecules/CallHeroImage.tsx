@@ -23,14 +23,14 @@ export interface ICallHeroUnitProps extends SectionProps {
   textAlign: TextPositions
   imageSize: ImageSizes
   background: boolean
+  headerButtons?: any
   image: string
   title: string
   text: string
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, background, ...sectionProps }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, background, headerButtons, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
-
   return (
     <Section {...sectionProps}>
       <PageViewSize enabled={!sectionProps.bgImage}>
@@ -54,22 +54,24 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                 imageClassName="h-full mb-0 ml-2"
               />
             </div>
-            { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
-              <div className="sm:w-[55%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vlrg">
-                <div className='w-full flex justify-start items-start p-0 '>
-                <Repeater propName='badgeLabels' renderWrapper={(items) => {
-                  return (
-                    <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0">
-                      {items}
-                    </div>
-                  )
-                }}>
-                </Repeater>
+            { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '50%' : '80%'}}></div>}
+              <div className="sm:w-[55%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vmd">
+                <div className='w-full flex justify-start items-start p-0'>
+                  <Repeater propName='badgeLabels' itemProps={{
+                    hasBg: (background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent')
+                  }} renderWrapper={(items) => {
+                    return (
+                      <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0">
+                        {items}
+                      </div>
+                    )
+                  }}>
+                  </Repeater>
                 </div>
                 <div className='flex flex-col justify-center h-full pt-vlrg w-full'>
                   <Text
                     renderBlock={(props) => (
-                      <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
+                      <VTitle overrideTextColor={(background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent') as boolean} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
                     )}
                     renderPlaceholder={(props) => (
                       <span className="opacity-30">{props.children}</span>
@@ -79,7 +81,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                   />
                   <RichText
                     renderBlock={(props) => (
-                      <VText overrideTextColor={background || sectionProps.bgImage !== undefined} size='lg' className='m-0'>
+                      <VText overrideTextColor={(background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent') as boolean} size='lg' className='m-0'>
                         {props.children}
                       </VText>
                     )}
@@ -99,7 +101,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                     )}
                 />
               </div>
-              <div className='w-full flex justify-start items-center'>
+              { headerButtons?.length > 0 && headerButtons?.[0]?.props?.children && <div className='w-full flex justify-start items-center'>
                 <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
                   return (
                     <div className="flex flex-wrap justify-end items-center sm:flex-row m-0 sm:gap-x-vlrg gap-x-vmd">
@@ -108,7 +110,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                   )
                 }}>
                 </Repeater>
-                </div>
+                </div>}
               </div>
             </div>
           </div>

@@ -27,7 +27,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
   var styles = {
     bmBurgerButton: {
       position: 'relative',
-      paddingTop: '0px',
+      paddingTop: '1px',
       height: '20px',
       width: '20px'
     },
@@ -84,6 +84,9 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     let prevY = 0;
     if(isBusy) {
       navbarRef.current.classList.remove(...['dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+    }
+    else {
+      // navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     const handleScroll = () => {
       if(!navbarRef && !navbarRef.current) return;
@@ -189,21 +192,17 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                   isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)]' 
                   : isAuthenticating ? 'bg-amber-400 shadow-[0_0_13px_4px_rgba(251,191,36,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(251,191,36,0.4)] animate-pulse' 
                   : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
-                <VText overrideTextColor size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
+                <VText overrideTextColor={!isOpen} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
               </div>}
-              <div>
                 {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className="shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
                 </button>}
-              </div>
-              <div>
-                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", isOpen && isDarkMode ? 'text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
                 </button>}
-              </div>
               <Menu
                 width={WIDTH}
                 customBurgerIcon={!isBusy 
                   ?  <span className='text-light-200 -ic-menu'></span>
-                  : <span className='text-light-200 -ic-close'></span> 
+                  : <span className={classNames(showSwapScreen ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
                 } 
                 isOpen={isOpen}
                 disableOverlayClick={false}

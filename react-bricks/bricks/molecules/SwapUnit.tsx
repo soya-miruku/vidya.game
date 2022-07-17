@@ -20,7 +20,7 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sec
   const { isMobileView } = useDetectIsMobileView();
   return (
     <Section className='prose' {...sectionProps}>
-      <div className='flex flex-col max-w-page w-full justify-between items-center'>
+      <div className='flex flex-col max-w-page w-full justify-between items-center'>  
         <div className='flex w-full'>
           <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 sm:pt-12 pt-5'>
             <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>

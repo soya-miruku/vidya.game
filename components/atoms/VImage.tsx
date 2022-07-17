@@ -44,7 +44,7 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, loader, loading="eager
       objectFit={objectFit}
       loading={loading}
       loader={loader}
-      className={classNames(className ? className : '')}
+      className={classNames(className, '')}
       {...rest}
     />
   );

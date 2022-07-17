@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDiscord, faInstagram, faReddit, faTelegram, faTwitter, faYoutube } from "@fortawesome/free-brands-svg-icons";
 import { classNames } from "@/common/helpers";
 
-export const SocialLinks = ({enableDarkMode}) => {
+export const SocialLinks = ({enableDarkMode}: {enableDarkMode?: boolean}) => {
   return (
     <div id="social-media-links" className={classNames('sm:w-[23em] w-full sm:space-x-6 space-x-4', enableDarkMode ? 'dark:text-light-200 text-dark-300' : 'text-light-200')}>
       <a href="https://www.youtube.com/channel/UCoZiBsHIAm_EGQbTGpSrcLA" target='_blank'

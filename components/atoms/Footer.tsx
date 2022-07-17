@@ -5,15 +5,13 @@ import { classNames, getPageUrlByType } from "../../common/helpers";
 import styles from '@/css/footer.module.scss';
 import { useDetectDeviceSize } from "../../hooks/useDetectIsMobileView";
 import { SocialLinks } from "./SocialLinks";
-import { useDarkMode } from "@/hooks/useDarkMode";
 import { VImage } from "./VImage";
 
 const Footer = () => {
   const { isMobileView } = useDetectDeviceSize();
-  const {isDarkMode} = useDarkMode();
   return (
     <div className="w-full h-full bg-a00">
-      <footer className={classNames('w-full px-vlrg py-vlrg h-3/6 bg-transparent overflow-x-clip prose', styles['grid-container'])}>
+      <footer className={classNames('w-full px-vlrg py-vlrg h-3/6 dark:bg-transparent bg-dark-300 overflow-x-clip prose', styles['grid-container'])}>
         <div className="absolute right-0 bottom-0 m-auto z-0">
             <div className="relative w-[550px] h-[400px] translate-x-4">
               <VImage src="/aimbots/sword.png" width='100%' height='100%' objectFit='contain' layout='responsive'></VImage>
@@ -22,15 +20,15 @@ const Footer = () => {
         <div className={classNames("max-w-5xl mx-auto flex flex-col justify-start items-center w-full")}>
           <div className="w-full flex flex-row justify-betweem items-center space-x-4">
             <div className="sm:w-full w-72">
-              <Logo enableDarkMode/>
+              <Logo enableDarkMode={false}/>
             </div>
-            {!isMobileView && <SocialLinks enableDarkMode={true}/>}
+            {!isMobileView && <SocialLinks/>}
           </div>
           <div className="flex flex-row w-full flex-wrap sm:gap-x-[100px] gap-x-[30px] z-[100]">
             {Object.keys(PagesByCategory).map((category, i) => {
             return (
             <div key={category} className="flex flex-col justify-start w-[130px] pt-10">
-              <div className="dark:text-light-200 text-dark-300 sm:text-xl font-bold">
+              <div className="text-light-200 sm:text-xl font-bold">
                 <h6>{category.toUpperCase()}</h6>
               </div>
               <div>
@@ -57,7 +55,7 @@ const Footer = () => {
             )
             })}
             <div className="flex flex-col justify-start w-[130px] mt-10">
-              <div className="dark:text-light-200 text-dark-300 sm:text-xl font-bold font-saria">
+              <div className="text-light-200 sm:text-xl font-bold font-saria">
                 <h6>BUY AT</h6>
               </div>
               <div>
@@ -65,7 +63,7 @@ const Footer = () => {
                   <li className="text-body-sm tracking-cta font-saria">
                     <a href="https://app.uniswap.org/#/swap?outputCurrency=0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30" target='_blank' className="text-accent-dark-200 hover:text-white space-x-2 flex justify-start items-center">
                       <span className="w-5 h-5">
-                        <svg fill={isDarkMode ? 'white': 'black'} viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
+                        <svg fill={'white'} viewBox="0 0 14 15" xmlns="http://www.w3.org/2000/svg">
                           <path
                             d="M4.152 1.551c-.188-.029-.196-.032-.107-.045.17-.026.57.009.846.074.644.152 1.23.542 1.856 1.235l.166.184.238-.038c1.002-.16 2.02-.033 2.873.358.235.108.605.322.65.377.016.018.043.13.06.251.064.418.033.737-.096.976-.07.13-.074.171-.027.283a.274.274 0 0 0 .246.154c.212 0 .44-.34.545-.814l.042-.189.083.094c.457.514.815 1.214.876 1.712l.016.13-.076-.118a1.462 1.462 0 0 0-.435-.453c-.306-.201-.63-.27-1.486-.315-.774-.04-1.212-.106-1.646-.247-.739-.24-1.111-.558-1.989-1.702-.39-.509-.63-.79-.87-1.016-.545-.515-1.08-.785-1.765-.89Z">
                           </path>
@@ -89,10 +87,10 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          <div className="flex sm:flex-row flex-col gap-y-vmd sm:justify-between justify-center items-center w-full pt-14 font-bold dark:text-light-200 text-dark-300 tracking-cta font-saria body-sm z-10">
-            {isMobileView && <div> <SocialLinks enableDarkMode={true}/> </div>}
+          <div className="flex sm:flex-row flex-col gap-y-vmd sm:justify-between justify-center items-center w-full pt-14 font-bold text-light-200 tracking-cta font-saria body-sm z-10">
+            {isMobileView && <div> <SocialLinks/> </div>}
             <p className="uppercase">Copyright © Team3D 2021</p>
-            <ul className="flex space-x-7 justify-end font-bold dark:text-light-200 text-dark-300">
+            <ul className="flex space-x-7 justify-end font-bold text-light-200">
               <li>
                 <a href="/terms"> TERMS OF SERVICE </a>
               </li>
