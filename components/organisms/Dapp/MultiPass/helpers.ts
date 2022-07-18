@@ -18,16 +18,16 @@ export const mapRankToColors = (rank: number) => {
 export const mapRankToImage = (rank: number) => {
   switch(rank) {
     case 0:
-      return '/multipass/0.png';
+      return '/multipass/0.webp';
     case 1:
-      return '/multipass/1.png';
+      return '/multipass/1.webp';
     case 2:
-      return '/multipass/2.png';
+      return '/multipass/2.webp';
     case 3:
-      return '/multipass/3.png';
+      return '/multipass/3.webp';
     case 4:
-      return '/multipass/4.png';
+      return '/multipass/4.webp';
     default:
-      return '/multipass/0.png';
+      return '/multipass/0.webp';
   }
 }

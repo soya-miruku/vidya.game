@@ -11,6 +11,8 @@ import { VButton } from "@/components/atoms/VButton";
 import { useMergePasses } from "@/hooks/dapps/multipass/useMege";
 import { VImage } from "@/components/atoms/VImage";
 
+const MAX_MERGE_LIST = 10;
+
 export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?: boolean, displayImage?: boolean}) => {
   return (
     <div className="h-full w-full relative flex flex-col justify-between items-start gap-vsm" style={{
@@ -35,16 +37,14 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
 export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onTokenClick, onMergingBegan, onMergingEnded, onMerginInProgress}: IMultiPassesListViewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
-  const [ mergeList, setMergeList ] = useState<INFT[]>([]);
-  const [ isDragging, setIsDragging ] = useState(false);
-  const [ availableTokens, setAvailableTokens ] = useState<INFT[]>(tokens);
-  const MAX_MERGE_LIST = 10;
 
-  const selectedToken = useMemo(() => {
-    return tokens && tokens[currentlySelectedTokenIndex];
-  }, [JSON.stringify(tokens), currentlySelectedTokenIndex])
+  const [mergeList, setMergeList] = useState<INFT[]>([]);
+  const [isDragging, setIsDragging] = useState(false);
+  const [availableTokens, setAvailableTokens] = useState<INFT[]>(tokens);
+  const [selectedToken, setSelectedToken] = useState<INFT>(tokens && tokens[currentlySelectedTokenIndex]);
 
   const { mergePasses, state } = useMergePasses(selectedToken?.tokenId, mergeList?.map(token => token.tokenId) || []);
+
   const isMerginInProgress = useMemo(() => {
     const inProgress = state.status === 'Mining' || state.status === 'PendingSignature';
     onMerginInProgress(inProgress);
@@ -52,16 +52,12 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
   }, [state.status]);
 
   useEffect(() => {
+    if(!tokens) return;
     // initialise available list
-    setAvailableTokens(tokens);//(tokens.filter(token => token.tokenId !== selectedToken?.tokenId));
+    setAvailableTokens(tokens);
+    setSelectedToken(tokens[currentlySelectedTokenIndex]);
     // initialise merge list
     setMergeList([]);
-
-    return () => {
-      setMergeList([]);
-      // reset available list
-      setAvailableTokens(tokens);
-    }
   }, [currentlySelectedTokenIndex, JSON.stringify(tokens)]);
 
   useEffect(() => {
@@ -90,7 +86,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
       if(isInDropZone) {
         if(!mergeList.includes(nft) && mergeList.length + 1 < MAX_MERGE_LIST) {
           setMergeList([...mergeList, nft]);
-          setAvailableTokens(availableTokens.filter(token => token.tokenId !== nft.tokenId && token.tokenId !== selectedToken?.tokenId));
+          setAvailableTokens(availableTokens.filter(token => token.tokenId !== nft.tokenId ));
         }
       }
     }
@@ -103,18 +99,28 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
           {availableTokens.length <= 0 && mergeList.length <=0 && <VText size="lg">You do not own any passes</VText>}
           {(availableTokens.length > 0 || mergeList.length > 0) && <div className="flex w-full justify-center items-start z-0 h-auto">
           <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed rounded-tl-2xl flex justify-center items-center p-vmd -z-[1]">
-            {mergeList.length <= 0 && <div className="flex justify-center w-full"><VText size="md" className="font-mono">Drag and drop passes here to begin merging with the selected pass <span className="font-bold">({selectedToken?.tokenId})</span></VText></div>}
+              { mergeList.length <= 0 && 
+                <div className="flex justify-center w-full">
+                  <VText size="lg" className="font-mono">
+                    {availableTokens.length > 1 ? 'Drag and drop passes here to begin merging with the selected pass ': 'You need to own at least 1 more Multipas in order to merge with '}<span className="font-bold">(#{selectedToken?.tokenId})</span>
+                  </VText>
+                </div>
+              }
             {mergeList.length > 0 && <div className="w-full h-full overflow-hidden flex">
               <p>{(mergeList?.length || 0) + 1} / {MAX_MERGE_LIST}</p>
-              <Deck isLoading={isMerginInProgress} items={mergeList} onRemove={(nft) => {
-                setMergeList(mergeList.filter(token => token.tokenId !== nft.tokenId));
-                setAvailableTokens([...availableTokens, nft]);
-              }}/>
+              <Deck 
+                isLoading={isMerginInProgress}
+                items={mergeList}
+                onRemove={(nft) => {
+                  setMergeList(mergeList.filter(token => token.tokenId !== nft.tokenId));
+                  setAvailableTokens([...availableTokens, nft]);
+                }}/>
                <div className="flex flex-col gap-vsm justify-center items-center">
-                <VButton disabled={isMerginInProgress} onClick={async () => {
-                  await mergePasses();
-                }} rounded={false} primary animate={false} customColor={mapRankToColors(selectedToken.tokenRank.rank).bgColor} 
-                  className="h-full w-[50px] rounded-tr-2xl rounded-br-2xl flex justify-center items-center font-bold hover:!bg-accent-dark-200">
+                <VButton rounded={false} disabled={isMerginInProgress} primary animate={false} customColor={mapRankToColors(selectedToken.tokenRank.rank).bgColor}
+                  className="h-full w-[50px] rounded-tr-2xl rounded-br-2xl flex justify-center items-center font-bold hover:!bg-accent-dark-200" 
+                  onClick={async () => {
+                    await mergePasses();
+                  }}>
                   <p className="rotate-90" style={{color: mapRankToColors(selectedToken.tokenRank.rank).textColor}}>Merge</p>
                 </VButton>
               </div>
@@ -122,8 +128,8 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
           </div>
           </div>}
           <div className="flex flex-col h-full w-full items-center justify-end gap-vsm">
-            {state.errorMessage && <VText size="lg" className="font-mono w-auto !text-aimbotsRed-100">{state.errorCode === -32000 ? 'Cannot estimate gas' : state.errorMessage}</VText>}
-            {state.status === 'Success' && <VText size="lg" className="font-mono w-auto !text-aimbotsGreen-100">Merge successful</VText>}
+          {state.errorMessage && <VText size="lg" className="font-mono w-auto !text-aimbotsRed-100">{state.errorCode === -32000 ? 'Cannot estimate gas' : state.errorMessage}</VText>}
+          {state.status === 'Success' && <VText size="lg" className="font-mono w-auto !text-aimbotsGreen-100">Merge successful</VText>}
           <div className="flex gap-vmd justify-center items-end flex-wrap px-vsm h-auto w-full">
             {selectedToken?.tokenId && availableTokens.map((token, index) => {
               if(!token) return null;
@@ -140,14 +146,14 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                     onTokenClick(token.tokenId, mergeList.length > 0);
                   }}  
                   key={`${token.tokenId}_${index}`}
-                  transition={(delta) => {
+                  transition={(_) => {
                     return !isDragging;
                   }}
                   style={{
                     left: `${index * 130}px`,
-                    borderColor: token.tokenId === selectedToken.tokenId ? '#734a9e00' : mapRankToColors(selectedToken.tokenRank.rank).bgColor,
+                    borderColor: token.tokenId !== selectedToken.tokenId ? '#734a9e00' : mapRankToColors(selectedToken.tokenRank.rank).bgColor,
                     borderWidth: token.tokenId === selectedToken.tokenId ? '4px' : '2px',
-                    filter: token.tokenId === selectedToken.tokenId ? 'drop-shadow(0px 0px 10px #734a9e)' : 'none',
+                    filter: token.tokenId !== selectedToken.tokenId ? 'drop-shadow(0px 0px 10px #734a9e)' : 'none',
                   }}
                   className={classNames('min-w-[115px] rounded-xl bg-black flex flex-col justify-center items-center p-vsm gap-vsm', token.tokenId === selectedToken.tokenId ? '' : 'hover:brightness-150 hover:cursor-pointer')}>
                   <SmallCard token={token} displayImage={!isMobile}></SmallCard>
