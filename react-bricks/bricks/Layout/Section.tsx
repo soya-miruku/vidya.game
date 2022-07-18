@@ -114,6 +114,7 @@ const Section: React.FC<SectionProps> = ({
         )}
       
       className={classNames( 
+        '!transform-gpu',
         'transition-opacity duration-[1000ms]', inView? 'opacity-1' : 'opacity-0',
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
