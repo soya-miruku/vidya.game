@@ -61,15 +61,15 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove, isLoadi
       }, 600)
   })
   return (
-    <div className={classNames('flex w-full h-full justify-center items-center relative', isLoading ? 'animate-spin-fast': 'animate-spin-slow', className)}>
+    <div className={classNames('flex w-full h-full justify-center items-center relative', isLoading ? 'animate-spin-fast': '', className)}>
       {props.map(({ x, y, rot, scale }, i) => (
         <animated.div className={styles.deck} key={i} style={{ x, y }}>
           <animated.div
-            className=" animate-brightGlower"
+            className="animate-brightGlower"
             {...bind(i)}
             style={{
               transform: interpolate([rot, scale], trans),
-              borderColor: mapRankToColors(items[i].tokenRank).bgColor
+              borderColor: mapRankToColors(items[i].tokenRank.rank).bgColor
             }}
           >
             <SmallCard token={items[i]} padding displayImage></SmallCard>

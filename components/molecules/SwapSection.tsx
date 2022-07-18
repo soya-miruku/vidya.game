@@ -37,7 +37,6 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   const [selectedFor, setSelectedFor] = useState<number>(-1);
   const [showCoinSearch, setShowCoinSearch] = useState(false);
   const typingTimeoutRef = useRef<any>();
-  
   const [token0Balance, token1Balance] = useBalances([token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS]);
   const { exists } = useGetPair(token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS);
   const [ swapTokens, state ] = useSwap(token0?.address, token1?.address, 1);

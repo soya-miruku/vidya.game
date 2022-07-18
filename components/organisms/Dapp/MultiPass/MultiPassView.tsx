@@ -13,7 +13,7 @@ import { VImage } from "@/components/atoms/VImage";
 
 export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewProps) => {
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-  const { burnLevels, state } = useBurnLevels(token?.tokenId, token?.tokenRank);
+  const { burnLevels, state } = useBurnLevels(token?.tokenId, token?.tokenRank?.level);
 
   return (
     <>
@@ -23,12 +23,12 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
             await burnLevels();
           }} title="Destroy this multipass and redeem its reserved ETH value" description="Are you sure you want to destroy this multipass? this action is not reversable" confirmText="Lol yeah" cancelText="Nah i&apos;m good"/>}
       </AnimatePresenceModal>
-      <GradientBorder padding='none' className="flex flex-col sm:w-[280px] w-[250px] shadow-btn-dark h-auto" borderRadius={2} gradientColors={!isMerging ? [mapRankToColors(token?.tokenRank).bgColor] : [mapRankToColors(token?.tokenRank).bgColor, '#f37055', '#ef4e7b', '#734a9e', mapRankToColors(token?.tokenRank).bgColor]}>
+      <GradientBorder padding='none' className="flex flex-col sm:w-[280px] w-[250px] shadow-btn-dark h-auto" borderRadius={2} gradientColors={!isMerging ? [mapRankToColors(token?.tokenRank?.rank).bgColor] : [mapRankToColors(token?.tokenRank?.rank).bgColor, '#f37055', '#ef4e7b', '#734a9e', mapRankToColors(token?.tokenRank?.rank).bgColor]}>
           <div className="flex justify-between items-center p-vmd py-vmd w-full">
             <VTitle overrideTextColor type="h5"><span style={{
-              borderColor:mapRankToColors(token?.tokenRank).bgColor,
-              color:mapRankToColors(token?.tokenRank).bgColor
-            }} className="border-[1px] px-2 border-accent-dark-100 text-accent-dark-100">Lv.{token?.tokenRank}</span> - {token?.name || 'PLACEHOLDER'} ({token?.tokenId})</VTitle>
+              borderColor:mapRankToColors(token?.tokenRank?.rank).bgColor,
+              color:mapRankToColors(token?.tokenRank?.rank).bgColor
+            }} className="border-[1px] px-2 border-accent-dark-100 text-accent-dark-100">Lv.{token?.tokenRank?.level}</span> - {token?.name || 'PLACEHOLDER'} ({token?.tokenId})</VTitle>
             <div>
             </div>
           </div>
@@ -56,7 +56,7 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
               // backgroundColor: isMerging ? '#000' : mapRankToColors(token?.tokenRank).bgColor
             }}>
               <VText style={{
-                color: isMerging ? 'gray' : mapRankToColors(token?.tokenRank).textColor
+                color: isMerging ? 'gray' : mapRankToColors(token?.tokenRank?.rank).textColor
               }} size="lg" overrideTextColor className='w-full !font-bold'>BURN/DESTROY</VText>
             </motion.button>
             {state.errorMessage && <VText size="md" overrideTextColor className="text-aimbotsRed-100 pb-2">{state.errorCode === -32000 ? 'Cannot estimate gas' : state.errorMessage}</VText>}

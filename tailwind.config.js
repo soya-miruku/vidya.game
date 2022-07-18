@@ -165,11 +165,11 @@ module.exports = {
         brightGlower: {
           '0%': {
             filter: 'brightness(1.1)',
-            transform:' scale(.7)'
+            transform:' scale(.8)'
           },
           '50%' : {
             filter: 'brightness(1.0)',
-            transform: 'scale(.6)'
+            transform: 'scale(.7)'
           },
           '100%': {
             filter: 'brightness(2.2)',
