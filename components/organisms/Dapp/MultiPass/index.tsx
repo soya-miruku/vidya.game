@@ -14,9 +14,11 @@ import { MultiPassView } from "./MultiPassView";
 import { AnimatePresenceModal } from "@/components/atoms/Modal";
 import { VTitle } from "@/components/atoms/VTitle";
 import { ConfirmationModal } from "@/components/molecules/ConfirmationModal";
+import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 
 export const MultiPassDapp = ({}) => {
   const { chainId } = useAccount();
+  const { isMobileView } = useDetectIsMobileView();
   const [ balance ] = useBalances([CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress])
   const [ currentTokenIndex, setCurrentTokenIndex ] = useState(0);
   const { tokenIds } = useGetMultipleTokenIds(balance);
@@ -118,7 +120,7 @@ export const MultiPassDapp = ({}) => {
               <div className="w-full h-full flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank.rank).bgColor }}>
                 <div className="flex gap-x-vsm justify-between w-full items-center px-vsm">
                   <VText className="px-vsm sm:w-auto w-full" size="lg">BALANCE: <span className="font-bold">{balance - destroyedNfts.length}</span></VText>
-                  {nft && isMerging && <VTitle className="w-auto" type="h6">Merging has been initiated for (#{nft.tokenId})</VTitle>}
+                  {nft && isMerging && <VTitle className="w-auto !text-accent-dark-100" type={isMobileView ? 'h6' : 'h5'}>Merging has been initiated for pass #{nft.tokenId}</VTitle>}
                 </div>
                 <MultiPassesListView onMergingEnded={(mergelist) => {
                   setDestroyedNfts([...destroyedNfts, ...mergelist]);

@@ -33,12 +33,12 @@ export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, on
       <div className="flex flex-col gap-y-vsm w-full">
         <div className="flex justify-start items-center h-[55px] gap-[5px]">
           <div className="flex flex-col gap-y-[5px]">
-            <button onClick={onPlusClick} className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg" style={{
+            <button onClick={onPlusClick} className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
               <VText size='md'>+</VText>
             </button>
-            <button onClick={onMinusClick} className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg" style={{
+            <button onClick={onMinusClick} className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
               <VText size='md'>-</VText>

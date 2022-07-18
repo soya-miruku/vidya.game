@@ -10,10 +10,12 @@ import { mapRankToColors } from "./helpers";
 import { VButton } from "@/components/atoms/VButton";
 import { useMergePasses } from "@/hooks/dapps/multipass/useMege";
 import { VImage } from "@/components/atoms/VImage";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCircleDashed } from "@fortawesome/pro-regular-svg-icons";
 
 const MAX_MERGE_LIST = 10;
 
-export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?: boolean, displayImage?: boolean}) => {
+export const SmallCard = ({token, padding, displayImage, selected}: {token: INFT, padding?: boolean, displayImage?: boolean, selected?: boolean}) => {
   return (
     <div className="h-full w-full relative flex flex-col justify-between items-start gap-vsm" style={{
       padding: padding ? '0.5rem' : '0',
@@ -29,7 +31,10 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
       {displayImage && <div className="flex flex-col h-full w-full justify-center items-center">
         <VImage objectFit="contain" src={token?.imgSrc} width={80} height={100}></VImage>
       </div>}
-      <VText overrideTextColor size="sm">{token.name}</VText>
+      <div className="flex w-full justify-between items-center">
+        <VText overrideTextColor size="sm">{token.name}</VText>
+        {selected && <FontAwesomeIcon className="text-accent-dark-100" icon={faCircleDashed}></FontAwesomeIcon>}
+      </div>
     </div>
   )
 }
@@ -151,7 +156,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                     filter: token.tokenId !== selectedToken.tokenId ? 'drop-shadow(0px 0px 10px #734a9e)' : 'none',
                   }}
                   className={classNames('min-w-[115px] rounded-xl bg-black flex flex-col justify-center items-center p-vsm gap-vsm', token.tokenId === selectedToken.tokenId ? '' : 'hover:brightness-150 hover:cursor-pointer')}>
-                  <SmallCard token={token} displayImage={!isMobile}></SmallCard>
+                  <SmallCard selected={token.tokenId === selectedToken.tokenId} token={token} displayImage={!isMobile}></SmallCard>
                 </motion.li>
               )
             })}
