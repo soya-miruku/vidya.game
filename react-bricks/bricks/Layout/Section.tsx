@@ -115,7 +115,7 @@ const Section: React.FC<SectionProps> = ({
       
       className={classNames( 
         '!transform-gpu',
-        'transition-opacity duration-[1000ms]', inView? 'opacity-1' : 'opacity-0',
+        'transition-opacity duration-[700ms]', inView? 'opacity-1' : 'opacity-0',
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
