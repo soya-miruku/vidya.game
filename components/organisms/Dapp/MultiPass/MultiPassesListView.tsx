@@ -33,7 +33,7 @@ export const SmallCard = ({token, padding, displayImage, selected}: {token: INFT
       </div>}
       <div className="flex w-full justify-between items-center">
         <VText overrideTextColor size="sm">{token.name}</VText>
-        {selected && <FontAwesomeIcon className="text-accent-dark-100" icon={faCircleDashed}></FontAwesomeIcon>}
+        {selected && <FontAwesomeIcon width={15} height={15} className="text-accent-dark-100" icon={faCircleDashed}></FontAwesomeIcon>}
       </div>
     </div>
   )
