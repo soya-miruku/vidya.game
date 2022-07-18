@@ -6,7 +6,7 @@ import { ConfirmationModal } from "@/components/molecules/ConfirmationModal"
 import { useBurnLevels, useBuyLevels, useMint, usePriceToMint1 } from "@/hooks/dapps/multipass/useMint"
 import { useEffect, useMemo, useState } from "react"
 import { mapRankToColors } from "./helpers"
-import { IControlPanelProps, INFT } from "./types"
+import { IControlPanelProps } from "./types"
 
 export interface IPlusMinusInputFieldProps {
   value: number
@@ -81,11 +81,12 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
   const isBurningLevelsInProgress = useMemo(() => burnLevelState.status === 'Mining' || burnLevelState.status === 'PendingSignature', [burnLevelState.status]);
 
   const handleMint = async () => {
-    await mint(priceToMint.toFixed(8));
+    await mint(priceToMint.toFixed(12));
   }
 
   const handleBuyLevels = async () => {
-    await buyLevels(priceToBuyLevel.toFixed(8));
+    console.log(priceToBuyLevel)
+    await buyLevels(priceToBuyLevel.toFixed(12));
   }
 
   useEffect(() => {
@@ -177,7 +178,7 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
         <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField 
               btnText="BUY LEVELS" 
-              label={<>Total Price <span className="text-accent-dark-100">{priceToBuyLevel} eth</span></>}
+              label={<>Total Price <span className="text-accent-dark-100">{priceToBuyLevel.toFixed(4)} eth</span></>}
               value={buyLevelsAmount}
               min={1}
               max={maxLimitMint}
