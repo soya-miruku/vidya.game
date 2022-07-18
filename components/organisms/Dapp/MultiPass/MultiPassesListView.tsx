@@ -34,7 +34,7 @@ export const SmallCard = ({token, padding, displayImage}: {token: INFT, padding?
   )
 }
 
-export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onTokenClick, onMergingBegan, onMergingEnded, onMerginInProgress}: IMultiPassesListViewProps) => {
+export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onTokenClick, onMergingBegan, onMergingEnded}: IMultiPassesListViewProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const dropZoneRef = useRef<HTMLDivElement>(null);
 
@@ -45,11 +45,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
 
   const { mergePasses, state } = useMergePasses(selectedToken?.tokenId, mergeList?.map(token => token.tokenId) || []);
 
-  const isMerginInProgress = useMemo(() => {
-    const inProgress = state.status === 'Mining' || state.status === 'PendingSignature';
-    onMerginInProgress(inProgress);
-    return inProgress;
-  }, [state.status]);
+  const isMerginInProgress = useMemo(() => state.status === 'Mining' || state.status === 'PendingSignature', [state.status]);
 
   useEffect(() => {
     if(!tokens) return;
@@ -61,9 +57,10 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
   }, [currentlySelectedTokenIndex, JSON.stringify(tokens)]);
 
   useEffect(() => {
-    if(mergeList.length <= 0 && selectedToken && availableTokens.findIndex(token => token.tokenId === selectedToken.tokenId) < 0) {
-      onMergingEnded();
-      setAvailableTokens([...availableTokens, selectedToken]);
+    if(mergeList.length <= 0) {
+      onMergingEnded([]);
+      
+      setAvailableTokens(tokens);
     }
     else if(mergeList.length > 0) {
       onMergingBegan && onMergingBegan();
@@ -72,7 +69,8 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
 
   useEffect(() => {
     if(state.status === 'Success') {
-      setMergeList([]);
+      onMergingEnded(mergeList);
+      // setMergeList([]);
     }
   }, [state])
 

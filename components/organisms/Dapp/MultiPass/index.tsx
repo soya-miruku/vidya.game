@@ -25,7 +25,6 @@ export const MultiPassDapp = ({}) => {
   const [ nextToken, setNextToken ] = useState<number>(0);
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
   const [ isMerging, setIsMerging ] = useState(false);
-  const [canBurnOrBuyLevels, setCanBurnOrBuyLevels] = useState(true);
   const [destroyedNfts, setDestroyedNfts] = useState<INFT[]>([]);
 
   useEffect(() => {
@@ -33,7 +32,6 @@ export const MultiPassDapp = ({}) => {
     setCurrentTokenIndex(0);
     setShowConfirmModal(false);
     setIsMerging(false);
-    setCanBurnOrBuyLevels(true);
   }, [])
 
   let nfts: INFT[] = useMemo(() => {
@@ -69,7 +67,7 @@ export const MultiPassDapp = ({}) => {
     }).filter(nft => {
       return nft !== null && destroyedNfts.findIndex(destroyedNft => destroyedNft.tokenId === nft.tokenId) === -1
     });
-  }, [JSON.stringify(tokenRanks), JSON.stringify(tokenURIs), JSON.stringify(tokenIds), balance, isMerging, canBurnOrBuyLevels, JSON.stringify(destroyedNfts)]);
+  }, [JSON.stringify(tokenRanks), JSON.stringify(tokenURIs), JSON.stringify(tokenIds), balance, isMerging, JSON.stringify(destroyedNfts)]);
 
   const nft: INFT = useMemo(() => {
     if(!nfts) return null;
@@ -107,12 +105,14 @@ export const MultiPassDapp = ({}) => {
           <div className="w-full h-auto flex justify-between items-center sm:flex-row flex-col gap-vlrg p-vsm">
             <div className="flex flex-col gap-vmd h-full sm:w-auto w-full justify-start items-center relative">
               {nft && <MultiPassView reservedETH={reservedETH} token={nft} isMerging={isMerging}/>}
-              <ControlPanel onPassDestroyed={(pass) => {
+              <ControlPanel 
+              onPassDestroyed={(pass) => {
                 setCurrentTokenIndex(0);
                 setDestroyedNfts([...destroyedNfts, pass]);
-              }} onBurningPass={(isBurning) => {
-                setCanBurnOrBuyLevels(!isBurning);
-              }} nft={nft} reservedETH={reservedETH} canBurnOrBuyLevels={canBurnOrBuyLevels}/>
+              }} 
+              onBurningPass={(isBurning) => {
+                setIsMerging(isBurning);
+              }} nft={nft} reservedETH={reservedETH} canBurnOrBuyLevels={!isMerging}/>
             </div>
             <div className="flex flex-col w-full h-full items-end justify-between gap-vmd">
               <div className="w-full h-full flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank.rank).bgColor }}>
@@ -120,9 +120,10 @@ export const MultiPassDapp = ({}) => {
                   <VText className="px-vsm sm:w-auto w-full" size="lg">BALANCE: <span className="font-bold">{balance - destroyedNfts.length}</span></VText>
                   {nft && isMerging && <VTitle className="w-auto" type="h6">Merging has been initiated for (#{nft.tokenId})</VTitle>}
                 </div>
-                <MultiPassesListView onMerginInProgress={(isProgressing) => {
-                  setCanBurnOrBuyLevels(!isProgressing);
-                }} onMergingEnded={() => setIsMerging(false)} onMergingBegan={() => setIsMerging(true)} currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
+                <MultiPassesListView onMergingEnded={(mergelist) => {
+                  setDestroyedNfts([...destroyedNfts, ...mergelist]);
+                  setIsMerging(false)
+                }} onMergingBegan={() => setIsMerging(true)} currentlySelectedTokenIndex={currentTokenIndex} onTokenClick={handleNextToken} tokens={nfts}/>
               </div>
             </div>
           </div>
