@@ -49,10 +49,8 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
 
   useEffect(() => {
     if(!tokens) return;
-    // initialise available list
     setAvailableTokens(tokens);
     setSelectedToken(tokens[currentlySelectedTokenIndex]);
-    // initialise merge list
     setMergeList([]);
   }, [currentlySelectedTokenIndex, JSON.stringify(tokens)]);
 
@@ -70,7 +68,6 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
   useEffect(() => {
     if(state.status === 'Success') {
       onMergingEnded(mergeList);
-      // setMergeList([]);
     }
   }, [state])
 
@@ -100,7 +97,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
               { mergeList.length <= 0 && 
                 <div className="flex justify-center w-full">
                   <VText size="lg" className="font-mono">
-                    {availableTokens.length > 1 ? 'Drag and drop passes here to begin merging with the selected pass ': 'You need to own at least 1 more Multipas in order to merge with '}<span className="font-bold">(#{selectedToken?.tokenId})</span>
+                    {availableTokens.length > 1 ? 'Drag and drop passes here to begin merging with the selected pass ': 'You need to own at least 1 more Multipass in order to merge with '}<span className="font-bold">(#{selectedToken?.tokenId})</span>
                   </VText>
                 </div>
               }
