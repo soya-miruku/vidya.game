@@ -53,7 +53,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
 
   useEffect(() => {
     // initialise available list
-    setAvailableTokens(tokens.filter(token => token.tokenId !== selectedToken?.tokenId));
+    setAvailableTokens(tokens);//(tokens.filter(token => token.tokenId !== selectedToken?.tokenId));
     // initialise merge list
     setMergeList([]);
 
@@ -67,7 +67,7 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
   useEffect(() => {
     if(mergeList.length <= 0 && selectedToken && availableTokens.findIndex(token => token.tokenId === selectedToken.tokenId) < 0) {
       onMergingEnded();
-      setAvailableTokens([...availableTokens]);
+      setAvailableTokens([...availableTokens, selectedToken]);
     }
     else if(mergeList.length > 0) {
       onMergingBegan && onMergingBegan();
@@ -145,11 +145,12 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
                   }}
                   style={{
                     left: `${index * 130}px`,
-                    borderColor: token.tokenId === selectedToken.tokenId ? '#734a9e' : mapRankToColors(selectedToken.tokenRank.rank).bgColor,
+                    borderColor: token.tokenId === selectedToken.tokenId ? '#734a9e00' : mapRankToColors(selectedToken.tokenRank.rank).bgColor,
                     borderWidth: token.tokenId === selectedToken.tokenId ? '4px' : '2px',
+                    filter: token.tokenId === selectedToken.tokenId ? 'drop-shadow(0px 0px 10px #734a9e)' : 'none',
                   }}
                   className={classNames('min-w-[115px] rounded-xl bg-black flex flex-col justify-center items-center p-vsm gap-vsm', token.tokenId === selectedToken.tokenId ? '' : 'hover:brightness-150 hover:cursor-pointer')}>
-                  <SmallCard  token={token} displayImage={!isMobile}></SmallCard>
+                  <SmallCard token={token} displayImage={!isMobile}></SmallCard>
                 </motion.li>
               )
             })}
