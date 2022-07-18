@@ -39,7 +39,6 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
             <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center items-end`)}>
             <div className='sm:max-w-[490px] w-full h-full flex justify-center z-10 p-vsm'>
               <Image
-                noLazyLoad={false}
                 propName="image"
                 alt="image"
                 useWebP={true}

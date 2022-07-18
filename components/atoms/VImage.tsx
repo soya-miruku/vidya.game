@@ -14,9 +14,10 @@ export interface IVImageProps {
   loading?: "eager" | "lazy";
   loader?: any;
   rest?: any;
+  priority?: boolean;
 }
 
-export const VImage: React.FC<IVImageProps> = ({src, alt, loader, loading="eager", className, style, width, height, objectFit, layout, ...rest}) => {
+export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, loading="eager", className, style, width, height, objectFit, layout, ...rest}) => {
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
   const url = errorImage ? placeholderUrl : src;
@@ -43,6 +44,7 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, loader, loading="eager
       layout={layout}
       objectFit={objectFit}
       loading={loading}
+      priority={priority}
       loader={loader}
       className={classNames(className, '')}
       {...rest}

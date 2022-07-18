@@ -83,7 +83,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(!(navbarRef && navbarRef.current)) return;
     let prevY = 0;
     if(isBusy) {
-      navbarRef.current.classList.remove(...['dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+      navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
     }
     else {
       // navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
@@ -96,12 +96,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       if (currentY > prevY) {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('translate-y-0');
-        navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
+        navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
       }
       else if(currentY <= 100 || isOpen) {
-        navbarRef.current.classList.remove(...['dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+        navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
       } 
       else {
         if(!navbarRef.current) return;
@@ -136,7 +136,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(showSwapScreen) {
       navbarRef.current.style.transform = 'translateY(70vh)';
       document.getElementById('page-wrap').classList.add('blur-xl');
-      navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
+      navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     else{
       navbarRef.current.style.transform = 'translateY(0)';
@@ -245,7 +245,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                                   onOpen(() => false);
                                 }}>
                                   <div className='flex items-center gap-x-2'>
-                                    <FontAwesomeIcon className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
+                                    <FontAwesomeIcon width={12} height={12} className='text-accent-dark-200 group-hover:text-accent-dark-700' icon={faChevronDoubleRight}></FontAwesomeIcon>
                                     <p className="menu-item font-saria uppercase"> {page.displayName}</p>
                                   </div>
                                 </a>
