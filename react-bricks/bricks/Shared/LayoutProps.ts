@@ -13,8 +13,8 @@ export const DefaultLayoutProps = {
   height: 'auto',
   rounded: 'none',
   enableParallax: true,
-  parallaxSpeed:500,
-  bgOffsetY: 0,
+  parallaxSpeed: 0.5,
+  bgSize: 'cover',
   parallaxMoveTo: 'bottom',
   blur:'sm',
 }
@@ -43,12 +43,30 @@ export const LayoutProp = ({
       {
         name: 'parallaxSpeed',
         label: 'Parallax Speed',
-        type: types.SideEditPropType.Number,
+        type: types.SideEditPropType.Range,
+        rangeOptions: {
+          min: 0,
+          max: 1,
+          step: 0.01,
+        }
       },
       {
-        name: 'bgOffsetY',
-        label: 'Background Offset Y',
-        type: types.SideEditPropType.Number,
+        name: 'bgSize',
+        label: 'Background Size',
+        type: types.SideEditPropType.Select,
+        selectOptions: {
+          display: types.OptionsDisplay.Select,
+          options: [
+            {
+              value: 'cover',
+              label: 'Cover',
+            },
+            {
+              value: 'contain',
+              label: 'Contain',
+            },
+          ],
+        }
       },
       {
         name: 'blur',

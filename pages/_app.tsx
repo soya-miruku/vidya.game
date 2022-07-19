@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { ParallaxProvider } from 'react-scroll-parallax';
 import { ReactBricks } from 'react-bricks/frontend'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -36,9 +37,11 @@ const Init = ({Component, pageProps}) => {
     }`,
   }
   return (
-    <ReactBricks {...reactBricksConfig}>
-      <Component {...pageProps}/>
-    </ReactBricks>
+    <ParallaxProvider>
+      <ReactBricks {...reactBricksConfig}>
+        <Component {...pageProps}/>
+      </ReactBricks>
+    </ParallaxProvider>
   )
 }
 
