@@ -9,6 +9,7 @@ import Section, {SectionProps} from '../Layout/Section';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
+import { ParallaxWrapper } from '../Layout/ParallaxWrapper';
 
 //=============================
 // Local Types
@@ -38,20 +39,20 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
           <div className='w-auto h-full p-0'>
             <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center items-end`)}>
             <div className='sm:max-w-[490px] w-full h-full flex justify-center z-10 p-vsm'>
-              <Image
-                propName="image"
-                alt="image"
-                useWebP={true}
-                useNativeLazyLoading={true}
-                renderWrapper={({ children }) => {
-                  return (
-                    <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
-                      {children}
-                    </div>
-                  )
-                }}
-                imageClassName="h-full mb-0 ml-2"
-              />
+                <Image
+                  propName="image"
+                  alt="image"
+                  useWebP={true}
+                  useNativeLazyLoading={true}
+                  renderWrapper={({ children }) => {
+                    return (
+                      <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
+                        {children}
+                      </div>
+                    )
+                  }}
+                  imageClassName="h-full mb-0 ml-2"
+                />
             </div>
             { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '50%' : '80%'}}></div>}
               <div className="sm:w-[55%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vmd">
@@ -68,16 +69,19 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, backgrou
                   </Repeater>
                 </div>
                 <div className='flex flex-col justify-center h-full pt-vlrg w-full'>
-                  <Text
-                    renderBlock={(props) => (
-                      <VTitle overrideTextColor={(background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent') as boolean} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
-                    )}
-                    renderPlaceholder={(props) => (
-                      <span className="opacity-30">{props.children}</span>
-                    )}
-                    placeholder="Type a title..."
-                    propName="title"
-                  />
+                <ParallaxWrapper translateY={[0, -50]} shouldAlwaysCompleteAnimation >
+                    <Text
+                      renderBlock={(props) => (
+                        <VTitle overrideTextColor={(background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent') as boolean} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
+                      )}
+                      renderPlaceholder={(props) => (
+                        <span className="opacity-30">{props.children}</span>
+                      )}
+                      placeholder="Type a title..."
+                      propName="title"
+                    />
+                  </ParallaxWrapper>
+
                   <RichText
                     renderBlock={(props) => (
                       <VText overrideTextColor={(background || sectionProps.bgImage || sectionProps.bg.color !== 'transparent') as boolean} size='lg' className='m-0'>
