@@ -136,10 +136,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     if(showSwapScreen) {
       navbarRef.current.style.transform = 'translateY(70vh)';
       document.getElementById('page-wrap').classList.add('blur-xl');
+      document.getElementById('page-wrap').style.transform = 'translateY(70vh)';
       navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     else{
       navbarRef.current.style.transform = 'translateY(0)';
+      document.getElementById('page-wrap').style.transform = 'translateY(0vh)';
       document.getElementById('page-wrap').classList.remove('blur-xl');
     }
   }, [showSwapScreen])

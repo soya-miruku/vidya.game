@@ -24,7 +24,7 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <VLabel padding={!hasBg} className={className} secondary={secondary} overrideColors={hasBg}>
+      <VLabel padding className={className} secondary={secondary} overrideColors={hasBg}>
         <VRBText propName={blockNames.Label} size="md" overrideTextColor={hasBg}>
           {label}
         </VRBText>

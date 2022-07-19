@@ -6,7 +6,7 @@ import { bgColors } from '../Shared/colors'
 import { BlurAmount, Round } from '../Shared/additional'
 import { useInView } from 'react-intersection-observer';
 import { useAdminContext } from 'react-bricks';
-import { isMobile } from 'react-device-detect';
+import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 export interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -16,10 +16,11 @@ export interface IImageSource {
 }
 
 export type ParallaxMoveTo = 'top' | 'bottom' | 'left' | 'right';
+export type BGSize = 'cover' | 'contain' | 'auto' | '50%' | '45%' | '40%' | '35%' | '30%' | '25%' | '20%' | '15%' | '10%' | '5%';
 export interface SectionProps {
   bg?: { color: string; className: string }
   bgImage?: IImageSource
-  bgSize?: 'cover' | 'contain'
+  bgSize?: BGSize
   height?: string
   paddingX?: number
   paddingTop?: number
@@ -41,7 +42,7 @@ const Section: React.FC<SectionProps> = ({
   className = '',
   paddingX,
   paddingTop,
-  paddingBottom='bottom',
+  paddingBottom,
   rounded,
   children,
   enableParallax,
@@ -50,6 +51,7 @@ const Section: React.FC<SectionProps> = ({
   blur,
   style
 }) => {
+  const { isMobileView } = useDetectIsMobileView();
   const { isAdmin } = useAdminContext();
   const { ref, inView } = useInView({
     triggerOnce: true,
@@ -90,18 +92,28 @@ const Section: React.FC<SectionProps> = ({
         {children}
       </div>)
   }
+  const getHeight = height ? (height === '100vh' && isMobileView) ? '99%'  : height : 'auto';
   return (
-    <div style={{width: '100%', height:'100%', backgroundColor: bgColor}}>
-      <ParallaxBanner disabled={!enableParallax || isMobile} layers={ bgImage?.src && [
+    <div style={{width: '100%', backgroundColor: bgColor, 
+      minHeight: getHeight,
+      height: getHeight,
+    }}
+    className={classNames(
+      rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[90%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[90%] m-auto' : 'rounded-lxl w-[90%] m-auto',
+    )}
+    >
+      <ParallaxBanner layers={ bgImage?.src && [
         {
-          translateY: isY ? [0, parallaxMoveTo === 'top' ? -(70 * parallaxSpeed) : (70 * parallaxSpeed)] : [0, 0],
-          translateX: isX ? [-10, parallaxMoveTo === 'left' ? -(70 * parallaxSpeed) : (70 * parallaxSpeed)] : [0, 0],
+          disabled: !enableParallax || isMobileView,
+          translateY: isY ? [0, parallaxMoveTo === 'top' ? -(60 * parallaxSpeed) : (60 * parallaxSpeed)] : [0, 0],
+          translateX: isX ? [-40, parallaxMoveTo === 'left' ? -(70 * parallaxSpeed) : (70 * parallaxSpeed)] : [0, 0],
           image: bgImage?.src,
-          scale: [1, 1.2, 'easeInOutCubic'],
+          scale: [1, 1.3, 'easeInOutCubic'],
           shouldAlwaysCompleteAnimation: true,
           style: {
             backgroundSize: bgSize,
             backgroundRepeat: 'no-repeat',
+            height: getHeight,
           },
           expanded: false,
           targetElement:targetElement,
@@ -113,8 +125,8 @@ const Section: React.FC<SectionProps> = ({
         <div ref={targetRef} style={{
         ...style,
         zIndex:0,
-        minHeight: height ? height : 'auto',
         width: '100%',
+        height: getHeight,
         paddingLeft: `${paddingX}px`,
         paddingRight: `${paddingX}px`,
         paddingTop: `${paddingTop}px`,
