@@ -6,6 +6,7 @@ import { bgColors } from '../Shared/colors'
 import { BlurAmount, Round } from '../Shared/additional'
 import { useInView } from 'react-intersection-observer';
 import { useAdminContext } from 'react-bricks';
+import { isMobile } from 'react-device-detect';
 export interface IImageSource {
   src: string
   placeholderSrc?: string
@@ -91,7 +92,7 @@ const Section: React.FC<SectionProps> = ({
   }
   return (
     <div style={{width: '100%', height:'100%', backgroundColor: bgColor}}>
-      <ParallaxBanner disabled={!enableParallax} layers={ bgImage?.src && [
+      <ParallaxBanner disabled={!enableParallax || isMobile} layers={ bgImage?.src && [
         {
           translateY: isY ? [0, parallaxMoveTo === 'top' ? -(70 * parallaxSpeed) : (70 * parallaxSpeed)] : [0, 0],
           translateX: isX ? [-10, parallaxMoveTo === 'left' ? -(70 * parallaxSpeed) : (70 * parallaxSpeed)] : [0, 0],
