@@ -15,9 +15,11 @@ export interface IVImageProps {
   loader?: any;
   rest?: any;
   priority?: boolean;
+  placeholder?: string;
+  usePlaceholder?: boolean;
 }
 
-export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, loading="eager", className, style, width, height, objectFit, layout, ...rest}) => {
+export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, loading="eager", className, style, width, height, placeholder, usePlaceholder=true, objectFit, layout, ...rest}) => {
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
   const url = errorImage ? placeholderUrl : src;
@@ -34,8 +36,8 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, load
         e.preventDefault();
         setErrorImage(true);
       }}
-      placeholder='blur'
-      blurDataURL={placeholderUrl}
+      placeholder={usePlaceholder ? 'blur' : 'empty'}
+      blurDataURL={placeholder ? placeholder : placeholderUrl}
       src={url || placeholderUrl}
       width={width}
       style={style}

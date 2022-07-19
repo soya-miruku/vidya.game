@@ -57,7 +57,7 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
   const slides = data && !isLoading ? data.map((post, index) => {
     return {
       key: index,
-      content: <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.featuredImage} title={post.meta.title} subtitle={post.meta.description} />
+      content: <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.image?.src} placeholderSrc={post.meta?.image?.placeholderSrc} title={post.meta.title} subtitle={post.meta.description} />
     }
   }) : placeholders;
 

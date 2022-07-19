@@ -52,12 +52,12 @@ const Section: React.FC<SectionProps> = ({
 }) => {
   const { isMobileView } = useDetectDeviceSize();
   const { ref, inView } = useInView({
-    triggerOnce: false,
-    rootMargin: '125px'
+    triggerOnce: true,
+    rootMargin: '200px'
   });
 
   const bgColor = bg.color;
-  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 3 : blur === 'md' ? 2 : 1;
+  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 4 : blur === 'md' ? 2 : 1;
   return (
     <>
     <ParallaxV2
@@ -115,7 +115,7 @@ const Section: React.FC<SectionProps> = ({
       
       className={classNames( 
         '!transform-gpu',
-        'transition-opacity duration-[700ms]', inView? 'opacity-1' : 'opacity-0',
+        'transition-opacity duration-[400ms]', inView? 'opacity-1' : 'opacity-0',
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
         className, 'overflow-hidden', 'w-full',
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
