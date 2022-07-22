@@ -66,7 +66,7 @@ const Section: React.FC<SectionProps> = ({
   }, []);
 
   const bgColor = bg.color;
-  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 5 : blur === 'md' ? 3 : 2;
+  const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 5 : blur === 'md' ? 3 : 1;
   const isY = parallaxMoveTo === 'top' || parallaxMoveTo === 'bottom';
   const isX = parallaxMoveTo === 'left' || parallaxMoveTo === 'right';
   if(isAdmin) { //there is a bug currently with rb, that's why i am doing this...
@@ -94,12 +94,15 @@ const Section: React.FC<SectionProps> = ({
   }
   const getHeight = height ? (height === '100vh' && isMobileView) ? '99%'  : height : 'auto';
   return (
-    <div style={{width: '100%', backgroundColor: bgColor, 
+    <div style={{
+      width: (bgColor !== 'transparent' && rounded !== 'none') ? '95%' : '100%',
+      backgroundColor: bgColor, 
       minHeight: getHeight,
       height: getHeight,
     }}
     className={classNames(
       rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[90%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[90%] m-auto' : 'rounded-lxl w-[90%] m-auto',
+      className
     )}
     >
       <ParallaxBanner layers={ bgImage?.src && [
@@ -113,7 +116,7 @@ const Section: React.FC<SectionProps> = ({
           style: {
             backgroundSize: bgSize,
             backgroundRepeat: 'no-repeat',
-            height: getHeight,
+            height: '100%',
           },
           expanded: false,
           targetElement:targetElement,
@@ -121,19 +124,28 @@ const Section: React.FC<SectionProps> = ({
             setPercentage(progress);
           }
         }
-      ] || []} className={classNames()}>
+      ] || []} style={{
+        height: '100%',
+      }}>
         <div ref={targetRef} style={{
         ...style,
         zIndex:0,
         width: '100%',
-        height: getHeight,
-        paddingLeft: `${paddingX}px`,
-        paddingRight: `${paddingX}px`,
-        paddingTop: `${paddingTop}px`,
-        paddingBottom: `${paddingBottom}px`,
+        // height: getHeight,
+        // paddingLeft: `${paddingX}px`,
+        // paddingRight: `${paddingX}px`,
+        // paddingTop: `${paddingTop}px`,
+        // paddingBottom: `${paddingBottom}px`,
         backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
       }}>
-          <div ref={ref} className={
+          <div ref={ref} 
+          style={{
+            paddingLeft: `${paddingX}px`,
+            paddingRight: `${paddingX}px`,
+            paddingTop: `${paddingTop}px`,
+            paddingBottom: `${paddingBottom}px`,
+          }}
+          className={
             classNames(
               'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
               'transition-opacity duration-[800ms]', inView? 'opacity-1' : 'opacity-0',

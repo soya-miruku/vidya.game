@@ -8,7 +8,7 @@ import { push as Menu } from 'react-burger-menu';
 import { classNames, getPageUrlByType } from '../../common/helpers';
 import { PagesByCategory } from '../../common/viwablePages';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { useDetectDeviceSize } from '../../hooks/useDetectIsMobileView';
+import { useDetectDeviceSize, useDetectIsMobileView } from '../../hooks/useDetectIsMobileView';
 import { Logo } from '../logo';
 import { SwapSection } from '../molecules/SwapSection';
 import { PricesSection } from '../organisms/pricesSection';
@@ -16,12 +16,13 @@ import { GradientButton } from './GradientButton';
 import Image from 'next/image';
 import { VText } from './VText';
 
-const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCategories: any}> = ({className, isOpen, onOpen, pageCategories}) => {
+const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boolean, onOpen?:any, pageCategories: any}> = ({className, useDarkFonts, isOpen, onOpen, pageCategories}) => {
   const { isDarkMode, toggleMode } = useDarkMode();
   const navbarRef = useRef<HTMLDivElement>(null);
   const [showSwapScreen, setShowSwapScreen] = useState(false);
+  const [showingNavBar, setShowingNavBar] = useState(false);
   const { isAuthenticated, isAuthenticating, Connect, Disconnect} = useAccount();
-  const { isMobileView } = useDetectDeviceSize();
+  const { isMobileView } = useDetectIsMobileView();
   const WIDTH = isMobileView ? 250 : 550;
 
   var styles = {
@@ -54,7 +55,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       zIndex: '1',
       paddingTop: isMobileView ? '0em' : '3em',
       fontSize: '1.15em',
-      height: isMobileView ? '100vh': '80vh',
+      height: isMobileView ? '100vh': '100%',
       overflow: 'hidden',
       overflowY: isMobileView ? 'auto' : 'hidden',
     },
@@ -84,6 +85,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
     let prevY = 0;
     if(isBusy) {
       navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+      setShowingNavBar(false);
     }
     else {
       // navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
@@ -99,15 +101,18 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
         navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
+        setShowingNavBar(true);
       }
       else if(currentY <= 100 || isOpen) {
         navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+        setShowingNavBar(false);
       } 
       else {
         if(!navbarRef.current) return;
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
         navbarRef.current.classList.remove('invisible');
+        // setShowingNavBar(false);
       }
       prevY = currentY;
     }
@@ -138,6 +143,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
       document.getElementById('page-wrap').classList.add('blur-xl');
       document.getElementById('page-wrap').style.transform = 'translateY(70vh)';
       navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
+      setShowingNavBar(true);
     }
     else{
       navbarRef.current.style.transform = 'translateY(0)';
@@ -175,12 +181,12 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
         </div>
       </motion.div>
       <div ref={navbarRef} className='fixed w-full h-[120px] top-0 z-[100] transition-all duration-300'>
-          <div className={classNames('relative h-[120px] w-full flex justify-between items-center p-vlrg z-0',
+          <div className={classNames('relative h-[120px] w-full flex justify-between items-center sm:p-vlrg p-vsm z-0',
             isOpen ? ' z-auto' : 'max-w-page mx-auto', className)}
             style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
             <Link href="/">
               <p className='hover:cursor-pointer'>
-                <Logo enableDarkMode={false}/>
+                <Logo enableDarkMode={!showingNavBar && useDarkFonts}/>
               </p>
             </Link>
             <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
@@ -194,16 +200,16 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                   isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)]' 
                   : isAuthenticating ? 'bg-amber-400 shadow-[0_0_13px_4px_rgba(251,191,36,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(251,191,36,0.4)] animate-pulse' 
                   : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
-                <VText overrideTextColor={!isOpen} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
+                <VText overrideTextColor={!(!showingNavBar && useDarkFonts)} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
               </div>}
-                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className="shadow-md text-light-200 hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap">
+                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className={classNames((!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200','shadow-md hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap')}>
                 </button>}
-                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", isOpen && isDarkMode ? 'text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", (!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
                 </button>}
               <Menu
                 width={WIDTH}
                 customBurgerIcon={!isBusy 
-                  ?  <span className='text-light-200 -ic-menu'></span>
+                  ?  <span className={classNames(!(!showingNavBar && useDarkFonts) ? 'text-light-200': 'dark:text-light-200 text-dark-200','-ic-menu')}></span>
                   : <span className={classNames(showSwapScreen ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
                 } 
                 isOpen={isOpen}
@@ -228,7 +234,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, onOpen?:any, pageCa
                 outerContainerId="outer-container"
                 // noTransition
                 >
-                <div className='w-full'>
+                <div className='w-full h-full overflow-y-auto'>
                   <div className='sm:px-10 px-3 sm:py-4 py-0 flex w-full flex-wrap justify-start gap-x-5 dark:text-white text-dark-100 gap-y-5'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 

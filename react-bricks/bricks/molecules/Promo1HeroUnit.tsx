@@ -11,7 +11,7 @@ interface IPromo1HeroProps extends ICallHeroUnitProps {
 
 const Promo1HeroUnit: types.Brick<IPromo1HeroProps> = ({ bg, text, textAlign, image, imageSize, title, badgeText, ...sectionProps }) => {
   return (
-    <CallHeroUnit background={true} badgeText={badgeText} bg={bg} 
+    <CallHeroUnit badgeText={badgeText} bg={bg} 
     text={text} textAlign={textAlign} image={image} imagePosition='right' imageSize={imageSize} title={title} {...sectionProps}></CallHeroUnit>
   )
 }
@@ -43,7 +43,7 @@ Promo1HeroUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: DefaultColors }),
+    LayoutProp({ colors: DefaultColors })
   ],
 }
 

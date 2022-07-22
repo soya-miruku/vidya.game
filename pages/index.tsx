@@ -1,20 +1,11 @@
-import React, { useContext, useRef } from 'react'
+import React from 'react'
 import {
-  ReactBricksContext,
-  PageViewer,
   fetchPage,
-  fetchPages,
-  cleanPage,
   types,
 } from 'react-bricks/frontend'
-import Head from 'next/head'
 import { GetStaticProps } from 'next'
-
 import config from '../react-bricks/config'
-import Layout from '../components/layout'
-import ErrorNoKeys from '../components/errorNoKeys'
-import ErrorNoHomePage from '../components/errorNoHomePage'
-import { groupByKey } from '@/common/helpers';
+import { EntryPage } from '@/components/entryPage'
 
 interface PageProps {
   slug: string,
@@ -31,27 +22,10 @@ interface HomeProps {
 }
 
 const Home: React.FC<HomeProps> = ({ page, pageCategories, error }) => {
-  const { pageTypes, bricks } = useContext(ReactBricksContext)  
-  const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-  
   return (
-    <Layout displayCallout={false} pageCategories={pageCategories}>
-      {pageOk && (
-        <div className='w-full h-full'>
-          <Head>
-            <title>{page.meta.title}</title>
-            <meta name="description" content={page.meta.description} />
-          </Head>
-            <PageViewer page={pageOk}/>
-        </div>
-      )}
-      {error === 'NOKEYS' && <ErrorNoKeys />}
-      {error === 'NOPAGE' && <ErrorNoHomePage />}
-    </Layout>
+    <EntryPage page={page} error={error}/>
   )
 }
-
-
 
 export const getStaticProps: GetStaticProps = async (context) => {
   if (!config.apiKey) {
