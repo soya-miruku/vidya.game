@@ -10,6 +10,7 @@ export interface ImageProps {
   imageHeight?: number | string
   imageClassName?: string
   containerClassName?: string
+  renderWrapper?:any
   padding?: 'normal' | 'small'
   className?: string
 }
@@ -22,14 +23,17 @@ const VRBImage: types.Brick<ImageProps> = ({
   className,
   imageClassName,
   propName,
-  containerClassName,
+  renderWrapper,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <Image noLazyLoad={false} propName={propName || 'image'} 
+      <Image 
+        noLazyLoad={false} propName={propName || 'image'}
+        useNativeLazyLoading
+        useWebP
         alt="image"
-        containerClassName={containerClassName}
+        renderWrapper={renderWrapper}
         imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
       >
       </Image>

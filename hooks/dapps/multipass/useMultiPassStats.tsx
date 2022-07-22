@@ -67,14 +67,14 @@ export const useMultiPassStats = (): IMultiPassStats => {
       args: []
     },
     {
-      contract: new Contract(multicallAddress, MultiCallABI),
-      method: "getEthBalance",
-      args: [CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress]
+      contract,
+      method: "totalLevels",
+      args: []
     },
     {
       contract: new Contract(multicallAddress, MultiCallABI),
-      method: "totalLevels",
-      args: []
+      method: "getEthBalance",
+      args: [CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress]
     }
   ] || [];
 
@@ -93,8 +93,8 @@ export const useMultiPassStats = (): IMultiPassStats => {
   const burnCount = results[3]?.value?.[0] || BigNumber.from(0);
   const levelsBought = results[4]?.value?.[0] || BigNumber.from(0);
   const levelsBurned = results[5]?.value?.[0] || BigNumber.from(0);
-  const pooledEther = results[6]?.value?.[0] || BigNumber.from(0);
-  const totalLevels = results[7]?.value?.[0] || BigNumber.from(0);
+  const totalLevels = results[6]?.value?.[0] || BigNumber.from(0);
+  const pooledEther = results[7]?.value?.[0] || BigNumber.from(0);
 
   return {
     circulatingSupply: totalSupply?.toNumber() || 0,

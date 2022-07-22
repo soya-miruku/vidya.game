@@ -1,15 +1,12 @@
 import { Contract } from "@ethersproject/contracts"
 import { TransactionStatus, useCall, useContractFunction } from "@usedapp/core"
 import UNISWAP_ROUTER_ABI from "@/contracts/abis/uniswapRouter.json";
-import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
 import { useAccount } from "@/hooks/useAccount";
 import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
-import { formatEther, parseEther, parseUnits } from "@ethersproject/units";
-import { BigNumber } from "ethers";
-import { toWei } from "web3-utils";
+import { parseEther } from "@ethersproject/units";
 
 const calculateMinReceieved = (amountOut: number, slippage) => {
-  return toWei((amountOut - (amountOut * slippage / 100)).toFixed(18));
+  return parseEther((amountOut - (amountOut * slippage / 100)).toFixed(18));
 }
 
 const getDeadline = () => {
@@ -42,7 +39,7 @@ export const useSwapExactTokensForEth = (slippage:number=1): [(amount: number, a
 
   const swapTokensForEth = (amount: number, amountOut: number, token1Address: string) => {
     const deadline = getDeadline();
-    const amountIn = toWei(amount.toString());
+    const amountIn = parseEther(amount.toString());
     const minAmountOut = calculateMinReceieved(amountOut, slippage);
 
     const path = [token1Address, CHAIN_SETTINGS?.[chainId]?.WETH_ADDRESS];
@@ -63,7 +60,7 @@ export const useSwapExactTokensForTokens = (token0Address: string, slippage:numb
 
   const swapTokensForTokens = (amount: number, amountOut: number, token1Address: string) => {
     const deadline = getDeadline();
-    const amountIn = toWei(amount.toString());
+    const amountIn = parseEther(amount.toString());
     const minAmountOut = calculateMinReceieved(amountOut, slippage);
 
     const path = [token0Address, token1Address];

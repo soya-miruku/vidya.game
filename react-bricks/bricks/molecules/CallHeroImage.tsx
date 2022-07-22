@@ -1,14 +1,15 @@
-import React, { Children } from 'react'
+import React from 'react'
 import { Text, RichText, Image, types, Repeater } from 'react-bricks/frontend';
 import { classNames } from '@/common/helpers'
 import { VText } from '@/components/atoms/VText'
 import { VTitle } from '@/components/atoms/VTitle'
 import { blockNames } from '../blockNames'
-import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultColors } from '../Shared/colors';
 import Section, {SectionProps} from '../Layout/Section';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
+import { ParallaxWrapper } from '../Layout/ParallaxWrapper';
 
 //=============================
 // Local Types
@@ -22,85 +23,101 @@ export interface ICallHeroUnitProps extends SectionProps {
   imagePosition: ImagePositions
   textAlign: TextPositions
   imageSize: ImageSizes
-  background: boolean
+  headerButtons?: any
   image: string
   title: string
   text: string
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, background, ...sectionProps }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, headerButtons, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
-
+  const hasBg = (!!sectionProps.bgImage || sectionProps.bg.color !== 'transparent');
   return (
     <Section {...sectionProps}>
       <PageViewSize enabled={!sectionProps.bgImage}>
         <div className={classNames('max-w-page w-full h-full flex flex-row justify-center p-0', 'prose')}>
           <div className='w-auto h-full p-0'>
-            <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center items-end`)}>
-            <div className='sm:max-w-[490px] w-full h-full flex justify-center z-10 p-vsm'>
-              <Image
-                noLazyLoad={false}
-                propName="image"
-                alt="image"
-                containerClassName='w-full h-full min-w-[200px] min-h-[200px] '
-                imageClassName="h-full mb-0 ml-2"
-              />
-            </div>
-            { background && <div className='absolute bg-primary-100 max-w-page sm:w-full w-[96%] rounded-lgr px-8 py-14 m-auto right-0 left-0 bottom-0 z-0' style={{height: isMobileView ? '55%' : '80%'}}></div>}
-              <div className="sm:w-[55%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vlrg">
-                <div className='w-full flex justify-start items-start p-0 '>
-                <Repeater propName='badgeLabels' renderWrapper={(items) => {
-                  return (
-                    <div className="flex flex-wrap justify-start items-center flex-col sm:flex-row m-0">
-                      {items}
-                    </div>
-                  )
-                }}>
-                </Repeater>
-                </div>
-                <div className='flex flex-col justify-center h-full pt-vlrg w-full'>
-                  <Text
-                    renderBlock={(props) => (
-                      <VTitle overrideTextColor={background || sectionProps.bgImage !== undefined} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
-                    )}
-                    renderPlaceholder={(props) => (
-                      <span className="opacity-30">{props.children}</span>
-                    )}
-                    placeholder="Type a title..."
-                    propName="title"
+            <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center`, hasBg ? 'items-center' : ' items-end')}>
+            <ParallaxWrapper disabled={isMobileView} translateX={imagePosition === 'left' ? [-15, 0] : [15, 0]} shouldAlwaysCompleteAnimation>
+              <div className='sm:max-w-[490px] w-full h-full flex justify-center z-10 p-vsm'>
+                  <Image
+                    propName="image"
+                    alt="image"
+                    useWebP={true}
+                    useNativeLazyLoading={true}
+                    renderWrapper={({ children }) => {
+                      return (
+                        <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
+                          {children}
+                        </div>
+                      )
+                    }}
+                    imageClassName="h-full mb-0 ml-2"
                   />
-                  <RichText
-                    renderBlock={(props) => (
-                      <VText overrideTextColor={background || sectionProps.bgImage !== undefined} size='lg' className='m-0'>
-                        {props.children}
-                      </VText>
-                    )}
-                    placeholder="Type a text..."
-                    propName="text"
-                    allowedFeatures={[
-                      types.RichTextFeatures.Bold,
-                      types.RichTextFeatures.Italic,
-                      types.RichTextFeatures.Highlight,
-                      types.RichTextFeatures.Code,
-                      types.RichTextFeatures.Link,
-                    ]}
-                    renderCode={(props) => (
-                      <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
-                        {props.children}
-                      </code>
-                    )}
-                />
               </div>
-              <div className='w-full flex justify-start items-center'>
-                <Repeater propName='headerButtons' itemProps={{background}} renderWrapper={(items) => {
+            </ParallaxWrapper>
+            <div className="sm:w-[60%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vsm">
+              <ParallaxWrapper disabled={hasBg} className='w-full' translateY={[0, -60]} shouldAlwaysCompleteAnimation>
+                <Repeater propName='badgeLabels' itemProps={{
+                  hasBg
+                }} renderWrapper={(items) => {
                   return (
-                    <div className="flex flex-wrap justify-end items-center sm:flex-row m-0 sm:gap-x-vlrg gap-x-vmd">
+                    <div className="flex flex-wrap justify-start items-center m-0 w-full p-0">
                       {items}
                     </div>
                   )
                 }}>
                 </Repeater>
-                </div>
+              </ParallaxWrapper>
+              <div className={classNames('flex flex-col justify-center h-full w-full', hasBg ? '': ' pt-vlrg')}>
+                <ParallaxWrapper disabled={hasBg} translateY={[0, -60]} shouldAlwaysCompleteAnimation >
+                    <Text
+                      renderBlock={(props) => (
+                        <VTitle overrideTextColor={hasBg} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
+                      )}
+                      renderPlaceholder={(props) => (
+                        <span className="opacity-30">{props.children}</span>
+                      )}
+                      placeholder="Type a title..."
+                      propName="title"
+                    />
+                  </ParallaxWrapper>
+
+                  <ParallaxWrapper disabled={hasBg} translateY={[0, -50]} shouldAlwaysCompleteAnimation >
+                    <RichText
+                      renderBlock={(props) => (
+                        <VText overrideTextColor={hasBg} size='lg' className='m-0'>
+                          {props.children}
+                        </VText>
+                      )}
+                      placeholder="Type a text..."
+                      propName="text"
+                      allowedFeatures={[
+                        types.RichTextFeatures.Bold,
+                        types.RichTextFeatures.Italic,
+                        types.RichTextFeatures.Highlight,
+                        types.RichTextFeatures.Code,
+                        types.RichTextFeatures.Link,
+                      ]}
+                      renderCode={(props) => (
+                        <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
+                          {props.children}
+                        </code>
+                      )}
+                    />
+                  </ParallaxWrapper>
+
+              </div>
+              { headerButtons?.length > 0 && headerButtons?.[0]?.props?.children &&
+                <Repeater propName='headerButtons' itemProps={{background: hasBg}} renderWrapper={(items) => {
+                  return (
+                    <div className="w-full flex flex-wrap justify-start items-center sm:flex-row m-0 sm:gap-x-vlrg gap-x-vmd">
+                      {items}
+                    </div>
+                  )
+                }}>
+                </Repeater>
+            }
               </div>
             </div>
           </div>
@@ -129,7 +146,6 @@ CallHeroUnit.schema = {
         label: 'programs',
       }
     ],
-    background: false,
     textAlign: 'left',
     imagePosition: 'right',
     badgeText: 'Programs',

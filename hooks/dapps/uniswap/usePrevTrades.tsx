@@ -10,7 +10,6 @@ import { useAccount } from "@/hooks/useAccount";
 import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
 import { formatEther, parseEther, parseUnits } from "@ethersproject/units";
 import { getProvidersFromConfig } from "@usedapp/core/dist/esm/src/providers/network/readonlyNetworks/provider";
-import { additionalTokens } from "@/common/providers/TokenListProvider";
 import { toWei } from "web3-utils";
 import { BigNumber, ethers } from "ethers";
 

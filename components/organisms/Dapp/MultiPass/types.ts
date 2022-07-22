@@ -2,9 +2,13 @@ export interface INFTAttribute {
   traitType: string;
   value: string;
 }
+export interface ITokenRank {
+  rank: number;
+  level: number;
+}
 export interface INFT {
   tokenId: number;
-  tokenRank: number;
+  tokenRank: ITokenRank;
   name: string;
   description: string;
   attributes: INFTAttribute[];
@@ -17,12 +21,19 @@ export interface IMultiPassesListViewProps {
   currentlySelectedTokenIndex: number;
   onTokenClick: (tokenId: number, hasProgress: boolean) => void;
   onMergingBegan: () => void;
-  onMergingEnded: () => void;
-  onMerginInProgress: (inProgress) => void;
+  onMergingEnded: (anyMergedList: INFT[]) => void;
 }
 
 export interface IMultiPassViewProps {
   token: INFT;
   isMerging: boolean;
   reservedETH: number;
+}
+
+export interface IControlPanelProps {
+  nft: INFT
+  reservedETH:number
+  canBurnOrBuyLevels: boolean
+  onPassDestroyed: (nft: INFT) => void
+  onBurningPass: (isBurning: boolean) => void
 }

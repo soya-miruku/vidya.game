@@ -1,7 +1,14 @@
-import { useContext } from "react";
-import { ReactBricksContext } from "react-bricks";
 import { useQuery } from "react-query";
 
+export type FeaturedImage = {
+  alt: string;
+  src: string;
+  srcSet: string;
+  seoName: string;
+  width: number;
+  height: number;
+  placeholderSrc: string;
+}
 export interface IFetchedPage {
   id: string;
   name: string;
@@ -9,7 +16,7 @@ export interface IFetchedPage {
   meta: {
     title: string;
     description: string;
-    featuredImage?: string;
+    image?: FeaturedImage;
   };
   type: string;
   customValues: any;
@@ -44,6 +51,7 @@ export const useFetchPages = ({type, limit=3}) => {
     }
 
     const json = await response.json();
+    console.log(json)
     return json.map((page: any) => {
       return {
         id: page.id,
@@ -52,7 +60,7 @@ export const useFetchPages = ({type, limit=3}) => {
         meta: {
           title: page.meta.title,
           description: page.meta.description,
-          featuredImage: page.meta.featuredImage,
+          image: page.meta.image,
         },
         author: {
           firstName: page.author.firstName,

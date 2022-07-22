@@ -15,7 +15,6 @@ export interface IPricesSectionProps {
 
 export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya', source="coinGecko"}) => {
   const { data, isError, isLoading } = useCoinGeckoTokenData(tokenId);
-  const { isMobileView, isTabletView, isWideTabletView } = useDetectDeviceSize();
   const [currencySelected, setCurrencySelected] = useState('usd');
 
   const formatPrice = (price: number) => {
@@ -49,7 +48,7 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
         <VTabs items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val) => setCurrencySelected(val)}/>
         <div className='flex space-x-4 space-x-reverse items-center hover:cursor-pointer' onClick={() => window.open('https://www.coingecko.com/en/coins/vidya', '_blank')}>
           <VText className='px-2' size="sm">Prices provided by <strong>Coingecko</strong></VText>
-          <VImage width={25} height={25} src='https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png'/>
+          <VImage usePlaceholder={false} width={25} height={25} src='https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png'/>
         </div>
       </div>
     </div>

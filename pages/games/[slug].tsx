@@ -1,41 +1,19 @@
-import React, { useContext, useEffect } from 'react'
+import React from 'react'
 import {
-  ReactBricksContext,
-  PageViewer,
   fetchPage,
   fetchPages,
-  cleanPage,
-  types,
 } from 'react-bricks/frontend'
-import Head from 'next/head'
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import config from '../../react-bricks/config'
-import Layout from '@/components/layout'
-import ErrorNoPage from '@/components/errorNoPage'
 import { PageProps } from '@/common/pageProps'
 import { pageNames } from '@/common/pageNames'
+import { EntryPage } from '@/components/entryPage'
 
 
 const GamePage: React.FC<PageProps> = ({ page, error }) => {
-  // Clean the received content
-  // Removes unknown or not allowed bricks
-  const { pageTypes, bricks } = useContext(ReactBricksContext);
-  const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
-
   return (
-    <Layout displayCallout={false}>
-      {pageOk && (
-        <div className="w-full h-full">
-          <Head>
-            <title>{page.meta.title}</title>
-            <meta name="description" content={page.meta.description} />
-          </Head>
-          <PageViewer page={pageOk} />
-        </div>
-      )}
-      {error === 'NOPAGE' && <ErrorNoPage />}
-    </Layout>
+    <EntryPage page={page} error={error}/>
   )
 }
 

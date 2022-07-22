@@ -55,22 +55,22 @@ export const useBurnLevels = (tokenId: number, amount:number) => {
   }
 }
 
-export const usePriceToMint = (amount:number) => {
+export const usePriceToMint1 = () => {
   const { chainId } = useAccount();
   const contract = multiPassContract(chainId);
 
   const { value, error } = useCall(contract && {
     contract,
     method: 'priceToken',
-    args: [amount]
+    args: [1]
   }, {refresh: 'everyBlock'}) ?? {};
 
   if(error) {
-    console.error(error);
+    console.error('usePriceToMint1', error);
     return { tokenPrice: 0, error };
   }
 
-  const tokenPrice = value?.[0] ? formatEther(value?.[0]) : 0;
+  const tokenPrice = parseFloat(value?.[0] ? formatEther(value?.[0]) : '0');
 
   return { tokenPrice, error };
 }

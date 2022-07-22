@@ -42,7 +42,7 @@ const ACTIONS = {
   SET_SOURCE: 'SET_SOURCE'
 }
 
-export const additionalTokens = [
+const additionalTokens = [
   {
     address: '0x3d3d35bb9bec23b06ca00fe472b50e7a4c692c30',
     name: 'vidya',

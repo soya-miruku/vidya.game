@@ -24,7 +24,7 @@ export const ProgramModalWrapper = ({title, description, children, onClose}: IPr
   const [isOpen, setIsOpen] = useState(true);
   return (
     <Modal onClose={onClose} className="h-full flex flex-col">
-      <div className="w-full h-full flex flex-col dark:bg-dark-300/60 backdrop-blur-lg bg-light-200 justify-center items-center">
+      <div className="w-full h-full flex flex-col dark:bg-dark-300/80 backdrop-blur-lg bg-light-200 justify-center items-center">
         <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500">
           <div className="w-full flex flex-wrap justify-start items-center sm:px-vmd px-vsm gap-x-vsm divide-x-[1px] divide-aimbotsRed-100">
             <VTitle type="h3" className='text-xl font-semibold lg:text-2xl dark:text-light-200 text-dark-200'>{title}</VTitle>

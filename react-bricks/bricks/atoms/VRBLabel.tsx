@@ -10,7 +10,8 @@ export interface VRBLabelProps {
   propName: string,
   label: string,
   secondary: boolean,
-  className?: string
+  className?: string,
+  hasBg?: boolean,
 }
 
 const VRBLabel: types.Brick<VRBLabelProps> = ({
@@ -18,12 +19,13 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
   propName,
   label,
   className,
+  hasBg,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <VLabel className={className} secondary={secondary}>
-        <VRBText propName={blockNames.Label} size="md" >
+      <VLabel padding className={className} secondary={secondary} overrideColors={hasBg}>
+        <VRBText propName={blockNames.Label} size="md" overrideTextColor={hasBg}>
           {label}
         </VRBText>
       </VLabel>

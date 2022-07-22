@@ -32,7 +32,7 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, 
         <VText className='max-h-[145px] overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>{subtitle}</VText>
         {buttonText && <VButton onClick={onClick} special={specialBtn} secondary={secondaryBtn} primary={primaryBtn}>{buttonText}</VButton>}
         <div style={{width: '100%', height: '218px', position: 'relative'}} className="w-full h-full rounded-vsm">
-          <VImage src={image} width="100%" height="218px" objectFit={objectFit || 'cover'} layout='fill' alt='image' className='w-full h-full rounded-sm'/>
+          <VImage priority src={image} width="100%" height="218px" objectFit={objectFit || 'cover'} layout='fill' alt='image' className='w-full h-full rounded-sm'/>
         </div>
       </div>
     </VItemContainer>

@@ -27,14 +27,14 @@ export const PagesByCategory = {
       active: true
     },
     {
-      displayName: 'FABRICATOR',
-      slug: 'fabricator',
+      displayName: 'DASHBOARD',
+      slug: 'dashboard',
       type: 'program',
       active: true
     },
     {
-      displayName: 'DASHBOARD',
-      slug: 'dashboard',
+      displayName: 'FABRICATOR',
+      slug: 'fabricator',
       type: 'program',
       active: true
     }

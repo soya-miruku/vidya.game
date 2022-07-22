@@ -1,8 +1,8 @@
 import { classNames, toFixedNumber } from '@/common/helpers';
-import Image from 'next/image';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useRef } from 'react';
 import { NumberInput } from './NumberInput';
+import { VImage } from './VImage';
 
 export interface ISwapInputProps {
   id?: string;
@@ -36,10 +36,10 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
   }, [divRef])
   
   const renderLogo = () => {
-    if(!coinIcons) return <Image loading="lazy" className='border-2 border-white rounded-full bg-black' src='/placeholders/img.png' alt="coin" width={100} height={100}></Image>
+    if(!coinIcons) return <VImage className='border-2 border-white rounded-full bg-black' src='/placeholders/img.png' alt="coin" width={100} height={100}></VImage>
     if(coinIcons.length === 1 || typeof(coinIcons) === 'string') {
       return (
-        <Image loading="lazy" className='border-2 border-white rounded-full' src={typeof(coinIcons) === 'string' ? coinIcons : coinIcons[0]} alt="coin" width={100} height={100}></Image>
+        <VImage className='border-2 border-white rounded-full' src={typeof(coinIcons) === 'string' ? coinIcons : coinIcons[0]} alt="coin" width={100} height={100}></VImage>
       )
     }
     return (
@@ -47,7 +47,7 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
         {coinIcons.map((icon, index) => {
           return (
             <div key={index} className={classNames(index > 0 ? '-ml-6' : 'z-20')}>
-              <Image loading="lazy" className={classNames('rounded-full w-full')} src={icon} alt="coin" width={100} height={100}></Image>
+              <VImage className={classNames('rounded-full w-full')} src={icon} alt="coin" width={100} height={100}></VImage>
             </div>
           )
         })}

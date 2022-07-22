@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
+import { ParallaxProvider } from 'react-scroll-parallax';
 import { ReactBricks } from 'react-bricks/frontend'
 import type { AppProps } from 'next/app'
 import { QueryClient, QueryClientProvider } from 'react-query'
@@ -13,7 +14,6 @@ import '../css/styles.scss';
 import { DAppProvider, Mainnet, Ropsten, Rinkeby, Goerli, Kovan } from '@usedapp/core'
 import { TokenListProvider } from '@/common/providers/TokenListProvider'
 import { GeneratorProvider } from '@/common/providers/GeneratorProvider'
-import { VideoProvider } from '@/common/providers/VideoProvider'
 
 const Init = ({Component, pageProps}) => {
   const {isDarkMode, toggleMode} = useDarkMode();
@@ -37,11 +37,11 @@ const Init = ({Component, pageProps}) => {
     }`,
   }
   return (
-    <ReactBricks {...reactBricksConfig}>
-      <VideoProvider>
+    <ParallaxProvider>
+      <ReactBricks {...reactBricksConfig}>
         <Component {...pageProps}/>
-      </VideoProvider>
-    </ReactBricks>
+      </ReactBricks>
+    </ParallaxProvider>
   )
 }
 

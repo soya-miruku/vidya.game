@@ -5,7 +5,7 @@ import { BlogCard } from '../molecules/BlogCard';
 
 export const BlogListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
   const {data, isLoading, error} = useFetchPages({type: 'post', limit});
-  
+
   if(isLoading) {
     return <div>Loading...</div>
   }
@@ -22,7 +22,8 @@ export const BlogListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
             <BlogCard url={getPageUrlByType(post.type, post.slug)} 
             avatar={post.author.avatarUrl} 
             key={index} 
-            image={post.meta?.featuredImage} 
+            image={post.meta?.image?.src}
+            placeholderSrc={post.meta?.image?.placeholderSrc} 
             title={post.meta.title} 
             label={post.customValues?.label} 
             subtitle={post.meta.description} 

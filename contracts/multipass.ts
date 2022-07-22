@@ -15,7 +15,7 @@ export const CHAIN_MULTIPASS_SETTINGS = {
     contractAddress: "0x4Ae089f03806c9730dFFD7Df224EaC6953d0b45D",
   },
   [Goerli.chainId]: {
-    contractAddress: "0x1faab2e972f08a01813ff83ef9e044c23b4447e2",
+    contractAddress: "0x1faaB2E972f08a01813Ff83Ef9E044C23B4447e2",
   }
 }
 

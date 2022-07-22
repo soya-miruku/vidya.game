@@ -16,7 +16,7 @@ export interface ITabProps {
 
 export const VTab: React.FC<ITabProps> = ({ label, active, onClick }) => {
   return (
-    <VText onClick={onClick} size='sm' weight={active ? 'bold' : 'light'} overrideTextColor className={classNames(active ? 'text-accent-dark-200' : 'hover:text-accent-dark-100 hover:cursor-pointer dark:text-light-200 text-dark-200')}>{label}</VText>
+    <VText onClick={onClick} size='sm' weight={active ? 'bold' : 'light'}  className={classNames(active ? 'text-accent-dark-200' : 'hover:text-accent-dark-100 hover:cursor-pointer dark:text-light-200 text-dark-200')}>{label}</VText>
   )
 }
 

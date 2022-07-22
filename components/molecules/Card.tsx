@@ -22,9 +22,10 @@ export interface ICardProps {
   sameType?: boolean;
   bordered?: boolean;
   popoutImage?: boolean;
+  placeholderSrc?: string;
 }
 
-export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, label, center, title, subtitle, footer, image, avatar, long, wide, url, popoutImage}) => {
+export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, roundImage, placeholderSrc, label, center, title, subtitle, footer, image, avatar, long, wide, url, popoutImage}) => {
   return (
     <div className={classNames('prose hover:-translate-y-6 transition-all duration-500 dark:hover:shadow-accent hover:shadow-accent rounded-lgr', url ? 'hover:cursor-pointer' : '')} onClick={() => url ? window.open(url, '_self') : null}>
       <VItemContainer showBorder={sameType} showBorderBottom={false} showBorderTop={sameType} dropShadow={false} roundedButtom={false}  widthSize={wide ? 'vxl' : 'vlg'} heightSize={(sameType && !long) ? 'vhlf' : long ? 'vxl' : 'vlg'}>
@@ -40,13 +41,13 @@ export const Card: React.FC<ICardProps> = ({bordered=true, sameType=false, round
           :
             <div className='w-full h-full flex justify-center items-center'>
               <div className={roundImage ? 'rounded-[100%] mt-8' : ''} style={{width: roundImage ? '70%' : '100%', height: roundImage ? '90%' : '100%', position: 'relative'}}>
-                <VImage src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
+                <VImage placeholder={placeholderSrc} priority src={image} width="100%" height="100%" objectFit='cover' layout='fill' 
                 alt='image' className={classNames('w-full h-full', roundImage ? 'rounded-[100%]' : 'rounded-t-sm')}/>
               </div>
             </div>
           }
           {avatar && <div className='absolute -mt-8 ml-8 border-2 rounded-full dark:border-dark-300 border-light-300'>
-            <VImage src={avatar} width={60} height={60} alt='icon-image' className='w-full h-full rounded-full'/>
+            <VImage usePlaceholder={false} src={avatar} width={60} height={60} alt='icon-image' className='w-full h-full rounded-full'/>
           </div>}
         </div>
       </VItemContainer>

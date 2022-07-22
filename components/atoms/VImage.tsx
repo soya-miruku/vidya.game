@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNames } from '@/common/helpers';
 
@@ -11,18 +11,33 @@ export interface IVImageProps {
   height?: string | number;
   layout?: "fill" | "fixed" | "intrinsic" | "responsive";
   objectFit?: "contain" | "cover" | "fill" | "none" | "scale-down";
+  loading?: "eager" | "lazy";
+  loader?: any;
   rest?: any;
+  priority?: boolean;
+  placeholder?: string;
+  usePlaceholder?: boolean;
 }
 
-export const VImage: React.FC<IVImageProps> = ({src, alt, className, style, width, height, objectFit, layout, ...rest}) => {
+export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, loading="eager", className, style, width, height, placeholder, usePlaceholder=true, objectFit, layout, ...rest}) => {
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
   const url = errorImage ? placeholderUrl : src;
+
+  useEffect(() => {
+    return () => {
+      setErrorImage(false);
+    }
+  }, []);
+
   return (
     <Image
-      onError={(e) => setErrorImage(true)}
-      placeholder='empty'
-      blurDataURL={placeholderUrl}
+      onError={(e) => {
+        e.preventDefault();
+        setErrorImage(true);
+      }}
+      placeholder={usePlaceholder ? 'blur' : 'empty'}
+      blurDataURL={placeholder ? placeholder : placeholderUrl}
       src={url || placeholderUrl}
       width={width}
       style={style}
@@ -30,7 +45,11 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, className, style, widt
       alt={alt || 'image'}
       layout={layout}
       objectFit={objectFit}
-      className={classNames(className ? className : '')}
+      loading={loading}
+      priority={priority}
+      loader={loader}
+      className={classNames(className, '')}
+      {...rest}
     />
   );
 };

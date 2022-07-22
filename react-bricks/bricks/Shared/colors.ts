@@ -8,6 +8,7 @@ export type TextColorName =
   
 export type BgColorName =
   | 'white'
+  | 'black'
   | 'light'
   | 'gray'
   | 'lightBlue'
@@ -119,6 +120,10 @@ export const bgColors: BgColors = {
     label: 'Dark',
     value: { color: '#11081F', className: 'bg-gray-900' },
   },
+  black: {
+    label: 'Black',
+    value: { color: '#000', className: 'bg-black' },
+  }
 }
 
 export const DefaultColors = Object.keys(bgColors).map((key) => bgColors[key]);

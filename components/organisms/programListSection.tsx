@@ -22,7 +22,6 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
     const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
     const max = data?.length || 0;
     if (!active && trigger) {
-      console.log('triggered');
       if(xDir === 1)  { //left
         if(goToSlide > 1) {
           setGoToSlide(goToSlide - 1);
@@ -58,7 +57,7 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
   const slides = data && !isLoading ? data.map((post, index) => {
     return {
       key: index,
-      content: <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.featuredImage} title={post.meta.title} subtitle={post.meta.description} />
+      content: <ProgramCard key={`${post.slug}_${index}`} url={getPageUrlByType(post.type, post.slug)} image={post.meta?.image?.src} placeholderSrc={post.meta?.image?.placeholderSrc} title={post.meta.title} subtitle={post.meta.description} />
     }
   }) : placeholders;
 

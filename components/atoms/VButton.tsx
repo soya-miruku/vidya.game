@@ -38,7 +38,7 @@ export const VButton: React.FC<ButtonProps> = ({type, children, style, isLoading
       style={{
         ...style,
         ...(disabled ? {cursor: 'not-allowed'} : {}),
-        ...(isLoading ? {'pointer-events': 'none'} : {}),
+        ...(isLoading ? {'pointerEvents': 'none'} : {}),
         backgroundColor: customColor ? customColor : '',
       }}
       onClick={() => {
