@@ -12,8 +12,8 @@ export const EntryPage = ({page, error}) => {
   const pageOk = page ? cleanPage(page, pageTypes, bricks) : null
   const { isDarkMode } = useDarkMode();
 
-  const firstElBgColorProp = pageOk?.content?.[0].props?.['bg']?.['color'];
-  const firstElBgImageProp = pageOk?.content?.[0].props?.['bgImage'];
+  const firstElBgColorProp = pageOk?.content?.[0]?.props?.['bg']?.['color'];
+  const firstElBgImageProp = pageOk?.content?.[0]?.props?.['bgImage'];
   
   const hasNoColorOrBg = !firstElBgImageProp || !(firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff');
 
