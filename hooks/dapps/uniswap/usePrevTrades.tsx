@@ -20,6 +20,9 @@ const UsePrevTrades = () => {
     const { chainId, user, library } = useAccount();
     console.log('l', library)
     const [data, setData] = useState([]);
+    const [accBal, setBalance] = useState("");
+    const [tradeArray, settradeArray] = useState([]);
+    let trades = [];
     console.log('renderedDashboard')
    
     let vidya = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].VIDYA_TOKEN_ADDRESS, vidyaabi, library)
@@ -54,6 +57,7 @@ const UsePrevTrades = () => {
                         const recLogs = rec.logs
                         const decoder = new ethers.utils.AbiCoder()
                         const gettx = await tx.getTransaction()
+                        const txData = await library.getTransaction(tx.transactionHash)
                         console.log('g', gettx)
 
 
@@ -66,6 +70,7 @@ const UsePrevTrades = () => {
 
                                 switch (log.topics[0]) {
                                     case '0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef':
+                                        //         console.log('transfer', log.address)
 
                                         let token0 = new ethers.Contract(log.address, vidyaabi, library)
                                         let token0name = await token0.functions.name()
@@ -94,7 +99,34 @@ const UsePrevTrades = () => {
                                             'uint256', 'uint256', 'uint256', 'uint256'
                                         ], log.data)
                                         
+                                        if (decode[0]._hex === '0x00') {
+                                            
 
+                                            let actualtoken0 = parseFloat(ethers.utils.formatUnits(decode[2], token0decimals))
+
+                                            let actualtoken1 = parseFloat(ethers.utils.formatUnits(decode[1], token1decimals))
+
+                                           // console.log(tx.transactionHash)
+
+                                            //yes a loop here is probably bad but i can optimize later
+
+                                            // round to 3 decimals places
+                                            let token0in = Math.round(actualtoken0 * 1000) / 1000
+                                            let token1in = Math.round(actualtoken1 * 1000) / 1000
+                                            let trade = {
+                                                'txHash': txData.hash,
+                                                'token0': token0name,
+                                                'amount0': token0in,
+                                                'token1': token1name,
+                                                'amount1': token1in,
+                                                'index': log.logIndex
+                                            }
+                                            console.log('t',trade)
+                                            tradeArray.push(trade)
+                                            settradeArray(tradeArray)
+                                            console.log('t', trades)
+                                            console.log('ta', tradeArray)
+                                        }
 
 
 
