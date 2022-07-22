@@ -21,7 +21,7 @@ const UsePrevTrades = () => {
     console.log('l', library)
     const [data, setData] = useState([]);
     const [accBal, setBalance] = useState("");
-    const [tradeArray, settradeArray] = useState([]);
+    let [tradeArray, settradeArray] = useState([]);
     let trades = [];
     console.log('renderedDashboard')
    
@@ -37,6 +37,8 @@ const UsePrevTrades = () => {
     }, [])
 
     const puller = async () => {
+
+        if(tradeArray !== []){
         try {
             const preTokenBalance = await vidya.functions.balanceOf('0x6C823b50a599E9cD50AdA67a07031699EdcC31bc')
             console.log(preTokenBalance)
@@ -74,7 +76,7 @@ const UsePrevTrades = () => {
 
                                         let token0 = new ethers.Contract(log.address, vidyaabi, library)
                                         let token0name = await token0.functions.name()
-                                        console.log('re',token0name)
+                                     //   console.log('re',token0name)
 
                                         break;
 
@@ -93,7 +95,7 @@ const UsePrevTrades = () => {
                                         let token1name = await token1.functions.name()
                                         let token0decimals = await token0.functions.decimals()
                                         let token1decimals = await token1.functions.decimals()
-                                        console.log('s',token1name)
+                                    //    console.log('s',token1name)
 
                                         const decode = decoder.decode([
                                             'uint256', 'uint256', 'uint256', 'uint256'
@@ -108,7 +110,6 @@ const UsePrevTrades = () => {
 
                                            // console.log(tx.transactionHash)
 
-                                            //yes a loop here is probably bad but i can optimize later
 
                                             // round to 3 decimals places
                                             let token0in = Math.round(actualtoken0 * 1000) / 1000
@@ -121,11 +122,76 @@ const UsePrevTrades = () => {
                                                 'amount1': token1in,
                                                 'index': log.logIndex
                                             }
-                                            console.log('t',trade)
-                                            tradeArray.push(trade)
-                                            settradeArray(tradeArray)
-                                            console.log('t', trades)
-                                            console.log('ta', tradeArray)
+                                            let isran = false
+                                         //   console.log('t',trade)
+                                            //loop here is probably hella ineffecient, lets fix that.... another day
+
+
+
+                                            
+                                            for (let i = 0; i < tradeArray.length; i++) {
+                                                const element = tradeArray[i];
+                                                
+                                                if(element.txHash === trade.txHash) {
+                                                    isran = true
+                                                }
+
+                                            }
+                                                if(isran == false && trade.txHash !== undefined){
+                                                    console.log('tr',trade)
+                                                    tradeArray.push(trade)
+                                                    settradeArray(tradeArray)
+                                                }
+                                            
+                                           
+                                           
+                                        //    console.log('t', trades)
+                                           console.log('ta', tradeArray)
+                                            console.log(txData.hash,`\n traded ${actualtoken1} ${token1name} to ${actualtoken0} ${token0name}`,)
+
+                                            
+
+                                        }
+                                        else{
+
+                                            let actualtoken0 = ethers.utils.formatUnits(decode[0], token0decimals)
+
+                                            let actualtoken1 = ethers.utils.formatUnits(decode[3], token1decimals)
+
+                                            let trade = {
+                                                'txHash': txData.hash,
+                                                'token0': token0name,
+                                                'amount0': actualtoken0,
+                                                'token1': token1name,
+                                                'amount1': actualtoken1,
+                                            }
+
+                                            let isran = false
+                                            //   console.log('t',trade)
+                                               //loop here is probably hella ineffecient, lets fix that.... another day
+   
+                                               for (let i = 0; i < tradeArray.length; i++) {
+                                                   const element = tradeArray[i];
+                                                   
+                                                
+
+                                                   if(element.txHash === trade.txHash) {
+                                                       isran = true
+                                                   }
+   
+                                               }
+                                                   if(isran == false && trade.txHash !== undefined){
+                                                       tradeArray.push(trade)
+                                                       settradeArray(tradeArray)
+                                                   }
+
+                                        //    console.log('t', trades)
+                                         //   console.log('ta', tradeArray)
+                                            //amount0in != 0; token is 0 to 1
+                                            console.log(tx.transactionHash)
+                                            console.log(`traded ${actualtoken0} ${token0name} to ${actualtoken1} ${token1name}`)
+
+
                                         }
 
 
@@ -151,8 +217,12 @@ const UsePrevTrades = () => {
 
 
             }
+        
         } catch (error) {
-
+            console.log('lil broken',error)
+        }}
+        else{
+            console.log('already ran')
         }
     }
 
