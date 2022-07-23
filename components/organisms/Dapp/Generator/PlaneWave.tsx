@@ -80,10 +80,20 @@ export const PlaneWave = () => {
     }  
 
     render();
+    
+    function onWindowResize() {
+      //changes the size of the canavs and updates it
+      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+    }
+
+    window.addEventListener('resize', onWindowResize, false);
 
     return () => {
       cancelAnimationFrame(animationFrameId);
       container.removeChild(renderer.domElement);
+      window.removeEventListener('resize', onWindowResize, false);
     }
 
   }, []);
