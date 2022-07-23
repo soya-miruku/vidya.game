@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion';
-import { useContext } from 'react';
 
 export interface IBackdropProps { 
   children?: React.ReactNode;

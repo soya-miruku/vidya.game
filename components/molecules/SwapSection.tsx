@@ -99,8 +99,9 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     setToken1Amount(() => token0Amount);
   }
 
-  const handleChangeToken0Amount = async (e) => {
-    if(e.target.value === '') {
+  const handleChangeToken0Amount = async (value) => {
+    console.log(value)
+    if(value === '') {
       setToken0Amount(() => '');
       return;
     }
@@ -109,20 +110,19 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       clearTimeout(typingTimeoutRef.current);
     }
     
-    const amount = toFixedNumber(e.target.value, DECIMALS);
-    setToken0Amount(() => amount);
+    setToken0Amount(() => value);
 
     typingTimeoutRef.current = setTimeout(async () => {
       setIsUpdating(() => true);
-      const amounts = await calculateAmountsOut(true, amount);
+      const amounts = await calculateAmountsOut(true, value);
       setToken1Amount(() => toFixedNumber(amounts, DECIMALS));
       setIsUpdating(() => false);
     }, 500);
 
   }
 
-  const handleChangeToken1Amount = async (e) => {
-    if(e.target.value === '') {
+  const handleChangeToken1Amount = async (value) => {
+    if(value === '') {
       setToken1Amount(() => '');
       return;
     }
@@ -131,12 +131,11 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       clearTimeout(typingTimeoutRef.current);
     }
 
-    const amount = toFixedNumber(e.target.value, DECIMALS);
-    setToken1Amount(() => amount);
+    setToken1Amount(() => value);
 
     typingTimeoutRef.current = setTimeout(async () => {
       setIsUpdating(() => true);
-      const amounts = await calculateAmountsOut(false, amount);
+      const amounts = await calculateAmountsOut(false, value);
       setToken0Amount(() => toFixedNumber(amounts, DECIMALS));
       setIsUpdating(() => false);
     }, 500);
@@ -149,14 +148,14 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       setToken0(() => token);
       if(token0Amount > 0) {
         setToken0Amount(() => 0);
-        handleChangeToken1Amount({target: {value: token1Amount}});
+        handleChangeToken1Amount(token1Amount);
       }
 
     } else {
       setToken1(() => token);
       if(token1Amount > 0) {
         setToken1Amount(() => 0);
-        handleChangeToken0Amount({target: {value: token0Amount}});
+        handleChangeToken0Amount(token0Amount);
       }
     }
 

@@ -12,7 +12,7 @@ export interface ISwapInputProps {
   value?: number | string;
   min?: number;
   onSelectCoin?: any;
-  onChange?: (value: number) => void;
+  onChange?: (value: number | string) => void;
   onMax?: any;
   disabled?: boolean;
   onInputError?:any
@@ -20,13 +20,13 @@ export interface ISwapInputProps {
   coinIcons?: string | Array<string>;
 }
 
-export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balance, placeholder, value, min=1, onSelectCoin, onChange, onMax, disabled, onInputError, coinSymbol, coinIcons}) => {
+export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balance, placeholder, value, min=0, onSelectCoin, onChange, onMax, disabled, onInputError, coinSymbol, coinIcons}) => {
   const divRef = useRef(null);
   let ratio = useRef(0);
   
   const onMaxClick = () => {
-    const maxValue = {target: {value: `${toFixedNumber(balance * 0.98, 8)}`, valueAsNumber: (toFixedNumber(balance * 0.98, 8))}};
-    if(onMax) onMax(maxValue);
+    // const maxValue = {target: {value: `${toFixedNumber(balance * 0.9995, 8)}`, valueAsNumber: (toFixedNumber(balance * 0.9995, 8))}};
+    if(onMax) onMax(toFixedNumber(balance * 0.9995, 8));
   }
 
   useEffect(() => {
@@ -56,11 +56,37 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
   }
 
   return(
-    <div ref={divRef} className='w-full flex flex-row justify-end items-center dark:bg-dark-100 dark:text-light-100 text-dark-100 bg-light-100 rounded-[15px]'>
+    <div ref={divRef} className={classNames('w-full flex flex-row justify-end items-center rounded-[15px]', 
+      disabled ? 'dark:bg-dark-200 bg-light-300 text-gray-400': 'dark:bg-dark-100 bg-light-100 text-dark-100 dark:text-light-100')}>
       <div className='flex flex-col w-full px-[20px] py-[12px] min-h-[70px] gap-y-0 rounded-[15px]'>
-        <NumberInput className={classNames('w-full selection:bg-accent-dark-600 dark:bg-dark-100 bg-light-100 text-2xl focus:outline-none')} id={id} disabled={disabled} min={min} max={balance} placeholder={placeholder} value={value} onWheel={(e) => e.target.blur()} onChange={onChange} step='any' onInputError={onInputError} />
+        <NumberInput className={classNames('w-full disabled:dark:bg-dark-200 disabled:bg-light-300 selection:bg-accent-dark-600 dark:bg-dark-100 bg-light-100 text-2xl focus:outline-none')} 
+          id={id} disabled={disabled} min={min} max={balance} placeholder={placeholder} value={value} onWheel={(e) => e.target.blur()} 
+          onChange={(e) => {
+            const value = e.target.value;
+            // console.log('the value', value)
+            // let valNumber;
+            // if(value === '0.') {
+            //   console.log('yes')
+            //   valNumber = 0.0;
+            // }
+            // else {
+            //   console.log(value)
+            //   valNumber = Number(value);
+            // }
+
+            // if(valNumber < min) {
+            //   console.log('lol')
+            //   valNumber = min;
+            // }
+
+            // if(valNumber > balance) {
+            //   valNumber = balance;
+            // }
+
+            if(onChange) onChange(value);
+          }} step='any' onInputError={onInputError} />
           <div className='flex items-center justify-start gap-x-1 flex-wrap'>
-            {balance > 0 && <button className='text-[10px] dark:bg-dark-300 bg-light-300 dark:text-light-200 px-3 rounded-xs' onClick={onMaxClick}>
+            {balance > 0 && <button disabled={disabled} type='button' className='text-[10px] dark:bg-dark-300 bg-light-300 dark:text-light-200 px-3 rounded-xs' onClick={onMaxClick}>
               Max
             </button>
             }
@@ -71,8 +97,8 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
           <div className='w-[20px] h-[20px]'>
             {renderLogo()}
           </div>
-          <h6 className='font-normal'>{ !coinSymbol ? 'null' : coinSymbol?.length > 5 ? `${coinSymbol.slice(0,3)}..` : `${coinSymbol}  `}</h6>
-          {onSelectCoin ?  <button onClick={onSelectCoin} ><span className='-ic-chevron text-accent-dark-200 w-[20px] h-[12px]'></span></button>: <div className='w-1'></div>}
+          <h6 className='font-normal text-dark-100 dark:text-light-100'>{ !coinSymbol ? 'null' : coinSymbol?.length > 5 ? `${coinSymbol.slice(0,3)}..` : `${coinSymbol}  `}</h6>
+          {onSelectCoin ?  <button type='button' onClick={onSelectCoin} ><span className='-ic-chevron text-accent-dark-200 w-[20px] h-[12px]'></span></button>: <div className='w-1'></div>}
         </div>
     </div>
   )
