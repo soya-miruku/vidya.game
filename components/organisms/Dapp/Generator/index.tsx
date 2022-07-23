@@ -18,6 +18,7 @@ import { Electricity } from "./Electricity"
 import { FormLayout } from "./FormLayout"
 import { VTab, VTabs } from "@/components/atoms/VTabs"
 import { faDollar } from "@fortawesome/pro-regular-svg-icons"
+import { PlaneWave } from "./PlaneWave"
 
 export interface IGeneratorDappProps {
 
@@ -47,7 +48,8 @@ export const GeneratorDapp = ({}) => {
       </UnAuthenticatedView>
       <AuthenticatedView>
 
-        <div className="flex flex-col justify-center items-center p-vsm h-full">
+        <div className="flex flex-col justify-center items-center p-vsm h-full relative">
+          <PlaneWave/>
         <div className="p-[5px] rounded-xl  relative z-[1]">
           {/* <div className="w-full absolute -top-4 z-[100]">
             <Electricity timeout={400} strength={30} length={'100%'} className=""/>
