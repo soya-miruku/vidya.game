@@ -14,7 +14,34 @@ export const PlaneWave = () => {
 		meshColor = "#005e97"; 
     let animationFrameId: number;
 
-    var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
+    // let alphaColor = 1;
+    // let r = Math.floor(Math.random() * 255);
+    // let g = Math.floor(Math.random() * 255);
+    // let b = Math.floor(Math.random() * 255);
+    // let fadingNewColor = false;
+    // const randomColor = () => {      
+    //   if(alphaColor > 1) {
+    //     alphaColor = 1;
+    //     fadingNewColor = false;
+    //   }
+    //   else if(alphaColor > 0.03 && !fadingNewColor) {
+    //     alphaColor -= 0.01;
+    //     return `rgba(${r}, ${g}, ${b}, ${alphaColor})`;
+    //   }
+    //   else {
+    //     alphaColor += 0.01;
+    //     if(!fadingNewColor){
+    //       r = Math.floor(Math.random() * 255);
+    //       g = Math.floor(Math.random() * 255);
+    //       b = Math.floor(Math.random() * 255);
+    //       fadingNewColor = true;
+    //     }
+    //   }
+
+    //   return `rgba(${r}, ${g}, ${b}, ${alphaColor})`;
+    // }
+
+    var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000);
     camera.position.z = 10000;
     camera.position.y = 10000;
     var scene = new THREE.Scene();
@@ -22,7 +49,8 @@ export const PlaneWave = () => {
     var planeGeo = new THREE.PlaneGeometry(planeSize, planeSize, planeDefinition, planeDefinition);
     var plane = new THREE.Mesh(planeGeo, new THREE.MeshBasicMaterial({
       color: meshColor,
-      wireframe: true
+      wireframe: true,
+      transparent: true,
     }));
     plane.rotation.x -= Math.PI * .5;
   
@@ -40,13 +68,12 @@ export const PlaneWave = () => {
         positionAttribute.setZ(i, planeGeo.attributes.position.getZ(i) + Math.random() * vertexHeight - vertexHeight);
         positionAttribute.setY(i, planeGeo.attributes.position.getY(i) + Math.random() * vertexHeight - vertexHeight);
         positionAttribute.needsUpdate = true;
-        // planeGeo.vertices[i].z += Math.random() * vertexHeight - vertexHeight;
-        // planeGeo.vertices[i]._myZ = planeGeo.vertices[i].z
       }
     };
 
     updatePlane();
     var count = 0
+    let animC = 0;
     function render() {
       animationFrameId = requestAnimationFrame(render);
       var x = camera.position.x;
@@ -56,17 +83,18 @@ export const PlaneWave = () => {
       camera.lookAt(new THREE.Vector3(0, 8000, 0))
       const positionAttribute = planeGeo.getAttribute('position');
 
-      for (var i = 0; i < positionAttribute.count; i++) {
-        // var z = +positionAttribute.getZ(i);
-        positionAttribute.setZ(i, Math.sin(( i + count * 0.00002)) * ((positionAttribute.getZ(i)+x)*.3 - (z* 0.6)));
+      // if(animC % 2 === 0) {
+      //   plane.material.color.set(randomColor());
+      //   plane.material.opacity = alphaColor // 1 + Math.sin(new Date().getTime() * .0025)
+      // }
 
+      for (var i = 0; i < positionAttribute.count; i++) {
+        positionAttribute.setZ(i, Math.sin(( i + count * 0.00002)) * ((positionAttribute.getZ(i)+x)*.2 - (z* 0.5)));
         positionAttribute.needsUpdate = true;
-        // planeGeo.vertices[i].z = Math.sin(( i + count * 0.00002)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ* 0.6))
-        // plane.geometry.verticesNeedUpdate = true;
-  
         count += 0.1
       }
-  
+      
+      animC+=1;
       renderer.render(scene, camera);
     }  
 

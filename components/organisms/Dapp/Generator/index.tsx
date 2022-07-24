@@ -47,9 +47,8 @@ export const GeneratorDapp = ({}) => {
         <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
-
-        <div className="flex flex-col justify-center items-center p-vsm h-full relative">
-          <PlaneWave/>
+        <div className="flex flex-col justify-center items-center p-vsm sm:h-full h-auto relative overflow-y-auto">
+        <PlaneWave/>
         <div className="p-[5px] rounded-xl  relative z-[1]">
           {/* <div className="w-full absolute -top-4 z-[100]">
             <Electricity timeout={400} strength={30} length={'100%'} className=""/>
@@ -78,29 +77,17 @@ export const GeneratorDapp = ({}) => {
                     ]}
                   />
                 </div>
-              <VTabs defaultActiveIndex={0}>
-                <VTab description='stake tokens to earn rewards' title={'stake'}>
-                  <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">
-                  <VButton secondary animate={false} padding={false}>Enable VIDYA</VButton>
-                  <FormLayout 
-                    buttonText="stake"
-                    currentPool={currentPool}
-                    onInputChange={(e: number) => {
-                      setBalanceAmount(e);
-                    }}
-                    inputDisabled={currentPool.accountBalance <= 0}
-                    buttonDisabled={currentPool.accountBalance <= 0}
-                    onSubmit={(e) => {}}
-                    onMax={(value) => {
-                      setBalanceAmount(value);
-                    }}
-                    inputValue={balanceAmount}
-                    balance={currentPool.accountBalance}/>
-                    <VText className="w-full" size="sm">You can choose to commit your tokens after you have staked at least more than 1 VIDYA token(s).</VText>
+                <VTabs defaultActiveIndex={0}>
+                  <VTab description='stake tokens to earn rewards' title={'stake'}>
+                    <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">
+                    <div className="w-full flex gap-vmd items-center">
+                      <VButton secondary animate={false} padding={false}>Enable VIDYA</VButton>
+                      {currentPool.type === 'LP' &&
+                        <VButton className="border-[1px] !px-vsm border-accent-dark-200 hover:border-accent-dark-600" animate={false} padding={false} onClick={() => window.open('https://app.uniswap.org/#/add/v2/ETH/0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30?chain=mainnet', '_blank')} >Create LP Token</VButton>
+                      }
                     </div>
-                </VTab>
-                <VTab description='Lock your tokens for bonuses.' title='commit'>
-                  <FormLayout 
+
+                    <FormLayout 
                       buttonText="stake"
                       currentPool={currentPool}
                       onInputChange={(e: number) => {
@@ -114,25 +101,42 @@ export const GeneratorDapp = ({}) => {
                       }}
                       inputValue={balanceAmount}
                       balance={currentPool.accountBalance}/>
-                </VTab>
-                <VTab title="withdraw" description="Widthdraw Tokens from platform">
-                  <FormLayout 
-                      buttonText="stake"
-                      currentPool={currentPool}
-                      onInputChange={(e: number) => {
-                        setBalanceAmount(e);
-                      }}
-                      inputDisabled={currentPool.accountBalance <= 0}
-                      buttonDisabled={currentPool.accountBalance <= 0}
-                      onSubmit={(e) => {}}
-                      onMax={(value) => {
-                        setBalanceAmount(value);
-                      }}
-                      inputValue={balanceAmount}
-                      balance={currentPool.accountBalance}/>
-                </VTab>
-              </VTabs>
-              
+                      <VText className="w-full" size="sm">You can choose to commit your tokens after you have staked at least more than 1 VIDYA token(s).</VText>
+                      </div>
+                  </VTab>
+                  <VTab description='Lock your tokens for bonuses.' title='commit'>
+                    <FormLayout 
+                        buttonText="stake"
+                        currentPool={currentPool}
+                        onInputChange={(e: number) => {
+                          setBalanceAmount(e);
+                        }}
+                        inputDisabled={currentPool.accountBalance <= 0}
+                        buttonDisabled={currentPool.accountBalance <= 0}
+                        onSubmit={(e) => {}}
+                        onMax={(value) => {
+                          setBalanceAmount(value);
+                        }}
+                        inputValue={balanceAmount}
+                        balance={currentPool.accountBalance}/>
+                  </VTab>
+                  <VTab title="withdraw" description="Widthdraw Tokens from platform">
+                    <FormLayout 
+                        buttonText="stake"
+                        currentPool={currentPool}
+                        onInputChange={(e: number) => {
+                          setBalanceAmount(e);
+                        }}
+                        inputDisabled={currentPool.accountBalance <= 0}
+                        buttonDisabled={currentPool.accountBalance <= 0}
+                        onSubmit={(e) => {}}
+                        onMax={(value) => {
+                          setBalanceAmount(value);
+                        }}
+                        inputValue={balanceAmount}
+                        balance={currentPool.accountBalance}/>
+                  </VTab>
+                </VTabs>
             </div>
           </VItemContainer>
         </div>
