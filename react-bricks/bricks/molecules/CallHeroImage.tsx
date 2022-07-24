@@ -70,38 +70,43 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, headerBu
                 </Repeater>
               </ParallaxWrapper>
               <div className={classNames('flex flex-col justify-center h-full w-full', hasBg ? '': ' pt-vlrg')}>
-                <Text
-                  renderBlock={(props) => (
-                    <VTitle overrideTextColor={hasBg} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
-                  )}
-                  renderPlaceholder={(props) => (
-                    <span className="opacity-30">{props.children}</span>
-                  )}
-                  placeholder="Type a title..."
-                  propName="title"
-                />
+                <ParallaxWrapper disabled={hasBg || isMobileView} translateY={[0, -60]} shouldAlwaysCompleteAnimation >
+                    <Text
+                      renderBlock={(props) => (
+                        <VTitle overrideTextColor={hasBg} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
+                      )}
+                      renderPlaceholder={(props) => (
+                        <span className="opacity-30">{props.children}</span>
+                      )}
+                      placeholder="Type a title..."
+                      propName="title"
+                    />
+                  </ParallaxWrapper>
 
-                <RichText
-                  renderBlock={(props) => (
-                    <VText overrideTextColor={hasBg} size='lg' className='m-0'>
-                      {props.children}
-                    </VText>
-                  )}
-                  placeholder="Type a text..."
-                  propName="text"
-                  allowedFeatures={[
-                    types.RichTextFeatures.Bold,
-                    types.RichTextFeatures.Italic,
-                    types.RichTextFeatures.Highlight,
-                    types.RichTextFeatures.Code,
-                    types.RichTextFeatures.Link,
-                  ]}
-                  renderCode={(props) => (
-                    <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
-                      {props.children}
-                    </code>
-                  )}
-                />
+                  <ParallaxWrapper disabled={hasBg || isMobileView} translateY={[0, -40]} shouldAlwaysCompleteAnimation >
+                    <RichText
+                      renderBlock={(props) => (
+                        <VText overrideTextColor={hasBg} size='lg' className='m-0'>
+                          {props.children}
+                        </VText>
+                      )}
+                      placeholder="Type a text..."
+                      propName="text"
+                      allowedFeatures={[
+                        types.RichTextFeatures.Bold,
+                        types.RichTextFeatures.Italic,
+                        types.RichTextFeatures.Highlight,
+                        types.RichTextFeatures.Code,
+                        types.RichTextFeatures.Link,
+                      ]}
+                      renderCode={(props) => (
+                        <code className="text-sm py-1 px-2 bg-gray-200 dark:bg-gray-700 rounded">
+                          {props.children}
+                        </code>
+                      )}
+                    />
+                  </ParallaxWrapper>
+
               </div>
               { headerButtons?.length > 0 && headerButtons?.[0]?.props?.children &&
                 <Repeater propName='headerButtons' itemProps={{background: hasBg}} renderWrapper={(items) => {
