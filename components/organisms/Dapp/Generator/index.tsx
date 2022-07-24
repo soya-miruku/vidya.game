@@ -26,6 +26,7 @@ import { ConfirmationModal } from "@/components/molecules/ConfirmationModal"
 import { useCommitLP } from "@/hooks/dapps/generator/useCommitLP"
 import { useBreakCommitment } from "@/hooks/dapps/generator/useBreakCommitment"
 import { useWithdrawLP } from "@/hooks/dapps/generator/useWithdrawLP"
+import { useCountdown } from "@/hooks/useCountdown"
 
 export interface IGeneratorDappProps {
 
@@ -52,8 +53,9 @@ export const GeneratorDapp = ({}) => {
     return pool;
   }, [JSON.stringify(state.pools), state.currentPool])
 
-  const [commitmentPeriodSelected, setCommitmentPeriodSelected] = useState<number>(currentPool.commitmentIndex);
+  const [commitmentPeriodSelected, setCommitmentPeriodSelected] = useState<number>(currentPool.commitmentIndex-1);
 
+  const [countdown] = useCountdown(currentPool.remainingUnlockTime);
   const [setAllowanceLimit, allowanceState] = useApprove(currentPool.type === 'LP' ? currentPool.lptoken : currentPool.token, currentPool.teller);
   const [stake, stakeState] = useDepositLP(currentPool.teller);
   const [commit, commitState] = useCommitLP(currentPool.teller);
@@ -66,6 +68,10 @@ export const GeneratorDapp = ({}) => {
   const isPendingCommit = useMemo(() => (commitState.status === 'PendingSignature' || commitState.status === 'Mining'), [commitState.status]);
   const isPendingWithdraw = useMemo(() => withdrawStae.status === 'PendingSignature' || withdrawStae.status === 'Mining', [withdrawStae.status]);
   const isPendingBreakCommitment = useMemo(() => (breakCommitmentState.status === 'PendingSignature' || breakCommitmentState.status === 'Mining'), [breakCommitmentState.status]);
+
+  useEffect(() => {
+    setCommitmentPeriodSelected(currentPool.commitmentIndex-1);
+  }, [currentPool.commitmentIndex])
 
   const isCommitSuccess = useMemo(() => {
     const status = commitState.status === 'Success';
@@ -168,8 +174,9 @@ export const GeneratorDapp = ({}) => {
                     {
                     0: <p>{currentPool.deposited.toFixed(3)}</p>,
                     1: <p>{currentPool.amountCommitted.toFixed(3)}</p>,
-                    2: <div className="flex justify-center items-center gap-[2px]">
+                    2: <div className="flex flex-col justify-center items-center gap-[2px]">
                           <p className="">{currentPool.claimAmount.toFixed(5)}</p> 
+                          {currentPool.remainingUnlockTime > 0 && <p className='text-accent-dark-100'>{countdown}</p>}
                           {currentPool.claimAmount > 0 && <button className="text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
                             Claim
                           </button>}
