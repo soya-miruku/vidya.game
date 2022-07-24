@@ -1,23 +1,15 @@
-import { classNames } from "@/common/helpers"
 import { GeneratorContext } from "@/common/providers/GeneratorProvider"
 import { useLoadUserPools } from "@/hooks/dapps/generator/useLoadUser"
-import { useDetectDeviceSize } from "@/hooks/useDetectIsMobileView"
 import { useContext, useEffect, useMemo, useState } from "react"
 import { AuthenticatedView, UnAuthenticatedView } from "@/components/atoms/AuthenticatedView"
-import { TokenInfo } from "@/common/providers/TokenListProvider"
-import { SwapInput } from "@/components/atoms/SwapInput"
 import { VButton } from "@/components/atoms/VButton"
 import { VItemContainer } from "@/components/atoms/VItemContainer"
 import { VText } from "@/components/atoms/VText"
-import { VTitle } from "@/components/atoms/VTitle"
 import { DappLogin } from "@/components/molecules/DappLogin"
 import { AnimatePresenceModal } from "@/components/atoms/Modal"
-import { TokenSearchModal } from "@/components/molecules/TokenSearchModal"
 import { VTable } from "@/components/atoms/VTable"
-import { Electricity } from "./Electricity"
 import { FormLayout } from "./FormLayout"
 import { VTab, VTabs } from "@/components/atoms/VTabs"
-import { faDollar } from "@fortawesome/pro-regular-svg-icons"
 import { PlaneWave } from "./PlaneWave"
 import { useApprove } from "@/hooks/dapps/generator/useApprove"
 import { useDepositLP } from "@/hooks/dapps/generator/useDepositLP"
@@ -28,12 +20,8 @@ import { useBreakCommitment } from "@/hooks/dapps/generator/useBreakCommitment"
 import { useWithdrawLP } from "@/hooks/dapps/generator/useWithdrawLP"
 import { useCountdown } from "@/hooks/useCountdown"
 
-export interface IGeneratorDappProps {
-
-}
-
 export const GeneratorDapp = ({}) => {
-  const { state, updatePool, setCurrentPool, setCommitmentIndex } = useContext(GeneratorContext);
+  const { state, updatePool, setCommitmentIndex } = useContext(GeneratorContext);
   const userResults = useLoadUserPools(Object.keys(state.pools));
   const [ stakeAmount, setStakeAmount ] = useState<number>(0);
   const [ commitAmount, setCommitAmount ] = useState<number>(0);
@@ -150,7 +138,7 @@ export const GeneratorDapp = ({}) => {
           title="you are about to break your commitments" 
           description={`Are you sure you want to do this? the penalty will be: ${currentPool.commitmentOptions[currentPool.commitmentIndex].bonus/2}% in fee`} 
           confirmText="Break Commitment Anyway" 
-          cancelText="On second thoughts"/>}
+          cancelText="On second thought..."/>}
       </AnimatePresenceModal>
       <UnAuthenticatedView>
         <DappLogin/>
