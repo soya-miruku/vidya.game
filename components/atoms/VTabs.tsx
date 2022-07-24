@@ -87,7 +87,7 @@ export const VTab = ({isActive, show=true, enabled=true, isFirst, isLast, onClic
       {!isMobileView && <div className={classNames(isActive ? 'bg-accent-dark-200' : 'bg-[#2d323d]', 'p-3 rounded-xl', className)}>
       {icon && <FontAwesomeIcon className='w-8 h-8' icon={icon}/>}
       </div>}
-      <div className='text-left'>
+      <div className='text-left flex flex-col gap-[3px]'>
         {title  && <VTitle type="h6">{title}</VTitle>}
         {description && !isMobileView && <VText size="sm" className='!text-accent-dark-100 !leading-none'>{description}</VText>}
       </div>

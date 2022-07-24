@@ -36,7 +36,7 @@ export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPr
     },
   ] || [];
 
-  const results = useCalls(calls, {refresh: 'never', isStatic: false})
+  const results = useCalls(calls, {refresh: 'everyBlock', isStatic: false})
   
   if(results?.length === 0) {
     return {

@@ -11,7 +11,7 @@ import { UserProvider } from '../common/providers/UserProvider';
 import { getDefaultProvider } from 'ethers'
 
 import '../css/styles.scss';
-import { DAppProvider, Mainnet, Ropsten, Rinkeby, Goerli, Kovan } from '@usedapp/core'
+import { DAppProvider, Mainnet, Ropsten, Rinkeby, Goerli, Kovan, Config } from '@usedapp/core'
 import { TokenListProvider } from '@/common/providers/TokenListProvider'
 import { GeneratorProvider } from '@/common/providers/GeneratorProvider'
 
@@ -46,7 +46,7 @@ const Init = ({Component, pageProps}) => {
 }
 
 const queryClient = new QueryClient();
-const dappConfig = {
+const dappConfig: Config = {
   readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
     [Mainnet.chainId]: process.env.alchemyApiKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyApiKey}` : getDefaultProvider('mainnet'),
@@ -56,6 +56,7 @@ const dappConfig = {
     [Kovan.chainId] : process.env.infuraId ? `https://kovan.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('kovan'),
   },
   refresh: 10,
+  noMetamaskDeactivate: true,
 }
 
 const MyApp = ({ Component, pageProps }: AppProps) => {

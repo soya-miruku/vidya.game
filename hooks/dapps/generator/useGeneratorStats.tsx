@@ -34,7 +34,7 @@ export const useGeneratorStats = (): IGeneratorStats => {
     },
   ] || [];
 
-  const results = useCalls(calls, {refresh: 'never', isStatic: false})
+  const results = useCalls(calls, {refresh: 'everyBlock', isStatic: false})
 
   results.forEach((result, index) => {
     if (result && result.error) {

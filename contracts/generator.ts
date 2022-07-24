@@ -13,6 +13,32 @@ export const CHAIN_GENERATOR_SETTINGS = {
         token: "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2", // WETH token address 
         lptoken: "0xDA3706c9A099077e6BC389D1baf918565212A54D", // The Uniswap V2 LP token for VIDYA/ETH 
         teller: "0xD9BecdB8290077fAf79A2637a5f2FDf5033b2486", // The Teller contract address for VIDYA/ETH pool 
+        commitmentOptions: [
+          {
+            days: 7,
+            bonus: 0.4
+          },
+          {
+            days: 14,
+            bonus: 1
+          },
+          {
+            days: 30,
+            bonus: 2.9
+          },
+          {
+            days: 92,
+            bonus: 9.9
+          },
+          {
+            days: 182,
+            bonus: 22
+          },
+          {
+            days: 365,
+            bonus: 50
+          }
+        ]
       },
       single: {
         name: 'single',
@@ -21,7 +47,33 @@ export const CHAIN_GENERATOR_SETTINGS = {
         image: '/generator/vidya.png',
         token: "0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
         lptoken: undefined, //"0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
-        teller: "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382",    
+        teller: "0x4E053ac1F6F34A73F5Bbd876eFd20525EAcB5382",
+        commitmentOptions: [
+          {
+            days: 14,
+            bonus: 0.4
+          },
+          {
+            days: 28,
+            bonus: 1
+          },
+          {
+            days: 60,
+            bonus: 2.9
+          },
+          {
+            days: 184,
+            bonus: 9.9
+          },
+          {
+            days: 364,
+            bonus: 22
+          },
+          {
+            days: 730,
+            bonus: 50
+          }
+        ]
       }
     }
   },
@@ -36,6 +88,32 @@ export const CHAIN_GENERATOR_SETTINGS = {
         token: "0xc778417e063141139fce010982780140aa0cd5ab", // WETH token address 
         lptoken: "0x18691f5BcedD9F363ce306F7DfB25BDe8E1d1cD9", // The Uniswap V2 LP token for VIDYA/ETH 
         teller: "0xee9062b56402e85b9a93fb99efa153dc9e091783", // The Teller contract address for VIDYA/ETH pool 
+        commitmentOptions: [
+          {
+            days: 7,
+            bonus: 0.4
+          },
+          {
+            days: 14,
+            bonus: 1
+          },
+          {
+            days: 30,
+            bonus: 2.9
+          },
+          {
+            days: 92,
+            bonus: 9.9
+          },
+          {
+            days: 182,
+            bonus: 22
+          },
+          {
+            days: 365,
+            bonus: 50
+          }
+        ]
       },
       single: {
         name: 'single',
@@ -45,6 +123,32 @@ export const CHAIN_GENERATOR_SETTINGS = {
         token: "0x0CbCaFD9f1B9d7c41B6F55BbddE06Bee3Aa7B791",
         lptoken: undefined, //"0x3D3D35bb9bEC23b06Ca00fe472b50E7A4c692C30",
         teller: "0xF1f0327FC8b52832F75656AF9a2acA8932b83D6a",    
+        commitmentOptions: [
+          {
+            days: 14,
+            bonus: 0.4
+          },
+          {
+            days: 28,
+            bonus: 1
+          },
+          {
+            days: 60,
+            bonus: 2.9
+          },
+          {
+            days: 184,
+            bonus: 9.9
+          },
+          {
+            days: 364,
+            bonus: 22
+          },
+          {
+            days: 730,
+            bonus: 50
+          }
+        ]
       }
     }
   },

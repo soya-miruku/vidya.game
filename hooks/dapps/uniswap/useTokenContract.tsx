@@ -7,6 +7,7 @@ import { useAccount } from "../../useAccount";
 import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
 import { ChainExists } from "@/contracts/helpers";
 import { MAX_UNINT } from "@/common/constants";
+import { useApproveBase } from "../useApprove";
 
 export const useHasSetAllowance = (tokenAddress: string | Falsy) => {
   const { chainId, user } = useAccount();
@@ -28,17 +29,7 @@ export const useHasSetAllowance = (tokenAddress: string | Falsy) => {
 
 export const useApprove = (tokenAddress: string): [(limit: number) => void, TransactionStatus] => {
   const { chainId } = useAccount();
-  
   const routerAddress = ChainExists(chainId) && CHAIN_SETTINGS?.[chainId]?.UNISWAPV2_ROUTER02_ADDRESS;
 
-  const { state, send } = useContractFunction(tokenAddress && new Contract(tokenAddress, ERC20Interface), 'approve', {transactionName: 'approve token'});
-
-  const approveToken = (limit: number) => {
-    send(routerAddress, limit > 0 ? limit : MAX_UNINT);
-  }
-
-  return [
-    approveToken,
-    state
-  ]
+  return useApproveBase(tokenAddress, routerAddress);
 }

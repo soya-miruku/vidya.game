@@ -15,12 +15,14 @@ export interface IFormLayoutProps {
   balance: number;
   buttonText: string;
   buttonDisabled?: boolean;
+  buttonLoading?: boolean;
   inputDisabled?: boolean;
   inputValue?: number;
   currentPool: IPoolState;
+  children?: React.ReactNode;
 }
 
-export const FormLayout: React.FC<IFormLayoutProps> = ({currentPool, onMax, onInputChange, onSubmit, balance, buttonText, buttonDisabled, inputDisabled, inputValue, onError}) => {
+export const FormLayout: React.FC<IFormLayoutProps> = ({currentPool, buttonLoading, onMax, onInputChange, onSubmit, balance, buttonText, buttonDisabled, inputDisabled, inputValue, children, onError}) => {
   const [showCoinSearch, setShowCoinSearch] = useState(false);
   const { state, setCurrentPool } = useContext(GeneratorContext);
 
@@ -75,8 +77,9 @@ export const FormLayout: React.FC<IFormLayoutProps> = ({currentPool, onMax, onIn
           coinSymbol={currentPool.symbol}>
 
         </SwapInput>
+        {children}
         <div className="flex justify-center items-center w-full">
-          <VButton disabled={buttonDisabled} type="submit" className="w-3/4" special>{buttonText}</VButton>
+          <VButton isLoading={buttonLoading} disabled={buttonDisabled} type="submit" className="w-3/4" special>{buttonText}</VButton>
         </div>  
       </form>
     </>
