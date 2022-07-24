@@ -118,7 +118,7 @@ export const PlaneWave = () => {
   }, []);
 
   return (
-    <div ref={containerRef} className="w-full h-full grayscale overflow-hidden absolute">
+    <div ref={containerRef} className="w-full h-screen z-[1] grayscale overflow-hidden absolute">
 
     </div>
   )

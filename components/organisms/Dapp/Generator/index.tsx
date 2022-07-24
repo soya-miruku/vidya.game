@@ -47,7 +47,7 @@ export const GeneratorDapp = ({}) => {
         <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
-        <div className="flex flex-col justify-center items-center p-vsm sm:h-full h-auto relative overflow-y-auto">
+        <div className="flex flex-col justify-center items-center p-vsm sm:h-full h-auto  overflow-y-auto">
         <PlaneWave/>
         <div className="p-[5px] rounded-xl  relative z-[1]">
           {/* <div className="w-full absolute -top-4 z-[100]">
@@ -65,7 +65,8 @@ export const GeneratorDapp = ({}) => {
                     {label: 'apr', align: 'center'}
                   ]} 
                   data={[
-                    {0: <p>{currentPool.deposited.toFixed(3)}</p>,
+                    {
+                    0: <p>{currentPool.deposited.toFixed(3)}</p>,
                     1: <p>{currentPool.amountCommitted.toFixed(3)}</p>,
                     2: <div className="flex justify-center items-center gap-[2px]">
                           <p className="">{currentPool.claimAmount.toFixed(3)}</p> 

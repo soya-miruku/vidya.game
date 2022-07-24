@@ -28,7 +28,7 @@ export const ProgramModalWrapper = ({title, headerBackgroundColor, description, 
       <div className="w-full h-full flex flex-col backdrop-blur-lg bg-light-200 justify-center items-center relative" style={{
         backgroundColor: headerBackgroundColor ? headerBackgroundColor : 'rgb(33 20 54 / 0.8)',
       }}>
-        <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500 relative">
+        <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500 relative z-[100]">
           <div className="w-full flex flex-wrap justify-start items-center sm:px-vmd px-vsm gap-x-vsm divide-x-[1px] divide-aimbotsRed-100">
             <VTitle type="h3" className='text-xl font-semibold lg:text-2xl dark:text-light-200 text-dark-200'>{title}</VTitle>
             <motion.div 
