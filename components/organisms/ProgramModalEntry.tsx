@@ -25,10 +25,10 @@ export const ProgramModalWrapper = ({title, headerBackgroundColor, description, 
   const [isOpen, setIsOpen] = useState(true);
   return (
     <Modal onClose={onClose} className="h-full flex flex-col">
-      <div className="w-full h-full flex flex-col backdrop-blur-lg bg-light-200 justify-center items-center" style={{
+      <div className="w-full h-full flex flex-col backdrop-blur-lg bg-light-200 justify-center items-center relative" style={{
         backgroundColor: headerBackgroundColor ? headerBackgroundColor : 'rgb(33 20 54 / 0.8)',
       }}>
-        <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500">
+        <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500 relative">
           <div className="w-full flex flex-wrap justify-start items-center sm:px-vmd px-vsm gap-x-vsm divide-x-[1px] divide-aimbotsRed-100">
             <VTitle type="h3" className='text-xl font-semibold lg:text-2xl dark:text-light-200 text-dark-200'>{title}</VTitle>
             <motion.div 
@@ -51,8 +51,8 @@ export const ProgramModalWrapper = ({title, headerBackgroundColor, description, 
           <button onClick={onClose} type="button" className="absolute top-0 right-0 bg-transparent text-accent-dark-200 hover:text-accent-dark-100 hover:scale-110 active:scale-90 rounded-lg text-sm p-vmd ml-auto inline-flex items-center">
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fillRule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clipRule="evenodd"></path></svg>  
           </button>
+          <div className="absolute z-[10] -left-1 -bottom-[20px] block sm:hidden px-vsm w-full" onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon className="w-7 h-7 text-aimbotsRed-100" icon={isOpen ? faAngleUp : faAngleDown}></FontAwesomeIcon></div>
         </div>
-        <div className="block sm:hidden px-vsm w-full" onClick={() => setIsOpen(!isOpen)}><FontAwesomeIcon className="w-7 h-7 text-aimbotsRed-100" icon={isOpen ? faAngleDown : faAngleUp}></FontAwesomeIcon></div>
         <div className="w-full h-full overflow-y-auto">
           {children}
         </div>

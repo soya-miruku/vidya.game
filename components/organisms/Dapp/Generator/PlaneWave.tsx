@@ -8,12 +8,12 @@ export const PlaneWave = () => {
     if(!container) return;
 
     var vertexHeight = 15000,
-		planeDefinition = 100,
+		planeDefinition = 120,
 		planeSize = 1245000,
-		totalObjects = 1,
-    background = "#11081F",
+    background = "#0d0d0d",
 		meshColor = "#005e97"; 
-    let animationFrameId;
+    let animationFrameId: number;
+
     var camera = new THREE.PerspectiveCamera(55, window.innerWidth / window.innerHeight, 1, 400000)
     camera.position.z = 10000;
     camera.position.y = 10000;
@@ -49,7 +49,6 @@ export const PlaneWave = () => {
     var count = 0
     function render() {
       animationFrameId = requestAnimationFrame(render);
-      // camera.position.z -= 150;
       var x = camera.position.x;
       var z = camera.position.z;
       camera.position.x = x * Math.cos(0.001) + z * Math.sin(0.001) - 10;
@@ -58,16 +57,8 @@ export const PlaneWave = () => {
       const positionAttribute = planeGeo.getAttribute('position');
 
       for (var i = 0; i < positionAttribute.count; i++) {
-        var z = + positionAttribute.getZ(i);
-        positionAttribute.setZ(i, Math.sin(i + count * 0.00002) * positionAttribute.getZ(i) - positionAttribute.getZ(i) * 0.6);
-
-        if (positionAttribute.getZ(i) > positionAttribute.getZ(i) * 0.6) {
-          positionAttribute.setZ(i, positionAttribute.getZ(i) * 0.6);
-        }
-        if (positionAttribute.getZ(i) < positionAttribute.getZ(i) * 0.6) {
-          positionAttribute.setZ(i, positionAttribute.getZ(i) * 0.6);
-        }
-
+        // var z = +positionAttribute.getZ(i);
+        positionAttribute.setZ(i, Math.sin(( i + count * 0.00002)) * ((positionAttribute.getZ(i)+x)*.3 - (z* 0.6)));
 
         positionAttribute.needsUpdate = true;
         // planeGeo.vertices[i].z = Math.sin(( i + count * 0.00002)) * (planeGeo.vertices[i]._myZ - (planeGeo.vertices[i]._myZ* 0.6))
