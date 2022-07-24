@@ -10,7 +10,7 @@ import { IControlPanelProps } from "./types"
 
 export interface IPlusMinusInputFieldProps {
   value: number
-  onChange: (value: number) => void
+  onChange: (value: number | string) => void
   min?: number
   max?: number
   step?: string
@@ -44,7 +44,10 @@ export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, on
               <VText size='md'>-</VText>
             </button>
           </div>
-          <NumberInput value={value} onChange={onChange} style={{
+          <NumberInput value={value} onChange={(e)=>{
+            const value = e.target.value;
+            onChange && onChange(value);
+          }} style={{
             borderColor: borderColor || '#fff',
           }} className="focus:outline-none bg-transparent px-vsm mr-2 w-full h-full border-[2px] rounded-tl-lg rounded-br-lg text-body dark:text-light-100 text-dark-100 appearance-none outline-none p-1" min={min} max={max} step={step}></NumberInput>
           </div>
