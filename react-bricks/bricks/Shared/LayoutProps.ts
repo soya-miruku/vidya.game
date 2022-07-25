@@ -24,7 +24,7 @@ export const LayoutProp = ({
 }: LayoutPropProps = {}): types.ISideGroup => {
   return  {
     groupName: 'Layout',
-    defaultOpen: true,
+    defaultOpen: false,
     props: [
       {
         name: 'bg',

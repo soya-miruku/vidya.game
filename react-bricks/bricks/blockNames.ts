@@ -30,6 +30,7 @@ export enum blockNames {
   Title = 'VRBTitle',
   RichText = 'VRBRichText',
   Image = 'VRBImage',
+  SimpleImage = 'VBSimpleImage',
   Label = 'VRBLabel',
   Customer = 'VRBCustomer',
   Customers = 'VRBCustomers',
@@ -39,4 +40,5 @@ export enum blockNames {
   GeneratingStakingInfoUnit = 'GeneratingStakingInfoUnit',
   MultiPassStatsUnit = 'MultiPassStatsUnit',
   ProgramVideoHeroUnit = 'ProgramVideoHeroUnit',
+  MinimapCarouselUnit = 'MinimapCarouselUnit',
 }

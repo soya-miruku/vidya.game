@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { classNames } from '@/common/helpers';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 export interface IVImageProps {
   src?: string;
@@ -20,15 +21,12 @@ export interface IVImageProps {
 }
 
 export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, loading="eager", className, style, width, height, placeholder, usePlaceholder=true, objectFit, layout, ...rest}) => {
+  const { isMounted } = useIsMounted();
   const [errorImage, setErrorImage] = useState(false);
   const placeholderUrl = `/placeholders/img.png`;
   const url = errorImage ? placeholderUrl : src;
 
-  useEffect(() => {
-    return () => {
-      setErrorImage(false);
-    }
-  }, []);
+  if(!isMounted) return null;
 
   return (
     <Image
@@ -36,8 +34,8 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, load
         e.preventDefault();
         setErrorImage(true);
       }}
-      placeholder={usePlaceholder ? 'blur' : 'empty'}
-      blurDataURL={placeholder ? placeholder : placeholderUrl}
+      placeholder={usePlaceholder && placeholder ? 'blur' : 'empty'}
+      blurDataURL={placeholder}
       src={url || placeholderUrl}
       width={width}
       style={style}
@@ -48,7 +46,7 @@ export const VImage: React.FC<IVImageProps> = ({src, alt, loader, priority, load
       loading={loading}
       priority={priority}
       loader={loader}
-      className={classNames(className, '')}
+      className={classNames(className)}
       {...rest}
     />
   );

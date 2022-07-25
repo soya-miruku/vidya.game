@@ -19,6 +19,7 @@ import { useCommitLP } from "@/hooks/dapps/generator/useCommitLP"
 import { useBreakCommitment } from "@/hooks/dapps/generator/useBreakCommitment"
 import { useWithdrawLP } from "@/hooks/dapps/generator/useWithdrawLP"
 import { useCountdown } from "@/hooks/useCountdown"
+import { classNames } from "@/common/helpers"
 
 export const GeneratorDapp = ({}) => {
   const { state, updatePool, setCommitmentIndex } = useContext(GeneratorContext);
@@ -58,7 +59,9 @@ export const GeneratorDapp = ({}) => {
   const isPendingBreakCommitment = useMemo(() => (breakCommitmentState.status === 'PendingSignature' || breakCommitmentState.status === 'Mining'), [breakCommitmentState.status]);
 
   useEffect(() => {
-    setCommitmentPeriodSelected(currentPool.commitmentIndex-1);
+    if(currentPool.commitmentIndex <= 0) return;
+    
+    setCommitmentPeriodSelected(() => currentPool.commitmentIndex-1);
   }, [currentPool.commitmentIndex])
 
   const isCommitSuccess = useMemo(() => {
@@ -144,10 +147,10 @@ export const GeneratorDapp = ({}) => {
         <DappLogin/>
       </UnAuthenticatedView>
       <AuthenticatedView>
-        <div className="flex flex-col justify-center items-center p-vsm sm:py-vsm py-vlrg sm:h-full h-auto overflow-y-auto">
         <PlaneWave/>
-        <div className="p-[5px] rounded-xl relative z-[1]">
-          <VItemContainer widthSize='full' heightSize='full' dropShadow>
+        <div className="flex flex-col justify-center items-center p-vsm sm:py-vsm py-vlrg sm:h-full h-auto overflow-y-auto object-center content-center justify-self-center">
+        <div className="p-[5px] rounded-xl relative z-[1] h-auto overflow-y-auto scrollbar-none">
+          <VItemContainer widthSize='full' heightSize='none' dropShadow>
             <div className='flex flex-col sm:p-vlrg p-vsm gap-y-vmd h-full w-full'>
               <div className="w-full flex flex-col gap-vsm">
                 <VTable 
@@ -162,12 +165,15 @@ export const GeneratorDapp = ({}) => {
                     {
                     0: <p>{currentPool.deposited.toFixed(3)}</p>,
                     1: <p>{currentPool.amountCommitted.toFixed(3)}</p>,
-                    2: <div className="flex flex-col justify-center items-center gap-[2px]">
-                          <p className="">{currentPool.claimAmount.toFixed(5)}</p> 
-                          {currentPool.remainingUnlockTime > 0 && <p className='text-accent-dark-100'>{countdown}</p>}
-                          {currentPool.claimAmount > 0 && <button className="text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
+                    2: <div className={classNames('flex flex-col justify-center gap-[2px]', currentPool.claimAmount > 0 ? 'items-center' : ' items-start')}>
+                          <div className="flex gap-[4px] items-center">
+                            <p>{currentPool.claimAmount.toFixed(4)}</p> 
+                            {currentPool.claimAmount > 0 && <button className="text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
                             Claim
                           </button>}
+                          </div>
+                          {currentPool.remainingUnlockTime > 0 && <p className='text-accent-dark-100'>{countdown}</p>}
+              
                         </div>,
                     3: <p className="text-accent-dark-100 !font-bold">{currentPool.apr.toFixed(3)}%</p>}
                     ]}

@@ -37,6 +37,8 @@ import GeneratorStakingInfoUnit from './molecules/GeneratorStakingInfoUnit';
 import MultiPassStatsUnit from './molecules/MultipassStatsUnit';
 import PDFViewUnit from './molecules/PDFViewUnit';
 import ProgramVideoHeroUnit from './molecules/ProgramVideoHeroUnit';
+import MinimapCarouselUnit from './molecules/MinimapCarouselUnit';
+import SimpleImage from './atoms/SimpleImage';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -76,7 +78,9 @@ const bricks: types.Brick<any>[] = [
   GeneratorStakingInfoUnit,
   MultiPassStatsUnit,
   ProgramVideoHeroUnit,
-  PDFViewUnit
+  PDFViewUnit,
+  MinimapCarouselUnit,
+  SimpleImage
 ]
 
 export default bricks

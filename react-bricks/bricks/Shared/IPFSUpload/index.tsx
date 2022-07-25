@@ -3,7 +3,7 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { VLabel } from '@/components/atoms/VLabel'
 import { VButton } from '@/components/atoms/VButton'
 
-const ipfs = ipfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https', })
+const ipfs = ipfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
 export const FileUpload = ({ setUrl }) => {
   const [file, setFile] = useState<any>({})

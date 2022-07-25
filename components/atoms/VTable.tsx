@@ -1,5 +1,6 @@
 import { classNames } from "@/common/helpers";
 import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
+import { Fragment } from "react";
 import { VText } from "./VText";
 
 export interface IVTableColumn {
@@ -41,7 +42,7 @@ export const VTable = ({ columns, data, className, borderColor, borderWidth, bor
         </thead>
         <tbody className="flex-1 sm:flex-none p-vsm">
           {data.map((row, i) => (
-            <tr key={i} >
+            <Fragment key={i}>
               {columns.map(({ align }, j) => (
                 <tr key={j} className="px-vsm py-vmd mobile:table-row table-cell !text-center">
                   <td className={classNames('py-vsm whitespace-pre-wrap w-32', (align === 'center' && !isMobileView) ? 'text-center' : (align === 'right' && !isMobileView) ? 'text-left' : 'text-left')}>
@@ -49,7 +50,7 @@ export const VTable = ({ columns, data, className, borderColor, borderWidth, bor
                   </td>
                 </tr>
               ))}
-            </tr>
+            </Fragment>
           ))}
         </tbody>
 

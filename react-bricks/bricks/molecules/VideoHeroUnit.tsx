@@ -1,7 +1,7 @@
 import React from 'react'
 import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { VideoFileViewer } from '../Shared/VideoFileViewer';
+import { FpsFileUploader } from '../Shared/FpsFileUploader';
 import { IVideoHeroProps, VideoHero } from '@/components/organisms/videoHero';
 import Section, { SectionProps } from '../Layout/Section';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
@@ -44,13 +44,13 @@ VideoHeroUnit.schema = {
       name: 'videoUrl',
       label: 'Background Video',
       type: types.SideEditPropType.Custom,
-      component: (props) => VideoFileViewer({ ...props}),
+      component: (props) => FpsFileUploader({ ...props}),
     },
     {
       name: 'videoUrl',
       label: 'Background Video',
       type: types.SideEditPropType.Custom,
-      component: (props) => VideoFileViewer({ ...props}),
+      component: (props) => FpsFileUploader({ ...props}),
     },
     {
       name: 'centerTxt',

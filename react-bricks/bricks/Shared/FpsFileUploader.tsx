@@ -1,7 +1,7 @@
 import { ICustomKnobProps } from "./additional"
 import { FileUpload } from "./IPFSUpload/index"
 
-export const VideoFileViewer = ({value, isValid, onChange, errorMessage}: ICustomKnobProps) => {
+export const FpsFileUploader = ({value, isValid, onChange, errorMessage}: ICustomKnobProps) => {
   return(
     <div className="flex flex-col">
       <input value={value} onChange={(e) => {

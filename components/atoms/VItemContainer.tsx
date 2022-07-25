@@ -58,19 +58,22 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     )
   }
 
-  const borderComponent = ({children}) => (<DivContainer className={
-    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full rounded-sm mt-0',
-    roundedButtom ? '' : 'rounded-b-[0px]',
-    roundedTop ? '' : 'rounded-t-[0px]',
-    roundedLeft ? '' : 'rounded-l-[0px]',
-    roundedRight ? '' : 'rounded-r-[0px]',
-    showBorder ? 'border-[1px] dark:border-dark-300 border-light-300' : '',
-    showBorderBottom ? '' : 'border-b-[0px]',
-    showBorderLeft ? '' : 'border-l-[0px]',
-    showBorderRight ? '' : 'border-r-[0px]',
-    showBorderTop ? '' : 'border-t-[0px]')}>
-    {children}
-  </DivContainer>);
+  const borderComponent = ({children}) => 
+  (
+    <DivContainer className={
+      classNames('flex flex-col gap-vsm justify-start items-start w-full h-full rounded-sm mt-0',
+      roundedButtom ? '' : 'rounded-b-[0px]',
+      roundedTop ? '' : 'rounded-t-[0px]',
+      roundedLeft ? '' : 'rounded-l-[0px]',
+      roundedRight ? '' : 'rounded-r-[0px]',
+      showBorder ? 'border-[1px] dark:border-dark-300 border-light-300' : '',
+      showBorderBottom ? '' : 'border-b-[0px]',
+      showBorderLeft ? '' : 'border-l-[0px]',
+      showBorderRight ? '' : 'border-r-[0px]',
+      showBorderTop ? '' : 'border-t-[0px]')}>
+      {children}
+    </DivContainer>
+  );
 
   return (
     <div className={classNames('prose w-full flex flex-col justify-center items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',

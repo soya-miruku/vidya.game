@@ -33,7 +33,12 @@ export const VSimpleTab: React.FC<ITabProps> = ({ value, label, active, onClick,
 }
 
 export const VSimpleTabs: React.FC<ITabsProps> = ({ items, onChange, className, disabled, defaultActiveIndex }) => {
-  const [selected, setSelected] = useState(defaultActiveIndex);
+  const [selected, setSelected] = useState(defaultActiveIndex < 0 ? 0 : defaultActiveIndex);
+  
+  useEffect(() => {
+    console.log(selected)
+  }, [defaultActiveIndex])
+
   return (
     <div className={classNames('flex gap-x-vmd gap-y-vsm', className)}>
       {items.map(({size, value, label, bordered}, index) => (
