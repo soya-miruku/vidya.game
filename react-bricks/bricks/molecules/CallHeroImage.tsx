@@ -57,7 +57,6 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
               </div>
             </ParallaxWrapper>
             <div className="sm:w-[60%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vsm">
-              <ParallaxWrapper disabled={hasBg} className='w-full' translateY={[0, -60]} shouldAlwaysCompleteAnimation>
                 <Repeater propName='badgeLabels' itemProps={{
                   hasBg
                 }} renderWrapper={(items) => {
@@ -68,9 +67,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
                   )
                 }}>
                 </Repeater>
-              </ParallaxWrapper>
               <div className={classNames('flex flex-col justify-center h-full w-full', hasBg ? '': ' pt-vlrg')}>
-                <ParallaxWrapper disabled={hasBg || isMobileView} translateY={[0, -60]} shouldAlwaysCompleteAnimation >
                     <Text
                       renderBlock={(props) => (
                         <VTitle overrideTextColor={hasBg} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>
@@ -81,9 +78,6 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
                       placeholder="Type a title..."
                       propName="title"
                     />
-                  </ParallaxWrapper>
-
-                  <ParallaxWrapper disabled={hasBg || isMobileView} translateY={[0, -40]} shouldAlwaysCompleteAnimation >
                     <RichText
                       renderBlock={(props) => (
                         <VText overrideTextColor={hasBg} size='lg' className='m-0'>
@@ -105,8 +99,6 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
                         </code>
                       )}
                     />
-                  </ParallaxWrapper>
-
               </div>
               { headerButtons?.length > 0 && headerButtons?.[0]?.props?.children &&
                 <Repeater propName='headerButtons' itemProps={{background: hasBg}} renderWrapper={(items) => {

@@ -12,7 +12,7 @@ interface IntroProps extends SectionProps {
 
 const IntroUnit: types.Brick<IntroProps> = ({ ...sectionProps }) => {
   return (
-    <Section {...sectionProps} className="z-0 px-vsm !w-full">
+    <Section {...sectionProps} className="z-0">
       <PageViewSize enabled={!sectionProps.bgImage}>
         <div className='flex w-full justify-center items-center'>
           <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-full justify-center items-center' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={1} paddingBottom={1} rounded={'none'}></CallHeroColumn>

@@ -15,7 +15,7 @@ interface IFeaturesSmallListUnitProps extends SectionProps {
 const FeaturesSmallListUnit: types.Brick<IFeaturesSmallListUnitProps> = ({ ...sectionProps }) => {
   return (
     <Section {...sectionProps} className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]'>
-      <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
+      <VRBTitle textAlign='left' className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-vxl flex-wrap">

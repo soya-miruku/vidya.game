@@ -1,13 +1,12 @@
 import * as React from 'react'
-import classNames from 'classnames'
 import { Text, types, Link } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VText } from '@/components/atoms/VText';
 import VRBRichText from './VRBRichText';
 
 export interface VRBTextProps {
   propName: string,
   size: 'sm' | 'md' | 'lg'
+  textAlign?: AlignSetting
   className?: string
   overrideTextColor?: boolean
   spacing?: 'sm' | 'md' | 'lg'
@@ -19,11 +18,13 @@ const VRBText: types.Brick<VRBTextProps> = ({
   className,
   spacing,
   overrideTextColor,
+  textAlign,
   ...rest
 }) => {
   return (
     <div className='w-full'>
       <VRBRichText
+        textAlign={textAlign}
         spacing={spacing}
         isTitle={false}
         size={size}

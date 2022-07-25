@@ -52,24 +52,24 @@ export const PagesByCategory = {
   about: {
     image: '/nav/about.jpg',
     pages:[
-    {
-      displayName: 'ROADMAP',
-      slug: 'roadmap',
-      type: 'about',
-      active: true
-    },
+    // {
+    //   displayName: 'ROADMAP',
+    //   slug: 'roadmap',
+    //   type: 'about',
+    //   active: true
+    // },
     {
       displayName: 'MISSION',
       slug: 'mission',
       type: 'about',
       active: true
     },
-    {
-      displayName: 'TEAM',
-      slug: 'team',
-      type: 'about',
-      active: true
-    },
+    // {
+    //   displayName: 'TEAM',
+    //   slug: 'team',
+    //   type: 'about',
+    //   active: true
+    // },
     {
       displayName: 'FAQS',
       slug: 'faq',

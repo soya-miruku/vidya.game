@@ -34,8 +34,8 @@ export const SmallHero: React.FC<ISmallHeroProps> = ({ title, desc, imgSrc, canE
         </div>
         <div className='absolute mx-auto w-full h-full sm:px-16 px-2 sm:py-14 py-14'>
           <div className='flex flex-col h-full space-y-5 justify-end items-start'>
-          {canEdit || typeof(title) !== 'string' ? <VRBTitle overrideTextColor type='h2' propName='title' ></VRBTitle> : <VTitle overrideTextColor={true} type='h2'>{title}</VTitle>}
-          {canEdit || typeof(desc !== 'string') ? <VRBText overrideTextColor size='lg' propName='dec'></VRBText> :<VText overrideTextColor={true} size='lg'>{desc}</VText>}
+          {canEdit || typeof(title) !== 'string' ? <VRBTitle textAlign='center' overrideTextColor type='h2' propName='title' ></VRBTitle> : <VTitle overrideTextColor={true} type='h2'>{title}</VTitle>}
+          {canEdit || typeof(desc !== 'string') ? <VRBText textAlign='center' overrideTextColor size='lg' propName='dec'></VRBText> :<VText overrideTextColor={true} size='lg'>{desc}</VText>}
        
           </div>
         </div>

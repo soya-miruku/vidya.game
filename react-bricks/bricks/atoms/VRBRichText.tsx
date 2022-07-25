@@ -17,6 +17,7 @@ export interface VRBRichTextProps {
   className?: string,
   overrideTextColor?: boolean
   type?: TitleType
+  textAlign?: AlignSetting
   size?: 'sm' | 'md' | 'lg' | 'xl'
   propName: string
   isTitle?: boolean
@@ -34,14 +35,24 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
   spacing,
   size,
   isTitle=false,
+  textAlign,
   propName,
   ...rest
 }) => {
   const { bold, italic, unorderedList, link, quote, heading1, heading2, heading3, heading4, heading5, heading6, highlight, code } = plugins
   const { isAdmin } = useAdminContext();
+  const aRef = React.useRef<HTMLAnchorElement>(null);
+
+  React.useEffect(() => {
+    if(!aRef.current) return;
+    console.log(textAlign);
+    (aRef.current.children[0] as any).style.width = '100%';
+  }, [aRef.current])
 
   if(isAdmin){
     return (
+      <>
+      <a ref={aRef} {...rest} className={classNames('w-full flex', textAlign === 'center' ? 'items-center justify-center text-center' : textAlign === 'end' ? 'items-end justify-end text-right' : 'items-start justify-start text-left')}>
         <RichTextExt
         plugins={[
           markPluginConstructor({
@@ -123,9 +134,12 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
         )}
         placeholder="Type a text..."
       />
+      </a>
+      </>
     )
   }
   return (
+    <a {...rest} className={classNames('w-full flex', textAlign === 'center' ? 'items-center justify-center text-center' : textAlign === 'end' ? 'items-end justify-end text-right' : 'items-start justify-start text-left')}>
     <RichTextExt
     plugins={[
       // blockPluginConstructor({
@@ -210,7 +224,8 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
     )}
 
     placeholder="Type a text..."
-  />)
+  />
+  </a>)
 }
 
 VRBRichText.schema = {

@@ -11,6 +11,7 @@ export interface VRBTitleProps {
   type: TitleType;
   overrideTextColor?: boolean
   className?: string
+  textAlign?: AlignSetting
 }
 
 const VRBTitle: types.Brick<VRBTitleProps> = ({
@@ -18,6 +19,7 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
   overrideTextColor,
   propName,
   className,
+  textAlign,
   ...rest
 }) => {
   return (

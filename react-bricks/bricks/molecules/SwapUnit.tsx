@@ -23,8 +23,8 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sec
       <div className='flex flex-col max-w-page w-full justify-between items-center'>  
         <div className='flex w-full'>
           <div className='max-w-[650px] flex flex-col justify-start items-center gap-y-2 pl-4 sm:pt-12 pt-5'>
-            <VRBTitle overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
-            <VRBTitle overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
+            <VRBTitle textAlign='left' overrideTextColor type={isMobileView ? 'h2' : 'h1'} className='mr-4' propName='pageTitle'></VRBTitle>
+            <VRBTitle textAlign='left' overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
           </div>
         </div>
         <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-x-[70px] flex-wrap'>

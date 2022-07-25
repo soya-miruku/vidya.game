@@ -131,7 +131,7 @@ const Section: React.FC<SectionProps> = ({
         ...style,
         zIndex:0,
         width: '100%',
-        // height: getHeight,
+        height: getHeight,
         // paddingLeft: `${paddingX}px`,
         // paddingRight: `${paddingX}px`,
         // paddingTop: `${paddingTop}px`,

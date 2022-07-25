@@ -34,9 +34,9 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
       content: item.type === 'VRBLabel' 
       ? item.show && <VRBLabel propName={item.name} secondary={false} text={label} className="w-[110px] mb-2"></VRBLabel> 
       : item.type === 'VRBTitle' 
-      ? item.show && <VRBTitle overrideTextColor={overrideTextColor} propName={item.name} type={type} className="w-full"/>
+      ? item.show && <VRBTitle overrideTextColor={overrideTextColor} propName={item.name} type={type} {...item.itemProp} className="w-auto"/>
       : item.type === 'VRBText'
-      ? item.show && <VRBText overrideTextColor={overrideTextColor} propName={item.name} {...item.itemProp} className="w-full"></VRBText>
+      ? item.show && <VRBText overrideTextColor={overrideTextColor} propName={item.name} {...item.itemProp} className="w-auto"></VRBText>
       : item.type === 'VRBImage' 
       ? item.show && <VRBImage renderWrapper={({children}) => (<div className='w-full h-full min-w-[200px] min-h-[200px]'>{children}</div>)} imageHeight="100%" imageWidth="100%" propName={item.name}></VRBImage>
       : item.type === 'VRBButton'
@@ -71,6 +71,16 @@ VRBColumn.schema = {
         order: 0,
         inline: false,
         itemProp: {},
+      },
+      {
+        type: blockNames.Title,
+        name: `title_0`,
+        show: true,
+        order: 1,
+        inline: false,
+        itemProp: {
+          textAlign: 'center',
+        }
       }
     ],
     items: [
@@ -81,6 +91,16 @@ VRBColumn.schema = {
         order: 0,
         inline: false,
         itemProp: {},
+      },
+      {
+        type: blockNames.Title,
+        name: `title_0`,
+        show: true,
+        order: 1,
+        inline: false,
+        itemProp: {
+          textAlign: 'center',
+        }
       }
     ],
     size: 'sm',
@@ -109,6 +129,28 @@ VRBColumn.schema = {
       label: 'Items',
       type: types.SideEditPropType.Custom,
       component: (props) => SortableListComponent({ itemProps: [
+        {
+          name: blockNames.Title,
+          propName: 'textAlign',
+          label: 'Text Align',
+          type: types.SideEditPropType.Select,
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'End', value: 'end' },
+            { label: 'Start', value: 'start' }, 
+          ]
+        },
+        {
+          name: blockNames.Text,
+          propName: 'textAlign',
+          label: 'Text Align',
+          type: types.SideEditPropType.Select,
+          options: [
+            { label: 'Center', value: 'center' },
+            { label: 'End', value: 'end' },
+            { label: 'Start', value: 'start' }, 
+          ]
+        },
         {
           name: blockNames.Text,
           propName: 'size',
