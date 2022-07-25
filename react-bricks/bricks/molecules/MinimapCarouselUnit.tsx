@@ -6,20 +6,23 @@ import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import Section, { SectionProps } from '../Layout/Section';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { MiniMapCarousel } from '@/components/organisms/MinimapCarousel';
+import { VTitle } from '@/components/atoms/VTitle';
 
 interface IMinimapCarouselUnitProps extends SectionProps {
+  title: string;
 }
 
-const MinimapCarouselUnit: types.Brick<IMinimapCarouselUnitProps> = ({...sectionProps}) => {
+const MinimapCarouselUnit: types.Brick<IMinimapCarouselUnitProps> = ({title, ...sectionProps}) => {
   const { isAdmin } = useAdminContext();
   return (
     <Section {...sectionProps} className="before:box-border after:box-border select-none overflow-hidden m-0 p-0 w-full sm:h-[650px] h-[350px] relative prose">
+      {title && <VTitle type='h2' className='absolute top-2 !text-accent-dark-200/30'>{title}</VTitle>}
       <PageViewSize className='absolute' enabled={!sectionProps.bgImage}>
         <Repeater propName='images' renderWrapper={(items) => {
         const sources = items.props?.children?.map((item) => item?.props?.children?.props?.imageSrc|| '/placeholders/img.png') || [];
         if(isAdmin) {
           return (
-            <div className='flex gap-vsm flex-wrap'>
+            <div className='flex gap-vsm flex-wrap justify-center items-center w-full'>
               {items}
             </div>
           )
@@ -40,6 +43,7 @@ MinimapCarouselUnit.schema = {
 
   getDefaultProps: () => ({
     ...DefaultLayoutProps,
+    title: 'Gallary',
     images: [
 
     ]
@@ -54,7 +58,12 @@ MinimapCarouselUnit.schema = {
     },
   ],
   sideEditProps: [
-    LayoutProp({ colors: DefaultColors })
+    LayoutProp({ colors: DefaultColors }),
+    {
+      name: 'title',
+      label: 'Title',
+      type: types.SideEditPropType.Text
+    }
   ],
 }
 

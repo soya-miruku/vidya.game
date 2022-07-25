@@ -6273,10 +6273,10 @@ react-big-calendar@^0.40.0:
     react-overlays "^4.1.1"
     uncontrollable "^7.2.1"
 
-react-bricks-ui@^0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/react-bricks-ui/-/react-bricks-ui-0.4.3.tgz#b53277a3762d4468bb3df43d0c5665a093550dce"
-  integrity sha512-/oeCi10BpXqZgpI6dxB7+CANAzy2jHoU4tEPAFEa4mOHztoXjbaywdf9vvppn85+P4bHm0BAHKNgnrJUtznZVg==
+react-bricks-ui@^0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/react-bricks-ui/-/react-bricks-ui-0.5.0.tgz#ac238ace7c60b85ecffd7c4675b087d2984a0163"
+  integrity sha512-I2at7eWSfVwr4zVeAwOfNCJRRunmF21PD9EMLtW3Le4duB+5tAHk1qeVMQoA7Zr3eDFb6tSemsRl4KY7f95ZxA==
   dependencies:
     classnames "^2.3.1"
     dayjs "^1.10.8"
@@ -6285,10 +6285,10 @@ react-bricks-ui@^0.4.3:
     pigeon-maps "^0.20.0"
     react-icons "^4.3.1"
 
-react-bricks@^3.3.0-beta.2:
-  version "3.3.0-beta.2"
-  resolved "https://registry.yarnpkg.com/react-bricks/-/react-bricks-3.3.0-beta.2.tgz#339d64ccd0c1e06fa526b8d398d577ebc918944a"
-  integrity sha512-DZjwHOcfk4A968ViAxXjckZN/KCQ8BzV/I5Hg47g7n8LUPHWKBX71X7m6uceBWLn4/4OqLQfEoRxSVU+0/TVyQ==
+react-bricks@^3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/react-bricks/-/react-bricks-3.3.1.tgz#bb8288535048b604df37a6d49729e316f638d058"
+  integrity sha512-HnlSluFcY5NBkVGZnTDnkmUoKmM8UhP1qlFkuq8pa7V3N4fw3bQZxLbMOwi0OYiKgYeszE4cwup8oE4a1u+2Yw==
   dependencies:
     "@tippyjs/react" "^4.2.6"
     axios "^0.25.0"

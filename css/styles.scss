@@ -36,6 +36,14 @@
   font-display: block;
 }
 
+@font-face {
+  font-family: 'arcade-classic';
+  src:  url('/fonts/Arcade-Classic.ttf');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
 body {
   overflow-x: hidden;
   // -webkit-transform-style: preserve-3d;
@@ -90,10 +98,11 @@ input[type=number] {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+
 .-ic-swap:before {
   content: "\e900";
 }
-
 .-ic-darkmode:before {
   content: "\e901";
 }
@@ -183,4 +192,8 @@ html.dark {
 
 .tooltip-container[data-popper-placement*='left'] .tooltip-arrow {
   margin-right: -.82rem;
+}
+
+.toolbar {
+  top: 2rem!important;
 }

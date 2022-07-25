@@ -65,7 +65,7 @@ FeaturesSmallListUnit.schema = {
       itemType: blockNames.IconCard,
       itemLabel: 'Item',
       min: 1,
-      max: 5
+      max: 20
     },
   ],
   sideEditProps: [

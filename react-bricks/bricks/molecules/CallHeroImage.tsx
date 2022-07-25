@@ -15,21 +15,21 @@ import { ParallaxWrapper } from '../Layout/ParallaxWrapper';
 // Local Types
 //=============================
 type ImagePositions = 'left' | 'right'
-type TextPositions = 'left' | 'center' | 'right'
+type AlignText = 'end' | 'center' | 'start'
 type ImageSizes = 'small' | 'medium' | 'large'
 
 export interface ICallHeroUnitProps extends SectionProps {
   badgeText: string
   imagePosition: ImagePositions
-  textAlign: TextPositions
   imageSize: ImageSizes
+  alignText: AlignText
   headerButtons?: any
   image: string
   title: string
   text: string
 }
 
-const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, headerButtons, ...sectionProps }) => {
+const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignText, headerButtons, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
   const hasBg = (!!sectionProps.bgImage || sectionProps.bg.color !== 'transparent');
   return (
@@ -37,9 +37,9 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, headerBu
       <PageViewSize enabled={!sectionProps.bgImage}>
         <div className={classNames('max-w-page w-full h-full flex flex-row justify-center p-0', 'prose')}>
           <div className='w-auto h-full p-0'>
-            <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center`, hasBg ? 'items-center' : ' items-end')}>
+            <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center`, alignText === 'start' ? 'items-start' : alignText === 'center' ? 'items-center' : 'items-end')}>
             <ParallaxWrapper disabled={isMobileView} translateX={imagePosition === 'left' ? [-15, 0] : [15, 0]} shouldAlwaysCompleteAnimation>
-              <div className='sm:max-w-[490px] w-full h-full flex justify-center z-10 p-vsm'>
+              <div className='sm:max-w-[790px] w-full h-full flex justify-center z-10 p-vsm'>
                   <Image
                     propName="image"
                     alt="image"
@@ -52,7 +52,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, headerBu
                         </div>
                       )
                     }}
-                    imageClassName="h-full mb-0 ml-2"
+                    imageClassName="h-full w-full mb-0 ml-2"
                   />
               </div>
             </ParallaxWrapper>
@@ -143,11 +143,12 @@ CallHeroUnit.schema = {
     ],
     badgeLabels: [
       {
-        label: 'programs',
+        text: 'programs',
+        secondary: false
       }
     ],
-    textAlign: 'left',
     imagePosition: 'right',
+    alignText: 'end',
     badgeText: 'Programs',
     fontFamily: 'sans',
     title: 'This is a custom Hero Unit',
@@ -182,15 +183,15 @@ CallHeroUnit.schema = {
       type: types.SideEditPropType.Boolean,
     },
     {
-      name: 'textAlign',
+      name: 'alignText',
       label: 'Text Align',
       type: types.SideEditPropType.Select,
       selectOptions: {
         display: types.OptionsDisplay.Select,
         options: [
-          { value: 'left', label: 'Left' },
+          { value: 'start', label: 'Start' },
           { value: 'center', label: 'Center' },
-          { value: 'right', label: 'Right' },
+          { value: 'end', label: 'End' },
         ],
       },
     },

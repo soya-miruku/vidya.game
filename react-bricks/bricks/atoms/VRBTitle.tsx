@@ -21,6 +21,7 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
   ...rest
 }) => {
   return (
+    <>
     <VRBRichText
       isTitle={true}
       type={type}
@@ -28,6 +29,7 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
       overrideTextColor={overrideTextColor}
       propName={propName}
     {...rest}/>
+    </>
   )
 }
 

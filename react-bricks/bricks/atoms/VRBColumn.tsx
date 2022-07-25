@@ -32,11 +32,11 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
     return {
       ...item,
       content: item.type === 'VRBLabel' 
-      ? item.show && <VRBLabel propName={item.name} secondary={false} label={label} className="w-[110px] mb-2"></VRBLabel> 
+      ? item.show && <VRBLabel propName={item.name} secondary={false} text={label} className="w-[110px] mb-2"></VRBLabel> 
       : item.type === 'VRBTitle' 
-      ? item.show && <VRBTitle overrideTextColor={overrideTextColor} propName={item.name} type={type}/>
+      ? item.show && <VRBTitle overrideTextColor={overrideTextColor} propName={item.name} type={type} className="w-full"/>
       : item.type === 'VRBText'
-      ? item.show && <VRBText overrideTextColor={overrideTextColor} propName={item.name} {...item.itemProp}></VRBText>
+      ? item.show && <VRBText overrideTextColor={overrideTextColor} propName={item.name} {...item.itemProp} className="w-full"></VRBText>
       : item.type === 'VRBImage' 
       ? item.show && <VRBImage renderWrapper={({children}) => (<div className='w-full h-full min-w-[200px] min-h-[200px]'>{children}</div>)} imageHeight="100%" imageWidth="100%" propName={item.name}></VRBImage>
       : item.type === 'VRBButton'
@@ -50,7 +50,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
     <Link {...rest}>
       <Column className={classNames('text-white flex flex-wrap justify-start items-center no-underline gap-x-4 gap-y-8 pt-[0] px-[0] w-full h-full')}>
         {renderItems.sort((a, b) => a.order - b.order).filter(v=>v.show).map((item, index) =>
-         <div className={classNames(item.inline ? 'w-full' : '', 'flex flex-row items-center justify-start')} key={`${item.name}-${index}`}>{(item as any).content}</div>)}
+         <div className={classNames((item.inline || item.type ==='VRBTitle' || item.type ==='VRBText') ? 'w-full' : 'w-auto', 'flex flex-row items-center justify-start')} key={`${item.name}-${index}`}>{(item as any).content}</div>)}
         {/* {((items as any || getColumnItems(initialItems)).every(v=>!v.show)) && <div className='w-52 h-52 bg-transparent'></div>} */}
       </Column>
     </Link>

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import classNames from 'classnames'
-import { Text, types, } from 'react-bricks/frontend'
+import { Text, types, Link } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText';
 import VRBRichText from './VRBRichText';
@@ -22,14 +22,16 @@ const VRBText: types.Brick<VRBTextProps> = ({
   ...rest
 }) => {
   return (
-    <VRBRichText
-      spacing={spacing}
-      isTitle={false}
-      size={size}
-      className={className}
-      overrideTextColor={overrideTextColor}
-      propName={propName}
-    {...rest}/>
+    <div className='w-full'>
+      <VRBRichText
+        spacing={spacing}
+        isTitle={false}
+        size={size}
+        className={className}
+        overrideTextColor={overrideTextColor}
+        propName={propName}
+      {...rest}/>
+    </div>
   )
 }
 
@@ -40,7 +42,8 @@ VRBText.schema = {
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     size: 'sm',
-    overrideTextColor: false
+    overrideTextColor: false,
+
   }),
   sideEditProps: [
     {
