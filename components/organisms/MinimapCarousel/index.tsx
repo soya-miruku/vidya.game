@@ -8,6 +8,7 @@ import Plane from "./Plane"
 import Effects from "./Effects"
 import { Block, useBlock } from "./blocks"
 import state from "./store"
+import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 
 const LineV = Line as any;
 const TextV = Text as any;
@@ -78,6 +79,7 @@ function Image({ img, index }) {
 }
 
 function Marker() {
+  const { isMobileView } = useDetectIsMobileView();
   const ref = useRef<any>()
   const [active, setActive] = useState(false)
   const [hovered, set] = useState(false)
@@ -93,7 +95,10 @@ function Marker() {
     camera.updateProjectionMatrix()
   })
 
-  const bind: any = useDrag(({ movement: [x], first, last }) => (setActive(!last), (state.ref.scrollLeft = x * 2 * state.pages)), {
+  const bind: any = useDrag(({ movement: [x], first, last }) => {
+    if(isMobileView) return;
+    setActive(!last), (state.ref.scrollLeft = x * 2 * state.pages)
+  }, {
     initial: () => [(state.ref.scrollLeft * 0.5) / state.pages]
   })
 
