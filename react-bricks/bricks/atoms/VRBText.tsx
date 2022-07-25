@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Text, types, Link } from 'react-bricks/frontend'
+import { types } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 import VRBRichText from './VRBRichText';
 

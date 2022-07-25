@@ -1,6 +1,7 @@
 // credits for majority of this code goes to drcmda from codesandbox XD
 import * as THREE from "three"
 import React, { Suspense, useEffect, useRef, useState } from "react"
+React.useLayoutEffect = React.useEffect;
 import { Canvas, useFrame, useThree, createPortal } from "@react-three/fiber"
 import { Text, Loader, Line, Shadow, useTexture, meshBounds } from "@react-three/drei"
 import { useDrag } from "react-use-gesture";

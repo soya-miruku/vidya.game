@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import dynamic from 'next/dynamic';
 import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
 import { DefaultColors } from '../Shared/colors';
@@ -7,6 +8,10 @@ import Section, { SectionProps } from '../Layout/Section';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { MiniMapCarousel } from '@/components/organisms/MinimapCarousel';
 import { VTitle } from '@/components/atoms/VTitle';
+
+// const MiniMapCarousel = dynamic(() => import('@/components/organisms/MinimapCarousel'), {
+//   ssr: false,
+// });
 
 interface IMinimapCarouselUnitProps extends SectionProps {
   title: string;

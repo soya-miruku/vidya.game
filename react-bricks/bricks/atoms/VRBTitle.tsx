@@ -27,6 +27,7 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
     <VRBRichText
       isTitle={true}
       type={type}
+      textAlign={textAlign}
       className={className}
       overrideTextColor={overrideTextColor}
       propName={propName}
