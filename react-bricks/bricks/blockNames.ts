@@ -41,4 +41,6 @@ export enum blockNames {
   MultiPassStatsUnit = 'MultiPassStatsUnit',
   ProgramVideoHeroUnit = 'ProgramVideoHeroUnit',
   MinimapCarouselUnit = 'MinimapCarouselUnit',
+  HeroWithTabsUnit = 'HeroWithTabsUnit',
+  VRBProductView = 'VRBProductViewItem',
 }

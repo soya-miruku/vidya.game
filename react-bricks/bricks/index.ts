@@ -39,6 +39,8 @@ import PDFViewUnit from './molecules/PDFViewUnit';
 import ProgramVideoHeroUnit from './molecules/ProgramVideoHeroUnit';
 import MinimapCarouselUnit from './molecules/MinimapCarouselUnit';
 import SimpleImage from './atoms/SimpleImage';
+import HeroWithTabsUnit from './molecules/HeroWithTabsUnit';
+import VRBProductView from './atoms/VRBProductView';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -80,7 +82,9 @@ const bricks: types.Brick<any>[] = [
   ProgramVideoHeroUnit,
   PDFViewUnit,
   MinimapCarouselUnit,
-  SimpleImage
+  SimpleImage,
+  HeroWithTabsUnit,
+  VRBProductView
 ]
 
 export default bricks

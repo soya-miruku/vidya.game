@@ -48,7 +48,7 @@ MinimapCarouselUnit.schema = {
 
   getDefaultProps: () => ({
     ...DefaultLayoutProps,
-    title: 'Gallary',
+    title: 'Gallery',
     images: [
 
     ]

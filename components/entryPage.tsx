@@ -15,7 +15,8 @@ export const EntryPage = ({page, error}) => {
   const firstElBgColorProp = pageOk?.content?.[0]?.props?.['bg']?.['color'];
   const firstElBgImageProp = pageOk?.content?.[0]?.props?.['bgImage'];
   
-  const hasNoColorOrBg = !firstElBgImageProp || !(firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff');
+  const hasNoColorOrBg = (firstElBgImageProp && (firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff'));
+  console.log(firstElBgColorProp, firstElBgImageProp, hasNoColorOrBg);
 
   return (
     <Layout displayCallout={false} useDarkFonts={!isDarkMode && hasNoColorOrBg}>

@@ -122,7 +122,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
           code
         ]}
         
-        multiline
+        multiline={false}
         propName={propName}
         renderBlock={(props: any) => (
           isTitle 
@@ -133,6 +133,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
           : <VText spacing={spacing} size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
         )}
         placeholder="Type a text..."
+        
       />
       </a>
       </>
