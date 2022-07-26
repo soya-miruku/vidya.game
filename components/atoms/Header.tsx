@@ -8,7 +8,7 @@ import { push as Menu } from 'react-burger-menu';
 import { classNames, getPageUrlByType } from '../../common/helpers';
 import { PagesByCategory } from '../../common/viwablePages';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { useDetectDeviceSize, useDetectIsMobileView } from '../../hooks/useDetectIsMobileView';
+import { useDetectIsMobileView } from '../../hooks/useDetectIsMobileView';
 import { Logo } from '../logo';
 import { SwapSection } from '../molecules/SwapSection';
 import { PricesSection } from '../organisms/pricesSection';

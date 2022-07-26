@@ -23,8 +23,8 @@ interface IInventoryListUnitProps extends SectionProps {
 }
 
 const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, description, items, ...sectionProps}) => {
-  const { tokenIds } = useGetAllTemplateIds({limit: 12, startFrom: 1});
-  const { templates } = useFetchTemplates(tokenIds);
+  // const { tokenIds } = useGetAllTemplateIds({limit: 12, startFrom: 1});
+  const { templates } = useFetchTemplates([1, 3, 7, 9,11,12,13,23,30,31]);
   return (
     <Section {...sectionProps} className='prose'>
       <PageViewSize enabled={!sectionProps.bgImage}>
@@ -34,7 +34,7 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
             <VRBTitle propName='title' type='h2'></VRBTitle>
             <VRBText propName='description' size='lg'></VRBText>
           </div>
-          <div className='w-full flex h-[500px] rounded-xl relative border-[1px] dark:border-light-300/40 border-dark-200/20'>
+          <div className='w-full justify-center items-center p-vsm flex flex-col h-[500px] rounded-xl relative border-[1px] dark:border-light-300/40 border-dark-200/20'>
             <DeckBase className='!w-52 !h-96' itemClassName='!bg-light-100 !border-accent-dark-200/70 !max-h-96 shadow-[0_25px_20px_-15px_rgba(0,0,0,0.13)]' itemRender={(item) => {
               return (
                 <div className='p-vmd flex flex-col gap-vsm relative !font-bold'>
@@ -53,6 +53,7 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
                 description: template.description
               }
             })}></DeckBase>
+            <VText className='opacity-70' size='sm'>Flick to the left or right to navigate</VText>
           </div>
         </div>
       </PageViewSize>

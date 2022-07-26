@@ -32,7 +32,7 @@ export const GeneratorStats = ({}) => {
       <StatCard long title={
         <div className="flex justify-center items-end gap-x-2">
           <VTitle type='h4'>{ToReadableNumber(rewardRate).slice(0, 6)}</VTitle>
-          <VTitle className="!text-accent-dark-200" type='h6'>VIDYA PER BLOCK</VTitle>
+          <VTitle className="!text-accent-dark-200" type='h6'>VIDYA PER SECOND</VTitle>
         </div>
       } label="Vidya Rate" />
     </div>

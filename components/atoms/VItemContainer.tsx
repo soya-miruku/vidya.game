@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@/common/helpers';
 
-export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v1xl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;
@@ -43,6 +43,8 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
         return {class: isHeight ? 'min-h-vhxl' : 'w-vhxl min-w-vhxl max-w-vhxl'};
       case 'v2xl':
         return {class: isHeight ? 'min-h-vxl max-h-v2xl' : 'max-w-v2xl'};
+      case 'v1xl':
+        return {class: isHeight ? 'min-h-vxl max-h-v1xl' : 'max-w-v1xl'};
       case 'full':
         return {class: isHeight ? 'h-full min-h-full' : 'w-full min-w-full'};
       default:

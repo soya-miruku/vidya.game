@@ -29,7 +29,7 @@ export const DeckBase: React.FC<IDeckBaseProps> = ({ className, items, onRemove,
   }));
 
   const bind: any = useDrag(({ args: [index], active, delta: [xDelta], down, movement: [mx], direction: [xDir], velocity: [vx] }) => {
-    const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
+    const trigger = vx > 0.1 // If you flick hard enough it should trigger the card to fly out
     if (!active && trigger){
       gone.add(index)
       onRemove && onRemove(items[index])

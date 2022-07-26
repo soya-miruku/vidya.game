@@ -19,7 +19,7 @@ export const generateUniqueId = () => {
 }
 
 export const getPageUrlByType = (type, slug) => {
-  if(type === pageNames.PAGE.name || type === pageNames.ABOUT.name) {
+  if(type === pageNames.PAGE.name || type === pageNames.ABOUT.name || type === pageNames.BLOG.name) {
     return `/${slug}`;
   }
   else if(!type) return '/';

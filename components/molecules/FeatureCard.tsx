@@ -1,8 +1,10 @@
+import { classNames } from '@/common/helpers';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 import React from 'react';
 import { VButton } from '../atoms/VButton';
 import { VImage } from '../atoms/VImage';
 import { VItemContainer } from '../atoms/VItemContainer';
+import { VLabel } from '../atoms/VLabel';
 import { VText } from '../atoms/VText';
 import { VTitle } from '../atoms/VTitle';
 
@@ -20,16 +22,25 @@ export interface IFeatureCardProps {
   onClick?: () => void;
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
   minTextHeight?: number;
+  fullWidth?: boolean;
+  trimText?: boolean;
+  flipOrder?: boolean;
+  label?: string;
 }
 
-export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, title, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, objectFit, size, canEdit}) => {
+export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, label, flipOrder, title, trimText, fullWidth, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, objectFit, size, canEdit}) => {
   const {isMobileView, isTabletView} = useDetectIsMobileView();
 
   return (
-    <VItemContainer showBorder={bordered} widthSize={isMobileView || isTabletView ? 'vxl' : 'v2xl'} heightSize='full'>
-      <div className='flex flex-col flex-wrap gap-y-vsm p-vlrg justify-start items-start w-auto h-full'>
-        <VTitle type='h4'>{title}</VTitle>
-        <VText className='max-h-[145px] overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>{subtitle}</VText>
+    <VItemContainer innerClassName='!p-0' showBorder={bordered} widthSize={isMobileView || isTabletView ? 'vxl' : fullWidth ? 'v1xl' : 'v2xl'} heightSize='full'>
+      <div className={classNames('flex flex-wrap gap-y-vsm p-vmd justify-start items-start h-full', flipOrder ? 'flex-col-reverse' : 'flex-col', fullWidth ? 'w-full' : ' w-auto')}>
+        {!flipOrder && label && <VLabel>{label}</VLabel>}
+        {!flipOrder && <VTitle type='h4'>{title.slice(0, 18)} {title?.length > 17 ? '...' : ''}</VTitle>}
+        <VText className='max-h-[145px] min-h-[105px] overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>
+          {trimText ? subtitle.slice(0, 120) + '...' : subtitle}
+          </VText>
+        {flipOrder && <VTitle type='h4'>{title.slice(0, 18)} {title?.length > 17 ? '...' : ''}</VTitle>}
+        {flipOrder && label && <VLabel>{label}</VLabel>}
         {buttonText && <VButton onClick={onClick} special={specialBtn} secondary={secondaryBtn} primary={primaryBtn}>{buttonText}</VButton>}
         <div style={{width: '100%', height: '218px', position: 'relative'}} className="w-full h-full rounded-vsm">
           <VImage priority src={image} width="100%" height="218px" objectFit={objectFit || 'cover'} layout='fill' alt='image' className='w-full h-full rounded-sm'/>

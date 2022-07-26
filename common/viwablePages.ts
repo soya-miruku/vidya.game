@@ -76,5 +76,16 @@ export const PagesByCategory = {
       type: 'about',
       active: true
     }
-  ]}
+  ]},
+  blog: {
+    image: '/nav/blog.png',
+    pages: [
+      {
+        displayName: 'BLOG',
+        slug: 'blog',
+        type: 'blog',
+        active: true
+      }
+    ]
+  }
 }

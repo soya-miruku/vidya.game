@@ -51,7 +51,6 @@ export const useFetchPages = ({type, limit=3}) => {
     }
 
     const json = await response.json();
-    console.log(json)
     return json.map((page: any) => {
       return {
         id: page.id,

@@ -45,7 +45,6 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
 
   React.useEffect(() => {
     if(!aRef.current) return;
-    console.log(textAlign);
     (aRef.current.children[0] as any).style.width = '100%';
   }, [aRef.current])
 
