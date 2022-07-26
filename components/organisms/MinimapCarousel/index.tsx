@@ -1,4 +1,4 @@
-// credits for majority of this code goes to drcmda from codesandbox XD
+// credits for majority of this code goes to drcmda from codesandbox XD (link:https://codesandbox.io/s/qf8d0)
 import * as THREE from "three"
 import React, { Suspense, useEffect, useRef, useState } from "react"
 React.useLayoutEffect = React.useEffect;

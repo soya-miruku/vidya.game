@@ -36,7 +36,6 @@ export const VSimpleTabs: React.FC<ITabsProps> = ({ items, onChange, className, 
   const [selected, setSelected] = useState(defaultActiveIndex < 0 ? 0 : defaultActiveIndex);
   
   useEffect(() => {
-    console.log(selected)
   }, [defaultActiveIndex])
 
   return (

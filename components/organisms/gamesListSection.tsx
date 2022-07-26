@@ -16,7 +16,6 @@ export const GamesListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
   return (
     <div className='flex gap-vlrg flex-wrap justify-center items-center py-vxl'>
       {(data || []).map((post, index) => {
-        console.log(post.meta.image.src)
         return (
           <GameCard key={`${post.slug}_${index}`} label={post.customValues?.label} url={getPageUrlByType(post.type, post.slug)} placeholderSrc={post.meta?.image?.placeholderSrc} image={post.meta?.image?.src} title={post.meta.title} subtitle={post.meta.description} />
         )

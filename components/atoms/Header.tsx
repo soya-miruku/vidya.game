@@ -236,10 +236,10 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                 // noTransition
                 >
                 <div className='w-full h-full overflow-y-auto'>
-                  <div className='sm:px-10 px-3 sm:py-4 py-0 flex w-full flex-wrap justify-start gap-x-5 dark:text-white text-dark-100 gap-y-5'>
+                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-start gap-vsm dark:text-white text-dark-100'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 
-                        <div key={`cat-${category}-${index}`} className='w-[225px] px-4 flex flex-col justify-start items-start'>
+                        <div key={`cat-${category}-${index}`} className='w-[220px] px-4 flex flex-col justify-start items-start'>
                           <h1 className='font-bold font-saria text-standfirst py-3 px-1 uppercase dark:text-white/90 text-dark-400/90'>{category}</h1>
                           <div className='relative dark:shadow-dark hover:brightness-150 shadow-light rounded-xl w-[190px] h-[180px] mb-4'>
                           <Image loading="lazy" className='animate-brightGlow ' src={PagesByCategory[category].image} objectFit='cover' width={190} height={180} style={{

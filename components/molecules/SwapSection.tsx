@@ -100,7 +100,6 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   }
 
   const handleChangeToken0Amount = async (value) => {
-    console.log(value)
     if(value === '') {
       setToken0Amount(() => '');
       return;

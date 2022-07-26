@@ -88,7 +88,6 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
   }
 
   const handleBuyLevels = async () => {
-    console.log(priceToBuyLevel)
     await buyLevels(priceToBuyLevel.toFixed(12));
   }
 
