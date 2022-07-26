@@ -61,7 +61,7 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
 }
 
 InventoryListUnit.schema = {
-  name: blockNames.EmptySection,
+  name: blockNames.InventoryListUnit,
   label: 'Inventory List Unit',
   category: 'TeamOs-Aimbots',
 
