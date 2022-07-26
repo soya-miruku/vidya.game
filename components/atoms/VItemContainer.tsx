@@ -38,7 +38,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'vlg':
         return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'min-w-xs max-w-vlg'};
       case 'vxl':
-        return {class: isHeight ? 'min-h-vxl max-h-vxl' : 'max-w-vxl'};
+        return {class: isHeight ? 'min-h-vxl h-vxl max-h-vxl' : 'max-w-vxl'};
       case 'vhxl':
         return {class: isHeight ? 'min-h-vhxl' : 'w-vhxl min-w-vhxl max-w-vhxl'};
       case 'v2xl':

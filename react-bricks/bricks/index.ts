@@ -41,6 +41,7 @@ import MinimapCarouselUnit from './molecules/MinimapCarouselUnit';
 import SimpleImage from './atoms/SimpleImage';
 import HeroWithTabsUnit from './molecules/HeroWithTabsUnit';
 import VRBProductView from './atoms/VRBProductView';
+import InventoryListUnit from './molecules/InventoryListUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -84,7 +85,8 @@ const bricks: types.Brick<any>[] = [
   MinimapCarouselUnit,
   SimpleImage,
   HeroWithTabsUnit,
-  VRBProductView
+  VRBProductView,
+  InventoryListUnit
 ]
 
 export default bricks
