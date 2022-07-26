@@ -114,7 +114,8 @@ export const MiniMapCarousel = ({imageSources}) => {
   const scrollArea = useRef<any>();
   const onScroll = (e) => (state.top.current = e.target.scrollLeft)
   useEffect(() => void onScroll({ target: (state.ref = scrollArea.current) }), [])
-  state.sections = imageSources.length || 6
+  state.sections = imageSources.length - 1 || 6
+  state.pages = state.sections - 1;
   return (
     <>
     <Canvas 
