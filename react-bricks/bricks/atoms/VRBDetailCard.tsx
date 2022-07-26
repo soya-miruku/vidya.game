@@ -1,4 +1,5 @@
 import { classNames } from '@/common/helpers'
+import { VTitle } from '@/components/atoms/VTitle'
 import { StatCard } from '@/components/molecules/StatCard'
 import * as React from 'react'
 import { types, Link } from 'react-bricks/frontend'
@@ -8,17 +9,19 @@ export interface IVRBDetailCardProps {
   bordered?: boolean
   label?: string
   title?: string
+  center?: boolean
 }
 
 const VRBDetailCard: types.Brick<IVRBDetailCardProps> = ({
   bordered = true,
   label,
   title,
+  center,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <StatCard title={title} label={label} bordered={bordered} />
+      <StatCard center={center} title={<VTitle className={classNames('min-h-[30px]', center ? 'w-full text-center' : '')} type='h6'>{title}</VTitle>} label={label} bordered={bordered} />
     </Link>
   )
 }
@@ -31,7 +34,8 @@ VRBDetailCard.schema = {
   getDefaultProps: () => ({
     bordered: true,
     label: 'LABEL',
-    title: 'TITLE'
+    title: 'TITLE',
+    center: false,
   }),
   sideEditProps: [
     {
@@ -48,6 +52,11 @@ VRBDetailCard.schema = {
       name: 'title',
       label: 'Title',
       type: types.SideEditPropType.Text,
+    },
+    {
+      name: 'center',
+      label: 'Center',
+      type: types.SideEditPropType.Boolean,
     }
   ],
 }

@@ -17,6 +17,7 @@ export const DefaultLayoutProps = {
   bgSize: 'cover',
   parallaxMoveTo: 'bottom',
   blur:'sm',
+  tiltDegree: 0,
 }
 
 export const LayoutProp = ({
@@ -34,6 +35,22 @@ export const LayoutProp = ({
           display: types.OptionsDisplay.Color,
           options: [...colors],
         },
+      },
+      {
+        name: 'tiltDegree',
+        label: 'Tilt Background Degree',
+        type: types.SideEditPropType.Range,
+        rangeOptions: {
+          min: -360,
+          max: 360,
+          step: 0.01,
+          
+        }
+      },
+      {
+        name: 'tiltDegree',
+        label: 'Tilt Background Degree',
+        type: types.SideEditPropType.Number,
       },
       {
         name: 'enableParallax',

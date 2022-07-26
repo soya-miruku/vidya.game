@@ -33,7 +33,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
   const { isMobileView } = useDetectIsMobileView();
   const hasBg = (!!sectionProps.bgImage || sectionProps.bg.color !== 'transparent');
   return (
-    <Section {...sectionProps}>
+    <Section {...sectionProps} className="flex justify-center items-center">
       <PageViewSize enabled={!sectionProps.bgImage}>
         <div className={classNames('max-w-page w-full h-full flex flex-row justify-center p-0', 'prose')}>
           <div className='w-auto h-full p-0'>
@@ -67,7 +67,7 @@ const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignTex
                   )
                 }}>
                 </Repeater>
-              <div className={classNames('flex flex-col justify-center h-full w-full', hasBg ? '': ' pt-vlrg')}>
+              <div className={classNames('flex flex-col justify-center h-auto w-full', hasBg ? '': ' pt-vlrg')}>
                     <Text
                       renderBlock={(props) => (
                         <VTitle overrideTextColor={hasBg} className='m-0' type={isMobileView ? 'h3' : 'h2'}>{props.children}</VTitle>

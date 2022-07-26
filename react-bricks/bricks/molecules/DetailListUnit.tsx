@@ -1,10 +1,9 @@
 import React from 'react'
 import { types, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { bgColors, DefaultColors } from '../Shared/colors';
+import { DefaultColors } from '../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import Section, { SectionProps } from '../Layout/Section';
-import { Padding } from '../Shared/additional';
 
 interface IDetailsListUnitProps extends SectionProps {
   detailItems?: any[];
@@ -15,7 +14,7 @@ const DetailsListUnit: types.Brick<IDetailsListUnitProps> = ({ ...sectionProps }
     <Section {...sectionProps}>
       <Repeater propName='detailItems' renderWrapper={(items) => {
         return (
-          <div className="flex justify-center items-center gap-vsm flex-wrap">
+          <div className="flex justify-center items-center gap-vmd flex-wrap w-full">
             {items}
           </div>
         )
@@ -34,26 +33,31 @@ DetailsListUnit.schema = {
     detailItems: [
       {
         bordered: true,
+        center: false,
         label: 'LABEL',
         title: 'TITLE'
       },
       {
         bordered: true,
+        center: false,
         label: 'LABEL',
         title: 'TITLE'
       },
       {
         bordered: true,
+        center: false,
         label: 'LABEL',
         title: 'TITLE'
       },
       {
         bordered: true,
+        center: false,
         label: 'LABEL',
         title: 'TITLE'
       },
       {
         bordered: true,
+        center: false,
         label: 'LABEL',
         title: 'TITLE'
       }
@@ -65,7 +69,7 @@ DetailsListUnit.schema = {
       itemType: blockNames.DetailCard,
       itemLabel: 'Item',
       min: 1,
-      max: 5
+      max: 10
     },
   ],
   sideEditProps: [

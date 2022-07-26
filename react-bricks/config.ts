@@ -21,7 +21,7 @@ const config: types.ReactBricksConfig = {
   editorPath: '/admin/editor',
   playgroundPath: '/admin/playground',
   appSettingsPath: '/admin/app-settings',
-  useCssInJs: false,
+  useCssInJs: true,
   appRootElement: '#__next',
   clickToEditSide: types.ClickToEditSide.BottomRight,
   customFields: [

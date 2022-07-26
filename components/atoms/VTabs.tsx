@@ -29,7 +29,7 @@ export const VTabs = ({children, defaultActiveIndex=0, rounded=true}: IVTabsProp
 
   return (
     <div className="flex flex-col justify-start items-start w-full">
-      <div className={classNames('font-thin dark:bg-black/10 bg-light-100 w-full h-20 flex flex-row items-center sm:justify-center justify-start overflow-x-auto', rounded ? 'rounded-t-xl' : '')}>
+      <div className={classNames('font-thin dark:bg-black/10 bg-light-100 w-full h-20 flex flex-row items-center sm:justify-center justify-start overflow-y-hidden overflow-x-auto ', rounded ? 'rounded-t-xl' : '')}>
         {children && children?.length > 0 && children.filter((child) => child.props?.show !== false).map((child, index) => {
           const isLast = index === children.length - 1;
           const isFirst = index === 0;
@@ -87,7 +87,7 @@ export const VTab = ({isActive, show=true, enabled=true, isFirst, isLast, onClic
       if(enabled) onClick();
     }} className={classNames(
       enabled ? 'dark:hover:bg-black/50 hover:bg-light-300 hover:cursor-pointer dark:bg-black/10 bg-light-200' : 'brightness-50',
-      isActive ? 'dark:bg-black/50 bg-light-300 border-b-accent-dark-200' : 'dark:border-b-dark-300 border-b-light-400', 
+      isActive ? 'dark:bg-black/50 bg-light-300 border-b-4 border-b-accent-dark-200' : 'dark:border-b-dark-300 border-b-light-400', 
       'h-full w-full p-6 flex flex-row justify-center items-center space-x-4 border-b-2', 
       isFirst ? 'rounded-tl-xl' : isLast ? 'rounded-tr-xl' : '', containerClassName
       )}>
@@ -95,7 +95,7 @@ export const VTab = ({isActive, show=true, enabled=true, isFirst, isLast, onClic
       {!isMobileView && icon && <div className={classNames(isActive ? 'bg-accent-dark-200' : 'bg-[#2d323d]', 'p-3 rounded-xl', className)}>
         <FontAwesomeIcon className='w-8 h-8' icon={icon}/>
       </div>}
-      <div className='text-left flex flex-col gap-[3px]'>
+      <div className='sm:text-left flex flex-col gap-[3px] text-center'>
         {title  && <VTitle type="h6">{title}</VTitle>}
         {description && !isMobileView && <VText size="sm" className='!text-accent-dark-100 !leading-none'>{description}</VText>}
       </div>

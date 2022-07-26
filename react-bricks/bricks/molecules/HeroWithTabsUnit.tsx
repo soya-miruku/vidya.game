@@ -16,8 +16,8 @@ interface IHeroWithTabsUnitProps extends SectionProps {
 
 const HeroWithTabsUnit: types.Brick<IHeroWithTabsUnitProps> = ({heroTitle, ...sectionProps}) => {
   return (
-    <Section {...sectionProps} className="prose">
-      <PageViewSize enabled={!sectionProps.bgImage}>
+    <Section {...sectionProps} className="prose relative">
+      <PageViewSize enabled={!sectionProps.bgImage} className="">
         <div className='flex justify-center w-full items-center text-center px-vsm'>
           <div>
             <VRBTitle type='h3' propName="heroTitle"></VRBTitle>

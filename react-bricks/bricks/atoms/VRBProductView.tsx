@@ -4,8 +4,6 @@ import { VTitle } from '@/components/atoms/VTitle';
 import * as React from 'react'
 import { Text, RichText, Image, types, Link, Repeater } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import VRBText from './VRBText';
-import VRBTitle from './VRBTitle';
 
 export interface IVRBProductViewProps {
   label: string
@@ -23,7 +21,7 @@ const VRBProductView: types.Brick<IVRBProductViewProps> = ({
 }) => {
   return (
     <Link {...rest}>
-    <div className='flex w-full justify-center items-center flex-wrap sm:flex-row flex-col px-vsm'>
+    <div className='flex w-full justify-center items-center flex-wrap sm:flex-row flex-col-reverse px-vsm'>
       <div className='flex justify-center sm:w-[60%] w-full h-auto flex-col py-vsm px-[5px] gap-vsm'>
         <div className='w-auto flex'>
           <VLabel>{label}</VLabel>
@@ -37,7 +35,8 @@ const VRBProductView: types.Brick<IVRBProductViewProps> = ({
               propName="image"
               alt="image"
               useWebP={false}
-              useNativeLazyLoading={true}
+              noLazyLoad
+              useNativeLazyLoading={false}
               renderWrapper={({ children }) => {
                 return (
                   <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
@@ -45,7 +44,7 @@ const VRBProductView: types.Brick<IVRBProductViewProps> = ({
                   </div>
                 )
               }}
-              imageClassName="h-full w-full mb-0 ml-2"
+              imageClassName="h-full w-full mb-0 ml-2 origin-center animate-brightGlowSlow"
             />
       </div>
       </div>

@@ -199,7 +199,6 @@ const reducer = (state: IGeneratorState, action: Action) => {
       }
     }
     case ACTIONS.SET_COMMITMENT_INDEX: {
-      console.log('SET_COMMITMENT_INDEX', action.payload);
       return {
         ...state,
         ...updatePool(state, action.pool, {
@@ -273,7 +272,6 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
 
   useEffect(() => {
     for(const pool in state.pools) {
-      console.log('pool', pool, state.pools[pool]);
       updatePool(pool, {
         ...CHAIN_GENERATOR_SETTINGS[chainId].pool[pool],
       })
