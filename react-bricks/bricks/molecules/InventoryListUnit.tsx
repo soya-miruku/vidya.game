@@ -13,6 +13,7 @@ import { VText } from '@/components/atoms/VText';
 import { VLabel } from '@/components/atoms/VLabel';
 import { VTitle } from '@/components/atoms/VTitle';
 import { VImage } from '@/components/atoms/VImage';
+import { useFetchTemplates, useGetAllTemplateIds } from '@/hooks/dapps/inventory/useGetAllTemplates';
 
 interface IInventoryListUnitProps extends SectionProps {
   label?: string;
@@ -22,6 +23,8 @@ interface IInventoryListUnitProps extends SectionProps {
 }
 
 const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, description, items, ...sectionProps}) => {
+  const { tokenIds } = useGetAllTemplateIds({limit: 12, startFrom: 1});
+  const { templates } = useFetchTemplates(tokenIds);
   return (
     <Section {...sectionProps} className='prose'>
       <PageViewSize enabled={!sectionProps.bgImage}>
@@ -31,49 +34,25 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
             <VRBTitle propName='title' type='h2'></VRBTitle>
             <VRBText propName='description' size='lg'></VRBText>
           </div>
-          <div className='w-full flex h-[500px] rounded-xl relative border-[1px]'>
-            <DeckBase className='!w-52 !h-96' itemClassName='!bg-light-100 !border-none !max-h-96 shadow-btn-dark' itemRender={(item) => {
+          <div className='w-full flex h-[500px] rounded-xl relative border-[1px] dark:border-light-300/40 border-dark-200/20'>
+            <DeckBase className='!w-52 !h-96' itemClassName='!bg-light-100 !border-accent-dark-200/70 !max-h-96 shadow-[0_25px_20px_-15px_rgba(0,0,0,0.13)]' itemRender={(item) => {
               return (
                 <div className='p-vmd flex flex-col gap-vsm relative !font-bold'>
                   <div className='absolute w-full h-full z-[100]'></div>
                   <VLabel className="!text-dark-100 uppercase">{item.label}</VLabel>
                   <VImage objectFit='contain' src={item.image} width={100} height={150}></VImage>
-                  <VTitle className='!text-dark-100' type='h5'>{item.title}</VTitle>
-                  <VText size='md' className="!text-dark-100">{item.description}</VText>
+                  <VTitle className='!text-dark-100 ' type='h5'>{item.title}</VTitle>
+                  <VText size='md' className="!text-dark-100 ">{item.description}</VText>
                 </div>
               )
-            }} items={[
-              {
-                label: 'inventory v2',
-                title: 'Santa Hat',
-                image: 'https://lh3.googleusercontent.com/7udMBUMxXyPoo4j18PkF7bd9ngxYralPMOzs8C8zAZDOGDnEmS9IRhQlaFkaQMxRSuWkv5ZNki3y6p8nnc89bLogKKT5nct0dPA9',
-                description: 'it&apos;s a santa hat',
-              },
-              {
-                label: 'inventory v2',
-                title: 'Hardware wallet',
-                image: 'https://lh3.googleusercontent.com/C_AXP0yc4v_5pdEabZwrh-TJ5FK_bfT9tNO_-lxLGldiTrOQ8_RWxD8K-aGzMazH6YQ2I_IsYHGEWT-6hrlIBNhL',
-                description: 'They&apos;re gonna have to torture me for this one',
-              },
-              {
-                label: 'inventory v2',
-                title: 'Skull of the elder',
-                image: 'https://lh3.googleusercontent.com/w-lPm4lJXJF5vBAonI6HtsXnYdFYlK9R3cN9TTpgYxjBY8UHLvPcjq06CaK9s_nu3ldX-Nxoi73zqQLBdTbiNNQ',
-                description: 'Somehow this feels oddly familiar...',
-              },
-              {
-                label: 'inventory v2',
-                title: 'Sword of Damocles',
-                image: 'https://lh3.googleusercontent.com/w0mWCjw5rXctp6QqUQmQkdCD-iO-ZtWDMu_4MlLp2K7LJAv65w_uvEg1jJ91yHNrsJvLSX07wghEEsheuNfblW2Z',
-                description: 'Literally hanging by a thread',
-              },
-              {
-                label: 'inventory v2',
-                title: 'Unicorn&apos;s head',
-                image: 'https://lh3.googleusercontent.com/TRunk47cN-U4SU5xeG-C1_FuNLBBOXSCkUUUZo_aKPF1rHYcyFUhpCYikO1zoWnUkZn24ezDdmurpcgFA550bYfb',
-                description: 'Why take the horn when you can have the whole head?',
+            }} items={(templates||[]).map((template) => {
+              return {
+                label: 'Inventory V2',
+                image: template.image,
+                title: template.name,
+                description: template.description
               }
-            ]}></DeckBase>
+            })}></DeckBase>
           </div>
         </div>
       </PageViewSize>

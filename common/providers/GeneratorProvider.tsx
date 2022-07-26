@@ -272,6 +272,7 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
 
   useEffect(() => {
     for(const pool in state.pools) {
+      if(!CHAIN_GENERATOR_SETTINGS[chainId]?.pool) continue;
       updatePool(pool, {
         ...CHAIN_GENERATOR_SETTINGS[chainId].pool[pool],
       })

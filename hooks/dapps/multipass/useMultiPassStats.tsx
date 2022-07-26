@@ -16,8 +16,6 @@ export interface IMultiPassStats {
   totalLevels: number;
 }
 
-
-
 export const useMultiPassStats = (): IMultiPassStats => {
   const { chainId } = useAccount();
   const multicallAddress = useMulticallAddress();
