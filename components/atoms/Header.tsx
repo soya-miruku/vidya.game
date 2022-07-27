@@ -96,7 +96,13 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       if(!navbarRef && !navbarRef?.current) return;
       
       const currentY = window.scrollY;
-      if (currentY > prevY || currentY === 0) {
+      if(currentY === 0) {
+        if(!navbarRef?.current) return;
+        navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+        navbarRef.current.classList.remove('invisible');
+        setShowingNavBar(false);
+      }
+      else if (currentY > prevY) {
         if(!navbarRef?.current) return;
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
