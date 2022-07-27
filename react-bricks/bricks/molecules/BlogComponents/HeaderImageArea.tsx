@@ -8,6 +8,7 @@ import { PageViewSize } from '@/components/atoms/PageViewSize';
 import VRBTitle from '../../atoms/VRBTitle';
 import VRBText from '../../atoms/VRBText';
 import VRBImage from '../../atoms/VRBImage';
+import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 
 interface IHeaderImageAreaProps extends SectionProps {
   title?: string
@@ -17,16 +18,17 @@ interface IHeaderImageAreaProps extends SectionProps {
 }
 
 const HeaderImageArea: types.Brick<IHeaderImageAreaProps> = ({width, height, ...sectionProps}) => {
+  const { isMobileView } = useDetectIsMobileView();
+  width = isMobileView ? '100%' : width;
+  height = isMobileView ? '100%' : height;
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className='w-full !max-w-blog justify-center items-center !gap-vmd'>
         <VRBTitle type='h3' propName='title'></VRBTitle>
         <VRBText size='lg' propName='paragraph'></VRBText>
         <div  style={{
           width: width,
           height: height,
-          // maxWidth: maxWidth,
-          // maxHeight: maxHeight,
         }} className='relative p-[5px]'>
         <VRBImage propName='image' renderWrapper={({children}) => {
             return <div className="w-full h-full justify-center items-center flex">{children}</div>

@@ -15,7 +15,7 @@ export interface ITitleWithParagraphProps extends SectionProps {
 
 const TitleWithParagraph: types.Brick<ITitleWithParagraphProps> = ({...sectionProps}) => {
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className="!max-w-blog">
         <VRBTitle type='h3' propName='title'></VRBTitle>
         <VRBText size='lg' propName='paragraph'></VRBText>

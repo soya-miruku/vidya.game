@@ -60,13 +60,15 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
       return posts.filter(post => {
         const areas = [post.meta?.title, post.meta?.description, post.customValues?.category, post.author.firstName];
         return areas.some(area => area?.toLowerCase()?.includes(searchValue.toLowerCase()))
-      }).sort((a, b) => {
-        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       })
+      // .sort((a, b) => {
+      //   return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+      // })
     }
-    return posts.sort((a, b) => {
-      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
-    })
+    return posts
+    // .sort((a, b) => {
+    //   return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    // })
   }, [JSON.stringify(posts), searchValue]);
 
   return (
@@ -77,7 +79,7 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
           <meta name="description" content={'read all our posts here!'} />
         </Head>
           <div className='flex justify-center items-start h-full'>
-            <PageViewSize enabled className='flex flex-col w-full !justify-start items-start mt-[120px] h-auto sm:p-vmd p-[5px] !max-w-[1333px]'>
+            <PageViewSize enabled className='flex flex-col w-full !justify-start items-start sm:mt-[120px] mt-0 h-auto sm:p-vmd p-[5px] !max-w-[1333px]'>
               <div className='w-full h-64 relative'>
                 <div className='bg-accent-dark-100 w-full h-60 sm:rounded-3xl rounded-0 flex justify-center items-center dark:shadow-btn-dark shadow-btn-light' style={{
                   backgroundImage: 'url(/aimbots/armoursets.png)',
@@ -113,7 +115,7 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
                   )
                 })}
               </div>
-              <div className='w-full flex flex-col gap-[120px] pt-vxl justify-center items-center'>
+              <div className='w-full flex flex-col gap-[120px] pt-vxl px-vsm justify-center items-center'>
                 {(selectedCategoryIndex === 0 && searchValue === '') &&
                   <div className='w-full h-auto flex sm:flex-row flex-col gap-vxl justify-center items-center'>
                     <div className='relative sm:w-1/2 w-full sm:h-[500px] h-[250px] rounded-2xl'>
@@ -188,7 +190,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 
   try {
-    const posts = await fetchPages(config.apiKey, {type: 'post'})
+    const posts = await fetchPages(config.apiKey, {type: 'post', sort: '-publishedAt'})
     return { props: { posts } }
   } catch {
     return { props: { error: 'fetch failed' } }

@@ -2,7 +2,7 @@ import { classNames } from '@/common/helpers';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 import { useFetchPage } from '@/hooks/useFetchPages';
 import { useRouter } from 'next/router';
-import { mapCategoryToValue } from 'pages/blog';
+import { mapCategoryToValue } from 'pages/posts';
 import React, { useMemo, useState } from 'react';
 import VRBText from '../../react-bricks/bricks/atoms/VRBText';
 import VRBTitle from '../../react-bricks/bricks/atoms/VRBTitle';

@@ -13,7 +13,7 @@ interface IRichTextZoneProps extends SectionProps {
 
 const RichTextZone: types.Brick<IRichTextZoneProps> = ({...sectionProps}) => {
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className="!max-w-blog">
         <VRBText size='lg' propName='html'></VRBText>
       </PageViewSize>

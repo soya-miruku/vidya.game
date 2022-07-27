@@ -1,5 +1,5 @@
 import React from 'react'
-import { types, Repeater } from 'react-bricks/frontend';
+import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../../blockNames'
 import { DefaultColors } from '../../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../../Shared/LayoutProps';
@@ -11,27 +11,27 @@ import { classNames } from '@/common/helpers';
 
 export interface IImageAreaProps extends SectionProps {
   image?: string;
-  maxWidth?: string;
-  maxHeight?: string;
+  width?: string;
+  height?: string;
   description?: string;
   objectFit?: 'contain' | 'cover' | 'fill';
 }
 
-const ImageArea: types.Brick<IImageAreaProps> = ({maxHeight, objectFit, maxWidth, ...sectionProps}) => {
+const ImageArea: types.Brick<IImageAreaProps> = ({width, height, description, objectFit, ...sectionProps}) => {
+  const { isAdmin } = useAdminContext();
+  
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className="w-full !max-w-blog !h-auto justify-center items-center">
       <div  style={{
-          width: '63vw',
-          height: '80vw',
-          maxWidth: maxWidth,
-          maxHeight: maxHeight,
-        }} className='relative'>
-      <VRBImage propName='image' imageClassName={classNames('h-full mb-5 ml-2', objectFit === 'contain' ? 'object-contain': objectFit === 'fill' ? 'object-fill' : 'object-cover' )} renderWrapper={({children}) => {
+          width: width,
+          height: height,
+        }} className='relative p-[5px]'>
+        <VRBImage propName='image' renderWrapper={({children}) => {
             return <div className="w-full h-full justify-center items-center flex">{children}</div>
-          }} imageWidth="100%" imageHeight="100%"/>
+          }} imageWidth={width} imageHeight={height}/>
       </div>
-      <VRBText size='sm' textAlign='center' className='!opacity-80' propName='description'></VRBText>
+      {(isAdmin || (!isAdmin && description))&&<VRBText size='sm' textAlign='center' className='!opacity-80' propName='description'></VRBText>}
       </PageViewSize>
     </Section>
   )
@@ -44,8 +44,8 @@ ImageArea.schema = {
 
   getDefaultProps: () => ({
     ...DefaultLayoutProps,
-    maxWidth: '100%',
-    maxHeight: '500px',
+    width: '100%',
+    height: '500px',
     objectFit: 'contain',
   }),
   // repeaterItems: [
@@ -59,13 +59,13 @@ ImageArea.schema = {
   sideEditProps: [
     LayoutProp({ colors: DefaultColors }),
     {
-      name: 'maxWidth',
-      label: 'Max Width',
+      name: 'width',
+      label: 'Width',
       type: types.SideEditPropType.Text
     },
     {
-      name: 'maxHeight',
-      label: 'Max Height',
+      name: 'height',
+      label: 'Height',
       type: types.SideEditPropType.Text
     },
     {

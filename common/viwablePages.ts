@@ -82,7 +82,7 @@ export const PagesByCategory = {
     pages: [
       {
         displayName: 'BLOG',
-        slug: 'blog',
+        slug: 'posts',
         type: 'blog',
         active: true
       }

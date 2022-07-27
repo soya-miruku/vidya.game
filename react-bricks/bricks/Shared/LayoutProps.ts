@@ -8,8 +8,8 @@ interface LayoutPropProps {
 export const DefaultLayoutProps = {
   bg: bgColors.none.value,
   paddingX: 0,
-  paddingTop: 50,
-  paddingBottom: 50,
+  paddingTop: 10,
+  paddingBottom: 10,
   height: 'auto',
   rounded: 'none',
   enableParallax: true,

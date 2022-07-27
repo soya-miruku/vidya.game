@@ -9,6 +9,7 @@ import VRBTitle from '../../atoms/VRBTitle';
 import VRBText from '../../atoms/VRBText';
 import VRBImage from '../../atoms/VRBImage';
 import { YTVideo } from '@/components/atoms/YTVideo';
+import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
 
 interface IHeaderYTAreaProps extends SectionProps {
   title?: string
@@ -20,14 +21,15 @@ interface IHeaderYTAreaProps extends SectionProps {
 
 const HeaderYTArea: types.Brick<IHeaderYTAreaProps> = ({title, paragraph, videoId, width, height, ...sectionProps}) => {
   const { isAdmin } = useAdminContext();
+  const { isMobileView } = useDetectIsMobileView();
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className='w-full !max-w-blog justify-center items-center !gap-vmd'>
         {(isAdmin || (!isAdmin && title)) && <VRBTitle type='h3' propName='title'></VRBTitle>}
         {(isAdmin || (!isAdmin && paragraph))&& <VRBText size='lg' propName='paragraph'></VRBText>}
         <div  style={{
           width: width,
-          height: height,
+          height: isMobileView ? '300px' : height,
           // maxWidth: maxWidth,
           // maxHeight: maxHeight,
         }} className='relative p-[5px]'>

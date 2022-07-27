@@ -17,7 +17,7 @@ export interface IMultiImageAreaProps extends SectionProps {
 
 const MultiImageArea: types.Brick<IMultiImageAreaProps> = ({maxHeight, maxWidth, ...sectionProps}) => {
   return (
-    <Section {...sectionProps} className="prose">
+    <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className="w-full !max-w-blog !h-auto justify-center items-center">
       <Repeater propName='images' renderWrapper={(items) => {
           return <div className="gap-vsm justify-center items-center flex flex-wrap">{items}</div>
