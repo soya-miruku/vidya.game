@@ -101,20 +101,20 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
-        navbarRef.current.classList.remove('invisible');
+        navbarRef.current.classList.add('invisible');
         setShowingNavBar(true);
       }
       else if(currentY <= 100 || isOpen) {
         if(!navbarRef?.current) return;
         navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
-        navbarRef.current.classList.add('invisible');
+        navbarRef.current.classList.remove('invisible');
         setShowingNavBar(false);
       } 
       else {
         if(!navbarRef?.current) return;
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
-        navbarRef.current.classList.add('invisible');
+        navbarRef.current.classList.remove('invisible');
         // setShowingNavBar(false);
       }
       prevY = currentY;
