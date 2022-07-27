@@ -33,7 +33,7 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, footer,
   const {isMobileView, isTabletView} = useDetectIsMobileView();
 
   return (
-    <VItemContainer innerClassName='!p-0' showBorder={bordered} widthSize={isMobileView || isTabletView ? 'vxl' : fullWidth ? 'v1xl' : 'v2xl'} heightSize='full'>
+    <VItemContainer innerClassName={fullWidth ? '!p-0' : ''} showBorder={bordered} widthSize={isMobileView || isTabletView ? 'vxl' : fullWidth ? 'v1xl' : 'v2xl'} heightSize='full'>
       <div className={classNames('flex flex-wrap gap-y-vsm p-vmd justify-start items-start h-full', flipOrder ? 'flex-col-reverse' : 'flex-col', fullWidth ? 'w-full' : ' w-auto')}>
         {!flipOrder && label && <VLabel>{label}</VLabel>}
         {!flipOrder && <VTitle type='h4'>{title.slice(0, 25)} {title?.length > 17 ? '...' : ''}</VTitle>}

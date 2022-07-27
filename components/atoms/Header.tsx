@@ -241,7 +241,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                 // noTransition
                 >
                 <div className='w-full h-auto'>
-                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-start gap-vsm dark:text-white text-dark-100'>
+                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-start gap-vmd dark:text-white text-dark-100'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 
                         <div key={`cat-${category}-${index}`} className='w-[220px] px-4 flex flex-col justify-start items-start'>
