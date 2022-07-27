@@ -66,7 +66,7 @@ const Section: React.FC<SectionProps> = ({
   tiltDegree
 }) => {
   const { isMobileView } = useDetectIsMobileView();
-  // const { isAdmin } = useAdminContext();
+  const { isAdmin } = useAdminContext();
   const { ref, inView } = useInView({
     triggerOnce: true,
     rootMargin: '150px'
@@ -83,30 +83,30 @@ const Section: React.FC<SectionProps> = ({
   const initialAmount = blur === 'none' ? 0 : blur === 'lg' ? 5 : blur === 'md' ? 3 : 1;
   const isY = parallaxMoveTo === 'top' || parallaxMoveTo === 'bottom';
   const isX = parallaxMoveTo === 'left' || parallaxMoveTo === 'right';
-  // if(isAdmin) { //there is a bug currently with rb, that's why i am doing this...
-  //   console.log(bg, tiltDegree)
-  //   return (<InnerDiv bg={bg} tiltDegree={tiltDegree} ref={targetRef} style={{
-  //     ...style,
-  //     zIndex:0,
-  //     minHeight: height ? height : 'auto',
-  //     backgroundColor: tiltDegree <= 0 && bgColor,
-  //     paddingLeft: `${paddingX}px`,
-  //     paddingRight: `${paddingX}px`,
-  //     paddingTop: `${paddingTop}px`,
-  //     paddingBottom: `${paddingBottom}px`,
-  //     backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
-  //     backgroundImage: `url(${bgImage?.src})`,
-  //     backgroundPosition: 'center',
-  //     backgroundSize: 'cover',
+  if(isAdmin) { //there is a bug currently with rb, that's why i am doing this...
+    console.log(bg, tiltDegree)
+    return (<InnerDiv bg={bg} tiltDegree={tiltDegree} ref={targetRef} style={{
+      ...style,
+      zIndex:0,
+      minHeight: height ? height : 'auto',
+      backgroundColor: tiltDegree <= 0 && bgColor,
+      paddingLeft: `${paddingX}px`,
+      paddingRight: `${paddingX}px`,
+      paddingTop: `${paddingTop}px`,
+      paddingBottom: `${paddingBottom}px`,
+      backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
+      backgroundImage: `url(${bgImage?.src})`,
+      backgroundPosition: 'center',
+      backgroundSize: 'cover',
 
-  //   }} className={classNames(
-  //       'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
-  //       className, 'overflow-hidden', 'w-full',
-  //       rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
-  //     )}>
-  //       {children}
-  //     </InnerDiv>)
-  // }
+    }} className={classNames(
+        'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
+        className, 'overflow-hidden', 'w-full',
+        rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
+      )}>
+        {children}
+      </InnerDiv>)
+  }
   const getHeight = height ? (height === '100vh' && isMobileView) ? '99%'  : height : 'auto';
   return (
     <div style={{

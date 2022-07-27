@@ -46,16 +46,17 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       position: 'fixed',
       paddingBottom: '2.5rem',
       width: `${WIDTH}px`,
-      height: '100vh',
+      height: 'auto',
       top: '0px',
       zIndex: '0',
       overflow: 'hidden',
+      // overflowY: 'auto',
     },
     bmMenu: {
       zIndex: '1',
       paddingTop: isMobileView ? '0em' : '3em',
       fontSize: '1.15em',
-      height: isMobileView ? '100vh': '100%',
+      height: '100vh',
       overflow: 'hidden',
       overflowY: isMobileView ? 'auto' : 'hidden',
     },
@@ -64,6 +65,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
     },
     bmItemList: {
       color: '#FAFBFF',
+      height: '100%'
     },
     bmItem: {
       display: 'inline-block'
@@ -139,17 +141,20 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
   }, [isBusy]);
 
   useEffect(() => {
+    const pageWrap = document.getElementById('page-wrap');
+    if(!pageWrap?.style) return;
     if(showSwapScreen) {
       navbarRef.current.style.transform = 'translateY(70vh)';
-      document.getElementById('page-wrap').classList.add('blur-xl');
-      document.getElementById('page-wrap').style.transform = 'translateY(70vh)';
+      pageWrap.classList.add('blur-xl');
+      pageWrap.style.transform = 'translateY(70vh)';
       navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
       setShowingNavBar(true);
     }
     else{
+      
       navbarRef.current.style.transform = 'translateY(0)';
-      document.getElementById('page-wrap').style.transform = 'translateY(0vh)';
-      document.getElementById('page-wrap').classList.remove('blur-xl');
+      pageWrap.style.transform = 'translateY(0vh)';
+      pageWrap.classList.remove('blur-xl');
     }
   }, [showSwapScreen])
   
@@ -235,7 +240,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                 outerContainerId="outer-container"
                 // noTransition
                 >
-                <div className='w-full h-full overflow-y-auto'>
+                <div className='w-full h-auto'>
                   <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-start gap-vsm dark:text-white text-dark-100'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 

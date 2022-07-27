@@ -12,6 +12,11 @@ const config: types.ReactBricksConfig = {
   bricks,
   logo: '/logo.svg',
   previewPath: '/preview',
+  loginUI: {
+   sideImage: '/aimbots/Vidya2.1.png',
+   logo: '/logo.svg',
+   welcomeText: 'Welcome editor',
+  },
   contentClassName: 'bricks-content', // Defined dynamically
   // isDarkColorMode: ...,        // in _app.tsx
   // toggleColorMode: ...,        // to manage Dark Mode
@@ -21,7 +26,7 @@ const config: types.ReactBricksConfig = {
   editorPath: '/admin/editor',
   playgroundPath: '/admin/playground',
   appSettingsPath: '/admin/app-settings',
-  useCssInJs: true,
+  useCssInJs: false,
   appRootElement: '#__next',
   clickToEditSide: types.ClickToEditSide.BottomRight,
   customFields: [

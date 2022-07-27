@@ -26,9 +26,10 @@ export interface IFeatureCardProps {
   trimText?: boolean;
   flipOrder?: boolean;
   label?: string;
+  footer?: any
 }
 
-export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, label, flipOrder, title, trimText, fullWidth, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, objectFit, size, canEdit}) => {
+export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, footer, label, flipOrder, title, trimText, fullWidth, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, objectFit, size, canEdit}) => {
   const {isMobileView, isTabletView} = useDetectIsMobileView();
 
   return (
@@ -46,6 +47,9 @@ export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, label, 
           <VImage priority src={image} width="100%" height="218px" objectFit={objectFit || 'cover'} layout='fill' alt='image' className='w-full h-full rounded-sm'/>
         </div>
       </div>
+      {footer && <div className='flex px-vmd pb-vmd'>
+        {footer}
+      </div>}
     </VItemContainer>
   )
 }

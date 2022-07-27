@@ -10,7 +10,7 @@ const AdminEditor: React.FC = () => {
         <Head>
           <title>Editor</title>
         </Head>
-        <Editor />
+          <Editor />
       </Admin>
     </StyleSheetManager>
   )
