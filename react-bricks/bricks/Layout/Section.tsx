@@ -84,7 +84,6 @@ const Section: React.FC<SectionProps> = ({
   const isY = parallaxMoveTo === 'top' || parallaxMoveTo === 'bottom';
   const isX = parallaxMoveTo === 'left' || parallaxMoveTo === 'right';
   if(isAdmin) { //there is a bug currently with rb, that's why i am doing this...
-    console.log(bg, tiltDegree)
     return (<InnerDiv bg={bg} tiltDegree={tiltDegree} ref={targetRef} style={{
       ...style,
       zIndex:0,

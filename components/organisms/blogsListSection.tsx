@@ -1,9 +1,9 @@
 import { getPageUrlByType } from '@/common/helpers';
-import { IFetchPropPages, useFetchPages } from 'hooks/useFetchPages';
+import { IFetchPagesProps, useFetchPages } from 'hooks/useFetchPages';
 import React from 'react';
 import { BlogCard } from '../molecules/BlogCard';
 
-export const BlogListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
+export const BlogListSection: React.FC<IFetchPagesProps> = ({limit=3}) => {
   const {data, isLoading, error} = useFetchPages({type: 'post', limit});
 
   if(isLoading) {

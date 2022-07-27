@@ -30,7 +30,7 @@ const VRBText: types.Brick<VRBTextProps> = ({
         size={size}
         className={className}
         overrideTextColor={overrideTextColor}
-        propName={propName}
+        propName={propName || 'text'}
       {...rest}/>
     </div>
   )
@@ -39,7 +39,7 @@ const VRBText: types.Brick<VRBTextProps> = ({
 VRBText.schema = {
   name: blockNames.Text,
   label: 'Text',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     size: 'sm',

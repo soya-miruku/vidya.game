@@ -41,7 +41,6 @@ export const useGetAllTemplateIds = (props: IGetAllTemplateIdsProps = {
   const responses = useCalls(calls, {refresh: 10, isStatic: false}) ?? tokenIndexes.map(() => { return { value: null, error: null }; });
   const results = getResults(responses, null);
 
-  // console.log(results);
   const tokenIds = results.map((result) => result?.[0]);
   return { tokenIds };
 }

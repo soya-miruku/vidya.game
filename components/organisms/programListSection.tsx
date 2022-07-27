@@ -1,16 +1,15 @@
 import dynamic from 'next/dynamic';
 import { config } from "react-spring";
-import uuid from 'react-uuid'
 import { getPageUrlByType } from '@/common/helpers';
 import SIZES from '@/common/static';
-import { IFetchPropPages, useFetchPages } from 'hooks/useFetchPages';
+import { IFetchPagesProps, useFetchPages } from 'hooks/useFetchPages';
 import React, { useState } from 'react';
 import { ProgramCard } from '../molecules/ProgramCard';
 import { useDrag } from '@use-gesture/react';
 const Carousel = dynamic(() => import('react-spring-3d-carousel'), { ssr: false })
 
 const CarouselV2 = Carousel as any;
-export interface IProgramListSectionProps extends IFetchPropPages {
+export interface IProgramListSectionProps extends IFetchPagesProps {
   displayNumber?: number;
 }
 

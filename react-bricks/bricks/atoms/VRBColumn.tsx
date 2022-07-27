@@ -60,7 +60,7 @@ const VRBColumn : types.Brick<VRBColumnProps> = ({items, initialItems, overrideT
 VRBColumn.schema = {
   name: blockNames.Column,
   label: 'Column',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     initialItems: [

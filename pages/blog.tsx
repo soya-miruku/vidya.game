@@ -17,12 +17,16 @@ import { FeatureCard } from '@/components/molecules/FeatureCard'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/pro-light-svg-icons'
 import { useDebounce } from '@/hooks/useDebounce'
+import Link from 'next/link'
 
+interface FullPage extends types.Page {
+  updatedAt: string
+}
 export interface IBlogProps {
-  posts: types.Page[]
+  posts: FullPage[]
 }
 
-const mapCategoryToValue = (category: string) => {
+export const mapCategoryToValue = (category: string) => {
   switch (category) {
     case 'all': return 'All'
     case 'announcement': return 'Announcement'
@@ -56,9 +60,13 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
       return posts.filter(post => {
         const areas = [post.meta?.title, post.meta?.description, post.customValues?.category, post.author.firstName];
         return areas.some(area => area?.toLowerCase()?.includes(searchValue.toLowerCase()))
+      }).sort((a, b) => {
+        return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
       })
     }
-    return posts
+    return posts.sort((a, b) => {
+      return new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime()
+    })
   }, [JSON.stringify(posts), searchValue]);
 
   return (
@@ -115,7 +123,7 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
                       <div className='flex flex-col pt-vsm items-start gap-vsm'>
                         <VLabel className='uppercase' >{posts?.[0]?.customValues?.category}</VLabel>
                         <VTitle type='h3'>{posts?.[0]?.meta?.title}</VTitle>
-                        <VText size='lg'>{posts?.[0]?.meta?.description?.slice(0, 250)}...</VText>
+                        <VText size='lg'>{posts?.[0]?.meta?.description?.slice(0, 250)}... <Link href={getPageUrlByType(posts[0]?.type, posts[0].slug)}><span className='hover:cursor-pointer pl-vsm text-accent-dark-200'>Read more</span></Link></VText>
                       </div>
                       <div className='flex justify-start items-center gap-vsm'>
                         <VImage className='rounded-full' src={posts?.[0]?.author?.avatarUrl} width={50} height={50}></VImage>

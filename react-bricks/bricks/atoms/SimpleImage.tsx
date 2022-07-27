@@ -25,7 +25,10 @@ const SimpleImage: types.Brick<ISimpleImageProps> = ({
 }) => {
   return (
     <Link {...rest}>
-      <div className={classNames(containerClassName, 'relative w-52 h-52')}>
+      <div className={classNames(containerClassName, 'relative')} style={{
+        width: `${imageWidth}px`,
+        height: `${imageHeight}px`,
+      }}>
         <VImage src={imageSrc} width={imageWidth} height={imageHeight} className={imageClassName} layout='fill' objectFit='contain'/>
       </div>
     </Link>
@@ -58,7 +61,7 @@ SimpleImage.schema = {
       type: types.SideEditPropType.Range,
       rangeOptions: {
         min: 50,
-        max: 350,
+        max: 800,
         step: 10,
       },
     },
@@ -69,9 +72,21 @@ SimpleImage.schema = {
       type: types.SideEditPropType.Range,
       rangeOptions: {
         min: 50,
-        max: 350,
+        max: 800,
         step: 10,
       },
+    },
+    {
+      name: 'imageWidth',
+      label: 'Image Width',
+      defaultOpen: true,
+      type: types.SideEditPropType.Number
+    },
+    {
+      name: 'imageHeight',
+      label: 'Image Height',
+      defaultOpen: true,
+      type: types.SideEditPropType.Number,
     }
   ],
 }

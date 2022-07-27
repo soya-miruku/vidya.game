@@ -56,7 +56,7 @@ const VRBProductView: types.Brick<IVRBProductViewProps> = ({
 VRBProductView.schema = {
   name: blockNames.VRBProductView,
   label: 'Product View Rb',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     label: 'One and only',

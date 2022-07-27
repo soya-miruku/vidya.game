@@ -30,7 +30,7 @@ const VRBFeatureCard: types.Brick<IVRBFeatureCardProps> = ({
 VRBFeatureCard.schema = {
   name: blockNames.FeatureCard,
   label: 'Feature Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     bordered: true,

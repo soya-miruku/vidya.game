@@ -78,7 +78,6 @@ export const useLoadUser = (currentPool: IPoolState): IGeneratorUser => {
   const commitmentIndex = userInfo?.[2].toNumber() || 0;
   const claimAmount = parseFloat(formatEther(userInfo?.[3] || BigNumber.from(0)) || '0');
   const deposited = parseFloat(formatEther(userInfo?.[4] || BigNumber.from(0)) || '0');
-  // console.log(info)
   const commitmentStatus = amountCommitted > 0;
   const approved = allowance?.value?.[0] > 0;
  

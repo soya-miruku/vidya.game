@@ -34,7 +34,7 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
 VRBLabel.schema = {
   name: blockNames.Label,
   label: 'Label',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     secondary: false,

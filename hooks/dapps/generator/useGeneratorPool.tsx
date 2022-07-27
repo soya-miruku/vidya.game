@@ -18,7 +18,6 @@ export interface IGeneratorPoolStats {
 }
 
 export const useGeneratorPoolCtx = (pool: IPoolState, rewardRate:number, totalPriority: number): IGeneratorPoolStats => {
-  // console.log(pool);
   const { chainId } = useAccount();
   const { reserve0 } = useReserves(pool?.lptoken && GeneratorValidForChain(chainId) && pool.lptoken);
   const totalSupply = useTotalSupply(pool?.lptoken && GeneratorValidForChain(chainId) && pool.lptoken);

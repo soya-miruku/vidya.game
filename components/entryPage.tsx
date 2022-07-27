@@ -17,9 +17,9 @@ export const EntryPage = ({page, error}) => {
   
   const hasNoColorOrBg = (firstElBgImageProp && (firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff'));
   return (
-    <Layout displayCallout={false} useDarkFonts={!isDarkMode && hasNoColorOrBg}>
+    <Layout displayCallout={false} useDarkFonts={!isDarkMode && !hasNoColorOrBg}>
       {pageOk && (
-        <div className='w-full h-full'>
+        <div className='w-full h-full prose'>
           <Head>
             <title>{page.meta.title}</title>
             <meta name="description" content={page.meta.description} />

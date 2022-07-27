@@ -28,9 +28,9 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
       isTitle={true}
       type={type}
       textAlign={textAlign}
-      className={className}
+      className={classNames('prose', className)}
       overrideTextColor={overrideTextColor}
-      propName={propName}
+      propName={propName || 'title'}
     {...rest}/>
     </>
   )
@@ -38,8 +38,8 @@ const VRBTitle: types.Brick<VRBTitleProps> = ({
 
 VRBTitle.schema = {
   name: blockNames.Title,
-  label: 'Text',
-  category: 'vidya atoms',
+  label: 'Title',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     type: 'h2',

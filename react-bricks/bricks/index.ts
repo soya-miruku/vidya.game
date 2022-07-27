@@ -42,9 +42,22 @@ import SimpleImage from './atoms/SimpleImage';
 import HeroWithTabsUnit from './molecules/HeroWithTabsUnit';
 import VRBProductView from './atoms/VRBProductView';
 import InventoryListUnit from './molecules/InventoryListUnit';
+import TitleWithParagraph from './molecules/BlogComponents/TitleWithParagraph';
+import RichTextZone from './molecules/BlogComponents/RichTextZone';
+import ImageArea from './molecules/BlogComponents/ImageArea';
+import HeaderImageArea from './molecules/BlogComponents/HeaderImageArea';
+import HeaderYTArea from './molecules/BlogComponents/HeaderYTArea';
+import MultiImageArea from './molecules/BlogComponents/MultiImagesArea';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
+  TitleWithParagraph,
+  RichTextZone,
+  ImageArea,
+  HeaderImageArea,
+  HeaderYTArea,
+  MultiImageArea,
+
   CallHeroImage,
   CallHeroColumn,
   SmallHeroUnit,

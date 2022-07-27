@@ -22,7 +22,7 @@ export const VText: React.FC<TextProps> = ({id, size, weight="normal", spacing, 
   //   children = children.slice(0, maxChar)
   // }
   return (
-    <div id={id} onClick={onClick} className={classNames('font-saria', 
+    <div id={id} onClick={onClick} className={classNames('font-saria min-h-[1rem]', 
       overrideTextColor ? 'text-light-200 ' : 'dark:text-light-200 text-dark-200', 
       spacing === 'sm' ? 'tracking-cta' : spacing === 'md' ? 'tracking-cta' : 'tracking-7',
       size === 'sm' ? 'text-body-xs leading-5' : size === 'md' ? 'text-body-sm leading-cta' : size === 'lg'  ? 'text-body leading-7' : 'text-standfirst leading-[45px]', 

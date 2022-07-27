@@ -29,7 +29,7 @@ const VRBDetailCard: types.Brick<IVRBDetailCardProps> = ({
 VRBDetailCard.schema = {
   name: blockNames.DetailCard,
   label: 'Detail Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     bordered: true,

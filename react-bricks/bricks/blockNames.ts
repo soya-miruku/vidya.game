@@ -44,4 +44,11 @@ export enum blockNames {
   HeroWithTabsUnit = 'HeroWithTabsUnit',
   VRBProductView = 'VRBProductViewItem',
   InventoryListUnit = 'InventoryListUnit',
+  
+  TitleWithParagraph = 'TitleWithParagraph',
+  RichTextZone = 'RichTextZone',
+  ImageArea = 'ImageArea',
+  HeaderImageArea = 'HeaderImageArea',
+  HeaderYTArea = 'HeaderYTArea',
+  MultiImageArea = 'MultiImageArea',
 }

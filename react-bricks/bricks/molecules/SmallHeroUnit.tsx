@@ -1,15 +1,19 @@
 import React from 'react'
-import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
+import { types, useAdminContext, usePage } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
 import { ISmallHeroProps, SmallHero } from '@/components/organisms/smallHero';
+import { useIsMounted } from '@/hooks/useIsMounted';
 
 
-const SmallHeroUnit: types.Brick<ISmallHeroProps> = ({ title, desc, imgSrc, backgroundFit }) => {
-  const { isAdmin } = useAdminContext();
+const SmallHeroUnit: types.Brick<ISmallHeroProps> = ({ title, imgSrc, backgroundFit }) => {
+  const { isAdmin, currentPage } = useAdminContext();
+  const { isMounted } = useIsMounted();
+  const page = isMounted && isAdmin && usePage(currentPage.pageId, currentPage.language);
+  console.log(page)
   return (
-    <div className='w-full h-full '>
-      <SmallHero title={title} desc={desc} imgSrc={(imgSrc as any)?.src} canEdit={isAdmin} backgroundFit={backgroundFit}></SmallHero>
+    <div className='w-full h-full prose'>
+      <SmallHero currentPage={page?.data?.slug} title={title} imgSrc={(imgSrc as any)?.src} canEdit={isAdmin} backgroundFit={backgroundFit}></SmallHero>
+      <div className='w-full h-12'></div>
     </div>
   )
 }
@@ -20,8 +24,7 @@ SmallHeroUnit.schema = {
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    title: 'Small Hero Title',
-    desc: 'Small Hero Description',
+    title: '',
     imgSrc: '/banner0.png',
     backgroundFit: 'cover'
   }),

@@ -36,7 +36,7 @@ const VRBCustomer: types.Brick<CustomerProps> = ({
 VRBCustomer.schema = {
   name: blockNames.Customer,
   label: 'Customer',
-  category: 'vidya atom',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   playgroundLinkLabel: 'View source code on Github',
   playgroundLinkUrl:

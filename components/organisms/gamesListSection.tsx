@@ -1,9 +1,9 @@
 import { getPageUrlByType } from '@/common/helpers';
-import { IFetchPropPages, useFetchPages } from 'hooks/useFetchPages';
+import { IFetchPagesProps, useFetchPages } from 'hooks/useFetchPages';
 import React from 'react';
 import { GameCard } from '../molecules/GameCard';
 
-export const GamesListSection: React.FC<IFetchPropPages> = ({limit=3}) => {
+export const GamesListSection: React.FC<IFetchPagesProps> = ({limit=3}) => {
   const {data, isLoading, error} = useFetchPages({type: 'game', limit});
   
   if(isLoading) {

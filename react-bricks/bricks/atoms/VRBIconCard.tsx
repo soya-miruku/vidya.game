@@ -28,7 +28,7 @@ const VRBIconCard: types.Brick<IVRBIconCardProps> = ({
 VRBIconCard.schema = {
   name: blockNames.IconCard,
   label: 'Icon Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     bordered: true,

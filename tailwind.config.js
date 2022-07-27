@@ -206,11 +206,13 @@ module.exports = {
       },
       width: {
         ...allowableSizes,
-        'page': '1140px'
+        'page': '1140px',
+        'blog': '940px'
       },
       maxWidth: {
         ...allowableSizes,
         'page': '1240px',
+        'blog': '940px',
         'page-header': '1280px',
         'page-modal': '1840px'
       },
