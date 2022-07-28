@@ -1,38 +1,62 @@
 import React from 'react'
-import { types, useAdminContext, usePage } from 'react-bricks/frontend';
+import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
 import { ISmallHeroProps, SmallHero } from '@/components/organisms/smallHero';
-import { useIsMounted } from '@/hooks/useIsMounted';
 
 
-const SmallHeroUnit: types.Brick<ISmallHeroProps> = ({ title, imgSrc, backgroundFit }) => {
-  const { isAdmin, currentPage } = useAdminContext();
-  const { isMounted } = useIsMounted();
-  const page = isMounted && isAdmin && usePage(currentPage.pageId, currentPage.language);
-  console.log(page)
+interface ISmallHeroUnitProps extends ISmallHeroProps {
+  imgSrc?: any
+}
+
+const SmallHeroUnit: types.Brick<ISmallHeroUnitProps> = ({ roundedSide, title, description, imgSrc, backgroundFit }) => {
+  const { isAdmin } = useAdminContext();
   return (
     <div className='w-full h-full prose'>
-      <SmallHero currentPage={page?.data?.slug} title={title} imgSrc={(imgSrc as any)?.src} canEdit={isAdmin} backgroundFit={backgroundFit}></SmallHero>
+      <SmallHero roundedSide={roundedSide} imgSrc={(imgSrc as any)?.src} title={title} description={description} canEdit={isAdmin} backgroundFit={backgroundFit}/>
       <div className='w-full h-12'></div>
     </div>
   )
 }
 
 SmallHeroUnit.schema = {
-  name: blockNames.SmallHeroUnit,
+  name: blockNames.SmallHeroUnit2,
   label: 'Small Hero Unit',
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
     title: '',
+    description: '',
     imgSrc: '/banner0.png',
-    backgroundFit: 'cover'
+    backgroundFit: 'cover',
+    roundedSide: 'none'
   }),
   sideEditProps: [
     {
       name: 'imgSrc',
       label: 'Image Src',
       type: types.SideEditPropType.Image
+    },
+    {
+      name: 'roundedSide',
+      label: 'Rounded Side',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          {
+            label: 'None',
+            value: 'none'
+          },
+          {
+            label: 'Left',
+            value: 'left'
+          },
+          {
+            label: 'Right',
+            value: 'right'
+          }
+        ]
+      }
     },
     {
       name: 'backgroundFit',

@@ -8,6 +8,7 @@ export enum blockNames {
   ProgramListUnit = 'ProgramListUnit',
   GameListUnit = 'GameListUnit',
   SmallHeroUnit = 'SmallHeroUnit',
+  SmallHeroUnit2 = 'SmallHeroUnit2',
   IntroUnit = 'IntroUnit',
   SwapUnit = 'SwapUnit',
   SpacerUnit = 'SpacerUnit',
@@ -28,6 +29,7 @@ export enum blockNames {
   DetailCard = 'VRBDetailCard',
   Text = 'VRBText',
   Title = 'VRBTitle',
+  Accordion = 'VRBAccordion',
   RichText = 'VRBRichText',
   Image = 'VRBImage',
   SimpleImage = 'VBSimpleImage',
@@ -44,6 +46,7 @@ export enum blockNames {
   HeroWithTabsUnit = 'HeroWithTabsUnit',
   VRBProductView = 'VRBProductViewItem',
   InventoryListUnit = 'InventoryListUnit',
+  FAQSUnit = 'FAQSUnit',
   
   TitleWithParagraph = 'TitleWithParagraph',
   RichTextZone = 'RichTextZone',

@@ -20,6 +20,7 @@ import { useBreakCommitment } from "@/hooks/dapps/generator/useBreakCommitment"
 import { useWithdrawLP } from "@/hooks/dapps/generator/useWithdrawLP"
 import { useCountdown } from "@/hooks/useCountdown"
 import { classNames } from "@/common/helpers"
+import { useClaimRewards } from "@/hooks/dapps/generator/useClaimRewards"
 
 export const GeneratorDapp = ({}) => {
   const { state, updatePool, setCommitmentIndex } = useContext(GeneratorContext);
@@ -49,9 +50,10 @@ export const GeneratorDapp = ({}) => {
   const [stake, stakeState] = useDepositLP(currentPool.teller);
   const [commit, commitState] = useCommitLP(currentPool.teller);
   const [withdraw, withdrawStae] = useWithdrawLP(currentPool.teller);
-
+  const [ claimReward, claimRewardState ] = useClaimRewards(currentPool.teller);
   const [breakCommitment, breakCommitmentState] = useBreakCommitment(currentPool.teller);
   
+  const isPendingClaimingRewards = useMemo(() => claimRewardState.status === 'PendingSignature' || claimRewardState.status === 'Mining' , [claimRewardState.status]);
   const isPendingAllowance = useMemo(() => allowanceState.status === 'PendingSignature' || allowanceState.status === 'Mining', [allowanceState.status]);
   const isPendingStaking = useMemo(() => stakeState.status === 'PendingSignature' || stakeState.status === 'Mining', [stakeState.status]);
   const isPendingCommit = useMemo(() => (commitState.status === 'PendingSignature' || commitState.status === 'Mining'), [commitState.status]);
@@ -82,6 +84,8 @@ export const GeneratorDapp = ({}) => {
   }, [withdrawStae.status]);
 
   const isBreakCommitmentSuccess = useMemo(() => breakCommitmentState.status === 'Success', [breakCommitmentState.status]);
+  const isClaimedRewardsSuccess = useMemo(() => claimRewardState.status === 'Success', [claimRewardState.status]);
+
   const isStakeSuccess = useMemo(() => {
     const status = stakeState.status === 'Success';
     if(status) {
@@ -97,6 +101,7 @@ export const GeneratorDapp = ({}) => {
   const stakingError = useMemo(() => formError ? formError : stakeState.errorMessage, [formError, stakeState.errorMessage]);
   const commitError = useMemo(() => formError ? formError : commitState.errorMessage || breakCommitmentState.errorMessage, [formError, commitState.errorMessage, breakCommitmentState.errorMessage]);
   const withdrawError = useMemo(() => formError ? formError : withdrawStae.errorMessage, [formError, withdrawStae.errorMessage]);
+  const claimRewardError = useMemo(() => formError ? formError : claimRewardState.errorMessage, [formError, claimRewardState.errorMessage]);
 
   const handleStake = (e: any) => {
     e.preventDefault();
@@ -168,9 +173,11 @@ export const GeneratorDapp = ({}) => {
                     2: <div className={classNames('flex flex-col justify-center gap-[2px]', currentPool.claimAmount > 0 ? 'items-center' : ' items-start')}>
                           <div className="flex gap-[4px] items-center">
                             <p>{currentPool.claimAmount.toFixed(4)}</p> 
-                            {currentPool.claimAmount > 0 && <button className="text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
+                            {currentPool.claimAmount > 0 && <VButton onClick={(_) => {
+                              claimReward();
+                            }} type='button' isLoading={isPendingClaimingRewards} className="!p-0 text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
                             Claim
-                          </button>}
+                          </VButton>}
                           </div>
                           {currentPool.remainingUnlockTime > 0 && <p className='text-accent-dark-100'>{countdown}</p>}
               
@@ -179,6 +186,8 @@ export const GeneratorDapp = ({}) => {
                     ]}
                   />
                 </div>
+                {claimRewardError && <p className="text-aimbotsRed-100 w-ful text-center">{claimRewardError}</p>}
+                {isClaimedRewardsSuccess && <p className="text-aimbotsGreen-100 w-full text-center">Successfully Claimed!</p>}
                 <VTabs defaultActiveIndex={0}>
                   <VTab description='stake tokens to earn rewards' title={'stake'}>
                     <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">

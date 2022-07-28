@@ -31,16 +31,15 @@ export interface IFeatureCardProps {
 
 export const FeatureCard: React.FC<IFeatureCardProps> = ({bordered=true, footer, label, flipOrder, title, trimText, fullWidth, buttonText, secondaryBtn, primaryBtn, specialBtn, subtitle, image, onClick, objectFit, size, canEdit}) => {
   const {isMobileView, isTabletView} = useDetectIsMobileView();
-
   return (
     <VItemContainer innerClassName={fullWidth ? '!p-0' : ''} showBorder={bordered} widthSize={isMobileView || isTabletView ? 'vxl' : fullWidth ? 'v1xl' : 'v2xl'} heightSize='full'>
       <div className={classNames('flex flex-wrap gap-y-vsm p-vmd justify-start items-start h-full', flipOrder ? 'flex-col-reverse' : 'flex-col', fullWidth ? 'w-full' : ' w-auto')}>
         {!flipOrder && label && <VLabel>{label}</VLabel>}
-        {!flipOrder && <VTitle type='h4'>{title.slice(0, 25)} {title?.length > 17 ? '...' : ''}</VTitle>}
+        {!flipOrder && <VTitle type='h4'>{title.slice(0, 25)} {title?.length > 25 ? '...' : ''}</VTitle>}
         <VText className='max-h-[145px] min-h-[105px] overflow-y-scroll scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' size='lg' weight='normal'>
           {trimText ? subtitle.slice(0, 120) + '...' : subtitle}
           </VText>
-        {flipOrder && <VTitle type='h4' className='!min-h-[80px]'>{title.slice(0, 25)} {title?.length > 17 ? '...' : ''}</VTitle>}
+        {flipOrder && <VTitle type='h4' className='!min-h-[70px]'>{title.slice(0, 25)} {title?.length > 25 ? '...' : ''}</VTitle>}
         {flipOrder && label && <VLabel>{label}</VLabel>}
         {buttonText && <VButton onClick={onClick} special={specialBtn} secondary={secondaryBtn} primary={primaryBtn}>{buttonText}</VButton>}
         <div style={{width: '100%', height: '218px', position: 'relative'}} className="w-full h-full rounded-vsm">

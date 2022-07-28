@@ -30,7 +30,7 @@ export const ProgramModalWrapper = ({title, headerBackgroundColor, description, 
       }}>
         <div className="w-full flex justify-end sm:p-vmd p-vsm items-center border-b-[1px] dark:border-b-light-500/30 border-b-light-500 relative z-[100]">
           <div className="w-full flex flex-wrap justify-start items-center sm:px-vmd px-vsm gap-x-vsm divide-x-[1px] divide-aimbotsRed-100">
-            <VTitle type="h3" className='text-xl font-semibold lg:text-2xl dark:text-light-200 text-dark-200'>{title}</VTitle>
+            <VTitle type="h3" className='text-xl font-semibold lg:text-2xl text-light-200'>{title}</VTitle>
             <motion.div 
               initial={{
                 translateY: '0px',
@@ -45,7 +45,7 @@ export const ProgramModalWrapper = ({title, headerBackgroundColor, description, 
                 ease: 'easeInOut'
               }}
             >
-              <VText size="lg" className="px-vsm">{description}</VText>
+              <VText overrideTextColor size="lg" className="px-vsm">{description}</VText>
             </motion.div>
           </div>
           <button onClick={onClose} type="button" className="absolute top-0 right-0 bg-transparent text-accent-dark-200 hover:text-accent-dark-100 hover:scale-110 active:scale-90 rounded-lg text-sm p-vmd ml-auto inline-flex items-center">

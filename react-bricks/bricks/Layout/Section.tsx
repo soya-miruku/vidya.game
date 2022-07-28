@@ -21,7 +21,7 @@ const InnerDiv = styled.div`
     position: absolute;
     background-color: ${(props: SectionProps) => props.tiltDegree && props.bg.color || 'transparent'};
     width: 200%;
-    height: ${(props: any) => props.isMobileView ? '90%' : '70%'};
+    height: ${(props: any) => props.isMobileView ? '94%' : '70%'};
     z-index: -1;
     transform: rotate(${(props: SectionProps) => props.tiltDegree && props.tiltDegree}deg);
   }

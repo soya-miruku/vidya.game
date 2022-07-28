@@ -72,7 +72,7 @@ export const PagesByCategory = {
     // },
     {
       displayName: 'FAQS',
-      slug: 'faq',
+      slug: 'faqs',
       type: 'about',
       active: true
     }

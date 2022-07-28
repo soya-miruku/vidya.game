@@ -1,10 +1,12 @@
+import { VLabel } from '@/components/atoms/VLabel'
 import { FeatureCard, IFeatureCardProps } from '@/components/molecules/FeatureCard'
 import * as React from 'react'
 import { types, Link } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
 
 export interface IVRBFeatureCardProps extends IFeatureCardProps {
-  btnLink?: string
+  btnLink?: string,
+  label?: string,
 }
 
 const VRBFeatureCard: types.Brick<IVRBFeatureCardProps> = ({
@@ -18,11 +20,13 @@ const VRBFeatureCard: types.Brick<IVRBFeatureCardProps> = ({
   btnLink,
   image,
   objectFit,
+  label,
+  flipOrder,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <FeatureCard objectFit={objectFit} image={image} title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
+      <FeatureCard flipOrder={flipOrder} footer={label && <VLabel>{label}</VLabel>} objectFit={objectFit} image={image} title={title} subtitle={subtitle} bordered={bordered} secondaryBtn={secondaryBtn} specialBtn={specialBtn} primaryBtn={primaryBtn} buttonText={buttonText} onClick={() => btnLink && window.open(btnLink, '_blank')}/>
     </Link>
   )
 }
@@ -42,9 +46,16 @@ VRBFeatureCard.schema = {
     primaryBtn: false,
     specialBtn: false,
     objectFit: 'cover',
-    btnLink: '#'
+    btnLink: '#',
+    label: 'Label',
+    flipOrder: false,
   }),
   sideEditProps: [
+    {
+      name: 'flipOrder',
+      label: 'Flip Order',
+      type: types.SideEditPropType.Boolean,
+    },
     {
       name: 'bordered',
       label: 'Bordered',
@@ -59,6 +70,11 @@ VRBFeatureCard.schema = {
       name: 'subtitle',
       type: types.SideEditPropType.Textarea,
       label: 'Subtitle'
+    },
+    {
+      name: 'label',
+      type: types.SideEditPropType.Text,
+      label: 'Label'
     },
     {
       name: 'image',

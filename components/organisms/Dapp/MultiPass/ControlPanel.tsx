@@ -28,7 +28,7 @@ export interface IPlusMinusInputFieldProps {
 export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, onBtnClick, btnText, btnTextColor, onChange, borderColor, disabled, isLoading, step='1', min=0, max=1}: IPlusMinusInputFieldProps) => {
   return (
     <div className="flex flex-col w-full justify-end items-end">
-    <VText className="uppercase !font-bold !w-full" size="md">{label}</VText>
+    <VText className="uppercase !font-bold !w-full" overrideTextColor size="md">{label}</VText>
     <div className="flex w-full justify-end items-end">
       <div className="flex flex-col gap-y-vsm w-full">
         <div className="flex justify-start items-center h-[55px] gap-[5px]">
@@ -36,12 +36,12 @@ export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, on
             <button onClick={onPlusClick} className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
-              <VText size='md'>+</VText>
+              <VText overrideTextColor size='md'>+</VText>
             </button>
             <button onClick={onMinusClick} className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
-              <VText size='md'>-</VText>
+              <VText overrideTextColor size='md'>-</VText>
             </button>
           </div>
           <NumberInput value={value} onChange={(e)=>{
@@ -49,7 +49,7 @@ export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, on
             onChange && onChange(value);
           }} style={{
             borderColor: borderColor || '#fff',
-          }} className="focus:outline-none bg-transparent px-vsm mr-2 w-full h-full border-[2px] rounded-tl-lg rounded-br-lg text-body dark:text-light-100 text-dark-100 appearance-none outline-none p-1" min={min} max={max} step={step}></NumberInput>
+          }} className="focus:outline-none bg-transparent px-vsm mr-2 w-full h-full border-[2px] rounded-tl-lg rounded-br-lg text-body text-light-100 appearance-none outline-none p-1" min={min} max={max} step={step}></NumberInput>
           </div>
       </div>
       <VButton disabled={disabled} isLoading={isLoading} onClick={onBtnClick} animate={false} className="w-full rounded-tl-xl rounded-br-xl font-bold text-body-xs justify-center flex hover:!bg-accent-dark-200"  rounded={false} customColor={borderColor} style={{
@@ -155,7 +155,7 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
     }}>
       <div className="flex flex-col justify-between items-start w-full min-h-[150px] h-full gap-vsm">
         <div className="w-full flex flex-col gap-vsm">
-          <VTitle type="h5">Actions</VTitle>
+          <VTitle type="h5" overrideTextColor>Actions</VTitle>
           <div className="flex flex-col w-full h-auto border-0 p-vsm gap-y-vsm " style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField
               onBtnClick={handleMint}

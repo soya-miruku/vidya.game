@@ -1,5 +1,4 @@
 import { types } from 'react-bricks/frontend'
-import website from 'react-bricks-ui/website'
 import CallHeroImage from './molecules/CallHeroImage';
 import VRBButton from './atoms/VRBButton';
 import VRBRichText from './atoms/VRBRichText';
@@ -13,7 +12,7 @@ import VRBColumn from './atoms/VRBColumn';
 import VRBTitle from './atoms/VRBTitle';
 import BlogListUnit from './molecules/BlogListUnit';
 import VideoHeroUnit from './molecules/VideoHeroUnit';
-import SmallHeroUnit from './molecules/SmallHeroUnit';
+import BlogHeroUnit from './molecules/BlogHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
 import ProgramHeroUnit from './molecules/ProgramHeroUnit';
 import CoinGeckoPricesSectionUnit from './molecules/CoinGeckoPricesSectionUnit';
@@ -48,6 +47,9 @@ import ImageArea from './molecules/BlogComponents/ImageArea';
 import HeaderImageArea from './molecules/BlogComponents/HeaderImageArea';
 import HeaderYTArea from './molecules/BlogComponents/HeaderYTArea';
 import MultiImageArea from './molecules/BlogComponents/MultiImagesArea';
+import SmallHeroUnit from './molecules/SmallHeroUnit';
+import FAQSUnit from './molecules/FAQSUnit';
+import VRBAccordion from './atoms/VRBAccordion';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -58,13 +60,15 @@ const bricks: types.Brick<any>[] = [
   HeaderYTArea,
   MultiImageArea,
 
+  SmallHeroUnit,
   CallHeroImage,
   CallHeroColumn,
-  SmallHeroUnit,
+  BlogHeroUnit,
   BlogListUnit,
   ProgramListUnit,
   GameListUnit,
   TeamListUnit,
+  FAQSUnit,
   FeaturesMedListUnit,
   FeaturesSmallListUnit,
   DetailsListUnit,
@@ -78,6 +82,7 @@ const bricks: types.Brick<any>[] = [
   Promo2HeroUnit,
   VRBFeatureCard,
   VRBTeamCard,
+  VRBAccordion,
   VRBIconCard,
   VRBDetailCard,
   VRBButton,

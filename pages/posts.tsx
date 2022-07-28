@@ -18,6 +18,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUpRightFromSquare } from '@fortawesome/pro-light-svg-icons'
 import { useDebounce } from '@/hooks/useDebounce'
 import Link from 'next/link'
+import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView'
 
 interface FullPage extends types.Page {
   updatedAt: string
@@ -37,6 +38,7 @@ export const mapCategoryToValue = (category: string) => {
 }
 
 const Blog: React.FC<IBlogProps> = ({ posts }) => {
+  const { isMobileView } = useDetectIsMobileView();
   const [selectedCategoryIndex, setSelectedCategoryIndex] = useState(0);
   const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
@@ -72,16 +74,16 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
   }, [JSON.stringify(posts), searchValue]);
 
   return (
-    <Layout displayCallout={false} useDarkFonts={true}>
+    <Layout displayCallout={false} useDarkFonts={!isMobileView}>
       <div className='w-full h-full prose'>
         <Head>
           <title>{'blog'}</title>
           <meta name="description" content={'read all our posts here!'} />
         </Head>
           <div className='flex justify-center items-start h-full'>
-            <PageViewSize enabled className='flex flex-col w-full !justify-start items-start sm:mt-[120px] mt-0 h-auto sm:p-vmd p-[5px] !max-w-[1333px]'>
-              <div className='w-full h-64 relative'>
-                <div className='bg-accent-dark-100 w-full h-60 sm:rounded-3xl rounded-0 flex justify-center items-center dark:shadow-btn-dark shadow-btn-light' style={{
+            <PageViewSize enabled className='flex flex-col w-full !justify-start items-start sm:mt-[120px] mt-0 h-auto sm:p-vmd !max-w-[1333px]'>
+              <div className='w-full sm:h-64 h-[26rem] relative'>
+                <div className='bg-accent-dark-100 w-full sm:h-60 h-96 sm:rounded-3xl rounded-0 flex justify-center items-center dark:shadow-btn-dark shadow-btn-light' style={{
                   backgroundImage: 'url(/aimbots/armoursets.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: '0% 10%',
