@@ -175,7 +175,7 @@ export const GeneratorDapp = ({}) => {
                             <p>{currentPool.claimAmount.toFixed(4)}</p> 
                             {currentPool.claimAmount > 0 && <VButton onClick={(_) => {
                               claimReward();
-                            }} type='button' isLoading={isPendingClaimingRewards} className="!p-0 text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
+                            }} type='button' isLoading={isPendingClaimingRewards} className="!p-0 font-bold outline-none border-none focus:outline-none text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
                             Claim
                           </VButton>}
                           </div>
