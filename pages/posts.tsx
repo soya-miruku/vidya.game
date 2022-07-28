@@ -82,8 +82,8 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
         </Head>
           <div className='flex justify-center items-start h-full'>
             <PageViewSize enabled className='flex flex-col w-full !justify-start items-start sm:mt-[120px] mt-0 h-auto sm:p-vmd !max-w-[1333px]'>
-              <div className='w-full sm:h-64 h-[26rem] relative'>
-                <div className='bg-accent-dark-100 w-full sm:h-60 h-96 sm:rounded-3xl rounded-0 flex justify-center items-center dark:shadow-btn-dark shadow-btn-light' style={{
+              <div className='w-full sm:h-80 h-[26rem] relative'>
+                <div className='bg-accent-dark-100 w-full sm:h-72 h-96 sm:rounded-3xl rounded-0 flex justify-center items-center dark:shadow-btn-dark shadow-btn-light' style={{
                   backgroundImage: 'url(/aimbots/armoursets.png)',
                   backgroundSize: 'cover',
                   backgroundPosition: '0% 10%',
