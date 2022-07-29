@@ -4,7 +4,9 @@ import { Document, Page, pdfjs } from "react-pdf";
 import { useDrag } from '@use-gesture/react';
 import { classNames } from "@/common/helpers";
 import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
+import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
 pdfjs.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.js`;
+// pdfjs.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`;
 
 export interface IPDFViewerProps {
   url: string;
@@ -88,7 +90,7 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
             </div>
           </div>
           </div>
-        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="canvas">
+        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="svg">
           <Page className={scale === 1.5 ? 'hover:cursor-zoom-out' : 'hover:cursor-zoom-in'} onClick={() => {
             !isDeviceMobile && setScale(scale === 1.5 ? 1 : 1.5);
           }} pageNumber={pageNumber} width={width} height={height} scale={scale}/>
