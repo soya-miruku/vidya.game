@@ -150,13 +150,13 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
     confirmText="Destroy"
     cancelText="Cancel"
     />}
-    {nft?.tokenRank && <div className="w-full h-full border-4 flex p-vsm rounded-tr-3xl rounded-bl-3xl" style={{
-      borderColor: mapRankToColors(nft.tokenRank.rank).bgColor,
+    <div className="w-full h-full border-4 flex p-vsm rounded-tr-3xl rounded-bl-3xl" style={{
+      borderColor: mapRankToColors(nft && nft.tokenRank.rank).bgColor,
     }}>
       <div className="flex flex-col justify-between items-start w-full min-h-[150px] h-full gap-vsm">
         <div className="w-full flex flex-col gap-vsm">
           <VTitle type="h5" overrideTextColor>Actions</VTitle>
-          <div className="flex flex-col w-full h-auto border-0 p-vsm gap-y-vsm " style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
+          <div className="flex flex-col w-full h-auto border-0 p-vsm gap-y-vsm " style={{ borderColor: mapRankToColors(nft && nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField
               onBtnClick={handleMint}
               btnText="MINT"
@@ -166,8 +166,8 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
               max={maxLimitMint}
               disabled={isMintingInProgress || !priceToMint}
               isLoading={isMintingInProgress || !priceToMint}
-              borderColor={mapRankToColors(nft.tokenRank.rank).bgColor}
-              btnTextColor={mapRankToColors(nft.tokenRank.rank).textColor}
+              borderColor={mapRankToColors(nft && nft.tokenRank.rank).bgColor}
+              btnTextColor={mapRankToColors(nft && nft.tokenRank.rank).textColor}
               onPlusClick={() => setMintAmount(mintAmount > maxLimitMint ? mintAmount : mintAmount + 1)}
               onMinusClick={() => setMintAmount(mintAmount > 1 ? mintAmount - 1 : 1)}
               onChange={(e:any) => {
@@ -177,7 +177,7 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
             {state.status === 'Success' && <VText size="sm" className="!text-aimbotsGreen-100">Successfuly Minted!</VText>}
           </div>
         </div>
-        <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
+        {nft?.tokenRank && <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField 
               btnText="BUY LEVELS" 
               label={<>Total Price <span className="text-accent-dark-100">{priceToBuyLevel.toFixed(4)} eth</span></>}
@@ -215,9 +215,9 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
               }} ></PlusMinusInputField>
             {burnLevelState.errorMessage && <VText size="sm" className="!text-aimbotsRed-100">{burnLevelState.errorCode === -32000 ? 'Cannot estimate gas' : burnLevelState.errorMessage}</VText>}
             {burnLevelState.status === 'Success' && <VText size="sm" className="!text-aimbotsGreen-100">{burnLevelsAmount} levels have been redeemed! {burnLevelsAmount >= nft.tokenRank.level ? 'and this multipass has been destroyed' : ''}</VText>}
-        </div>
+        </div>}
       </div>
-    </div>}
+    </div>
     </>
   )
 }
