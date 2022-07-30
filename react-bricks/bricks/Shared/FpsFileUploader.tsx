@@ -1,7 +1,11 @@
 import { ICustomKnobProps } from "./additional"
 import { FileUpload } from "./IPFSUpload/index"
 
-export const FpsFileUploader = ({value, isValid, onChange, errorMessage}: ICustomKnobProps) => {
+export interface IFPSFileUploaderProps extends ICustomKnobProps {
+  acceptOnly: string
+}
+
+export const FpsFileUploader = ({value, isValid, onChange, errorMessage, acceptOnly}: IFPSFileUploaderProps) => {
   return(
     <div className="flex flex-col">
       <input value={value} onChange={(e) => {
@@ -13,7 +17,7 @@ export const FpsFileUploader = ({value, isValid, onChange, errorMessage}: ICusto
         padding: '10px',
         fontSize: '1rem',
       }}></input>
-      <FileUpload setUrl={onChange} />
+      <FileUpload acceptOnly={acceptOnly} setUrl={onChange} />
     </div>
   )
 }

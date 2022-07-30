@@ -46,7 +46,7 @@ PDFViewUnit.schema = {
       label: 'pdf Src',
       defaultOpen: true,
       type: types.SideEditPropType.Custom,
-      component: (props) => FpsFileUploader({ ...props}),
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'application/pdf'}),
     },
     {
       name: 'title',

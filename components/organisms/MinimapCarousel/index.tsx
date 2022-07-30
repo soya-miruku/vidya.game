@@ -44,7 +44,7 @@ function Dot() {
 }
 
 function Map({length}) : any{
-  return new Array(length || 6).fill(0).map((img, index) => (
+  return new Array(length).fill(0).map((img, index) => (
     <Block key={index} factor={1 / state.sections / 2} offset={index}>
       <Dot />
     </Block>
@@ -70,11 +70,11 @@ function Image({ img, index }) {
   })
   return (
     <group ref={ref}>
-      <Plane map={img} args={[1, 1, 32, 32]} shift={100} aspect={1.5} scale={[w*1.2, w / 1.3, 1]} frustumCulled={false} />
-      <TextV anchorX="left" position={[-w / 2, -w / 1.5 / 2 - 0.25, 0]} scale={1.5} color="white">
+      <Plane map={img} args={[1, 1, 32, 32]} shift={100} aspect={1.3} scale={[w*1.2, w / 1.3, 1]} frustumCulled={false} />
+      <TextV anchorX="left" position={[-(w*1.2) / 2, -w / 1.3 / 2 - 0.25, 0]} scale={1.5} color="white">
         0{index}
       </TextV>
-      <ShadowV scale={[w * 1.2, 1, 1]} rotation={[0.75, 0, 0]} position={[0, -w / 2, 0]} />
+      <ShadowV scale={[w, 1, 1]} rotation={[0.75, 0, 0]} position={[0, -w / 2, 0]} />
     </group>
   )
 }
@@ -96,7 +96,7 @@ function Marker() {
     camera.updateProjectionMatrix()
   })
 
-  const bind: any = useDrag(({ movement: [x], first, last }) => {
+  const bind: any = useDrag(({ movement: [x], last }) => {
     if(isMobileView) return;
     setActive(!last), (state.ref.scrollLeft = x * 2 * state.pages)
   }, {
@@ -104,7 +104,7 @@ function Marker() {
   })
 
   return (
-    <group ref={ref} position={[0, 0, 1]}>
+    <group ref={ref} position={[0, 0, 2]}>
       <Rect {...bind()} onPointerOver={(e) => (e.stopPropagation(), set(true))} onPointerOut={() => set(false)} />
     </group>
   )
@@ -114,8 +114,28 @@ export const MiniMapCarousel = ({imageSources}) => {
   const scrollArea = useRef<any>();
   const onScroll = (e) => (state.top.current = e.target.scrollLeft)
   useEffect(() => void onScroll({ target: (state.ref = scrollArea.current) }), [])
-  state.sections = imageSources.length - 1 || 6
-  state.pages = state.sections - 1;
+  state.sections = imageSources.length || 6
+  state.pages = imageSources.length - 1;
+
+  const [wd, setWd] = useState(1)
+  const maxWidth = 1140;
+
+  useEffect(() => {
+    const onResize = () => {
+      const w = window.innerWidth;
+      if(w < maxWidth) {
+        setWd(w)
+      }
+      else {
+        setWd(maxWidth + (w- maxWidth) * 0.3)
+      }
+      
+    }
+    window.addEventListener("resize", onResize)
+    onResize()
+    return () => window.removeEventListener("resize", onResize)
+  }, []);
+
   return (
     <>
     <Canvas 
@@ -136,14 +156,14 @@ export const MiniMapCarousel = ({imageSources}) => {
         <Suspense fallback={null}>
           <Content imageSources={imageSources}/>
           <HeadsUpDisplay>
-            <Map length={imageSources?.length || 6}/>
+            <Map length={state.sections}/>
             <Marker />
           </HeadsUpDisplay>
         </Suspense>
       </Effects>
     </Canvas>
       <div className="absolute top-0 left-0 w-screen h-screen overflow-x-auto overflow-y-hidden scrollbar-none" ref={scrollArea} onScroll={onScroll}>
-        <div style={{ height: "100vh", width: `${state.pages * 100}vw` }} />
+        <div style={{ height: "100vh", width: `${state.pages * wd}px` }} />
       </div>
       <Loader />
     </>

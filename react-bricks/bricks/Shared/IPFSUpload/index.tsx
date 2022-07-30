@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { VLabel } from '@/components/atoms/VLabel'
-import { VButton } from '@/components/atoms/VButton'
 
 const ipfs = ipfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
 
-export const FileUpload = ({ setUrl }) => {
+export const FileUpload = ({ setUrl, acceptOnly }) => {
   const [file, setFile] = useState<any>({})
   const [fileUrl, setFileUrl] = useState('')
   const [loading, setLoading] = useState(false)
@@ -76,11 +75,12 @@ export const FileUpload = ({ setUrl }) => {
       <div>
           <form onSubmit={uploadFile}>
               <input
-                  type='file'
-                  name='file'
-                  id='file'
-                  onChange={preUpload}
-                  required
+                accept={acceptOnly || 'image/*'}
+                type='file'
+                name='file'
+                id='file'
+                onChange={preUpload}
+                required
               />
               {fileAndUploadButton()}
           </form>

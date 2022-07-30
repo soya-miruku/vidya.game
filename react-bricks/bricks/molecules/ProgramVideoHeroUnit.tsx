@@ -42,7 +42,7 @@ ProgramVideoHeroUnit.schema = {
       name: 'videoUrl',
       label: 'Background Video',
       type: types.SideEditPropType.Custom,
-      component: (props) => FpsFileUploader({ ...props}),
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'video/*'}),
     },
     {
       name: 'placeholderImage',

@@ -52,7 +52,7 @@ SimpleImage.schema = {
       label: 'Image Src',
       defaultOpen: true,
       type: types.SideEditPropType.Custom,
-      component: (props) => FpsFileUploader({ ...props}),
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'image/*'}),
     },
     {
       name: 'imageWidth',
