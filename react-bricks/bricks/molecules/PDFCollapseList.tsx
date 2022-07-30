@@ -21,7 +21,7 @@ const PDFCollapseListUnit: types.Brick<SectionProps> = ({...sectionProps}) => {
 }
 
 PDFCollapseListUnit.schema = {
-  name: blockNames.FAQSUnit,
+  name: blockNames.PDFViewUnit,
   label: 'PDF List Unit',
   category: 'TeamOs-Molecules-Document',
 
