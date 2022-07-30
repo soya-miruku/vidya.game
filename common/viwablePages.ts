@@ -64,6 +64,12 @@ export const PagesByCategory = {
       type: 'about',
       active: true
     },
+    {
+      displayName: 'AUDITS',
+      slug: 'audits',
+      type: 'about',
+      active: true
+    },
     // {
     //   displayName: 'TEAM',
     //   slug: 'team',

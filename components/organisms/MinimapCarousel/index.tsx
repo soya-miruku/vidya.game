@@ -127,7 +127,7 @@ export const MiniMapCarousel = ({imageSources}) => {
         setWd(w)
       }
       else {
-        setWd(maxWidth + (w- maxWidth) * 0.3)
+        setWd((w * 0.3 + maxWidth * .7))
       }
       
     }
