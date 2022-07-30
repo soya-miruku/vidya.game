@@ -60,8 +60,8 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
 
   return (
     <div className="w-full flex flex-col justify-center items-center prose gap-y-vmd">
-      <div ref={docRef} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className="relative flex justify-center" style={{maxHeight: (height*scale)+100}} {...bind()}>
-        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="svg">
+      <div ref={docRef} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className="relative flex justify-center" {...bind()}>
+        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="canvas">
           <Page className={scale === 1.5 ? 'hover:cursor-zoom-out' : 'hover:cursor-zoom-in'} onClick={() => {
             !isDeviceMobile && setScale(scale === 1.5 ? 1 : 1.5);
           }} pageNumber={pageNumber} width={width} height={height} scale={scale}/>

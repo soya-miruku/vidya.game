@@ -50,6 +50,8 @@ import MultiImageArea from './molecules/BlogComponents/MultiImagesArea';
 import SmallHeroUnit from './molecules/SmallHeroUnit';
 import FAQSUnit from './molecules/FAQSUnit';
 import VRBAccordion from './atoms/VRBAccordion';
+import PDFCollapseListUnit from './molecules/PDFCollapseList';
+import VRBPdfItem from './atoms/VRBPdfItem';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -104,6 +106,8 @@ const bricks: types.Brick<any>[] = [
   SimpleImage,
   HeroWithTabsUnit,
   VRBProductView,
+  PDFCollapseListUnit,
+  VRBPdfItem,
   InventoryListUnit
 ]
 
