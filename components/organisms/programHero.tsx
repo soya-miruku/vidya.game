@@ -17,9 +17,10 @@ export interface IProgramHeroProps {
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
   imageHeight?: string;
   imageWidth?: string;
+  withImage?: boolean;
 }
 
-export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, imageHeight='622px', imageWidth='489px', overrideColor, canEdit, objectFit}) => {
+export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescription, image, imageHeight='622px', imageWidth='489px', overrideColor, canEdit, objectFit, withImage=true}) => {
   return (
     <div className="w-full h-full prose flex flex-col justify-center items-center gap-y-vsm">
       <div className='absolute'>
@@ -27,17 +28,18 @@ export const ProgramHero: React.FC<IProgramHeroProps> = ({pageTitle, pageDescrip
         ? <VRBTitle textAlign='center' className={classNames(overrideColor ? 'text-dark-300/80 dark:text-dark-300/80' : 'dark:text-dark-300/80 text-light-400/80')} type='title' propName='pageTitle'></VRBTitle> 
         : <VTitle className={classNames(overrideColor ? 'text-dark-300/80 dark:text-dark-300/80' : 'dark:text-dark-300/80 text-light-400/80')} type='title'>{pageTitle}</VTitle>}
       </div>
-      <div className='flex justify-center items-center w-full h-full'>
+       <div className='flex justify-center items-center w-full h-full'>
         <div  style={{
           width: '63vw',
           height: '80vw',
           maxWidth: imageWidth,
           maxHeight: imageHeight,
         }} className='relative'>
-          {canEdit ? <VRBImage propName='image' renderWrapper={({children}) => {
+          
+          {(canEdit && withImage) ? <VRBImage propName='image' renderWrapper={({children}) => {
             return <div className="w-full h-full justify-center items-center flex">{children}</div>
-          }} imageWidth="100%" imageHeight="100%"/> : <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit={objectFit} layout='fill' 
-         className={classNames('w-full h-full flex justify-center items-center')}/>}
+          }} imageWidth="100%" imageHeight="100%"/> : withImage ? <VImage src={image} alt={`${pageTitle} banner image`}  width="100%" height="100%" objectFit={objectFit} layout='fill' 
+         className={classNames('w-full h-full flex justify-center items-center')}/> : null}
         </div>
       </div>
       {canEdit || typeof(pageDescription) !== 'string' 

@@ -39,6 +39,7 @@ export enum blockNames {
   TeamCard = 'VRBTeamCard',
   GeneratorStatsUnit = 'GeneratorStatsUnit',
   PDFViewUnit = 'PDFViewUnit',
+  ProgramHeroUnitNoImage = 'ProgramHeroUnitNoImage',
   PDFListViewUnit = 'PDFListViewUnit',
   GeneratingStakingInfoUnit = 'GeneratingStakingInfoUnit',
   MultiPassStatsUnit = 'MultiPassStatsUnit',

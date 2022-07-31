@@ -52,6 +52,7 @@ import FAQSUnit from './molecules/FAQSUnit';
 import VRBAccordion from './atoms/VRBAccordion';
 import PDFCollapseListUnit from './molecules/PDFCollapseList';
 import VRBPdfItem from './atoms/VRBPdfItem';
+import ProgramHeroNoImageUnit from './molecules/ProgramHeroNoImageUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
@@ -80,6 +81,7 @@ const bricks: types.Brick<any>[] = [
   VideoHeroUnit,
   ProgramHeroUnit,
   CoinGeckoPricesSectionUnit,
+  ProgramHeroNoImageUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
   VRBFeatureCard,
