@@ -1,5 +1,5 @@
 import React from 'react'
-import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
+import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../../blockNames'
 import { DefaultColors } from '../../Shared/colors';
 import { DefaultLayoutProps, LayoutProp } from '../../Shared/LayoutProps';
@@ -10,6 +10,7 @@ import VRBText from '../../atoms/VRBText';
 import VRBImage from '../../atoms/VRBImage';
 import { YTVideo } from '@/components/atoms/YTVideo';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
+import { IsTextEmpty } from '../../Shared/helper';
 
 interface IHeaderYTAreaProps extends SectionProps {
   title?: string
@@ -25,8 +26,8 @@ const HeaderYTArea: types.Brick<IHeaderYTAreaProps> = ({title, paragraph, videoI
   return (
     <Section {...sectionProps} className="prose px-vsm">
       <PageViewSize enabled={!sectionProps.bgImage} className='w-full !max-w-blog justify-center items-center !gap-vmd'>
-        {(isAdmin || (!isAdmin && title)) && <VRBTitle type='h3' propName='title'></VRBTitle>}
-        {(isAdmin || (!isAdmin && paragraph))&& <VRBText size='lg' propName='paragraph'></VRBText>}
+        {(isAdmin || (!isAdmin && !IsTextEmpty(title))) && <VRBTitle type='h3' propName='title'></VRBTitle>}
+        {(isAdmin || (!isAdmin && !IsTextEmpty(paragraph)))&& <VRBText size='lg' propName='paragraph'></VRBText>}
         <div  style={{
           width: width,
           height: isMobileView ? '300px' : height,
