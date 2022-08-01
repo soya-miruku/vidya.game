@@ -87,7 +87,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     if(isNaN(amount)) return;
     if(amount <= 0) return;
 
-    return isFrom ? await getAmountsOut(chainId, library, amount, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, [token1.address, token0.address], exists);
+    return isFrom ? await getAmountsOut(chainId, library, amount, token0.decimals, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, token1.decimals, [token1.address, token0.address], exists);
   };
 
   const handleSwitchTokens = () => {

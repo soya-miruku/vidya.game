@@ -92,7 +92,6 @@ const additionalTokens = [
 ]
 
 const preprocessTokenList = (tokenList: TokenInfo[], active=true) => {
-  console.log(tokenList.filter(t=>t.symbol === 'USDC'))
   return tokenList ? tokenList.map(token => {
     let url = token?.logoURI; 
     

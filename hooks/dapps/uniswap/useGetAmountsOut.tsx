@@ -10,7 +10,7 @@ import { ChainExists } from "@/contracts/helpers";
 import { getAddress } from "ethers/lib/utils";
 
 
-export const getAmountsOut = async (chainId: number, provider: any, amountIn: number, path: string [], pairExists:boolean) => {
+export const getAmountsOut = async (chainId: number, provider: any, amountIn: number, decimals: number, path: string [], pairExists:boolean) => {
   if(ChainExists(chainId) === false) {
     return 0;
   }
@@ -25,7 +25,8 @@ export const getAmountsOut = async (chainId: number, provider: any, amountIn: nu
   if(!contract || !amountIn || !path || path.length <= 1) return 0;
 
   try {
-    const amountOut = await contract.getAmountsOut(parseEther(amountIn.toString()), updatedPath);
+    console.log(amountIn, decimals)
+    const amountOut = await contract.getAmountsOut(parseUnits(amountIn.toFixed(decimals), decimals), updatedPath);
     return amountOut && parseFloat(formatEther(amountOut[amountOut.length - 1])) || 0;
   }
   catch(e) {
@@ -34,12 +35,12 @@ export const getAmountsOut = async (chainId: number, provider: any, amountIn: nu
   }
 }
 
-export const useGetAmountsOut = (amountIn: number | Falsy, path: string []) => {
+export const useGetAmountsOut = (amountIn: number | Falsy, decimals: number, path: string []) => {
   const { chainId } = useAccount();
   const { value, error } = useCall(amountIn && path && chainId && ChainExists(chainId) && {
     contract: new Contract(CHAIN_SETTINGS[chainId].UNISWAPV2_ROUTER02_ADDRESS, UNISWAP_ROUTER_ABI),
     method: "getAmountsOut",
-    args: [parseUnits(amountIn.toString(), 'ether'), path.map((token) => token === ETH_ADDRESS ? CHAIN_SETTINGS[chainId].WETH_ADDRESS: token)]
+    args: [parseUnits(amountIn.toFixed(decimals), decimals), path.map((token) => token === ETH_ADDRESS ? CHAIN_SETTINGS[chainId].WETH_ADDRESS: token)]
   }, {refresh: 100}) ?? {}
 
   if(error) {
