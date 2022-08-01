@@ -23,7 +23,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
   const [showingNavBar, setShowingNavBar] = useState(false);
   const { isAuthenticated, isAuthenticating, Connect, Disconnect} = useAccount();
   const { isMobileView } = useDetectIsMobileView();
-  const WIDTH = isMobileView ? 250 : 550;
+  const WIDTH = isMobileView ? 250 : 600;
 
   var styles = {
     bmBurgerButton: {
@@ -58,7 +58,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       fontSize: '1.15em',
       height: '100vh',
       overflow: 'hidden',
-      overflowY: isMobileView ? 'auto' : 'hidden',
+      overflowY: isMobileView ? 'auto' : 'auto',
     },
     bmMorphShape: {
       fill: '#373a47'
@@ -247,7 +247,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                 // noTransition
                 >
                 <div className='w-full h-auto'>
-                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-start gap-vmd dark:text-white text-dark-100'>
+                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-center gap-vmd dark:text-white text-dark-100'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 
                         <div key={`cat-${category}-${index}`} className='w-[220px] px-4 flex flex-col justify-start items-start'>

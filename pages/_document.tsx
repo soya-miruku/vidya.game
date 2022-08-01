@@ -2,7 +2,7 @@ import { Html, Head, Main, NextScript } from 'next/document';
 
 export default function Document() {
   return (
-    <Html id='root_html' lang="en" className='dark' style={{ scrollBehavior: 'smooth' }}>
+    <Html id='root_html' lang="en" className='dark'>
       <Head>
         <meta charSet="utf-8" />
         <link href="https://fonts.googleapis.com/css2?family=Poppins:ital@0;1&display=swap" rel="stylesheet"/>
