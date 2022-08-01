@@ -37,7 +37,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   const [selectedFor, setSelectedFor] = useState<number>(-1);
   const [showCoinSearch, setShowCoinSearch] = useState(false);
   const typingTimeoutRef = useRef<any>();
-  const [token0Balance, token1Balance] = useBalances([token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS]);
+  const [token0Balance, token1Balance] = useBalances([token0 || null, token1 || null]);
   const { exists } = useGetPair(token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS);
   const [ swapTokens, state ] = useSwap(token0?.address, token1?.address, 1);
 
@@ -195,9 +195,9 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
         <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg'>
           <div className='flex justify-between items-center'>
             <h5>Vidya Swap</h5>
-            <button>
+            {/* <button>
               <span className='-ic-settings text-accent-dark-200'></span>
-            </button>
+            </button> */}
           </div>
           <div className='flex flex-col justify-center items-center w-full gap-y-2 text-dark-100'>
             <SwapInput 

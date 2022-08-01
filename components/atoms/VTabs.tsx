@@ -4,6 +4,7 @@ import { classNames } from "@/common/helpers"
 import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 import { VTitle } from "./VTitle";
 import { VText } from "./VText";
+import { faCircle } from "@fortawesome/free-solid-svg-icons";
 
 export interface IVTabsProps {
   children: React.ReactElement<IVTabProps>[];
@@ -92,8 +93,8 @@ export const VTab = ({isActive, show=true, enabled=true, isFirst, isLast, onClic
       isFirst ? 'rounded-tl-xl' : isLast ? 'rounded-tr-xl' : '', containerClassName
       )}>
 
-      {!isMobileView && icon && <div className={classNames(isActive ? 'bg-accent-dark-200' : 'bg-[#2d323d]', 'p-3 rounded-xl', className)}>
-        <FontAwesomeIcon className='w-8 h-8' icon={icon}/>
+      {!isMobileView && icon && <div className={classNames(isActive ? 'text-accent-dark-200' : 'text-[#2d323d]', 'p-3 rounded-xl', className)}>
+        <FontAwesomeIcon className='w-8 h-8' icon={icon==='circle' ? faCircle : icon}/>
       </div>}
       <div className='sm:text-left flex flex-col gap-[3px] text-center'>
         {title  && <VTitle type="h6">{title}</VTitle>}

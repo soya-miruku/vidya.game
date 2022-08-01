@@ -1,6 +1,6 @@
 import { CHAIN_MULTIPASS_SETTINGS } from "@/contracts/multipass";
 import { useGetMultipleTokenIds, useGetMultipleTokenRanks, useGetMultipleTokenURIs, useGetReservedETHForTokenLevel } from "@/hooks/dapps/multipass/useNftPasses";
-import { useBalances } from "@/hooks/dapps/uniswap/useBalances";
+import { useBalance } from "@/hooks/dapps/uniswap/useBalances";
 import { useAccount } from "@/hooks/useAccount";
 import { useState, useMemo, useEffect } from "react";
 import { AuthenticatedView, UnAuthenticatedView } from "@/components/atoms/AuthenticatedView";
@@ -19,7 +19,7 @@ import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 export const MultiPassDapp = ({}) => {
   const { chainId } = useAccount();
   const { isMobileView } = useDetectIsMobileView();
-  const [ balance ] = useBalances([CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress])
+  const { balance } = useBalance(CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress)
   const [ currentTokenIndex, setCurrentTokenIndex ] = useState(0);
   const { tokenIds } = useGetMultipleTokenIds(balance);
   const { tokenURIs } = useGetMultipleTokenURIs(tokenIds);
