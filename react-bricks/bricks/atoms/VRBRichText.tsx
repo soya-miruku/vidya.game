@@ -5,8 +5,8 @@ import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText'
 import { TitleType, VTitle } from '@/components/atoms/VTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faIcons, faList, faSquare, faSquare1, faSquare2,faSquare3,faSquare4,faSquare5,faSquare6 } from '@fortawesome/pro-regular-svg-icons'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircleHalfStroke, faIcons, faList, faSquare, faSquare1, faSquare2,faSquare3,faSquare4,faSquare5,faSquare6 } from '@fortawesome/pro-regular-svg-icons'
+import { faCircle, faFaucetDrip } from '@fortawesome/free-solid-svg-icons'
 
 export interface VRBRichTextProps {
   text?: string
@@ -29,9 +29,15 @@ export const DefinedPlugins = () => {
     markPluginConstructor({
       name: 'drop-shadow',
       hotKey: 'mod+s+h',
-      render: (props) => <span style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</span>,
+      render: (props) => <span style={{textShadow: '1px 1px 7px rgba(0,0,0,0.4)'}} className="inline">{props.children}</span>,
       icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare} />,
       
+    }),
+    markPluginConstructor({
+      name: 'opacity',
+      hotKey: 'mod+o',
+      render: (props) => <span className='opacity-75'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircleHalfStroke}></FontAwesomeIcon>
     }),
     markPluginConstructor({
       name: 'arcade-classic-font',
@@ -42,9 +48,10 @@ export const DefinedPlugins = () => {
     markPluginConstructor({
       name: 'white',
       hotKey: 'mod+w',
-      render: (props) => <span className='text-light-200'>{props.children}</span>,
+      render: (props) => <span className='text-light-300'>{props.children}</span>,
       icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
     }),
+
     markPluginConstructor({
       name: 'teal',
       hotKey: 'mod+t',

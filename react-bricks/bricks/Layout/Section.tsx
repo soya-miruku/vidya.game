@@ -96,7 +96,8 @@ const Section: React.FC<SectionProps> = ({
       backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
       backgroundImage: `url(${bgImage?.src})`,
       backgroundPosition: 'center',
-      backgroundSize: 'cover',
+      backgroundSize: bgSize,
+      backgroundRepeat: 'no-repeat',
 
     }} className={classNames(
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
