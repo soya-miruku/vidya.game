@@ -55,8 +55,8 @@ const dappConfig: Config = {
     [Goerli.chainId] : process.env.infuraId ? `https://goerli.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('goerli'),
     [Kovan.chainId] : process.env.infuraId ? `https://kovan.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('kovan'),
   },
-  refresh: 10,
-  noMetamaskDeactivate: true,
+  refresh: 'everyBlock',
+  fastMulticallEncoding: true
 }
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
