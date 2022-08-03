@@ -74,7 +74,7 @@ const Blog: React.FC<IBlogProps> = ({ posts }) => {
   }, [JSON.stringify(posts), searchValue]);
 
   return (
-    <Layout displayCallout={false} useDarkFonts={!isMobileView}>
+    <Layout displayCallout={false} useDarkFonts={isMobileView}>
       <div className='w-full h-full prose'>
         <Head>
           <title>{'blog'}</title>
