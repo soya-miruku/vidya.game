@@ -156,7 +156,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
   propName,
   ...rest
 }) => {
-  const aRef = React.useRef<HTMLAnchorElement>(null);
+  const aRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
     if(!aRef.current) return;
@@ -167,7 +167,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
 
   return (
     <>
-    <a ref={aRef} {...rest} className={classNames('w-full flex flex-col', textAlign === 'center' ? 'items-center justify-center text-center' : textAlign === 'end' ? 'items-end justify-end text-right' : 'items-start justify-start text-left')}>
+    <div ref={aRef} {...rest} className={classNames('w-full flex flex-col', textAlign === 'center' ? 'items-center justify-center text-center' : textAlign === 'end' ? 'items-end justify-end text-right' : 'items-start justify-start text-left')}>
       <RichTextExt
       plugins={DefinedPlugins()}  
       propName={propName || 'richtext'}
@@ -183,7 +183,7 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
       placeholder="Type a text..."
       
     />
-    </a>
+    </div>
     </>
   )
 }

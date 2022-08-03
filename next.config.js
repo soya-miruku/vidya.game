@@ -13,5 +13,9 @@ module.exports = {
   env: {
     infuraId: process.env.INFURA_ID,
     alchemyApiKey: process.env.ALCHEMY_API_KEY,
+  },
+  experimental: {
+    // Enables the styled-components SWC transform
+    styledComponents: true
   }
 }
