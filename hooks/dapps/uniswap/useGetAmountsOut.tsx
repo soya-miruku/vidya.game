@@ -25,7 +25,6 @@ export const getAmountsOut = async (chainId: number, provider: any, amountIn: nu
   if(!contract || !amountIn || !path || path.length <= 1) return 0;
 
   try {
-    console.log(amountIn, decimals)
     const amountOut = await contract.getAmountsOut(parseUnits(amountIn.toFixed(decimals), decimals), updatedPath);
     return amountOut && parseFloat(formatEther(amountOut[amountOut.length - 1])) || 0;
   }

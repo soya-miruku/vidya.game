@@ -19,7 +19,7 @@ import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 export const MultiPassDapp = ({}) => {
   const { chainId } = useAccount();
   const { isMobileView } = useDetectIsMobileView();
-  const { balance } = useBalance(CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress)
+  const { balance } = useBalance(CHAIN_MULTIPASS_SETTINGS[chainId].contractAddress, 0)
   const [ currentTokenIndex, setCurrentTokenIndex ] = useState(0);
   const { tokenIds } = useGetMultipleTokenIds(balance);
   const { tokenURIs } = useGetMultipleTokenURIs(tokenIds);
@@ -28,20 +28,23 @@ export const MultiPassDapp = ({}) => {
   const [ showConfirmModal, setShowConfirmModal ] = useState(false);
   const [ isMerging, setIsMerging ] = useState(false);
   const [destroyedNfts, setDestroyedNfts] = useState<INFT[]>([]);
+  const [nft, setNft] = useState<INFT>();
+  const [nfts, setNfts] = useState<INFT[]>([]);
 
   useEffect(() => {
     setDestroyedNfts([]);
     setCurrentTokenIndex(0);
     setShowConfirmModal(false);
     setIsMerging(false);
-  }, [])
+  }, []);
 
-  let nfts: INFT[] = useMemo(() => {
-    if(!tokenRanks || tokenRanks.length <= 0) return [];
-    if(!tokenURIs || tokenURIs.length <= 0) return [];
-    if(!tokenIds || tokenIds.length <= 0) return [];
+  useEffect(() => {
+    if(!tokenRanks || tokenRanks.length <= 0) return;
+    if(!tokenURIs || tokenURIs.length <= 0) return;
+    if(!tokenIds || tokenIds.length <= 0) return;
+    console.log(destroyedNfts)
 
-    return tokenRanks.map((rank, index) => {
+    const tempNfts = tokenRanks.map((rank, index) => {
       return {
         tokenId: tokenIds[index],
         tokenRank: rank,
@@ -51,6 +54,7 @@ export const MultiPassDapp = ({}) => {
       const tokenURI = token.tokenUri;
       if(!tokenURI) return null;
       const nftItem = tokenURI && JSON.parse(Buffer.from(tokenURI.substring(29), "base64").toString());
+
       const nft = nftItem && {
         name: nftItem.name,
         description: nftItem.description,
@@ -69,11 +73,13 @@ export const MultiPassDapp = ({}) => {
     }).filter(nft => {
       return nft !== null && destroyedNfts.findIndex(destroyedNft => destroyedNft.tokenId === nft.tokenId) === -1
     });
-  }, [JSON.stringify(tokenRanks), JSON.stringify(tokenURIs), JSON.stringify(tokenIds), balance, isMerging, JSON.stringify(destroyedNfts)]);
 
-  const nft: INFT = useMemo(() => {
-    if(!nfts) return null;
-    return nfts[currentTokenIndex];
+    setNfts(() => tempNfts);
+  }, [JSON.stringify(tokenRanks), JSON.stringify(tokenURIs), JSON.stringify(tokenIds), balance, isMerging, JSON.stringify(destroyedNfts)])
+
+  useEffect(() => {
+    if(!nfts || nfts?.length <=0) return;
+    setNft(nfts[currentTokenIndex]);
   }, [JSON.stringify(nfts), currentTokenIndex])
 
   const { reservedETH } = useGetReservedETHForTokenLevel(nft?.tokenRank.level || 1);
@@ -119,7 +125,7 @@ export const MultiPassDapp = ({}) => {
             <div className="flex flex-col w-full h-full items-end justify-between gap-vmd">
               <div className="w-full h-full flex flex-col justify-start items-start border-4 rounded-tl-2xl rounded-br-2xl border-accent-dark-100 p-vsm" style={{ borderColor: mapRankToColors(nft?.tokenRank.rank).bgColor }}>
                 <div className="flex gap-x-vsm justify-between w-full items-center px-vsm">
-                  <VText overrideTextColor className="px-vsm sm:w-auto w-full" size="lg">BALANCE: <span className="font-bold">{balance - destroyedNfts.length}</span></VText>
+                  <VText overrideTextColor className="px-vsm sm:w-auto w-full" size="lg">BALANCE: <span className="font-bold">{balance > 0 ? balance - destroyedNfts.length : 0}</span></VText>
                   {nft && isMerging && <VTitle className="w-auto !text-accent-dark-100" type={isMobileView ? 'h6' : 'h5'}>Merging has been initiated for pass #{nft.tokenId}</VTitle>}
                 </div>
                 <MultiPassesListView onMergingEnded={(mergelist) => {

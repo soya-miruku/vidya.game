@@ -14,10 +14,10 @@ export const EntryPage = ({page, error}) => {
 
   const firstElBgColorProp = pageOk?.content?.[0]?.props?.['bg']?.['color'];
   const firstElBgImageProp = pageOk?.content?.[0]?.props?.['bgImage'];
-  
-  const hasNoColorOrBg = (firstElBgImageProp && (firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff'));
+  const hasColorOrBg = (firstElBgImageProp || (firstElBgColorProp === 'transparent' || firstElBgColorProp === '#fff'));
+
   return (
-    <Layout displayCallout={false} useDarkFonts={!isDarkMode && !hasNoColorOrBg}>
+    <Layout displayCallout={false} useDarkFonts={!isDarkMode && hasColorOrBg}>
       {pageOk && (
         <div className='w-full h-full prose'>
           <Head>

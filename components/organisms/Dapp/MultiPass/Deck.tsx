@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useSprings, animated, to as interpolate } from '@react-spring/web'
-import { useDrag } from '@use-gesture/react'
+import { useDrag } from 'react-use-gesture'
 
 import styles from '@/css/deck.module.scss';
 import { classNames } from '@/common/helpers';
@@ -34,8 +34,8 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove, isLoadi
     from: from(i)
   }));
 
-  const bind: any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
-    const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
+  const bind: any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity }) => {
+    const trigger = velocity > 0.2 // If you flick hard enough it should trigger the card to fly out
     if (!active && trigger){
       gone.add(index)
       onRemove && onRemove(items[index])
@@ -44,7 +44,7 @@ export const Deck: React.FC<IDeckProps> = ({ className, items, onRemove, isLoadi
       if (index !== i) return // We're only interested in changing spring-data for the current spring
       const isGone = gone.has(index)
       const x = isGone ? 10 * xDir : active ? mx : 0 // When a card is gone it flys out left or right, otherwise goes back to zero
-      const rot = mx / 100 + (isGone ? xDir * 10 * vx : 0) // How much the card tilts, flicking it harder makes it rotate faster
+      const rot = mx / 100 + (isGone ? xDir * 10 * velocity : 0) // How much the card tilts, flicking it harder makes it rotate faster
       const scale = active ? 1.1 : 1 // Active cards lift up a bit
       return {
         x,

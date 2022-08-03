@@ -2,11 +2,11 @@ import { TokenInfo } from "@/common/providers/TokenListProvider";
 import { EMPTY_ADDRESS, ETH_ADDRESS } from "@/contracts/addresses";
 import { getResults } from "@/contracts/helpers";
 import { useAccount } from "@/hooks/useAccount";
-import { formatEther, formatUnits } from "@ethersproject/units";
+import { formatUnits } from "@ethersproject/units";
 import { ERC20Interface, MultiCallABI, useCall, useCalls, useMulticallAddress } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 
-export const useBalance = (address: string) => {
+export const useBalance = (address: string, decimals: number) => {
   const { user } = useAccount();
   const response = useCall(address && {
     contract: new Contract(address, ERC20Interface),
@@ -21,8 +21,9 @@ export const useBalance = (address: string) => {
     }
   }
 
-  const balance = response.value?.[0]?._hex?.length <= 4 ? response?.value?.[0].toNumber() : formatEther(response?.value?.[0] || BigNumber.from(0));
-  console.log(balance);
+  const balanceResult = response.value?.[0] || BigNumber.from(0);
+  const balance = parseFloat(formatUnits(balanceResult, decimals) || '0');
+
   return {
     balance,
     error: response?.error

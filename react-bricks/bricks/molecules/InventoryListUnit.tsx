@@ -14,6 +14,7 @@ import { VLabel } from '@/components/atoms/VLabel';
 import { VTitle } from '@/components/atoms/VTitle';
 import { VImage } from '@/components/atoms/VImage';
 import { useFetchTemplates, useGetAllTemplateIds } from '@/hooks/dapps/inventory/useGetAllTemplates';
+import { VButton } from '@/components/atoms/VButton';
 
 interface IInventoryListUnitProps extends SectionProps {
   label?: string;
@@ -37,12 +38,13 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
           <div className='w-full justify-center items-center p-vsm flex flex-col h-[500px] rounded-xl relative border-[1px] dark:border-light-300/40 border-dark-200/20'>
             <DeckBase className='!w-52 !h-96' itemClassName='!bg-light-100 !border-accent-dark-200/70 !max-h-96 shadow-[0_25px_20px_-15px_rgba(0,0,0,0.13)]' itemRender={(item) => {
               return (
-                <div className='p-vmd flex flex-col gap-vsm relative !font-bold'>
+                <div className='p-vmd flex flex-col gap-[8px] relative !font-bold'>
                   <div className='absolute w-full h-full z-[100]'></div>
                   <VLabel className="!text-dark-100 uppercase">{item.label}</VLabel>
                   <VImage objectFit='contain' src={item.image} width={100} height={150}></VImage>
                   <VTitle className='!text-dark-100 ' type='h5'>{item.title}</VTitle>
                   <VText size='md' className="!text-dark-100 ">{item.description}</VText>
+                  <a href={item.openSeaLink} target='_blank' rel="noopener noreferrer" className='text-accent-dark-200 hover:brightness-150 z-[100] text-body-xs'>View on OpenSea</a>
                 </div>
               )
             }} items={(templates||[]).map((template) => {
@@ -50,7 +52,8 @@ const InventoryListUnit: types.Brick<IInventoryListUnitProps> = ({label, title, 
                 label: 'Inventory V2',
                 image: template.image,
                 title: template.name,
-                description: template.description
+                description: template.description,
+                openSeaLink: template.openSeaLink
               }
             })}></DeckBase>
             <VText className='opacity-70' size='sm'>Flick to the left or right to navigate</VText>

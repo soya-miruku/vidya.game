@@ -12,6 +12,7 @@ export interface ITemplateNFT {
   image: string
   ipfs: string
   slot: number
+  openSeaLink: string
 }
 
 export interface IGetAllTemplateIdsProps {
@@ -45,6 +46,21 @@ export const useGetAllTemplateIds = (props: IGetAllTemplateIdsProps = {
   return { tokenIds };
 }
 
+export const mapTemplateToOpenSeaNFTLink = (templateId: number) => {
+  switch (templateId) {
+    case 1: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${15}`;
+    case 3: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${776}`;
+    case 7: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${12}`;
+    case 9: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${22}`;
+    case 11: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${117}`;
+    case 12: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${11}`;
+    case 13: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${9}`;
+    case 23: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${119}`;
+    case 30: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${258}`;
+    case 31: return `https://opensea.io/assets/ethereum/0x9680223f7069203e361f55fefc89b7c1a952cdcc/${265}`;
+  }
+}
+
 export const useFetchTemplates = (templateIds: number[]): {templates: ITemplateNFT[]} => {
   const [templates, setTemplates] = useState<ITemplateNFT[]>([]);
 
@@ -68,7 +84,7 @@ export const useFetchTemplates = (templateIds: number[]): {templates: ITemplateN
         continue;
       }
 
-      templateTemp.push(result.data);
+      templateTemp.push({...result.data, openSeaLink: mapTemplateToOpenSeaNFTLink(parseInt(result.data.template))});
     }
 
     setTemplates(templateTemp);

@@ -5,7 +5,7 @@ import SIZES from '@/common/static';
 import { IFetchPagesProps, useFetchPages } from 'hooks/useFetchPages';
 import React, { useState } from 'react';
 import { ProgramCard } from '../molecules/ProgramCard';
-import { useDrag } from '@use-gesture/react';
+import { useDrag } from 'react-use-gesture';
 const Carousel = dynamic(() => import('react-spring-3d-carousel'), { ssr: false })
 
 const CarouselV2 = Carousel as any;
@@ -17,8 +17,8 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
   const {data, isLoading, error} = useFetchPages({type: 'program', limit});
   const [goToSlide, setGoToSlide] = useState(0);
   
-  const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
-    const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
+  const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity }) => {
+    const trigger = velocity > 0.1 // If you flick hard enough it should trigger the card to fly out
     const max = data?.length || 0;
     if (!active && trigger) {
       if(xDir === 1)  { //left

@@ -6,6 +6,7 @@ import TELLER_ABI from '@/contracts/abis/tellerABI.json';
 import VIDYA_ABI from '@/contracts/abis/vidyaAbi.json';
 import { GeneratorContext, IPoolState } from "@/common/providers/GeneratorProvider";
 import { useContext, useEffect, useState } from "react";
+import { getResults } from "@/contracts/helpers";
 
 export interface IGeneratorUser {
   remainingUnlockTime?: number;
@@ -60,33 +61,28 @@ export const useLoadUser = (currentPool: IPoolState): IGeneratorUser => {
     }
   ] || [];
 
-  const results = useCalls(calls, {refresh: 'everyBlock', isStatic: false})
+  const responses = useCalls(calls, {refresh: 'everyBlock', isStatic: false})
+  const results = getResults(responses, defaultValues);
   const userInfo = useGetUserInfo(currentPool);
-
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error(result.error);
-      return defaultValues;
-    }
-  });
 
   // const info = results[0];
   const allowance = results[0];
   const balanceResult = results[1];
+
   const remainingUnlockTime = userInfo?.[0].toNumber() || 0;
   const amountCommitted = parseFloat(formatEther(userInfo?.[1] || BigNumber.from(0)) || '0');
   const commitmentIndex = userInfo?.[2].toNumber() || 0;
   const claimAmount = parseFloat(formatEther(userInfo?.[3] || BigNumber.from(0)) || '0');
   const deposited = parseFloat(formatEther(userInfo?.[4] || BigNumber.from(0)) || '0');
   const commitmentStatus = amountCommitted > 0;
-  const approved = allowance?.value?.[0] > 0;
+  const approved = allowance?.[0] > 0;
  
   let depositAvailable = (deposited - amountCommitted)
   depositAvailable = depositAvailable < 0 ? 0 : depositAvailable;
   const canWidthdraw = depositAvailable > 0;
   const canCommit = depositAvailable > 0 && !commitmentStatus;
 
-  const accountBalance = parseFloat(formatEther(balanceResult?.value?.[0] || BigNumber.from(0)) || '0');
+  const accountBalance = parseFloat(formatEther(balanceResult?.[0] || BigNumber.from(0)) || '0');
 
   return {
     remainingUnlockTime,

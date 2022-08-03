@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { isMobile, isTablet } from "react-device-detect";
 import { Document, Page, pdfjs } from "react-pdf";
-import { useDrag } from '@use-gesture/react';
+import { useDrag } from 'react-use-gesture';
 import { classNames } from "@/common/helpers";
 import { useDetectIsMobileView } from "@/hooks/useDetectIsMobileView";
 import 'react-pdf/dist/esm/Page/AnnotationLayer.css';
@@ -25,8 +25,8 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
   const { isMobileView } = useDetectIsMobileView();
   const [pageNumber, setPageNumber] = useState(initialPageNumber);
   
-  const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity: [vx] }) => {
-    const trigger = vx > 0.2 // If you flick hard enough it should trigger the card to fly out
+  const bind:any = useDrag(({ args: [index], active, movement: [mx], direction: [xDir], velocity }) => {
+    const trigger = velocity > 0.1 // If you flick hard enough it should trigger the card to fly out
     if (!active && trigger) {
       if(xDir === 1)  { //left
         if(pageNumber > 1) {

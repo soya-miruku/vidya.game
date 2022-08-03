@@ -3,6 +3,7 @@ import { BigNumber, Contract } from "ethers";
 import { useAccount } from "@/hooks/useAccount";
 import { formatEther } from "@ethersproject/units";
 import { CHAIN_MULTIPASS_SETTINGS, multiPassContract } from "@/contracts/multipass";
+import { getResults } from "@/contracts/helpers";
 
 
 export interface IMultiPassStats {
@@ -76,23 +77,18 @@ export const useMultiPassStats = (): IMultiPassStats => {
     }
   ] || [];
 
-  const results = useCalls(calls, {refresh: 'never'});
+  const responses = useCalls(calls, {refresh: 'never'});
 
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error(result.error);
-      return defaultValues;
-    }
-  });
-  
-  const topLevel = results[0]?.value?.[0] || BigNumber.from(0);
-  const totalSupply = results[1]?.value?.[0] || BigNumber.from(0);
-  const mintCount = results[2]?.value?.[0] || BigNumber.from(0);
-  const burnCount = results[3]?.value?.[0] || BigNumber.from(0);
-  const levelsBought = results[4]?.value?.[0] || BigNumber.from(0);
-  const levelsBurned = results[5]?.value?.[0] || BigNumber.from(0);
-  const totalLevels = results[6]?.value?.[0] || BigNumber.from(0);
-  const pooledEther = results[7]?.value?.[0] || BigNumber.from(0);
+  const results = getResults(responses, defaultValues);
+
+  const topLevel = results[0]?.[0] || BigNumber.from(0);
+  const totalSupply = results[1]?.[0] || BigNumber.from(0);
+  const mintCount = results[2]?.[0] || BigNumber.from(0);
+  const burnCount = results[3]?.[0] || BigNumber.from(0);
+  const levelsBought = results[4]?.[0] || BigNumber.from(0);
+  const levelsBurned = results[5]?.[0] || BigNumber.from(0);
+  const totalLevels = results[6]?.[0] || BigNumber.from(0);
+  const pooledEther = results[7]?.[0] || BigNumber.from(0);
 
   return {
     circulatingSupply: totalSupply?.toNumber() || 0,

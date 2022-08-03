@@ -49,6 +49,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       height: 'auto',
       top: '0px',
       zIndex: '0',
+      right: `${-WIDTH}px`,
       overflow: 'hidden',
       // overflowY: 'auto',
     },
@@ -110,7 +111,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
         navbarRef.current.classList.add('invisible');
         setShowingNavBar(true);
       }
-      else if(currentY <= 100 || isOpen) {
+      else if(currentY <= 100) {
         if(!navbarRef?.current) return;
         navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
         navbarRef.current.classList.remove('invisible');
@@ -132,7 +133,13 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       window.removeEventListener('scroll', handleScroll);
     }
 
-  }, [navbarRef, isBusy])
+  }, [navbarRef])
+
+  useEffect(() => {
+    if(!navbarRef || !navbarRef.current) return;
+    navbarRef.current.style.transform = `translateX(${isOpen ? `${-WIDTH}px` : '0'})`;
+    (navbarRef.current.children[0] as any).style.transform = `translateX(${isOpen ? `${WIDTH}px` : '0'})`;
+  }, [isOpen]);
 
   useEffect(() => {
     // prevent scroll when open
@@ -198,7 +205,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
             style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
             <Link href="/">
               <p className='hover:cursor-pointer'>
-                <Logo enableDarkMode={!showingNavBar && useDarkFonts}/>
+                <Logo enableDarkMode={!showingNavBar && !useDarkFonts}/>
               </p>
             </Link>
             <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
@@ -212,17 +219,17 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                   isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)]' 
                   : isAuthenticating ? 'bg-amber-400 shadow-[0_0_13px_4px_rgba(251,191,36,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(251,191,36,0.4)] animate-pulse' 
                   : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
-                <VText overrideTextColor={!(!showingNavBar && useDarkFonts)} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
+                <VText overrideTextColor={!(!showingNavBar && !useDarkFonts)} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
               </div>}
-                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className={classNames((!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200','shadow-md hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap')}>
+                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className={classNames((!showingNavBar && !useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200','shadow-md hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap')}>
                 </button>}
-                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", (!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", (!showingNavBar && !useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
                 </button>}
               <Menu
                 width={WIDTH}
                 customBurgerIcon={!isBusy 
-                  ?  <span className={classNames(!(!showingNavBar && useDarkFonts) ? 'text-light-200': 'dark:text-light-200 text-dark-200','-ic-menu')}></span>
-                  : <span className={classNames(showSwapScreen ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
+                  ?  <span className={classNames(!(!showingNavBar && !useDarkFonts) ? 'text-light-200': 'dark:text-light-200 text-dark-200','-ic-menu')}></span>
+                  : <span className={classNames(showSwapScreen ? 'text-light-200' : !(!showingNavBar && !useDarkFonts) ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
                 } 
                 isOpen={isOpen}
                 disableOverlayClick={false}
