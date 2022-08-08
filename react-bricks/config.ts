@@ -12,6 +12,11 @@ const config: types.ReactBricksConfig = {
   bricks,
   logo: '/logo.svg',
   previewPath: '/preview',
+  loginUI: {
+   sideImage: '/aimbots/Vidya2.1.png',
+   logo: '/logo.svg',
+   welcomeText: 'Welcome editor',
+  },
   contentClassName: 'bricks-content', // Defined dynamically
   // isDarkColorMode: ...,        // in _app.tsx
   // toggleColorMode: ...,        // to manage Dark Mode
@@ -29,6 +34,20 @@ const config: types.ReactBricksConfig = {
       name: 'label',
       label: 'Label',
       type: types.SideEditPropType.Text,
+    },
+    {
+      name: 'category',
+      label: 'Category',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          { value: '', label: 'None' },
+          { value: 'announcement', label: 'Announcement' },
+          { value: 'devupdate', label: 'Dev Update' },
+          { value: 'event', label: 'Event' },
+        ]
+      }
     }
   ],
   //responsiveBreakpoints: [{ type: types.DeviceType.Phone, width: 480, label: 'Smartphone'}],

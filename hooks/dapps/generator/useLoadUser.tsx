@@ -5,7 +5,8 @@ import { useAccount } from "@/hooks/useAccount";
 import TELLER_ABI from '@/contracts/abis/tellerABI.json';
 import VIDYA_ABI from '@/contracts/abis/vidyaAbi.json';
 import { GeneratorContext, IPoolState } from "@/common/providers/GeneratorProvider";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
+import { getResults } from "@/contracts/helpers";
 
 export interface IGeneratorUser {
   remainingUnlockTime?: number;
@@ -21,15 +22,33 @@ export interface IGeneratorUser {
   accountBalance?: number;
 }
 
+export const useGetUserInfo = (currentPool: IPoolState) => {
+  const { library, chainId, user } = useAccount();
+  const [results, setResults] = useState<any>();
+
+  useEffect(() => {
+    if(!library || !currentPool || !user) return;
+    const contract = new Contract(currentPool.teller, TELLER_ABI, library.getSigner());
+    contract.getUserInfo(user).then(res => {
+      setResults(res);
+    }).catch(err => {
+      console.error(err);
+    })
+  }, [library, currentPool])
+
+  return results;
+}
+
 export const useLoadUser = (currentPool: IPoolState): IGeneratorUser => {
-  const { chainId, user } = useAccount();
+  const { library, chainId, user } = useAccount();
   const defaultValues = { remainingUnlockTime: 0, amountCommitted: 0, claimAmount: 0, deposited: 0, commitmentStatus: false, commitmentIndex: 0, depositAvailable: 0, canWidthdraw: false, canCommit: false, approved: false, accountBalance: 0 };
+
   const calls = chainId === 1 && user && [
-    {
-      contract: new Contract(currentPool.teller, TELLER_ABI),
-      method: "getUserInfo",
-      args: [user]
-    },
+    // {
+    //   contract: new Contract(currentPool.teller, TELLER_ABI),
+    //   method: "getUserInfo",
+    //   args: [user]
+    // },
     {
       contract: new Contract(currentPool?.lptoken ? currentPool.lptoken : currentPool.token, VIDYA_ABI),
       method: "allowance",
@@ -42,34 +61,28 @@ export const useLoadUser = (currentPool: IPoolState): IGeneratorUser => {
     }
   ] || [];
 
-  const results = useCalls(calls, {refresh: 1, isStatic: false})
+  const responses = useCalls(calls, {refresh: 'everyBlock', isStatic: false})
+  const results = getResults(responses, defaultValues);
+  const userInfo = useGetUserInfo(currentPool);
 
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error(result.error);
-      return defaultValues;
-    }
-  });
+  // const info = results[0];
+  const allowance = results[0];
+  const balanceResult = results[1];
 
-  const info = results[0];
-  const allowance = results[1];
-  const balanceResult = results[2];
-
-  const remainingUnlockTime = info?.value?.[0].toNumber() || 0;
-  const amountCommitted = parseFloat(formatEther(info?.value?.[1] || BigNumber.from(0)) || '0');
-  const commitmentIndex = info?.value?.[2].toNumber() || 0;
-  const claimAmount = parseFloat(formatEther(info?.value?.[3] || BigNumber.from(0)) || '0');
-  const deposited = parseFloat(formatEther(info?.value?.[4] || BigNumber.from(0)) || '0');
+  const remainingUnlockTime = userInfo?.[0].toNumber() || 0;
+  const amountCommitted = parseFloat(formatEther(userInfo?.[1] || BigNumber.from(0)) || '0');
+  const commitmentIndex = userInfo?.[2].toNumber() || 0;
+  const claimAmount = parseFloat(formatEther(userInfo?.[3] || BigNumber.from(0)) || '0');
+  const deposited = parseFloat(formatEther(userInfo?.[4] || BigNumber.from(0)) || '0');
   const commitmentStatus = amountCommitted > 0;
-  const approved = allowance?.value?.[0] > 0;
+  const approved = allowance?.[0] > 0;
  
   let depositAvailable = (deposited - amountCommitted)
   depositAvailable = depositAvailable < 0 ? 0 : depositAvailable;
-
   const canWidthdraw = depositAvailable > 0;
   const canCommit = depositAvailable > 0 && !commitmentStatus;
 
-  const accountBalance = parseFloat(formatEther(balanceResult?.value?.[0] || BigNumber.from(0)) || '0');
+  const accountBalance = parseFloat(formatEther(balanceResult?.[0] || BigNumber.from(0)) || '0');
 
   return {
     remainingUnlockTime,

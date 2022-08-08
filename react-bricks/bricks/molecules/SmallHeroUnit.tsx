@@ -1,35 +1,62 @@
 import React from 'react'
-import { types, Repeater, useAdminContext } from 'react-bricks/frontend';
-import { classNames } from '@/common/helpers'
+import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
 import { ISmallHeroProps, SmallHero } from '@/components/organisms/smallHero';
 
 
-const SmallHeroUnit: types.Brick<ISmallHeroProps> = ({ title, desc, imgSrc, backgroundFit }) => {
+interface ISmallHeroUnitProps extends ISmallHeroProps {
+  imgSrc?: any
+}
+
+const SmallHeroUnit: types.Brick<ISmallHeroUnitProps> = ({ roundedSide, title, description, imgSrc, backgroundFit }) => {
   const { isAdmin } = useAdminContext();
   return (
-    <div className='w-full h-full '>
-      <SmallHero title={title} desc={desc} imgSrc={(imgSrc as any)?.src} canEdit={isAdmin} backgroundFit={backgroundFit}></SmallHero>
+    <div className='w-full h-full prose'>
+      <SmallHero roundedSide={roundedSide} imgSrc={(imgSrc as any)?.src} title={title} description={description} canEdit={isAdmin} backgroundFit={backgroundFit}/>
+      <div className='w-full h-12'></div>
     </div>
   )
 }
 
 SmallHeroUnit.schema = {
-  name: blockNames.SmallHeroUnit,
+  name: blockNames.SmallHeroUnit2,
   label: 'Small Hero Unit',
   category: 'TeamOs-Molecules',
 
   getDefaultProps: () => ({
-    title: 'Small Hero Title',
-    desc: 'Small Hero Description',
+    title: '',
+    description: '',
     imgSrc: '/banner0.png',
-    backgroundFit: 'cover'
+    backgroundFit: 'cover',
+    roundedSide: 'none'
   }),
   sideEditProps: [
     {
       name: 'imgSrc',
       label: 'Image Src',
       type: types.SideEditPropType.Image
+    },
+    {
+      name: 'roundedSide',
+      label: 'Rounded Side',
+      type: types.SideEditPropType.Select,
+      selectOptions: {
+        display: types.OptionsDisplay.Select,
+        options: [
+          {
+            label: 'None',
+            value: 'none'
+          },
+          {
+            label: 'Left',
+            value: 'left'
+          },
+          {
+            label: 'Right',
+            value: 'right'
+          }
+        ]
+      }
     },
     {
       name: 'backgroundFit',

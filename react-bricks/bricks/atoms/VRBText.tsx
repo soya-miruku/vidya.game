@@ -1,13 +1,12 @@
 import * as React from 'react'
-import classNames from 'classnames'
-import { Text, types, } from 'react-bricks/frontend'
+import { types } from 'react-bricks/frontend'
 import { blockNames } from '../blockNames'
-import { VText } from '@/components/atoms/VText';
 import VRBRichText from './VRBRichText';
 
 export interface VRBTextProps {
   propName: string,
   size: 'sm' | 'md' | 'lg'
+  textAlign?: AlignSetting
   className?: string
   overrideTextColor?: boolean
   spacing?: 'sm' | 'md' | 'lg'
@@ -19,28 +18,33 @@ const VRBText: types.Brick<VRBTextProps> = ({
   className,
   spacing,
   overrideTextColor,
+  textAlign,
   ...rest
 }) => {
   return (
-    <VRBRichText
-      spacing={spacing}
-      isTitle={false}
-      size={size}
-      className={className}
-      overrideTextColor={overrideTextColor}
-      propName={propName}
-    {...rest}/>
+    <div className='w-full'>
+      <VRBRichText
+        textAlign={textAlign}
+        spacing={spacing}
+        isTitle={false}
+        size={size}
+        className={className}
+        overrideTextColor={overrideTextColor}
+        propName={propName || 'text'}
+      {...rest}/>
+    </div>
   )
 }
 
 VRBText.schema = {
   name: blockNames.Text,
   label: 'Text',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     size: 'sm',
-    overrideTextColor: false
+    overrideTextColor: false,
+
   }),
   sideEditProps: [
     {

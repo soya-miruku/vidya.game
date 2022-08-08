@@ -1,5 +1,4 @@
 import { types } from 'react-bricks/frontend'
-import website from 'react-bricks-ui/website'
 import CallHeroImage from './molecules/CallHeroImage';
 import VRBButton from './atoms/VRBButton';
 import VRBRichText from './atoms/VRBRichText';
@@ -13,7 +12,7 @@ import VRBColumn from './atoms/VRBColumn';
 import VRBTitle from './atoms/VRBTitle';
 import BlogListUnit from './molecules/BlogListUnit';
 import VideoHeroUnit from './molecules/VideoHeroUnit';
-import SmallHeroUnit from './molecules/SmallHeroUnit';
+import BlogHeroUnit from './molecules/BlogHeroUnit';
 import IntroUnit from './molecules/IntroUnit';
 import ProgramHeroUnit from './molecules/ProgramHeroUnit';
 import CoinGeckoPricesSectionUnit from './molecules/CoinGeckoPricesSectionUnit';
@@ -37,16 +36,42 @@ import GeneratorStakingInfoUnit from './molecules/GeneratorStakingInfoUnit';
 import MultiPassStatsUnit from './molecules/MultipassStatsUnit';
 import PDFViewUnit from './molecules/PDFViewUnit';
 import ProgramVideoHeroUnit from './molecules/ProgramVideoHeroUnit';
+import MinimapCarouselUnit from './molecules/MinimapCarouselUnit';
+import SimpleImage from './atoms/SimpleImage';
+import HeroWithTabsUnit from './molecules/HeroWithTabsUnit';
+import VRBProductView from './atoms/VRBProductView';
+import InventoryListUnit from './molecules/InventoryListUnit';
+import TitleWithParagraph from './molecules/BlogComponents/TitleWithParagraph';
+import RichTextZone from './molecules/BlogComponents/RichTextZone';
+import ImageArea from './molecules/BlogComponents/ImageArea';
+import HeaderImageArea from './molecules/BlogComponents/HeaderImageArea';
+import HeaderYTArea from './molecules/BlogComponents/HeaderYTArea';
+import MultiImageArea from './molecules/BlogComponents/MultiImagesArea';
+import SmallHeroUnit from './molecules/SmallHeroUnit';
+import FAQSUnit from './molecules/FAQSUnit';
+import VRBAccordion from './atoms/VRBAccordion';
+import PDFCollapseListUnit from './molecules/PDFCollapseList';
+import VRBPdfItem from './atoms/VRBPdfItem';
+import ProgramHeroNoImageUnit from './molecules/ProgramHeroNoImageUnit';
 
 const bricks: types.Brick<any>[] = [
   // ...website, // React Bricks UI
+  TitleWithParagraph,
+  RichTextZone,
+  ImageArea,
+  HeaderImageArea,
+  HeaderYTArea,
+  MultiImageArea,
+
+  SmallHeroUnit,
   CallHeroImage,
   CallHeroColumn,
-  SmallHeroUnit,
+  BlogHeroUnit,
   BlogListUnit,
   ProgramListUnit,
   GameListUnit,
   TeamListUnit,
+  FAQSUnit,
   FeaturesMedListUnit,
   FeaturesSmallListUnit,
   DetailsListUnit,
@@ -56,10 +81,12 @@ const bricks: types.Brick<any>[] = [
   VideoHeroUnit,
   ProgramHeroUnit,
   CoinGeckoPricesSectionUnit,
+  ProgramHeroNoImageUnit,
   Promo1HeroUnit,
   Promo2HeroUnit,
   VRBFeatureCard,
   VRBTeamCard,
+  VRBAccordion,
   VRBIconCard,
   VRBDetailCard,
   VRBButton,
@@ -76,7 +103,14 @@ const bricks: types.Brick<any>[] = [
   GeneratorStakingInfoUnit,
   MultiPassStatsUnit,
   ProgramVideoHeroUnit,
-  PDFViewUnit
+  PDFViewUnit,
+  MinimapCarouselUnit,
+  SimpleImage,
+  HeroWithTabsUnit,
+  VRBProductView,
+  PDFCollapseListUnit,
+  VRBPdfItem,
+  InventoryListUnit
 ]
 
 export default bricks

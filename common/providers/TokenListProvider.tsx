@@ -16,6 +16,7 @@ export interface TokenInfo {
   sourceUri?: string;
   common?: boolean;
   active?: boolean;
+  additional?: any;
 }
 
 type TokenListState = {

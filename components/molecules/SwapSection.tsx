@@ -37,7 +37,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
   const [selectedFor, setSelectedFor] = useState<number>(-1);
   const [showCoinSearch, setShowCoinSearch] = useState(false);
   const typingTimeoutRef = useRef<any>();
-  const [token0Balance, token1Balance] = useBalances([token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS]);
+  const [token0Balance, token1Balance] = useBalances([token0 || null, token1 || null]);
   const { exists } = useGetPair(token0?.address || EMPTY_ADDRESS, token1?.address || EMPTY_ADDRESS);
   const [ swapTokens, state ] = useSwap(token0?.address, token1?.address, 1);
 
@@ -87,7 +87,7 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     if(isNaN(amount)) return;
     if(amount <= 0) return;
 
-    return isFrom ? await getAmountsOut(chainId, library, amount, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, [token1.address, token0.address], exists);
+    return isFrom ? await getAmountsOut(chainId, library, amount, token0.decimals, [token0.address, token1.address], exists) : await getAmountsOut(chainId, library, amount, token1.decimals, [token1.address, token0.address], exists);
   };
 
   const handleSwitchTokens = () => {
@@ -99,8 +99,8 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
     setToken1Amount(() => token0Amount);
   }
 
-  const handleChangeToken0Amount = async (e) => {
-    if(e.target.value === '') {
+  const handleChangeToken0Amount = async (value) => {
+    if(value === '') {
       setToken0Amount(() => '');
       return;
     }
@@ -109,20 +109,19 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       clearTimeout(typingTimeoutRef.current);
     }
     
-    const amount = toFixedNumber(e.target.value, DECIMALS);
-    setToken0Amount(() => amount);
+    setToken0Amount(() => value);
 
     typingTimeoutRef.current = setTimeout(async () => {
       setIsUpdating(() => true);
-      const amounts = await calculateAmountsOut(true, amount);
+      const amounts = await calculateAmountsOut(true, value);
       setToken1Amount(() => toFixedNumber(amounts, DECIMALS));
       setIsUpdating(() => false);
     }, 500);
 
   }
 
-  const handleChangeToken1Amount = async (e) => {
-    if(e.target.value === '') {
+  const handleChangeToken1Amount = async (value) => {
+    if(value === '') {
       setToken1Amount(() => '');
       return;
     }
@@ -131,12 +130,11 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       clearTimeout(typingTimeoutRef.current);
     }
 
-    const amount = toFixedNumber(e.target.value, DECIMALS);
-    setToken1Amount(() => amount);
+    setToken1Amount(() => value);
 
     typingTimeoutRef.current = setTimeout(async () => {
       setIsUpdating(() => true);
-      const amounts = await calculateAmountsOut(false, amount);
+      const amounts = await calculateAmountsOut(false, value);
       setToken0Amount(() => toFixedNumber(amounts, DECIMALS));
       setIsUpdating(() => false);
     }, 500);
@@ -149,14 +147,14 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
       setToken0(() => token);
       if(token0Amount > 0) {
         setToken0Amount(() => 0);
-        handleChangeToken1Amount({target: {value: token1Amount}});
+        handleChangeToken1Amount(token1Amount);
       }
 
     } else {
       setToken1(() => token);
       if(token1Amount > 0) {
         setToken1Amount(() => 0);
-        handleChangeToken0Amount({target: {value: token0Amount}});
+        handleChangeToken0Amount(token0Amount);
       }
     }
 
@@ -197,9 +195,9 @@ export const SwapSection: React.FC<ISwapSectionProps> = ({defaultToken0="ETH", d
         <div className='flex flex-col sm:p-vxl p-vlrg gap-y-vlrg'>
           <div className='flex justify-between items-center'>
             <h5>Vidya Swap</h5>
-            <button>
+            {/* <button>
               <span className='-ic-settings text-accent-dark-200'></span>
-            </button>
+            </button> */}
           </div>
           <div className='flex flex-col justify-center items-center w-full gap-y-2 text-dark-100'>
             <SwapInput 

@@ -18,5 +18,9 @@ export const pageNames = {
   POST: {
     name: 'post',
     plural: 'posts',
+  },
+  BLOG: {
+    name: 'blog',
+    plural: 'posts',
   }
 }

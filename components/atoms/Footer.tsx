@@ -89,15 +89,15 @@ const Footer = () => {
           </div>
           <div className="flex sm:flex-row flex-col gap-y-vmd sm:justify-between justify-center items-center w-full pt-14 font-bold text-light-200 tracking-cta font-saria body-sm z-10">
             {isMobileView && <div> <SocialLinks/> </div>}
-            <p className="uppercase">Copyright © Team3D 2021</p>
-            <ul className="flex space-x-7 justify-end font-bold text-light-200">
+            <p className="uppercase">Copyright © Team3D 2022</p>
+            {/* <ul className="flex space-x-7 justify-end font-bold text-light-200">
               <li>
                 <a href="/terms"> TERMS OF SERVICE </a>
               </li>
               <li>
                 <a href="/policy"> PRIVACY POLICY </a>
               </li>
-            </ul>
+            </ul> */}
           </div>
         </div>
       </footer>

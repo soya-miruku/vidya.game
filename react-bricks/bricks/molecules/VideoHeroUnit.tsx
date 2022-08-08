@@ -1,7 +1,7 @@
 import React from 'react'
 import { types, useAdminContext } from 'react-bricks/frontend';
 import { blockNames } from '../blockNames'
-import { VideoFileViewer } from '../Shared/VideoFileViewer';
+import { FpsFileUploader } from '../Shared/FpsFileUploader';
 import { IVideoHeroProps, VideoHero } from '@/components/organisms/videoHero';
 import Section, { SectionProps } from '../Layout/Section';
 import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
@@ -11,13 +11,13 @@ export interface IVideoHeroUnitProps extends SectionProps, IVideoHeroProps {
 }
 
 
-const VideoHeroUnit: types.Brick<IVideoHeroUnitProps> = ({ videoDesc, videoUrl, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay, placeholderImage, ...sectionProps }) => {
+const VideoHeroUnit: types.Brick<IVideoHeroUnitProps> = ({ videoDesc, videoUrl, label, videoTitle, centerTxt, showMouseIndicator, showGradientOverlay, placeholderImage, ...sectionProps }) => {
   const {isAdmin, previewMode} = useAdminContext();
   return (
     <Section {...sectionProps} style={{
       height: sectionProps.height ? sectionProps.height : 'auto',
     }} className="h-full">
-      <VideoHero autoplay={!isAdmin} placeholderImage={placeholderImage} videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
+      <VideoHero label={label} autoplay={!isAdmin} placeholderImage={placeholderImage} videoDesc={videoDesc} videoUrl={videoUrl} videoTitle={videoTitle} canEdit={isAdmin && !previewMode} centerTxt={centerTxt} showMouseIndicator={showMouseIndicator} showGradientOverlay={showGradientOverlay}></VideoHero>  
     </Section>
   )
 }
@@ -32,6 +32,7 @@ VideoHeroUnit.schema = {
     videoId: 'dRKZJo5tmqs',
     videoTitle: 'Video Title',
     videoDesc: 'Video Description',
+    label: 'PROGRAM',
     centerTxt: false,
     showMouseIndicator: false,
     fetchTitleFromVideo: true,
@@ -44,13 +45,12 @@ VideoHeroUnit.schema = {
       name: 'videoUrl',
       label: 'Background Video',
       type: types.SideEditPropType.Custom,
-      component: (props) => VideoFileViewer({ ...props}),
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'video/*'}),
     },
     {
-      name: 'videoUrl',
-      label: 'Background Video',
-      type: types.SideEditPropType.Custom,
-      component: (props) => VideoFileViewer({ ...props}),
+      name: 'label',
+      label: 'Label',
+      type: types.SideEditPropType.Text,
     },
     {
       name: 'centerTxt',

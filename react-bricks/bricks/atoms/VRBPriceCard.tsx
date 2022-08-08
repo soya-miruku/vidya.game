@@ -26,7 +26,7 @@ const VRBPriceCard: types.Brick<IVRBPriceCardProps> = ({
 VRBPriceCard.schema = {
   name: blockNames.PriceCard,
   label: 'Price Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     bordered: true,

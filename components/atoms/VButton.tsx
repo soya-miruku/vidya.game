@@ -45,7 +45,7 @@ export const VButton: React.FC<ButtonProps> = ({type, children, style, isLoading
         if(onClick && !disabled) onClick();
       }} 
       {...props}> 
-        <div className={classNames('flex', secondary ? 'border-b-2 border-b-accent-dark-200' : '')}>
+        <div className={classNames('flex justify-center', secondary ? 'border-b-2 border-b-accent-dark-200' : '')}>
           <div className='flex justify-center items-center gap-x-vsm'>
             {children}
             {isLoading && <FontAwesomeIcon className='w-5 h-5 animate-spin text-dark-300' icon={faSpinner}></FontAwesomeIcon>}

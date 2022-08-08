@@ -12,15 +12,15 @@ interface IntroProps extends SectionProps {
 
 const IntroUnit: types.Brick<IntroProps> = ({ ...sectionProps }) => {
   return (
-    <Section {...sectionProps} className="z-0 px-vsm">
+    <Section {...sectionProps} className="z-0">
       <PageViewSize enabled={!sectionProps.bgImage}>
         <div className='flex w-full justify-center items-center'>
-          <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={1} paddingBottom={1} rounded={'none'}></CallHeroColumn>
+          <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-full justify-center items-center' propName='header' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={1} paddingBottom={1} rounded={'none'}></CallHeroColumn>
         </div>
         <div className='flex w-full justify-center items-center'>
-          <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-auto' propName='body' columns={2} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={2} paddingBottom={2} rounded={'none'}></CallHeroColumn>
+          <CallHeroColumn className='m-0 sm:px-vlrg px-vmd w-full' propName='body' columns={2} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={2} paddingBottom={2} rounded={'none'}></CallHeroColumn>
         </div>
-        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd pt-0 w-auto' propName='footer' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={2} paddingBottom={2} rounded={'none'}></CallHeroColumn>
+        <CallHeroColumn className='m-0 sm:px-vlrg px-vmd pt-0 w-full' propName='footer' columns={1} gap='sm' bg={bgColors.none.value} paddingX={0} paddingTop={2} paddingBottom={2} rounded={'none'}></CallHeroColumn>
       </PageViewSize>
     </Section>
   )

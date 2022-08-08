@@ -12,8 +12,8 @@ interface IEmptySectionProps extends SectionProps {
 const EmptySection: types.Brick<IEmptySectionProps> = ({...sectionProps}) => {
   return (
     <Section {...sectionProps}>
-      <PageViewSize enabled={!sectionProps.bgImage}>
-      </PageViewSize>
+      {/* <PageViewSize enabled={!sectionProps.bgImage}>
+      </PageViewSize> */}
     </Section>
   )
 }

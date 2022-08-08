@@ -14,7 +14,7 @@ interface ITeamListUnitProps extends SectionProps {
 const TeamListUnit: types.Brick<ITeamListUnitProps> = ({ ...sectionProps }) => {
   return (
     <Section className='px-4 sm:gap-y-8 gap-y-4 prose flex flex-col justify-start items-start mb-[60px]' {...sectionProps}>
-      <VRBTitle className='ml-4' propName='title' type='h5'></VRBTitle>
+      <VRBTitle textAlign='left' className='ml-4' propName='title' type='h5'></VRBTitle>
       <Repeater propName='members' renderWrapper={(items) => {
         return (
           <div className="flex justify-center items-center gap-4 flex-wrap">

@@ -5,8 +5,8 @@ import { blockNames } from '../blockNames'
 import { VText } from '@/components/atoms/VText'
 import { TitleType, VTitle } from '@/components/atoms/VTitle'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faCircleDollarToSlot, faParagraph, faSquare } from '@fortawesome/pro-regular-svg-icons'
-import { faCircle } from '@fortawesome/free-solid-svg-icons'
+import { faCircleHalfStroke, faIcons, faList, faSquare, faSquare1, faSquare2,faSquare3,faSquare4,faSquare5,faSquare6 } from '@fortawesome/pro-regular-svg-icons'
+import { faCircle, faFaucetDrip } from '@fortawesome/free-solid-svg-icons'
 
 export interface VRBRichTextProps {
   text?: string
@@ -16,10 +16,129 @@ export interface VRBRichTextProps {
   className?: string,
   overrideTextColor?: boolean
   type?: TitleType
+  textAlign?: AlignSetting
   size?: 'sm' | 'md' | 'lg' | 'xl'
   propName: string
   isTitle?: boolean
   spacing?: 'sm' | 'md' | 'lg' 
+}
+
+export const DefinedPlugins = () => {
+  const { bold, italic, unorderedList, link, quote, highlight, code } = plugins
+  return [
+    markPluginConstructor({
+      name: 'drop-shadow',
+      hotKey: 'mod+s+h',
+      render: (props) => <span style={{textShadow: '1px 1px 7px rgba(0,0,0,0.4)'}} className="inline">{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare} />,
+      
+    }),
+    markPluginConstructor({
+      name: 'opacity',
+      hotKey: 'mod+o',
+      render: (props) => <span className='opacity-75'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircleHalfStroke}></FontAwesomeIcon>
+    }),
+    markPluginConstructor({
+      name: 'arcade-classic-font',
+      hotKey: 'mod+s+i',
+      render: (props) => <span style={{fontFamily: 'arcade-classic'}} className="inline">{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faIcons} />,
+    }),
+    markPluginConstructor({
+      name: 'white',
+      hotKey: 'mod+w',
+      render: (props) => <span className='text-light-300'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+    }),
+
+    markPluginConstructor({
+      name: 'teal',
+      hotKey: 'mod+t',
+      render: (props) => <span className='text-aimbotsGreen-100'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-aimbotsGreen-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+    }),
+    markPluginConstructor({
+      name: 'red',
+      hotKey: 'mod+r',
+      render: (props) => <span className='text-aimbotsRed-100'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-aimbotsRed-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+    }),
+    markPluginConstructor({
+      name: 'primary',
+      hotKey: 'mod+alt+p',
+      render: (props) => <span className='text-primary-100'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-primary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+    }),
+    markPluginConstructor({
+      name: 'peach',
+      hotKey: 'mod+r',
+      render: (props) => <span className='text-tertiary-100'>{props.children}</span>,
+      icon: <FontAwesomeIcon className='text-tertiary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
+    }),
+    {
+      ...bold,
+      renderElement: ({children, attributes}) => {
+        return(
+          <b className="font-bold text-gray-900" {...attributes}>
+            {children}
+          </b>
+        )
+      }
+    },
+    blockPluginConstructor({
+      name: 'h1',
+      hotKey: 'mod+shift+1',
+      render: (props: any) => <VTitle type='h1'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare1} />,
+    }),
+    blockPluginConstructor({
+      name: 'h2',
+      hotKey: 'mod+shift+2',
+      render: (props: any) => <VTitle type='h2'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare2} />,
+    }),
+    blockPluginConstructor({
+      name: 'h3',
+      hotKey: 'mod+shift+3',
+      render: (props: any) => <VTitle type='h3'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare3} />,
+    }),
+    blockPluginConstructor({
+      name: 'h4',
+      hotKey: 'mod+shift+4',
+      render: (props: any) => <VTitle type='h4'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare4} />,
+    }),
+    blockPluginConstructor({
+      name: 'h5',
+      hotKey: 'mod+shift+5',
+      render: (props: any) => <VTitle type='h5'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare5} />,
+    }),
+    blockPluginConstructor({
+      name: 'h6',
+      hotKey: 'mod+shift+6',
+      render: (props: any) => <VTitle type='h6'>{props.children}</VTitle>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare6} />,
+    }),
+    blockPluginConstructor({
+      name: 'unordered-list',
+      hotKey: 'mod+shift+u',
+      render: (props: any) => <ul className="list-disc pl-4 border-l-2" style={{
+        borderColor: '#c574e8',
+      }}>
+        <VText size='md'>{props.children}</VText>
+      </ul>,
+      icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faList} />,
+    }),
+    italic, 
+    // unorderedList, 
+    link, 
+    quote, 
+    highlight,
+    code
+  ]
 }
 
 const VRBRichText: types.Brick<VRBRichTextProps> = ({
@@ -33,188 +152,46 @@ const VRBRichText: types.Brick<VRBRichTextProps> = ({
   spacing,
   size,
   isTitle=false,
+  textAlign,
   propName,
   ...rest
 }) => {
-  const { bold, italic, unorderedList, link, quote, heading1, heading2, heading3, heading4, heading5, heading6, highlight, code } = plugins
-  const { isAdmin } = useAdminContext();
+  const aRef = React.useRef<HTMLDivElement>(null);
 
   React.useEffect(() => {
-    const toolbar: any = document.getElementsByClassName('toolbar')[0];
-    if (toolbar) {
-      toolbar.style.width = '1000px';
-    }
-  }, []);
+    if(!aRef.current) return;
+    const child: any = aRef?.current?.children[0];
+    if(!child) return;
+    child.style.width = '100%';
+  }, [aRef.current])
 
-  if(isAdmin){
-    return (
-      <Link  {...rest} >
-        <RichTextExt
-            plugins={[
-              // blockPluginConstructor({
-              //   name: 'paragraph',
-              //   hotKey: 'mod+p',
-              //   render: ({ children, ...rest }) => (<p className='dark:text-light-200 text-dark-200'>{children}</p>),
-              //   icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faParagraph} />
-              // }),
-              markPluginConstructor({
-                name: 'drop-shadow',
-                hotKey: 'mod+s+h',
-                render: (props) => <span style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</span>,
-                icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare} />,
-              }),
-              markPluginConstructor({
-                name: 'white',
-                hotKey: 'mod+w',
-                render: (props) => <strong className='text-light-200'>{props.children}</strong>,
-                icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-              }),
-              markPluginConstructor({
-                name: 'teal',
-                hotKey: 'mod+t',
-                render: (props) => <strong className='text-aimbotsGreen-100'>{props.children}</strong>,
-                icon: <FontAwesomeIcon className='text-aimbotsGreen-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-              }),
-              markPluginConstructor({
-                name: 'red',
-                hotKey: 'mod+r',
-                render: (props) => <strong className='text-aimbotsRed-100'>{props.children}</strong>,
-                icon: <FontAwesomeIcon className='text-aimbotsRed-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-              }),
-              markPluginConstructor({
-                name: 'primary',
-                hotKey: 'mod+alt+p',
-                render: (props) => <strong className='text-primary-100'>{props.children}</strong>,
-                icon: <FontAwesomeIcon className='text-primary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-              }),
-              markPluginConstructor({
-                name: 'peach',
-                hotKey: 'mod+r',
-                render: (props) => <strong className='text-tertiary-100'>{props.children}</strong>,
-                icon: <FontAwesomeIcon className='text-tertiary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-              }),
-              {
-                ...bold,
-                renderElement: ({children, attributes}) => {
-                  return(
-                    <b className="font-bold text-gray-900" {...attributes}>
-                      {children}
-                    </b>
-                  )
-                }
-              },
-              italic, 
-              unorderedList, 
-              link, 
-              quote, 
-              heading1, 
-              heading2, 
-              heading3, 
-              heading4,
-              heading5,
-              heading6,
-              highlight,
-              code
-            ]}
-            propName={propName}
-            renderBlock={(props: any) => (
-              isTitle 
-              ? 
-              <VTitle type={type} overrideTextColor={overrideTextColor} className={className} {...props.attributes}>
-                {props.children}
-              </VTitle> 
-              : <VText spacing={spacing} size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
-            )}
-            placeholder="Type a text..."
-          />
-       </Link>
-    )
-  }
   return (
-    <RichTextExt
-    plugins={[
-      // blockPluginConstructor({
-      //   name: 'paragraph',
-      //   hotKey: 'mod+p',
-      //   render: ({ children, ...rest }) => (<p className='dark:text-light-200 text-dark-200'>{children}</p>),
-      //   icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faParagraph} />
-      // }),
-      markPluginConstructor({
-        name: 'drop-shadow',
-        hotKey: 'mod+s+h',
-        render: (props) => <span style={{textShadow: '1px 1px 9px #000'}} className="inline">{props.children}</span>,
-        icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faSquare} />,
-      }),
-      markPluginConstructor({
-        name: 'white',
-        hotKey: 'mod+w',
-        render: (props) => <strong className='text-light-200'>{props.children}</strong>,
-        icon: <FontAwesomeIcon className='text-light-200 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-      }),
-      markPluginConstructor({
-        name: 'teal',
-        hotKey: 'mod+t',
-        render: (props) => <strong className='text-aimbotsGreen-100'>{props.children}</strong>,
-        icon: <FontAwesomeIcon className='text-aimbotsGreen-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-      }),
-      markPluginConstructor({
-        name: 'red',
-        hotKey: 'mod+r',
-        render: (props) => <strong className='text-aimbotsRed-100'>{props.children}</strong>,
-        icon: <FontAwesomeIcon className='text-aimbotsRed-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-      }),
-      markPluginConstructor({
-        name: 'primary',
-        hotKey: 'mod+alt+p',
-        render: (props) => <strong className='text-primary-100'>{props.children}</strong>,
-        icon: <FontAwesomeIcon className='text-primary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-      }),
-      markPluginConstructor({
-        name: 'peach',
-        hotKey: 'mod+r',
-        render: (props) => <strong className='text-tertiary-100'>{props.children}</strong>,
-        icon: <FontAwesomeIcon className='text-tertiary-100 w-5 h-5' icon={faCircle}></FontAwesomeIcon>
-      }),
-      {
-        ...bold,
-        renderElement: ({children, attributes}) => {
-          return(
-            <b className="font-bold text-gray-900" {...attributes}>
-              {children}
-            </b>
-          )
-        }
-      },
-      italic, 
-      unorderedList, 
-      link, 
-      quote, 
-      heading1, 
-      heading2, 
-      heading3, 
-      heading4,
-      heading5,
-      heading6,
-      highlight,
-      code
-    ]}
-    propName={propName}
-    renderBlock={(props: any) => (
-      isTitle 
-      ? 
-      <VTitle type={type} overrideTextColor={overrideTextColor} className={className} {...props.attributes}>
-        {props.children}
-      </VTitle> 
-      : <VText spacing={spacing} size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
-    )}
-    placeholder="Type a text..."
-  />)
+    <>
+    <div ref={aRef} {...rest} className={classNames('w-full flex flex-col', textAlign === 'center' ? 'items-center justify-center text-center' : textAlign === 'end' ? 'items-end justify-end text-right' : 'items-start justify-start text-left')}>
+      <RichTextExt
+      plugins={DefinedPlugins()}  
+      propName={propName || 'richtext'}
+      renderBlock={(props: any) => {
+        return (
+        isTitle 
+        ? 
+        <VTitle type={type} overrideTextColor={overrideTextColor} className={className} {...props.attributes}>
+          {props.children}
+        </VTitle> 
+        : <VText spacing={spacing} size={size} overrideTextColor={overrideTextColor} fontSize={fontSize} fontColor={fontColor} className={className} {...props.attributes}>{props.children}</VText>
+      )}}
+      placeholder="Type a text..."
+      
+    />
+    </div>
+    </>
+  )
 }
 
 VRBRichText.schema = {
   name: blockNames.RichText,
   label: 'Rich Text',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     fontSize: 16,

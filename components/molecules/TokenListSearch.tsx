@@ -4,16 +4,19 @@ import { FixedSizeList as List } from "react-window";
 import React, { useState, useEffect, useContext } from 'react';
 import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
 import { VImage } from '../atoms/VImage';
+import { classNames } from '@/common/helpers';
+import { VText } from '../atoms/VText';
 
 export interface ITokenListSearchProps {
   forToken?: number;
   tokenList?: TokenInfo[];
   onSelect?: (forToken:number, token: TokenInfo) => void;
   onClose?: () => void;
+  showCommonList?: boolean;
 }
 
-export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onSelect, onClose }) => {
-  const {tokenList, commonTokenList} = useContext(TokenListContext);
+export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onSelect, onClose, tokenList, showCommonList=true }) => {
+  const { commonTokenList} = useContext(TokenListContext);
   const [search, setSearch] = useState('');
   const [ results, setResults ] = useState<any>([]);
   
@@ -47,20 +50,25 @@ export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onS
     onClose && onClose();
   }
   
-  const ITEM_SIZE = 72;  
+  const ITEM_SIZE = results?.length > 5 ? 115 : 93;  
   const Row = ({ index, style }) => {
     const token = results[index];
     return (
-      <div style={{...style, top: style.top}} onClick={() => {onSelectToken(token)}} key={index} className="w-full p-3 hover:shadow-sm flex flex-row justify-start items-center space-x-3 hover:rounded-xl hover:bg-zinc-200/10 hover:cursor-pointer">
-        <div className='pt-2'>
-          <VImage className='rounded-full' src={token?.logoURI ?? ''} width={32} height={32} alt="search-symbol-icon"/>
+      <div style={{...style, top: style.top}} onClick={() => {onSelectToken(token)}} key={index} className="w-full">
+        <div className='w-full p-vmd gap-vsm dark:bg-dark-300 bg-light-300 rounded-xl hover:shadow-sm flex flex-row justify-start items-center hover:rounded-xl dark:hover:bg-zinc-200/10 hover:bg-zinc-200 hover:cursor-pointer'>
+          <div className='pt-2'>
+            <VImage className='rounded-full' src={token?.logoURI ?? ''} width={32} height={32} alt="search-symbol-icon"/>
+          </div>
+          <div className='flex flex-col justify-center items-start pt-vsm w-full'>
+            <h6 className='text-body-sm font-semibold dark:text-light-200 text-dark-200'>{token.symbol}</h6>
+            <p className='dark:text-light-400 text-dark-300 text-body-xs uppercase'>{token.name}</p>
+            {token.source && <p className='text-gray-500 tracking-wider text-body-xs'>source: {token.source}</p>}
+          </div>
+          <div className={classNames('flex justify-center items-center gap-vsm', token?.additional ? 'w-[50%]' : '')}>
+            {token?.additional && <VText size='sm' className='font-bold !text-accent-dark-100'>{token.additional}</VText>}
+            <FontAwesomeIcon onClick={() => window.open(`https://${token.chainId === 3 ? 'ropsten.' : ''}etherscan.io/address/${token.address}`, '_blank')} className='w-4 h-4 dark:text-light-200 text-dark-200 dark:hover:text-accent-dark-200 hover:text-accent-dark-200' size='sm' icon={faInfoCircle}/>
+          </div>
         </div>
-        <div className='flex flex-col justify-center items-start p-0 m-0 w-full'>
-          <h6 className='text-body-sm font-semibold dark:text-light-200 text-dark-200'>{token.symbol}</h6>
-          <p className='dark:text-light-400 text-dark-300 text-body-xs'>{token.name}</p>
-          <p className='text-gray-500 tracking-wider text-body-xs'>source: {token.source}</p>
-        </div>
-        <FontAwesomeIcon onClick={() => window.open(`https://${token.chainId === 3 ? 'ropsten.' : ''}etherscan.io/address/${token.address}`, '_blank')} className='w-4 h-4 dark:text-light-200 text-dark-200 dark:hover:text-accent-dark-200 hover:text-accent-dark-200' size='sm' icon={faInfoCircle}/>
       </div>
     );
   };
@@ -70,7 +78,7 @@ export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onS
       <input onChange={onSearch} value={search} className="rounded-lg w-full p-3 text-lg dark:text-light-200 text-dark-200 dark:bg-dark-300 bg-light-300 focus:outline-none" placeholder="Search by token name or address"></input>
       <div className='h-full w-full'>
         <div className='flex flex-auto p-2 flex-wrap w-full overflow-x-clip gap-x-2'>
-          {commonTokenList.map((token, i) => (
+          {showCommonList && commonTokenList.map((token, i) => (
           <div onClick={() => {onSelectToken(token)}} className='hover:bg-accent-dark-200 border-[1px] hover:cursor-pointer dark:text-light-200 text-dark-200 dark:border-light-300 border-dark-500 rounded-full ml-1 pl-2 pr-2 pb-2 mt-2 flex flex-row justify-center items-center min-w-[73px]' key={`${token.name}_${i}`}>
             <div className='pt-2 w-[20px] relative'>
               <VImage className='rounded-full' src={token?.logoURI} width={100} height={100} layout="responsive" objectFit='cover' alt="common-symbol-icon"/>
@@ -82,7 +90,7 @@ export const TokenListSearch: React.FC<ITokenListSearchProps> = ({ forToken, onS
         </div>
       </div>
       <div className='flex flex-col border-t-[1px] dark:border-zinc-700 border-zinc-300'>
-        <div className="flex flex-col max-h-[460px] w-full">
+        <div className="flex flex-col max-h-[460px] w-full pt-vsm">
           <List itemSize={ITEM_SIZE} className='w-full scrollbar-track-rounded-full scrollbar-thin dark:scrollbar-thumb-light-300 scrollbar-thumb-dark-200' height={550} width='100%' itemCount={results.length}>
             {Row}
           </List>

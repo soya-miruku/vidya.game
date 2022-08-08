@@ -21,7 +21,7 @@ export const MultiPassView = ({token, isMerging, reservedETH}: IMultiPassViewPro
         {showConfirmModal && <ConfirmationModal onClose={() => setShowConfirmModal(false)} onConfirm={async () => {
             setShowConfirmModal(false);
             await burnLevels();
-          }} title="Destroy this multipass and redeem its reserved ETH value" description="Are you sure you want to destroy this multipass? this action is not reversable" confirmText="Lol yeah" cancelText="Nah i&apos;m good"/>}
+          }} title="Destroy this multipass and redeem its reserved ETH value" description="Are you sure you want to destroy this multipass? this action is not reversable" confirmText="Destroy Pass" cancelText="Cancel"/>}
       </AnimatePresenceModal>
       <GradientBorder padding='none' className="flex flex-col sm:w-[280px] w-[250px] shadow-btn-dark h-auto" borderRadius={2} gradientColors={!isMerging ? [mapRankToColors(token?.tokenRank?.rank).bgColor] : [mapRankToColors(token?.tokenRank?.rank).bgColor, '#f37055', '#ef4e7b', '#734a9e', mapRankToColors(token?.tokenRank?.rank).bgColor]}>
           <div className="flex justify-between items-center p-vmd py-vmd w-full">

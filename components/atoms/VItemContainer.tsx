@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@/common/helpers';
 
-export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v1xl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;
@@ -38,11 +38,13 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       case 'vlg':
         return {class: isHeight ? 'h-vlg min-h-vlg max-h-vlg' : 'min-w-xs max-w-vlg'};
       case 'vxl':
-        return {class: isHeight ? 'min-h-vxl max-h-vxl' : 'max-w-vxl'};
+        return {class: isHeight ? 'min-h-vxl h-vxl max-h-vxl' : 'max-w-vxl'};
       case 'vhxl':
         return {class: isHeight ? 'min-h-vhxl' : 'w-vhxl min-w-vhxl max-w-vhxl'};
       case 'v2xl':
         return {class: isHeight ? 'min-h-vxl max-h-v2xl' : 'max-w-v2xl'};
+      case 'v1xl':
+        return {class: isHeight ? 'min-h-vxl max-h-v1xl' : 'max-w-v1xl'};
       case 'full':
         return {class: isHeight ? 'h-full min-h-full' : 'w-full min-w-full'};
       default:
@@ -58,19 +60,22 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
     )
   }
 
-  const borderComponent = ({children}) => (<DivContainer className={
-    classNames('flex flex-col gap-vsm justify-start items-start w-full h-full rounded-sm mt-0',
-    roundedButtom ? '' : 'rounded-b-[0px]',
-    roundedTop ? '' : 'rounded-t-[0px]',
-    roundedLeft ? '' : 'rounded-l-[0px]',
-    roundedRight ? '' : 'rounded-r-[0px]',
-    showBorder ? 'border-[1px] dark:border-dark-300 border-light-300' : '',
-    showBorderBottom ? '' : 'border-b-[0px]',
-    showBorderLeft ? '' : 'border-l-[0px]',
-    showBorderRight ? '' : 'border-r-[0px]',
-    showBorderTop ? '' : 'border-t-[0px]')}>
-    {children}
-  </DivContainer>);
+  const borderComponent = ({children}) => 
+  (
+    <DivContainer className={
+      classNames('flex flex-col gap-vsm justify-start items-start w-full h-full rounded-sm mt-0',
+      roundedButtom ? '' : 'rounded-b-[0px]',
+      roundedTop ? '' : 'rounded-t-[0px]',
+      roundedLeft ? '' : 'rounded-l-[0px]',
+      roundedRight ? '' : 'rounded-r-[0px]',
+      showBorder ? 'border-[1px] dark:border-dark-300 border-light-300' : '',
+      showBorderBottom ? '' : 'border-b-[0px]',
+      showBorderLeft ? '' : 'border-l-[0px]',
+      showBorderRight ? '' : 'border-r-[0px]',
+      showBorderTop ? '' : 'border-t-[0px]')}>
+      {children}
+    </DivContainer>
+  );
 
   return (
     <div className={classNames('prose w-full flex flex-col justify-center items-center rounded-lgr', dropShadow ? 'dark:shadow-dark shadow-light' : '',

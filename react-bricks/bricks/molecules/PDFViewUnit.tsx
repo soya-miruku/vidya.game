@@ -9,6 +9,7 @@ import Section, { SectionProps } from '../Layout/Section';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { VTitle } from '@/components/atoms/VTitle';
 import { useDetectIsMobileView } from '@/hooks/useDetectIsMobileView';
+import { FpsFileUploader } from '../Shared/FpsFileUploader';
 
 interface IPDFViewUnitProps extends SectionProps {
   pdfUrl: string;
@@ -42,8 +43,10 @@ PDFViewUnit.schema = {
     LayoutProp({ colors: DefaultColors }),
     {
       name: 'pdfUrl',
-      label: 'PDF URL',
-      type: types.SideEditPropType.Text,
+      label: 'pdf Src',
+      defaultOpen: true,
+      type: types.SideEditPropType.Custom,
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'application/pdf'}),
     },
     {
       name: 'title',

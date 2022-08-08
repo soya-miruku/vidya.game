@@ -25,11 +25,14 @@ const Customers: types.Brick<CustomersProps> = ({ grayscale = true, ...sectionPr
   return (
     <Section {...sectionProps}>
       <PageViewSize enabled={!sectionProps.bgImage}>
-        <Repeater propName="customers" itemProps={{ grayscale }} renderWrapper={(items) => {
+        <Repeater propName="customers" itemProps={{ grayscale, isAdmin }} renderWrapper={(items) => {
           return (
-            <div className='prose flex flex-col justify-center items-center gap-y-12 h-full'>
+            <div className='prose flex flex-col justify-center items-center gap-y-vlrg h-full w-full'>
               <VTitle type='h5'>As Featured In</VTitle>
-              <VCarousel slidesPerView={isMobileView ? 2 : 5} navigation={true} slides={items.props.children}></VCarousel>
+              <div className='flex gap-x-vxl gap-y-vlrg justify-center items-center flex-wrap'>
+                {items}
+              </div>
+              {/* <VCarousel slidesPerView={isMobileView ? 2 : 5} navigation={true} slides={items.props.children}></VCarousel> */}
             </div>
           )
         }}></Repeater>

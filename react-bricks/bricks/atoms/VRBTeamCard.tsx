@@ -41,7 +41,7 @@ const VRBTeamCard: types.Brick<ITeamCardProps> = ({
 VRBTeamCard.schema = {
   name: blockNames.TeamCard,
   label: 'Team Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     role: 'Legending',

@@ -2,6 +2,10 @@ import { CHAIN_GENERATOR_SETTINGS } from '@/contracts/generator';
 import { useEthers } from '@usedapp/core';
 import React, { createContext, useReducer, useEffect } from 'react';
 
+export type CommitmentOption = {
+  days: number,
+  bonus: number,
+}
 export interface IPoolState {
   name: string;
   token: string;
@@ -10,6 +14,7 @@ export interface IPoolState {
   image: string;
   symbol: string;
   type: string;
+  commitmentOptions: CommitmentOption[]
   commitmentStatus: boolean;
   isClaimingRewards: boolean;
   accountBalance: number;
@@ -267,6 +272,7 @@ export const GeneratorProvider = ({children}: {children: React.ReactNode}) => {
 
   useEffect(() => {
     for(const pool in state.pools) {
+      if(!CHAIN_GENERATOR_SETTINGS[chainId]?.pool) continue;
       updatePool(pool, {
         ...CHAIN_GENERATOR_SETTINGS[chainId].pool[pool],
       })

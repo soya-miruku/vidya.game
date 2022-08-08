@@ -12,7 +12,7 @@ export interface IProgramHeroUnitProps extends SectionProps, IProgramHeroProps {
 
 const ProgramHeroUnit: types.Brick<IProgramHeroUnitProps> = ({ className, pageTitle, pageDescription, image, imageHeight, imageWidth, objectFit, ...sectionProps }) => {
   const { isAdmin } = useAdminContext();
-  const hasBg = (!!sectionProps.bgImage || sectionProps.bg.color !== 'transparent');
+  const hasBg = (!!sectionProps.bgImage || sectionProps.bg?.color !== 'transparent');
   return (
     <Section className={className} {...sectionProps}>
       <ProgramHero overrideColor={ hasBg } image={image} imageHeight={imageHeight} imageWidth={imageWidth} objectFit={objectFit} pageTitle={pageTitle} pageDescription={pageDescription} canEdit={isAdmin}></ProgramHero>

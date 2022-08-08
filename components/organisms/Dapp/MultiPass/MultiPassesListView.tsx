@@ -26,7 +26,7 @@ export const SmallCard = ({token, padding, displayImage, selected}: {token: INFT
           borderColor: mapRankToColors(token?.tokenRank.rank).bgColor,
           color: mapRankToColors(token?.tokenRank.rank).bgColor,
         }}>Lv.{token?.tokenRank?.level}</span></VTitle>
-        <VTitle type="h6">#{token.tokenId}</VTitle>
+        <VTitle overrideTextColor type="h6">#{token.tokenId}</VTitle>
       </div>
       {displayImage && <div className="flex flex-col h-full w-full justify-center items-center">
         <VImage objectFit="contain" src={token?.imgSrc} width={80} height={100}></VImage>
@@ -96,12 +96,12 @@ export const MultiPassesListView = ({tokens, currentlySelectedTokenIndex, onToke
     <div className="w-full h-full flex justify-center items-end px-vsm">
       <div className="flex flex-col gap-vlrg justify-start items-center w-full h-full">
         <div ref={containerRef} className="flex w-full h-full flex-col justify-between gap-vsm overflow-x-scroll scrollbar-thin relative z-100 py-vsm">
-          {availableTokens.length <= 0 && mergeList.length <=0 && <VText size="lg">You do not own any passes</VText>}
+          {availableTokens.length <= 0 && mergeList.length <=0 && <VText overrideTextColor size="lg">You do not own any passes</VText>}
           {(availableTokens.length > 0 || mergeList.length > 0) && <div className="flex w-full justify-center items-start z-0 h-auto">
           <div ref={dropZoneRef} className="w-full h-[300px] border-[1px] border-dashed rounded-tl-2xl flex justify-center items-center p-vmd -z-[1]">
               { mergeList.length <= 0 && 
                 <div className="flex justify-center w-full">
-                  <VText size="lg" className="font-mono">
+                  <VText size="lg" className="font-mono" overrideTextColor>
                     {availableTokens.length > 1 ? 'Drag and drop passes here to begin merging with the selected pass ': 'You need to own at least 1 more Multipass in order to merge with '}<span className="font-bold">(#{selectedToken?.tokenId})</span>
                   </VText>
                 </div>

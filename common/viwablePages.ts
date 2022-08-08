@@ -27,12 +27,6 @@ export const PagesByCategory = {
       active: true
     },
     {
-      displayName: 'DASHBOARD',
-      slug: 'dashboard',
-      type: 'program',
-      active: true
-    },
-    {
       displayName: 'FABRICATOR',
       slug: 'fabricator',
       type: 'program',
@@ -58,12 +52,12 @@ export const PagesByCategory = {
   about: {
     image: '/nav/about.jpg',
     pages:[
-    {
-      displayName: 'ROADMAP',
-      slug: 'roadmap',
-      type: 'about',
-      active: true
-    },
+    // {
+    //   displayName: 'ROADMAP',
+    //   slug: 'roadmap',
+    //   type: 'about',
+    //   active: true
+    // },
     {
       displayName: 'MISSION',
       slug: 'mission',
@@ -71,16 +65,33 @@ export const PagesByCategory = {
       active: true
     },
     {
-      displayName: 'TEAM',
-      slug: 'team',
+      displayName: 'AUDITS',
+      slug: 'audits',
       type: 'about',
       active: true
     },
+    // {
+    //   displayName: 'TEAM',
+    //   slug: 'team',
+    //   type: 'about',
+    //   active: true
+    // },
     {
       displayName: 'FAQS',
-      slug: 'faq',
+      slug: 'faqs',
       type: 'about',
       active: true
     }
-  ]}
+  ]},
+  blog: {
+    image: '/nav/blog.png',
+    pages: [
+      {
+        displayName: 'BLOG',
+        slug: 'posts',
+        type: 'blog',
+        active: true
+      }
+    ]
+  }
 }

@@ -6,19 +6,21 @@ import { blockNames } from '../blockNames'
 
 export interface IVRBIconCardProps {
   icon?:string,
+  image?:string,
   bordered?: boolean
   label?: string
 }
 
 const VRBIconCard: types.Brick<IVRBIconCardProps> = ({
   icon,
+  image,
   bordered = true,
   label,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <IconCard icon={<i className={classNames(icon)}></i>} label={label} bordered={bordered} />
+      <IconCard image={image} icon={<i className={classNames(icon)}></i>} label={label} bordered={bordered} />
     </Link>
   )
 }
@@ -26,14 +28,20 @@ const VRBIconCard: types.Brick<IVRBIconCardProps> = ({
 VRBIconCard.schema = {
   name: blockNames.IconCard,
   label: 'Icon Card',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     bordered: true,
     label: 'LABEL',
-    icon: '-ic-darkmode'
+    icon: '-ic-darkmode',
+    image: '/placeholder/img.png'
   }),
   sideEditProps: [
+    {
+      name: 'image',
+      label: 'Image',
+      type: types.SideEditPropType.Image
+    },
     {
       name: 'icon',
       label: 'Icon',

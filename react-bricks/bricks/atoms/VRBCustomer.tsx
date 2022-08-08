@@ -4,23 +4,27 @@ import {blockNames} from '../blockNames'
 
 export interface CustomerProps {
   grayscale?: boolean
+  link?: string
+  isAdmin?: boolean
 }
 
 const VRBCustomer: types.Brick<CustomerProps> = ({
   grayscale = true,
+  isAdmin,
+  link,
   ...rest
 }) => {
   const { isDarkColorMode } = React.useContext(ReactBricksContext)
   return (
-    <div
-      className="flex px-[30px] justify-center items-center text-gray-300"
+    <a href={!isAdmin && link} target="_blank" rel="noopener noreferrer"
+      className="flex justify-center items-center text-gray-300"
       {...rest}
     >
       <Image
         noLazyLoad={false}
         propName="image"
         alt="customer"
-        imageClassName="w-[165px] h-[40px]"
+        imageClassName="w-[190px] h-full"
         imageStyle={
           grayscale
             ? isDarkColorMode
@@ -29,14 +33,14 @@ const VRBCustomer: types.Brick<CustomerProps> = ({
             : {}
         }
       />
-    </div>
+    </a>
   )
 }
 
 VRBCustomer.schema = {
   name: blockNames.Customer,
   label: 'Customer',
-  category: 'vidya atom',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   playgroundLinkLabel: 'View source code on Github',
   playgroundLinkUrl:
@@ -52,7 +56,15 @@ VRBCustomer.schema = {
       alt: 'React Bricks Icon',
       seoName: 'react-bricks-icon',
     },
+    link: 'https://vidya.game'
   }),
+  sideEditProps: [
+    {
+      label: 'Link',
+      name: 'link',
+      type: types.SideEditPropType.Text
+    }
+  ]
 }
 
 export default VRBCustomer

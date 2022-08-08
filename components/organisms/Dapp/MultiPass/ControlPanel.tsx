@@ -10,7 +10,7 @@ import { IControlPanelProps } from "./types"
 
 export interface IPlusMinusInputFieldProps {
   value: number
-  onChange: (value: number) => void
+  onChange: (value: number | string) => void
   min?: number
   max?: number
   step?: string
@@ -28,7 +28,7 @@ export interface IPlusMinusInputFieldProps {
 export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, onBtnClick, btnText, btnTextColor, onChange, borderColor, disabled, isLoading, step='1', min=0, max=1}: IPlusMinusInputFieldProps) => {
   return (
     <div className="flex flex-col w-full justify-end items-end">
-    <VText className="uppercase !font-bold !w-full" size="md">{label}</VText>
+    <VText className="uppercase !font-bold !w-full" overrideTextColor size="md">{label}</VText>
     <div className="flex w-full justify-end items-end">
       <div className="flex flex-col gap-y-vsm w-full">
         <div className="flex justify-start items-center h-[55px] gap-[5px]">
@@ -36,17 +36,20 @@ export const PlusMinusInputField = ({label, value, onPlusClick, onMinusClick, on
             <button onClick={onPlusClick} className="sm:px-2 px-2 py-0 border-2 rounded-bl-lg rounded-tr-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
-              <VText size='md'>+</VText>
+              <VText overrideTextColor size='md'>+</VText>
             </button>
             <button onClick={onMinusClick} className="sm:px-2 px-2 py-0 border-2 rounded-br-lg rounded-tl-lg hover:!border-accent-dark-100" style={{
               borderColor: borderColor || '#fff',
             }}>
-              <VText size='md'>-</VText>
+              <VText overrideTextColor size='md'>-</VText>
             </button>
           </div>
-          <NumberInput value={value} onChange={onChange} style={{
+          <NumberInput value={value} onChange={(e)=>{
+            const value = e.target.value;
+            onChange && onChange(value);
+          }} style={{
             borderColor: borderColor || '#fff',
-          }} className="focus:outline-none bg-transparent px-vsm mr-2 w-full h-full border-[2px] rounded-tl-lg rounded-br-lg text-body dark:text-light-100 text-dark-100 appearance-none outline-none p-1" min={min} max={max} step={step}></NumberInput>
+          }} className="focus:outline-none bg-transparent px-vsm mr-2 w-full h-full border-[2px] rounded-tl-lg rounded-br-lg text-body text-light-100 appearance-none outline-none p-1" min={min} max={max} step={step}></NumberInput>
           </div>
       </div>
       <VButton disabled={disabled} isLoading={isLoading} onClick={onBtnClick} animate={false} className="w-full rounded-tl-xl rounded-br-xl font-bold text-body-xs justify-center flex hover:!bg-accent-dark-200"  rounded={false} customColor={borderColor} style={{
@@ -85,7 +88,6 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
   }
 
   const handleBuyLevels = async () => {
-    console.log(priceToBuyLevel)
     await buyLevels(priceToBuyLevel.toFixed(12));
   }
 
@@ -148,13 +150,13 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
     confirmText="Destroy"
     cancelText="Cancel"
     />}
-    {nft?.tokenRank && <div className="w-full h-full border-4 flex p-vsm rounded-tr-3xl rounded-bl-3xl" style={{
-      borderColor: mapRankToColors(nft.tokenRank.rank).bgColor,
+    <div className="w-full h-full border-4 flex p-vsm rounded-tr-3xl rounded-bl-3xl" style={{
+      borderColor: mapRankToColors(nft && nft.tokenRank.rank).bgColor,
     }}>
       <div className="flex flex-col justify-between items-start w-full min-h-[150px] h-full gap-vsm">
         <div className="w-full flex flex-col gap-vsm">
-          <VTitle type="h5">Actions</VTitle>
-          <div className="flex flex-col w-full h-auto border-0 p-vsm gap-y-vsm " style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
+          <VTitle type="h5" overrideTextColor>Actions</VTitle>
+          <div className="flex flex-col w-full h-auto border-0 p-vsm gap-y-vsm " style={{ borderColor: mapRankToColors(nft && nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField
               onBtnClick={handleMint}
               btnText="MINT"
@@ -164,8 +166,8 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
               max={maxLimitMint}
               disabled={isMintingInProgress || !priceToMint}
               isLoading={isMintingInProgress || !priceToMint}
-              borderColor={mapRankToColors(nft.tokenRank.rank).bgColor}
-              btnTextColor={mapRankToColors(nft.tokenRank.rank).textColor}
+              borderColor={mapRankToColors(nft && nft.tokenRank.rank).bgColor}
+              btnTextColor={mapRankToColors(nft && nft.tokenRank.rank).textColor}
               onPlusClick={() => setMintAmount(mintAmount > maxLimitMint ? mintAmount : mintAmount + 1)}
               onMinusClick={() => setMintAmount(mintAmount > 1 ? mintAmount - 1 : 1)}
               onChange={(e:any) => {
@@ -175,7 +177,7 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
             {state.status === 'Success' && <VText size="sm" className="!text-aimbotsGreen-100">Successfuly Minted!</VText>}
           </div>
         </div>
-        <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
+        {nft?.tokenRank && <div className="flex flex-col w-full h-auto border-4 rounded-tr-2xl rounded-bl-2xl p-vsm gap-y-vsm" style={{ borderColor: mapRankToColors(nft.tokenRank.rank).bgColor }}>
             <PlusMinusInputField 
               btnText="BUY LEVELS" 
               label={<>Total Price <span className="text-accent-dark-100">{priceToBuyLevel.toFixed(4)} eth</span></>}
@@ -213,9 +215,9 @@ export const ControlPanel = ({nft, reservedETH, canBurnOrBuyLevels, onPassDestro
               }} ></PlusMinusInputField>
             {burnLevelState.errorMessage && <VText size="sm" className="!text-aimbotsRed-100">{burnLevelState.errorCode === -32000 ? 'Cannot estimate gas' : burnLevelState.errorMessage}</VText>}
             {burnLevelState.status === 'Success' && <VText size="sm" className="!text-aimbotsGreen-100">{burnLevelsAmount} levels have been redeemed! {burnLevelsAmount >= nft.tokenRank.level ? 'and this multipass has been destroyed' : ''}</VText>}
-        </div>
+        </div>}
       </div>
-    </div>}
+    </div>
     </>
   )
 }

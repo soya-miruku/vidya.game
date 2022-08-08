@@ -8,7 +8,7 @@ import { push as Menu } from 'react-burger-menu';
 import { classNames, getPageUrlByType } from '../../common/helpers';
 import { PagesByCategory } from '../../common/viwablePages';
 import { useDarkMode } from '../../hooks/useDarkMode';
-import { useDetectDeviceSize, useDetectIsMobileView } from '../../hooks/useDetectIsMobileView';
+import { useDetectIsMobileView } from '../../hooks/useDetectIsMobileView';
 import { Logo } from '../logo';
 import { SwapSection } from '../molecules/SwapSection';
 import { PricesSection } from '../organisms/pricesSection';
@@ -23,7 +23,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
   const [showingNavBar, setShowingNavBar] = useState(false);
   const { isAuthenticated, isAuthenticating, Connect, Disconnect} = useAccount();
   const { isMobileView } = useDetectIsMobileView();
-  const WIDTH = isMobileView ? 250 : 550;
+  const WIDTH = isMobileView ? 250 : 600;
 
   var styles = {
     bmBurgerButton: {
@@ -46,24 +46,27 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       position: 'fixed',
       paddingBottom: '2.5rem',
       width: `${WIDTH}px`,
-      height: '100vh',
+      height: 'auto',
       top: '0px',
       zIndex: '0',
+      right: `${-WIDTH}px`,
       overflow: 'hidden',
+      // overflowY: 'auto',
     },
     bmMenu: {
       zIndex: '1',
       paddingTop: isMobileView ? '0em' : '3em',
       fontSize: '1.15em',
-      height: isMobileView ? '100vh': '100%',
+      height: '100vh',
       overflow: 'hidden',
-      overflowY: isMobileView ? 'auto' : 'hidden',
+      overflowY: isMobileView ? 'auto' : 'auto',
     },
     bmMorphShape: {
       fill: '#373a47'
     },
     bmItemList: {
       color: '#FAFBFF',
+      height: '100%'
     },
     bmItem: {
       display: 'inline-block'
@@ -81,7 +84,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
 
 
   useEffect(() => {
-    if(!(navbarRef && navbarRef.current)) return;
+    if(!(navbarRef && navbarRef?.current)) return;
     let prevY = 0;
     if(isBusy) {
       navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
@@ -91,24 +94,31 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       // navbarRef.current.classList.add('dark:bg-dark-300/70', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
     }
     const handleScroll = () => {
-      if(!navbarRef && !navbarRef.current) return;
+      if(!navbarRef && !navbarRef?.current) return;
       
       const currentY = window.scrollY;
-
-      if (currentY > prevY) {
-        if(!navbarRef.current) return;
+      if(currentY === 0) {
+        if(!navbarRef?.current) return;
+        navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+        navbarRef.current.classList.remove('invisible');
+        setShowingNavBar(false);
+      }
+      else if (currentY > prevY) {
+        if(!navbarRef?.current) return;
         navbarRef.current.classList.remove('translate-y-0');
         navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
         navbarRef.current.classList.add('-translate-y-full');
         navbarRef.current.classList.add('invisible');
         setShowingNavBar(true);
       }
-      else if(currentY <= 100 || isOpen) {
+      else if(currentY <= 100) {
+        if(!navbarRef?.current) return;
         navbarRef.current.classList.remove(...['dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg']);
+        navbarRef.current.classList.remove('invisible');
         setShowingNavBar(false);
       } 
       else {
-        if(!navbarRef.current) return;
+        if(!navbarRef?.current) return;
         navbarRef.current.classList.remove('-translate-y-full');
         navbarRef.current.classList.add('translate-y-0');
         navbarRef.current.classList.remove('invisible');
@@ -123,7 +133,13 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
       window.removeEventListener('scroll', handleScroll);
     }
 
-  }, [navbarRef, isBusy])
+  }, [navbarRef])
+
+  useEffect(() => {
+    if(!navbarRef || !navbarRef.current) return;
+    navbarRef.current.style.transform = `translateX(${isOpen ? `${-WIDTH}px` : '0'})`;
+    (navbarRef.current.children[0] as any).style.transform = `translateX(${isOpen ? `${WIDTH}px` : '0'})`;
+  }, [isOpen]);
 
   useEffect(() => {
     // prevent scroll when open
@@ -138,17 +154,20 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
   }, [isBusy]);
 
   useEffect(() => {
+    const pageWrap = document.getElementById('page-wrap');
+    if(!pageWrap?.style) return;
     if(showSwapScreen) {
       navbarRef.current.style.transform = 'translateY(70vh)';
-      document.getElementById('page-wrap').classList.add('blur-xl');
-      document.getElementById('page-wrap').style.transform = 'translateY(70vh)';
+      pageWrap.classList.add('blur-xl');
+      pageWrap.style.transform = 'translateY(70vh)';
       navbarRef.current.classList.add('dark:bg-dark-300/80', 'bg-accent-dark-700/60', 'backdrop-blur-lg');
       setShowingNavBar(true);
     }
     else{
+      
       navbarRef.current.style.transform = 'translateY(0)';
-      document.getElementById('page-wrap').style.transform = 'translateY(0vh)';
-      document.getElementById('page-wrap').classList.remove('blur-xl');
+      pageWrap.style.transform = 'translateY(0vh)';
+      pageWrap.classList.remove('blur-xl');
     }
   }, [showSwapScreen])
   
@@ -186,7 +205,7 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
             style={{marginLeft: isOpen ? `${-WIDTH}px` : '', transition: 'margin 500ms'}}>
             <Link href="/">
               <p className='hover:cursor-pointer'>
-                <Logo enableDarkMode={!showingNavBar && useDarkFonts}/>
+                <Logo enableDarkMode={!showingNavBar && !useDarkFonts}/>
               </p>
             </Link>
             <div className='flex justify-center items-center sm:gap-x-vmd gap-x-vsm'>
@@ -200,17 +219,17 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                   isAuthenticated ? 'bg-green-400 shadow-[0_0_13px_4px_rgba(74,222,128,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(74,222,128,0.4)]' 
                   : isAuthenticating ? 'bg-amber-400 shadow-[0_0_13px_4px_rgba(251,191,36,0.4)] group-hover:shadow-[0_0_13px_8px_rgba(251,191,36,0.4)] animate-pulse' 
                   : 'bg-aimbotsRed-100 shadow-[0_0_13px_4px_rgba(255,67,101,0.4)] group-hover:shadow-[0_0_13px_12px_rgba(255,67,101,0.4)]', 'rounded-full w-3 h-3 drop-shadow-sm ')}></div>
-                <VText overrideTextColor={!(!showingNavBar && useDarkFonts)} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
+                <VText overrideTextColor={!(!showingNavBar && !useDarkFonts)} size='md' className='uppercase font-mono'>{isAuthenticated ? 'Connected' : isAuthenticating ? 'Connecting...' : 'Connect Wallet'}</VText>
               </div>}
-                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className={classNames((!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200','shadow-md hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap')}>
+                {!showSwapScreen && !isOpen && <button onClick={() => setShowSwapScreen(true)} className={classNames((!showingNavBar && !useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200','shadow-md hover:brightness-75 transition-colors duration-150 rounded-full mt-1 px-2 py-1 -ic-swap')}>
                 </button>}
-                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", (!showingNavBar && useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
+                {!isOpen && <button onClick={toggleMode} className={classNames("shadow-md hover:brightness-75 transition-colors duration-150 mt-1 rounded-full px-2 py-1", (!showingNavBar && !useDarkFonts) ? 'dark:text-light-200 text-dark-200' : 'text-light-200', `${isDarkMode ? '-ic-lightmode' : '-ic-darkmode'}`)}>
                 </button>}
               <Menu
                 width={WIDTH}
                 customBurgerIcon={!isBusy 
-                  ?  <span className={classNames(!(!showingNavBar && useDarkFonts) ? 'text-light-200': 'dark:text-light-200 text-dark-200','-ic-menu')}></span>
-                  : <span className={classNames(showSwapScreen ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
+                  ?  <span className={classNames(!(!showingNavBar && !useDarkFonts) ? 'text-light-200': 'dark:text-light-200 text-dark-200','-ic-menu')}></span>
+                  : <span className={classNames(showSwapScreen ? 'text-light-200' : !(!showingNavBar && !useDarkFonts) ? 'text-light-200' : 'dark:text-light-200 text-dark-200', '-ic-close')}></span> 
                 } 
                 isOpen={isOpen}
                 disableOverlayClick={false}
@@ -234,11 +253,11 @@ const Header: React.FC<{className?: string, isOpen?:boolean, useDarkFonts?:boole
                 outerContainerId="outer-container"
                 // noTransition
                 >
-                <div className='w-full h-full overflow-y-auto'>
-                  <div className='sm:px-10 px-3 sm:py-4 py-0 flex w-full flex-wrap justify-start gap-x-5 dark:text-white text-dark-100 gap-y-5'>
+                <div className='w-full h-auto'>
+                  <div className='sm:px-10 px-vsm sm:py-4 py-0 flex w-full flex-wrap justify-center gap-vmd dark:text-white text-dark-100'>
                     {PagesByCategory && Object.keys(PagesByCategory).map((category, index) => {
                       return( 
-                        <div key={`cat-${category}-${index}`} className='w-[225px] px-4 flex flex-col justify-start items-start'>
+                        <div key={`cat-${category}-${index}`} className='w-[220px] px-4 flex flex-col justify-start items-start'>
                           <h1 className='font-bold font-saria text-standfirst py-3 px-1 uppercase dark:text-white/90 text-dark-400/90'>{category}</h1>
                           <div className='relative dark:shadow-dark hover:brightness-150 shadow-light rounded-xl w-[190px] h-[180px] mb-4'>
                           <Image loading="lazy" className='animate-brightGlow ' src={PagesByCategory[category].image} objectFit='cover' width={190} height={180} style={{

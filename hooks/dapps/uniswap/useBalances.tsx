@@ -1,35 +1,60 @@
+import { TokenInfo } from "@/common/providers/TokenListProvider";
 import { EMPTY_ADDRESS, ETH_ADDRESS } from "@/contracts/addresses";
+import { getResults } from "@/contracts/helpers";
 import { useAccount } from "@/hooks/useAccount";
-import { formatEther } from "@ethersproject/units";
-import { ERC20Interface, MultiCallABI, useCalls, useMulticallAddress } from "@usedapp/core";
+import { formatUnits } from "@ethersproject/units";
+import { ERC20Interface, MultiCallABI, useCall, useCalls, useMulticallAddress } from "@usedapp/core";
 import { BigNumber, Contract } from "ethers";
 
-export const useBalances = (tokenAddresses: string[]) => {
+export const useBalance = (address: string, decimals: number) => {
+  const { user } = useAccount();
+  const response = useCall(address && {
+    contract: new Contract(address, ERC20Interface),
+    method: 'balanceOf',
+    args: [user]
+  }, {refresh: 'everyBlock'});
+
+  if(!response || response.error) {
+    return {
+      balance: 0,
+      error: response?.error
+    }
+  }
+
+  const balanceResult = response.value?.[0] || BigNumber.from(0);
+  const balance = parseFloat(formatUnits(balanceResult, decimals) || '0');
+
+  return {
+    balance,
+    error: response?.error
+  }
+
+}
+
+export const useBalances = (tokenAddresses: TokenInfo[]) => {
   const { user } = useAccount();
   const multicallAddress = useMulticallAddress();
 
-  const calls = tokenAddresses?.map(address => {
-    return user && multicallAddress && address && address !== EMPTY_ADDRESS && (address === ETH_ADDRESS ?
+  const calls = tokenAddresses?.map(token => {
+    return user && multicallAddress && token && token.address !== EMPTY_ADDRESS && (token.address === ETH_ADDRESS ?
     {
       contract: new Contract(multicallAddress, MultiCallABI),
       method: "getEthBalance",
       args: [user]
     }:
     {
-      contract: new Contract(address, ERC20Interface),
+      contract: new Contract(token.address, ERC20Interface),
       method: "balanceOf",
       args: [user]
     }) || undefined;
   }) ?? []
 
-  const results = useCalls(calls, {refresh: 'everyBlock', isStatic: false}) ?? tokenAddresses.map(() => BigNumber.from(0));
-
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error(result.error);
-    }
+  const responses = useCalls(calls, {refresh: 'everyBlock', isStatic: false});
+  const results = getResults(responses, 0);
+  const balances = results.map((result, index) => {
+    if(!result || !result?.[0]) return 0;
+    const b = result?.[0]?.toHexString();
+    return parseFloat(formatUnits(b, tokenAddresses[index].decimals) || '0');
   });
-  
-  const balances = results.map((result) => parseFloat(result?.value?.[0]?._hex?.length <=4 ? result?.value?.[0].toNumber() : formatEther(result?.value?.[0] || BigNumber.from(0)) || '0'));
   return balances;
 }

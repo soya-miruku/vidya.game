@@ -1,5 +1,6 @@
 import { pageNames } from '@/common/pageNames'
 import { types } from 'react-bricks/frontend'
+import { blockNames } from './bricks/blockNames'
 
 
 export const pageTypes: types.IPageType[] = [
@@ -36,7 +37,7 @@ export const pageTypes: types.IPageType[] = [
     pluralName: pageNames.POST.plural,
     defaultLocked: true,
     defaultStatus: types.PageStatus.Published,
-    getDefaultContent: () => [],
+    getDefaultContent: () => [blockNames.SmallHeroUnit],
   }
 ]
 

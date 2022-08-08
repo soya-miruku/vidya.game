@@ -8,7 +8,7 @@ import VRBText from './VRBText'
 
 export interface VRBLabelProps {
   propName: string,
-  label: string,
+  text: string,
   secondary: boolean,
   className?: string,
   hasBg?: boolean,
@@ -17,17 +17,15 @@ export interface VRBLabelProps {
 const VRBLabel: types.Brick<VRBLabelProps> = ({
   secondary,
   propName,
-  label,
+  text,
   className,
   hasBg,
   ...rest
 }) => {
   return (
     <Link {...rest}>
-      <VLabel padding className={className} secondary={secondary} overrideColors={hasBg}>
-        <VRBText propName={blockNames.Label} size="md" overrideTextColor={hasBg}>
-          {label}
-        </VRBText>
+      <VLabel padding={!secondary} className={className} secondary={secondary} overrideColors={hasBg}>
+        {text}
       </VLabel>
     </Link>
   )
@@ -36,10 +34,11 @@ const VRBLabel: types.Brick<VRBLabelProps> = ({
 VRBLabel.schema = {
   name: blockNames.Label,
   label: 'Label',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     secondary: false,
+    label: 'LABEL',
   }),
   sideEditProps: [
     {
@@ -47,6 +46,11 @@ VRBLabel.schema = {
       label: 'Is Secondary?',
       defaultOpen: true,
       type: types.SideEditPropType.Boolean
+    },
+    {
+      name: 'text',
+      label: 'Text',
+      type: types.SideEditPropType.Text
     }
   ],
 }

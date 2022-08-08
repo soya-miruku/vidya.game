@@ -9,6 +9,7 @@ export interface ImageProps {
   propName: string
   imageHeight?: number | string
   imageClassName?: string
+  imageStyle?: React.CSSProperties
   containerClassName?: string
   renderWrapper?:any
   padding?: 'normal' | 'small'
@@ -22,6 +23,7 @@ const VRBImage: types.Brick<ImageProps> = ({
   padding = 'normal',
   className,
   imageClassName,
+  imageStyle,
   propName,
   renderWrapper,
   ...rest
@@ -35,6 +37,10 @@ const VRBImage: types.Brick<ImageProps> = ({
         alt="image"
         renderWrapper={renderWrapper}
         imageClassName={classNames(imageClassName ? imageClassName : "h-full mb-5 ml-2")}
+        imageStyle={imageStyle ? imageStyle : {
+          width: `${imageWidth}`,
+          height: `${imageHeight}`,
+        }}
       >
       </Image>
     </Link>
@@ -44,7 +50,7 @@ const VRBImage: types.Brick<ImageProps> = ({
 VRBImage.schema = {
   name: blockNames.Image,
   label: 'Image',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     imageWidth: 250,

@@ -19,7 +19,7 @@ export const generateUniqueId = () => {
 }
 
 export const getPageUrlByType = (type, slug) => {
-  if(type === pageNames.PAGE.name || type === pageNames.ABOUT.name) {
+  if(type === pageNames.PAGE.name || type === pageNames.ABOUT.name || type === pageNames.BLOG.name) {
     return `/${slug}`;
   }
   else if(!type) return '/';
@@ -32,6 +32,7 @@ export const equalsFloat = (a: number|string, b: number|string) => {
 }
 
 export const toFixedNumber = (digits: number | string, decimals: number) => {
+  if(digits === '0.') return 0.0;
   const number = typeof(digits) === 'string' ? parseFloat(digits || '0') : isNaN(digits) ? 0 : digits;
   return parseFloat((number).toFixed(decimals));
 }

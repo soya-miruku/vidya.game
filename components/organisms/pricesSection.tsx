@@ -3,7 +3,7 @@ import { useDetectDeviceSize } from 'hooks/useDetectIsMobileView';
 import React, { useState } from 'react';
 import { VButton } from '../atoms/VButton';
 import { VImage } from '../atoms/VImage';
-import { VTabs } from '../atoms/VTabs';
+import { VSimpleTabs } from '../atoms/VSimpleTabs';
 import { VText } from '../atoms/VText';
 import { PriceCard } from '../molecules/PriceCard';
 import { PriceCardWithCustomFooter } from '../molecules/PriceCardWithCustomFooter';
@@ -45,7 +45,7 @@ export const PricesSection: React.FC<IPricesSectionProps> = ({tokenId = 'vidya',
         <PriceCardWithCustomFooter length={'md'} height={'xs'} label='TOTAL SUPPLY' price={formatPrice(data?.totalSupply)} footer={`${formatPrice(data?.circulatingSupply)} circulating`}/>
       </div>
       <div className='pt-0 p-vlrg flex justify-between items-center w-full h-full'>
-        <VTabs items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val) => setCurrencySelected(val)}/>
+        <VSimpleTabs defaultActiveIndex={0} items={[{label: 'USD', value: 'usd'},{label: 'ETH', value: 'eth'}]} onChange={(val, index) => setCurrencySelected(val)}/>
         <div className='flex space-x-4 space-x-reverse items-center hover:cursor-pointer' onClick={() => window.open('https://www.coingecko.com/en/coins/vidya', '_blank')}>
           <VText className='px-2' size="sm">Prices provided by <strong>Coingecko</strong></VText>
           <VImage usePlaceholder={false} width={25} height={25} src='https://static.coingecko.com/s/thumbnail-007177f3eca19695592f0b8b0eabbdae282b54154e1be912285c9034ea6cbaf2.png'/>

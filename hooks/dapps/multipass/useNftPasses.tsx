@@ -1,4 +1,5 @@
 import { ITokenRank } from "@/components/organisms/Dapp/MultiPass/types";
+import { getResults } from "@/contracts/helpers";
 import { multiPassContract } from "@/contracts/multipass";
 import { useAccount } from "@/hooks/useAccount"
 import { formatEther } from "@ethersproject/units";
@@ -8,7 +9,7 @@ import { BigNumber } from "ethers";
 export const useGetMultipleTokenIds = (userBalance: number) => {
   const { user, chainId } = useAccount();
   const contract = multiPassContract(chainId);
-  const tokenIndexes = Array.from(Array(userBalance).keys());
+  const tokenIndexes = Array.from(Array(parseInt(userBalance.toString())).keys());
 
   const calls = user && contract && userBalance && tokenIndexes.map(tokenIndex => {
     return {
@@ -19,44 +20,28 @@ export const useGetMultipleTokenIds = (userBalance: number) => {
   }) || [];
 
 
-  const results = useCalls(calls, {refresh: 'everyBlock', isStatic: false}) ?? tokenIndexes.map(() => { return { value: null, error: null }; });
+  const responses = useCalls(calls, {refresh: 1, isStatic: false});
+  const results = getResults(responses, 0);
 
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error('useGetMultipleTokenIds', result.error);
-      const empty = tokenIndexes.map(() => 0);
-      return { tokenIds: empty, error: result.error };
-    }
-  });
-
-  const tokenIds = results.map((result) => result?.value?.[0]?.toNumber() || 0);
+  const tokenIds = results.map((result) => result?.[0]?.toNumber() || 0);
   return { tokenIds, error: null };
 }
-
 
 export const useGetMultipleTokenURIs = (tokenIds: number[]) => {
   const { user, chainId } = useAccount();
   const contract = multiPassContract(chainId);
 
   const calls = user && contract && tokenIds.map(tokenId => {
-    return {
+    return tokenId && {
       contract,
       method: 'tokenURI',
       args: [tokenId]
     };
   }) || [];
 
-  const results = useCalls(calls, {refresh: 'everyBlock'}) ?? tokenIds.map(() => { return { value: null, error: null }; });
-
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error('useGetMultipleTokenURIs', result.error);
-      const empty = tokenIds.map(() => null);
-      return { tokenURIs: empty, error: result.error };
-    }
-  });
-
-  const tokenURIs = results.map((result) => result?.value?.[0] || null);
+  const response = useCalls(calls, {refresh: 1});
+  const results = getResults(response, null);
+  const tokenURIs = results.map((result) => result?.[0] || null);
   return { tokenURIs, error: null };
 }
 
@@ -65,27 +50,21 @@ export const useGetMultipleTokenRanks = (tokenIds: number[]): {tokenRanks: IToke
   const contract = multiPassContract(chainId);
 
   const calls = user && contract && tokenIds.map(tokenId => {
-    return {
+    return tokenId && {
       contract,
       method: 'rank',
       args: [tokenId]
     };
   }) || [];
 
-  const results = useCalls(calls, {refresh: 'everyBlock'}) ?? tokenIds.map(() => { return { value: null, error: null }; });
+  const responses = useCalls(calls, {refresh: 1});
 
-  results.forEach((result, index) => {
-    if (result && result.error) {
-      console.error('useGetMultipleTokenRanks', result.error);
-      const empty = tokenIds.map(() => null);
-      return { tokenRanks: empty, error: result.error };
-    }
-  });
-
+  const results = getResults(responses, 0);
+ 
   const tokenRanks = results.map((result) => {
     return {
-      rank: typeof(result?.value?.[0]) === 'number' ? result?.value?.[0] : result?.value?.[0]?.toNumber() || 0,
-      level: result?.value?.[1]?.toNumber() || 0
+      rank: typeof(result?.[0]) === 'number' ? result?.[0] : result?.[0]?.toNumber() || 0,
+      level: result?.[1]?.toNumber() || 0
     }
   });
   return { tokenRanks, error: null };

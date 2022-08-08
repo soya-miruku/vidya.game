@@ -75,7 +75,7 @@ const VRBButton: types.Brick<IVRBButtonProps> = ({
 VRBButton.schema = {
   name: blockNames.Button,
   label: 'Button',
-  category: 'vidya atoms',
+  category: 'vidya elements',
   hideFromAddMenu: true,
   getDefaultProps: () => ({
     children: 'Something',

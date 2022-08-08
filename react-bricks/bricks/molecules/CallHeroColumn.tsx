@@ -83,7 +83,7 @@ CallHeroColumn.schema = {
     ],
     badgeLabels: [
       {
-        label: 'programs',
+        text: 'programs',
       }
     ],
     background: false,

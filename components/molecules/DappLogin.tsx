@@ -8,8 +8,8 @@ export const DappLogin = () => {
 
   return (
     <div className="flex flex-col justify-center items-center text-center w-full h-full gap-y-vsm">
-      <VTitle type='h4'>Please connect to your wallet</VTitle>
-      <VText size="sm">Your wallet needs to be connected in order to use this feature</VText>
+      <VTitle overrideTextColor type='h4'>Please connect to your wallet</VTitle>
+      <VText overrideTextColor size="sm">Your wallet needs to be connected in order to use this feature</VText>
       <VButton onClick={Connect} className='flex justify-center' special>Connect Wallet</VButton>
     </div>
   )

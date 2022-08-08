@@ -40,8 +40,8 @@ export const YoutubeVideoHero: React.FC<IYoutubeVideoHeroProps> = ({ hideTitleWh
     <div className={classNames('sm:min-h-[800px] min-h-[700px] bg-black h-full flex justify-start items-end prose', canEdit ? 'w-[95%]' : 'w-screen')}>
       {hideTitle && hideTitleWhenPlaying ? <></> :  <div className='absolute w-[90%] sm:mb-[150px] mb-[50px] sm:px-14 px-2'>
         <div className='flex flex-col sm:space-y-4 space-y-0'>
-          {(canEdit && !fetchTitleFromVideo) || typeof(videoTitle) !== 'string' ? <VRBTitle overrideTextColor={true} type='h3' propName='videoTitle' ></VRBTitle> : <VTitle overrideTextColor={true} type='h3'>{fetchTitleFromVideo ? title : videoTitle}</VTitle>}
-          {(canEdit && !fetchTitleFromVideo) || typeof(videoDesc !== 'string') ? <VRBText overrideTextColor={true} size='lg' propName='videoDesc'></VRBText> :<VText overrideTextColor={true} size='lg'>{videoDesc}</VText>}
+          {(canEdit && !fetchTitleFromVideo) || typeof(videoTitle) !== 'string' ? <VRBTitle textAlign='left' overrideTextColor={true} type='h3' propName='videoTitle' ></VRBTitle> : <VTitle overrideTextColor={true} type='h3'>{fetchTitleFromVideo ? title : videoTitle}</VTitle>}
+          {(canEdit && !fetchTitleFromVideo) || typeof(videoDesc !== 'string') ? <VRBText textAlign='left' overrideTextColor={true} size='lg' propName='videoDesc'></VRBText> :<VText overrideTextColor={true} size='lg'>{videoDesc}</VText>}
         </div>
       </div>}
       <YouTube className={classNames('w-full sm:h-[800px] h-[700px]')} loading="lazy" videoId={videoId} opts={videoConfig} 

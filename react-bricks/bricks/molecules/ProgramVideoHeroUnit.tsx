@@ -6,7 +6,7 @@ import { DefaultLayoutProps, LayoutProp } from '../Shared/LayoutProps';
 import Section, { SectionProps } from '../Layout/Section';
 import { PageViewSize } from '@/components/atoms/PageViewSize';
 import { IVideoHeroProps, VideoHero } from '@/components/organisms/videoHero';
-import { VideoFileViewer } from '../Shared/VideoFileViewer';
+import { FpsFileUploader } from '../Shared/FpsFileUploader';
 
 interface IProgramVideoHeroUnitProps extends SectionProps, IVideoHeroProps {
 }
@@ -42,7 +42,7 @@ ProgramVideoHeroUnit.schema = {
       name: 'videoUrl',
       label: 'Background Video',
       type: types.SideEditPropType.Custom,
-      component: (props) => VideoFileViewer({ ...props}),
+      component: (props) => FpsFileUploader({ ...props, acceptOnly: 'video/*'}),
     },
     {
       name: 'placeholderImage',

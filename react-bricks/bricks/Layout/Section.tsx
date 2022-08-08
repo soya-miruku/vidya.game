@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { ParallaxBanner } from 'react-scroll-parallax';
-
+import styled from 'styled-components';
 import classNames from 'classnames'
 import { bgColors } from '../Shared/colors'
 import { BlurAmount, Round } from '../Shared/additional'
@@ -14,6 +14,18 @@ export interface IImageSource {
   alt?: string
   seoName?: string
 }
+
+const InnerDiv = styled.div`
+  ::before {
+    content: '';
+    position: absolute;
+    background-color: ${(props: SectionProps) => props.tiltDegree && props.bg.color || 'transparent'};
+    width: 200%;
+    height: ${(props: any) => props.isMobileView ? '94%' : '70%'};
+    z-index: -1;
+    transform: rotate(${(props: SectionProps) => props.tiltDegree && props.tiltDegree}deg);
+  }
+`
 
 export type ParallaxMoveTo = 'top' | 'bottom' | 'left' | 'right';
 export type BGSize = 'cover' | 'contain' | 'auto' | '50%' | '45%' | '40%' | '35%' | '30%' | '25%' | '20%' | '15%' | '10%' | '5%';
@@ -31,7 +43,8 @@ export interface SectionProps {
   parallaxMoveTo?: ParallaxMoveTo
   parallaxSpeed?: number
   blur?: BlurAmount,
-  style?: React.CSSProperties
+  style?: React.CSSProperties,
+  tiltDegree?: number,
 }
 
 const Section: React.FC<SectionProps> = ({
@@ -49,7 +62,8 @@ const Section: React.FC<SectionProps> = ({
   parallaxSpeed=0.5,
   parallaxMoveTo,
   blur,
-  style
+  style,
+  tiltDegree
 }) => {
   const { isMobileView } = useDetectIsMobileView();
   const { isAdmin } = useAdminContext();
@@ -70,11 +84,11 @@ const Section: React.FC<SectionProps> = ({
   const isY = parallaxMoveTo === 'top' || parallaxMoveTo === 'bottom';
   const isX = parallaxMoveTo === 'left' || parallaxMoveTo === 'right';
   if(isAdmin) { //there is a bug currently with rb, that's why i am doing this...
-    return (<div ref={targetRef} style={{
+    return (<InnerDiv bg={bg} tiltDegree={tiltDegree} ref={targetRef} style={{
       ...style,
       zIndex:0,
       minHeight: height ? height : 'auto',
-      backgroundColor: bgColor,
+      backgroundColor: tiltDegree <= 0 && bgColor,
       paddingLeft: `${paddingX}px`,
       paddingRight: `${paddingX}px`,
       paddingTop: `${paddingTop}px`,
@@ -82,7 +96,8 @@ const Section: React.FC<SectionProps> = ({
       backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
       backgroundImage: `url(${bgImage?.src})`,
       backgroundPosition: 'center',
-      backgroundSize: 'cover',
+      backgroundSize: bgSize,
+      backgroundRepeat: 'no-repeat',
 
     }} className={classNames(
         'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
@@ -90,13 +105,13 @@ const Section: React.FC<SectionProps> = ({
         rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
       )}>
         {children}
-      </div>)
+      </InnerDiv>)
   }
   const getHeight = height ? (height === '100vh' && isMobileView) ? '99%'  : height : 'auto';
   return (
     <div style={{
       width: (bgColor !== 'transparent' && rounded !== 'none') ? '95%' : '100%',
-      backgroundColor: bgColor, 
+      backgroundColor: tiltDegree <= -360 && bgColor, 
       minHeight: getHeight,
       height: getHeight,
     }}
@@ -131,19 +146,26 @@ const Section: React.FC<SectionProps> = ({
         ...style,
         zIndex:0,
         width: '100%',
-        // height: getHeight,
+        height: getHeight,
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center',
         // paddingLeft: `${paddingX}px`,
         // paddingRight: `${paddingX}px`,
         // paddingTop: `${paddingTop}px`,
         // paddingBottom: `${paddingBottom}px`,
         backdropFilter:`blur(${(percentage+1) * (initialAmount * 1.5)}px)`,
       }}>
-          <div ref={ref} 
+        <InnerDiv ref={ref} 
+          isMobileView={isMobileView}
+          tiltDegree={tiltDegree}
+          bg={bg}
           style={{
             paddingLeft: `${paddingX}px`,
             paddingRight: `${paddingX}px`,
             paddingTop: `${paddingTop}px`,
-            paddingBottom: `${paddingBottom}px`,
+            paddingBottom: `${paddingBottom}px`,  
           }}
           className={
             classNames(
@@ -154,7 +176,7 @@ const Section: React.FC<SectionProps> = ({
             )
           }>
             {children}
-          </div>
+          </InnerDiv>
         </div>
       </ParallaxBanner>
     </div>

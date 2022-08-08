@@ -153,7 +153,7 @@ module.exports = {
       keyframes: {
         brightGlow: {
           '0%': {
-            filter: 'brightness(1.1)',
+            filter: 'brightness(1.3)',
           },
           '50%' : {
             filter: 'brightness(1.0)',
@@ -161,6 +161,16 @@ module.exports = {
           '100%': {
             filter: 'brightness(1.7)',
           },
+        },
+        brightBlurGlow: {
+          '0%': {
+            filter: 'brightness(1.1) invert(0)',
+            transform: 'scale(1)',
+          },
+          '100%': {
+            filter: 'brightness(1.7) invert(0.05)',
+            transform: 'scale(1.05)',
+          }
         },
         brightGlower: {
           '0%': {
@@ -188,6 +198,7 @@ module.exports = {
       },
       animation: {
         scroll: 'scroll 1.5s infinite',
+        brightGlowSlow: 'brightBlurGlow 2.5s ease-in-out infinite alternate',
         brightGlow: 'brightGlow 2s ease-in-out infinite alternate',
         brightGlower: 'brightGlower 1s ease-in-out infinite alternate',
         'spin-fast': 'spin 0.7s linear infinite',
@@ -195,11 +206,13 @@ module.exports = {
       },
       width: {
         ...allowableSizes,
-        'page': '1140px'
+        'page': '1140px',
+        'blog': '940px'
       },
       maxWidth: {
         ...allowableSizes,
         'page': '1240px',
+        'blog': '940px',
         'page-header': '1280px',
         'page-modal': '1840px'
       },
