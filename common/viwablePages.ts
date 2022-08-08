@@ -31,6 +31,12 @@ export const PagesByCategory = {
       slug: 'fabricator',
       type: 'program',
       active: true
+    },
+    {
+      displayName: 'DASHBOARD',
+      slug: 'dashboard',
+      type: 'program',
+      active: true
     }
   ]},
   games: {

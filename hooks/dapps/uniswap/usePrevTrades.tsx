@@ -2,8 +2,8 @@ import { useEffect, useState } from "react"
 import { Contract } from "@ethersproject/contracts"
 import { TransactionStatus, useCall, useContractFunction } from "@usedapp/core"
 import UNISWAP_ROUTER_ABI from "@/contracts/abis/uniswapRouter.json";
-import vidyaabi from '../../../contracts/abis/vidyaAbi.json'
-import uniPoolAbi from '../../../contracts/abis/uniswapPair.json'
+import vidyaabi from '@/contracts/abis/vidyaAbi.json'
+import uniPoolAbi from '@/contracts/abis/uniswapPair.json'
 import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
 import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
 import { useAccount } from "@/hooks/useAccount";
@@ -11,6 +11,12 @@ import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
 import { formatEther, parseEther, parseUnits } from "@ethersproject/units";
 import { getProvidersFromConfig } from "@usedapp/core/dist/esm/src/providers/network/readonlyNetworks/provider";
 import { toWei } from "web3-utils";
+import { classNames } from "@/common/helpers"
+import { VTable } from "@/components/atoms/VTable"
+import { VButton } from "@/components/atoms/VButton";
+import { FormLayout } from "@/components/organisms/Dapp/Generator/FormLayout"
+import { VTab, VTabs } from "@/components/atoms/VTabs"
+
 import { BigNumber, ethers } from "ethers";
 
 
@@ -247,6 +253,26 @@ const UsePrevTrades = () => {
         <>
             <div>
                 <button onClick={puller}>button time</button>
+
+                <VTable 
+                  borderWidth={0}
+                  columns={[
+                    {label: 'In', align: 'center'}, 
+                    {label: 'Out', align: 'center'}, 
+                    {label: 'Date', align: 'center'}, 
+                    {label: 'Profit', align: 'center'}
+                  ]} 
+                  data={[
+                    {
+                        0: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
+                        1: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
+                        2: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
+                    3: <p className="text-accent-dark-100 !font-bold">{1}%</p>}
+                    ]}
+                    
+                   
+                  />
+
                 prevtrades
             </div>
         </>
