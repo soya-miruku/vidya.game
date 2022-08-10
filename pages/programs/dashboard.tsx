@@ -23,7 +23,7 @@ const Dashboard = ({}) => {
     <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
       <div className="flex flex-col justify-between items-center py-vsm h-full">
         <div className="px-vsm">
-        <VTitle type='h1'>I am a Dashboard</VTitle>
+        <VTitle type='h1'>I am a dashboard</VTitle>
         <UsePrevTrades/>
       
         <div className='flex flex-col'>

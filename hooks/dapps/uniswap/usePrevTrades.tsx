@@ -254,27 +254,7 @@ const UsePrevTrades = () => {
             <div>
                 <button onClick={puller}>button time</button>
 
-                <VTable 
-                  borderWidth={0}
-                  columns={[
-                    {label: 'TxHash', align: 'center'}, 
-                    {label: 'Token0', align: 'center'}, 
-                    {label: 'Amount', align: 'center'}, 
-                    {label: 'Token1', align: 'center'},
-                    {label: 'Amount', align: 'center'},
-                    {label: 'P&L', align: 'center'}
-
-                  ]} 
-                  data={[
-                    {
-                        0: <p className="text-accent-dark-100 !font-bold">{1}</p>,
-                        1: <p className="text-accent-dark-100 !font-bold">{1}</p>,
-                        2: <p className="text-accent-dark-100 !font-bold">{1}</p>,
-                    3: <p className="text-accent-dark-100 !font-bold">{1}</p>}
-                    ]}
-                    
-                   
-                  />
+               
 
 {
                             tradeArray.map((id, key) => (
@@ -292,7 +272,7 @@ const UsePrevTrades = () => {
                   ]} 
                   data={[
                     {
-                        0: <p className="text-accent-dark-100 !font-bold">{id.txHash}</p>,
+                        0: <p className="text-accent-dark-100 !font-bold">{id.txHash.slice(0,5)+'...'+id.txHash.slice(-4,-1)}</p>,
                         1: <p className="text-accent-dark-100 !font-bold">{id.token0}</p>,
                         2: <p className="text-accent-dark-100 !font-bold">{id.amount0}</p>,
                     3: <p className="text-accent-dark-100 !font-bold">{id.token1}</p>,
