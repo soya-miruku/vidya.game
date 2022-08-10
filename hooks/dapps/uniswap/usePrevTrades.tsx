@@ -257,21 +257,54 @@ const UsePrevTrades = () => {
                 <VTable 
                   borderWidth={0}
                   columns={[
-                    {label: 'In', align: 'center'}, 
-                    {label: 'Out', align: 'center'}, 
-                    {label: 'Date', align: 'center'}, 
-                    {label: 'Profit', align: 'center'}
+                    {label: 'TxHash', align: 'center'}, 
+                    {label: 'Token0', align: 'center'}, 
+                    {label: 'Amount', align: 'center'}, 
+                    {label: 'Token1', align: 'center'},
+                    {label: 'Amount', align: 'center'},
+                    {label: 'P&L', align: 'center'}
+
                   ]} 
                   data={[
                     {
-                        0: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
-                        1: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
-                        2: <p className="text-accent-dark-100 !font-bold">{1}%</p>,
-                    3: <p className="text-accent-dark-100 !font-bold">{1}%</p>}
+                        0: <p className="text-accent-dark-100 !font-bold">{1}</p>,
+                        1: <p className="text-accent-dark-100 !font-bold">{1}</p>,
+                        2: <p className="text-accent-dark-100 !font-bold">{1}</p>,
+                    3: <p className="text-accent-dark-100 !font-bold">{1}</p>}
                     ]}
                     
                    
                   />
+
+{
+                            tradeArray.map((id, key) => (
+                               
+                                    <VTable 
+                  borderWidth={0}
+                  columns={[
+                    {label: 'TxHash', align: 'center'}, 
+                    {label: 'Token0', align: 'center'}, 
+                    {label: 'Amount', align: 'center'}, 
+                    {label: 'Token1', align: 'center'},
+                    {label: 'Amount', align: 'center'},
+                    {label: 'P&L', align: 'center'}
+
+                  ]} 
+                  data={[
+                    {
+                        0: <p className="text-accent-dark-100 !font-bold">{id.txHash}</p>,
+                        1: <p className="text-accent-dark-100 !font-bold">{id.token0}</p>,
+                        2: <p className="text-accent-dark-100 !font-bold">{id.amount0}</p>,
+                    3: <p className="text-accent-dark-100 !font-bold">{id.token1}</p>,
+                    4: <p className="text-accent-dark-100 !font-bold">{id.amount1}</p>,
+                    //  need to do actual math with usd token values here
+                    5: <p className="text-accent-dark-100 !font-bold">{(id.amount0 - id.amount1)}</p>}
+
+                    ]}
+                               /> 
+                            ))
+                        }
+
 
                 prevtrades
             </div>
