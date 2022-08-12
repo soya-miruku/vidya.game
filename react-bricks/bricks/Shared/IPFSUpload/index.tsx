@@ -2,7 +2,11 @@ import React, { useState } from 'react'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { VLabel } from '@/components/atoms/VLabel'
 
-const ipfs = ipfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https' })
+const ipfs = ipfsHttpClient({ host: 'ipfs.infura.io', port: 5001, protocol: 'https', 
+    headers: {
+        'authorization': 'Basic ' + Buffer.from(`${process.env.ipfs_infura_id}:${process.env.ipfs_infura_secret}`).toString('base64')
+    }
+ })
 
 export const FileUpload = ({ setUrl, acceptOnly }) => {
   const [file, setFile] = useState<any>({})
@@ -16,7 +20,7 @@ export const FileUpload = ({ setUrl, acceptOnly }) => {
 
       try {
           const added = await ipfs.add(file)
-          const url = `https://ipfs.infura.io/ipfs/${added.path}`;
+          const url = `https://vidya.infura-ipfs.io/ipfs/${added.path}`;
           setFileUrl(url)
           setUrl(url)
           setUploaded(true)
@@ -35,6 +39,8 @@ export const FileUpload = ({ setUrl, acceptOnly }) => {
   }
 
   const fileAndUploadButton = () => {
+    console.log(process.env.ipfs_infura_id, process.env.ipfs_infura_secret)
+
       if (file.name) {
           if (!loading) {
               return (
