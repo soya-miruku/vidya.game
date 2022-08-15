@@ -56,23 +56,39 @@ export default function PDFViewer({url, initialPageNumber=1, width, height}: IPD
   const canGoNext = useMemo(() => pageNumber < numPages, [pageNumber, numPages]);
   const canGoPrevious = useMemo(() => pageNumber > 1, [pageNumber]);
 
+  const nextPage = (e) => {
+    if(canGoNext) {
+      setPageNumber(pageNumber + 1);
+    }
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
+  const previousPage = (e) => {
+    if(canGoPrevious) {
+      setPageNumber(pageNumber - 1);
+    }
+    e.stopPropagation();
+    e.preventDefault();
+  }
+
   const isDeviceMobile = isMobile || isMobileView || isTablet;
 
   return (
     <div className="w-full flex flex-col justify-center items-center prose gap-y-vmd">
-      <div ref={docRef} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className="relative flex justify-center" {...bind()}>
-        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center" renderMode="canvas">
+      <div ref={docRef} onMouseLeave={onMouseLeave} onMouseMove={onMouseMove} className="relative flex justify-center" {...bind()} style={{height: scale*height}}>
+        <Document file={url} onLoadSuccess={onDocumentLoadSuccess} className="w-full flex justify-center h-full" renderMode="canvas">
           <Page className={scale === 1.5 ? 'hover:cursor-zoom-out' : 'hover:cursor-zoom-in'} onClick={() => {
             !isDeviceMobile && setScale(scale === 1.5 ? 1 : 1.5);
           }} pageNumber={pageNumber} width={width} height={height} scale={scale}/>
         </Document>
         <div ref={navigatorDiv} className="hidden flex-col justify-center items-center z-50 gap-y-vmd bg-accent-dark-200/90 p-vsm rounded-2xl shadow-light-md absolute bottom-2">
           <div className="flex gap-vsm items-center">
-            <button disabled={!canGoPrevious} onClick={() => canGoPrevious && setPageNumber(pageNumber - 1)} className={classNames(canGoPrevious ? 'text-light-200 hover:text-light-400' : 'text-dark-500')}>
+            <button disabled={!canGoPrevious} onClick={previousPage} className={classNames(canGoPrevious ? 'text-light-200 hover:text-light-400' : 'text-dark-500')}>
               <FontAwesomeIcon className="w-7 h-7" icon={faAngleLeft}></FontAwesomeIcon>
             </button >
             <p className="text-light-200 text-body-xs font-bold">Page: {pageNumber} of {numPages}</p>
-            <button disabled={!canGoNext} onClick={() => canGoNext && setPageNumber(pageNumber + 1)} className={classNames(canGoNext ? 'text-light-200 hover:text-light-400' : 'text-dark-500')}>
+            <button disabled={!canGoNext} onClick={nextPage} className={classNames(canGoNext ? 'text-light-200 hover:text-light-400' : 'text-dark-500')}>
               <FontAwesomeIcon className="w-7 h-7" icon={faAngleRight}></FontAwesomeIcon>
             </button>
           </div>

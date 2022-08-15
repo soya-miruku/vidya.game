@@ -22,7 +22,7 @@ const PDFViewUnit: types.Brick<IPDFViewUnitProps> = ({title, pdfUrl, ...sectionP
     <Section {...sectionProps} className="prose">
       <PageViewSize enabled={!sectionProps.bgImage} className="items-center justify-center">
         <VTitle type='h4'>{title}</VTitle>
-        <PDFViewer url={pdfUrl} height={isMobileView ? 640 : 780} width={isMobileView ? innerWidth - 10 : 680}/>
+        <PDFViewer url={pdfUrl} height={isMobileView ? 530 : 880} width={isMobileView ? innerWidth - 10 : 680}/>
         {/* <object data={pdfUrl} width='100%' height={1009} ></object> */}
       </PageViewSize>
     </Section>
