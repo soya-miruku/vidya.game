@@ -69,7 +69,6 @@ const UsePrevTrades = () => {
                         console.log('g', gettx)
 
 
-
                         for (let index = 0; index < recLogs.length; index++) {
                             const log = recLogs[index];
 
@@ -131,6 +130,7 @@ const UsePrevTrades = () => {
                                             let isran = false
                                          //   console.log('t',trade)
                                             //loop here is probably hella ineffecient, lets fix that.... another day
+                                            //its picking up trades in the route,I need to make sure it ignores the whole path and just takes value of token A to b
 
 
 
@@ -138,6 +138,9 @@ const UsePrevTrades = () => {
                                             for (let i = 0; i < tradeArray.length; i++) {
                                                 const element = tradeArray[i];
                                                 
+                                                if(element.txHash === trade.txHash) {
+                                                    isran = true
+                                                }
                                                 if(element.txHash === trade.txHash) {
                                                     isran = true
                                                 }
@@ -253,19 +256,19 @@ const UsePrevTrades = () => {
         <>
             <div>
                 <button onClick={puller}>button time</button>
-
+               
                
 
 {
                             tradeArray.map((id, key) => (
                                
-                                    <VTable 
+                                    <VTable key={key}
                   borderWidth={0}
                   columns={[
                     {label: 'TxHash', align: 'center'}, 
-                    {label: 'Token0', align: 'center'}, 
+                    {label: 'From', align: 'center'}, 
                     {label: 'Amount', align: 'center'}, 
-                    {label: 'Token1', align: 'center'},
+                    {label: 'To', align: 'center'},
                     {label: 'Amount', align: 'center'},
                     {label: 'P&L', align: 'center'}
 
