@@ -3,8 +3,8 @@ import { useContractFunction } from "@usedapp/core"
 import inventoryAbi from '@/contracts/abis/inventoryAbi.json'
 import { useAccount } from "@/hooks/useAccount";
 import { CHAIN_SETTINGS } from "@/contracts/addresses";
-import styles from "@/css/dashboard.scss"
-
+import styles from "@/css/dashboard.module.scss"
+import { classNames } from '@/common/helpers';
 import { ethers } from "ethers";
 
 
@@ -22,10 +22,7 @@ const VidyaAccessories = () => {
     let inventoryCon = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].INVENTORY_ADDRESS, inventoryAbi, library)
    
     
-   const gridItemStyle = {
-    width: "20%", 
-    margin:'auto'
-}
+
    
     const equip = async (e) => {
         if (!library) return;
@@ -128,10 +125,11 @@ const VidyaAccessories = () => {
     return (
         <>
                 <button onClick={puller}>i hold the nfts</button>
-                <div style={gridStyle}>
+                
+                <div className={classNames(styles.dashGridContainer)}>
                 {
                         sortedItems.map((id, key) => (
-                            <div style={gridItemStyle} id={id.id} onClick={equip} key={key}>
+                            <div id={id.id} onClick={equip} key={key}>
 
                                 <img width={40} src={id.image} />
                                 {id.name} {id.id}
