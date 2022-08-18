@@ -137,10 +137,9 @@ const UsePrevTrades = () => {
                                             
                                             for (let i = 0; i < tradeArray.length; i++) {
                                                 const element = tradeArray[i];
+                                                console.log('1',trade.token0,'2',trade.token1)
                                                 
-                                                if(element.txHash === trade.txHash) {
-                                                    isran = true
-                                                }
+                                             
                                                 if(element.txHash === trade.txHash) {
                                                     isran = true
                                                 }
@@ -255,7 +254,7 @@ const UsePrevTrades = () => {
     return (
         <>
             <div>
-                <button onClick={puller}>button time</button>
+                <button onClick={puller}>click me and then dashboard if transactions dont show up, annoying bug not pulling back account on render/load</button>
                
                
 
@@ -281,6 +280,7 @@ const UsePrevTrades = () => {
                     3: <p className="text-accent-dark-100 !font-bold">{id.token1}</p>,
                     4: <p className="text-accent-dark-100 !font-bold">{id.amount1}</p>,
                     //  need to do actual math with usd token values here
+                    // coingecko api isn't prime for history or calls, should probably just do web3 calls at x blocknumber???
                     5: <p className="text-accent-dark-100 !font-bold">{(id.amount0 - id.amount1)}</p>}
 
                     ]}

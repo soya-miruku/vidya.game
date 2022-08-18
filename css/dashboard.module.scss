@@ -1,7 +1,8 @@
 .dashGridContainer {
     display: grid;
-  grid-template-columns: 10rem 10rem 10rem;
+  grid-template-columns: 25% 25% 25%;
   grid-gap: 1rem;
-    align-content: center;
-    margin:auto
+    align-self: center;
+    margin-left:20%;
+ 
   }

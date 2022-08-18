@@ -124,8 +124,9 @@ const VidyaAccessories = () => {
       ] */
     return (
         <>
-                <button onClick={puller}>i hold the nfts</button>
+                <button onClick={puller}>click me if nfts dont load</button>
                 
+                   
                 <div className={classNames(styles.dashGridContainer)}>
                 {
                         sortedItems.map((id, key) => (
