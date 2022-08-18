@@ -43,7 +43,7 @@ const UsePrevTrades = () => {
     }, [])
 
     const puller = async () => {
-
+        console.log('startingPuller')
         if(tradeArray !== []){
         try {
             const preTokenBalance = await vidya.functions.balanceOf('0x6C823b50a599E9cD50AdA67a07031699EdcC31bc')

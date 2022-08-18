@@ -1,25 +1,11 @@
 import { useEffect, useState } from "react"
-import { Contract } from "@ethersproject/contracts"
-import { TransactionStatus, useCall, useContractFunction } from "@usedapp/core"
-import UNISWAP_ROUTER_ABI from "@/contracts/abis/uniswapRouter.json";
-import vidyaabi from '@/contracts/abis/vidyaAbi.json'
+import { useContractFunction } from "@usedapp/core"
 import inventoryAbi from '@/contracts/abis/inventoryAbi.json'
-import { inventoryContract } from "@/contracts/inventory";
-import uniPoolAbi from '@/contracts/abis/uniswapPair.json'
-import { Falsy } from "@usedapp/core/dist/esm/src/model/types";
-import { TokenInfo, TokenListContext } from '@/common/providers/TokenListProvider';
 import { useAccount } from "@/hooks/useAccount";
-import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
-import { formatEther, parseEther, parseUnits } from "@ethersproject/units";
-import { getProvidersFromConfig } from "@usedapp/core/dist/esm/src/providers/network/readonlyNetworks/provider";
-import { toWei } from "web3-utils";
-import { classNames } from "@/common/helpers"
-import { VTable } from "@/components/atoms/VTable"
-import { VButton } from "@/components/atoms/VButton";
-import { FormLayout } from "@/components/organisms/Dapp/Generator/FormLayout"
-import { VTab, VTabs } from "@/components/atoms/VTabs"
+import { CHAIN_SETTINGS } from "@/contracts/addresses";
+import styles from "@/css/dashboard.scss"
 
-import { BigNumber, ethers } from "ethers";
+import { ethers } from "ethers";
 
 
 
@@ -32,10 +18,15 @@ const VidyaAccessories = () => {
     const [chosenItem, setChosenItem] = useState("");
     let [sortedItems, setSortedItems] = useState([]);
     let trades = [];
-    console.log('renderedDashboard')
+    console.log('renderedInventory')
     let inventoryCon = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].INVENTORY_ADDRESS, inventoryAbi, library)
-
-
+   
+    
+   const gridItemStyle = {
+    width: "20%", 
+    margin:'auto'
+}
+   
     const equip = async (e) => {
         if (!library) return;
         try {
@@ -77,7 +68,10 @@ const VidyaAccessories = () => {
             console.log('u', user)
             if (user != undefined) {
                console.log(inventoryCon)
-        let unSortedItems = await inventoryCon.functions.getItemsByOwner(user)
+               //dont forget to change this back when done testing
+               //let unSortedItems = await inventoryCon.functions.getItemsByOwner(user)
+
+        let unSortedItems = await inventoryCon.functions.getItemsByOwner('0x3063d85ab19c6154fca06f5dc7a92502f030751e')
         console.log('uuu',unSortedItems)
         let sortedItems = []
         unSortedItems[0].forEach(element => {
@@ -116,9 +110,7 @@ const VidyaAccessories = () => {
         }
     }
 
-
-
-
+ 
 
 
     /*  const prevTrades = (amount: number, amountOut: number, token1Address: string) => {
@@ -135,22 +127,19 @@ const VidyaAccessories = () => {
       ] */
     return (
         <>
-            <div>
-                <button onClick={puller}>button time</button>
-               
-                <div>
+                <button onClick={puller}>i hold the nfts</button>
+                <div style={gridStyle}>
                 {
                         sortedItems.map((id, key) => (
-                            <div id={id.id} onClick={equip} key={key}>
+                            <div style={gridItemStyle} id={id.id} onClick={equip} key={key}>
 
                                 <img width={40} src={id.image} />
                                 {id.name} {id.id}
                             </div>
                         ))
                     }
-                </div>
 
-                prevtrades
+                
             </div>
         </>
     )

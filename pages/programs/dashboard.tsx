@@ -16,17 +16,21 @@ export interface DashboardProps {
 const Dashboard = ({}) => {
   const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const { isDarkMode } = useDarkMode();
- 
-
+ //we'll change this later, inline styling is bad
+ const divStyle = {
+        color: "white", // camel cased
+        marginTop:'10%'
+   }
 
   return (
     <>
+    <div style={divStyle}>
     <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
       <div className="flex flex-col justify-between items-center py-vsm h-full">
         <div className="px-vsm">
         <VTitle type='h1'>I am a dashboard</VTitle>
+        <VidyaAccessories/>
         <UsePrevTrades/>
-      <VidyaAccessories/>
         <div className='flex flex-col'>
               <PricesSection source='coinGecko'/>
             </div>
@@ -38,6 +42,7 @@ const Dashboard = ({}) => {
         </div>
       </div>
       </Layout>
+      </div>
     </>
   )
 }
