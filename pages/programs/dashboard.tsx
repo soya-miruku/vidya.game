@@ -17,21 +17,20 @@ const Dashboard = ({}) => {
   const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const { isDarkMode } = useDarkMode();
  //we'll change this later, inline styling is bad
- const divStyle = {
-        color: "white", // camel cased
-        marginTop:'10%'
-   }
+let divstyle={
+  color:'white'
+ }
 
   return (
     <>
-    <div style={divStyle}>
+    <div style={divstyle}>
     <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
               <PricesSection source='coinGecko'/>
       <div className="flex flex-col justify-between items-center py-vsm h-full">
         <div className="px-vsm">
         <VTitle type='h1'>I am a dashboard</VTitle>
-        <VidyaAccessories/>
-        <UsePrevTrades/>
+       <UsePrevTrades/>
+       <VidyaAccessories/>
         <div className='flex flex-col'>
             </div>
            

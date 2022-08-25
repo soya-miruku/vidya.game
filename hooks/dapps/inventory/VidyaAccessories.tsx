@@ -33,13 +33,15 @@ const VidyaAccessories = () => {
             const vars = 2;
             console.log(vars)
             var pos = 1
-            let unsignedTx = await inventoryCon.populateTransaction.equip(e.target.id, pos)
+            let id = e.target.id
+           /* let unsignedTx = await inventoryCon.populateTransaction.equip(e.target.id, pos)
             console.log(unsignedTx)
             let to = unsignedTx.to
             let data = unsignedTx.data
-            console.log('u', unsignedTx)
-            const { state, send } = useContractFunction(inventoryCon, 'swapExactTokensForTokens', {transactionName: 'swapTokensForTokens'});
-
+            console.log('u', unsignedTx)*/
+            console.log('id',e.target.id,'pos',pos)
+            const { state, send } = useContractFunction(inventoryCon, 'equip', {transactionName: 'equip'});
+          //  send(1,1)
             // library.provider = ethereum
            
 
@@ -126,11 +128,12 @@ const VidyaAccessories = () => {
         <>
                 <button onClick={puller}>click me if nfts dont load</button>
                 
+                
                    
-                <div className={classNames(styles.dashGridContainer)}>
+                <div className={classNames( styles.dashGridContainer)}>
                 {
                         sortedItems.map((id, key) => (
-                            <div id={id.id} onClick={equip} key={key}>
+                            <div id={id} onClick={equip} key={key} >
 
                                 <img width={40} src={id.image} />
                                 {id.name} {id.id}
