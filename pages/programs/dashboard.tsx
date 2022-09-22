@@ -9,6 +9,7 @@ import { BasicCard, IBasicCardProps } from "@/components/molecules/BasicCard"
 import { PricesSection, IPricesSectionProps } from '@/components/organisms/pricesSection';
 import  UsePrevTrades  from "@/hooks/dapps/uniswap/usePrevTrades"
 import VidyaAccessories from "@/hooks/dapps/inventory/VidyaAccessories";
+import FirstChart from "@/hooks/dapps/dashboard/firstChart";
 export interface DashboardProps {
 
 }
@@ -24,6 +25,7 @@ let divstyle={
   return (
     <>
     <div style={divstyle}>
+      <FirstChart/>
     <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
               <PricesSection source='coinGecko'/>
       <div className="flex flex-col justify-between items-center py-vsm h-full">
