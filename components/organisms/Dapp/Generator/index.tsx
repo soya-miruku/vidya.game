@@ -263,7 +263,7 @@ export const GeneratorDapp = ({}) => {
                       </FormLayout>
                     </div>
                   </VTab>
-                  <VTab title="withdraw" description="Widthdraw tokens from platform.">
+                  <VTab title="withdraw" description="Widthdraw tokens from the platform.">
                     <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">
                       <FormLayout 
                           buttonText="Withdraw"
