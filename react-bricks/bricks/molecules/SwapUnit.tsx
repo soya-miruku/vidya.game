@@ -28,8 +28,8 @@ const SwapUnit: types.Brick<ISwapUnit> = ({ defaultToken0, defaultToken1, ...sec
               <VRBTitle textAlign='left' overrideTextColor type='h5' className='font-roboto font-normal tracking-normal leading-tight normal-case' propName='pageSubtitle'></VRBTitle>
             </div>
           </div>
-          <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-x-[70px] flex-wrap'>
-            <SwapSection showBorder={true} className='py-8 pb-12 px-2' defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
+          <div className='w-full h-full flex flex-row-reverse items-center justify-center sm:pt-12 pt-2 gap-vmd flex-wrap'>
+            <SwapSection showBorder={true} defaultToken0={defaultToken0?.toLocaleUpperCase()} defaultToken1={defaultToken1?.toLocaleUpperCase()}></SwapSection>
             <ProgramListSection/>
           </div>
         </div>

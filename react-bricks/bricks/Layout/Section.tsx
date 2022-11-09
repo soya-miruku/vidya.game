@@ -110,7 +110,7 @@ const Section: React.FC<SectionProps> = ({
   const getHeight = height ? (height === '100vh' && isMobileView) ? '99%'  : height : 'auto';
   return (
     <div style={{
-      width: (bgColor !== 'transparent' && rounded !== 'none') ? '95%' : '100%',
+      width: (bgColor !== 'transparent' && rounded !== 'none') ? '85%' : '100%',
       backgroundColor: tiltDegree <= -360 && bgColor, 
       minHeight: getHeight,
       height: getHeight,
@@ -170,7 +170,7 @@ const Section: React.FC<SectionProps> = ({
           className={
             classNames(
               'flex flex-col gap-x-2 gap-y-3 flex-wrap justify-center items-center',
-              'transition-opacity duration-[800ms]', inView? 'opacity-1' : 'opacity-0',
+              // 'transition-opacity duration-[800ms]', inView? 'opacity-1' : 'opacity-0',
               className, 'overflow-hidden', 'w-full',
               rounded === 'none' ? 'rounded-[0px]' : rounded === 'sm' ? 'rounded-sm w-[99%] m-auto' : rounded === 'md' ? 'rounded-lgr w-[99%] m-auto' : 'rounded-lxl w-[99%] m-auto',
             )

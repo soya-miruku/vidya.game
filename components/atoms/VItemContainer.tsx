@@ -1,7 +1,7 @@
 import React from 'react';
 import { classNames } from '@/common/helpers';
 
-export type VItemContainerSize = 'none' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v1xl' | 'v2xl' | 'full';
+export type VItemContainerSize = 'none' | 'auto' | 'vxxs' | 'vxs' |'vsm' | 'vmd' | 'vhlf' | 'vlg' | 'vxl' | 'vhxl' | 'v1xl' | 'v2xl' | 'full';
 
 export interface ItemContainerProps {
   children?: React.ReactNode;
@@ -47,6 +47,8 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
         return {class: isHeight ? 'min-h-vxl max-h-v1xl' : 'max-w-v1xl'};
       case 'full':
         return {class: isHeight ? 'h-full min-h-full' : 'w-full min-w-full'};
+      case 'auto':
+        return {class: isHeight ? 'h-auto' : 'w-auto'};
       default:
         return {class: isHeight ? 'h-auto min-h-auto max-h-auto' : 'w-vsm min-w-vsm max-w-vsm'};
     }
@@ -86,7 +88,7 @@ export const VItemContainer: React.FC<ItemContainerProps> = ({ center=false, dro
       roundedTop ? '' : 'rounded-t-[0px]',
       roundedLeft ? '' : 'rounded-l-[0px]',
       roundedRight ? '' : 'rounded-r-[0px]',
-      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-250 text-dark-200 dark:text-light-100 backdrop-blur-lg',
+      showBorder ? 'border-[2px] dark:border-dark-300 border-light-300 px-vsm' : 'dark:bg-dark-300 bg-light-300 text-dark-200 dark:text-light-100 backdrop-blur-lg',
       showBorderBottom ? 'pb-vsm' : 'border-b-[0px]',
       showBorderLeft ? '' : 'border-l-[0px]',
       showBorderRight ? '' : 'border-r-[0px]',

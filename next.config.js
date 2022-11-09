@@ -13,6 +13,7 @@ module.exports = {
   env: {
     infuraId: process.env.INFURA_ID,
     alchemyApiKey: process.env.ALCHEMY_API_KEY,
+    goerliAlchemyApiKey: process.env.GOERLI_ALCHEMY_API_KEY,
     ipfs_infura_id: process.env.IPFS_INFURA_ID,
     ipfs_infura_secret: process.env.IPFS_INFURA_SECRET,
   },

@@ -74,7 +74,7 @@ export const ProgramModalEntry = ({onClose}) => {
 
   if(slug === 'generator'){
     return (
-      <ProgramModalWrapper headerBackgroundColor="#0d0d0d" title="Program: Generator" description="The VIDYA Staking platform rewards the best performing stakers with a portion of the total VIDYA supply. The rewards are calculated based on the total amount of VIDYA staked in the network." onClose={onClose}>
+      <ProgramModalWrapper headerBackgroundColor="#0d0d0d" title="Program: Generator" description="Stake your VIDYA or LP tokens to earn from the rewards pool over time. Rewards are calculated based on the rewards pool balance and total amount of tokens staked by users." onClose={onClose}>
         <GeneratorDapp/>
       </ProgramModalWrapper>
     )

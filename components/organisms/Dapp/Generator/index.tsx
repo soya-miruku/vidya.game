@@ -170,17 +170,16 @@ export const GeneratorDapp = ({}) => {
                     {
                     0: <p>{currentPool.deposited.toFixed(3)}</p>,
                     1: <p>{currentPool.amountCommitted.toFixed(3)}</p>,
-                    2: <div className={classNames('flex flex-col justify-center gap-[2px]', currentPool.claimAmount > 0 ? 'items-center' : ' items-start')}>
+                    2: <div className={classNames('flex flex-col justify-center items-center gap-[2px]')}>
                           <div className="flex gap-[4px] items-center">
                             <p>{currentPool.claimAmount.toFixed(4)}</p> 
-                            {currentPool.claimAmount > 0 && <VButton onClick={(_) => {
+                            {(currentPool.claimAmount > 0) && <VButton onClick={(_) => {
                               claimReward();
                             }} type='button' isLoading={isPendingClaimingRewards} className="!p-0 font-bold outline-none border-none focus:outline-none text-accent-dark-200 uppercase border-[1px] text-body-xs px-2 border-light-100 hover:border-accent-dark-100/50 rounded-lg">
                             Claim
                           </VButton>}
                           </div>
                           {currentPool.remainingUnlockTime > 0 && <p className='text-accent-dark-100'>{countdown}</p>}
-              
                         </div>,
                     3: <p className="text-accent-dark-100 !font-bold">{currentPool.apr.toFixed(3)}%</p>}
                     ]}
@@ -189,7 +188,7 @@ export const GeneratorDapp = ({}) => {
                 {claimRewardError && <p className="text-aimbotsRed-100 w-ful text-center">{claimRewardError}</p>}
                 {isClaimedRewardsSuccess && <p className="text-aimbotsGreen-100 w-full text-center">Successfully Claimed!</p>}
                 <VTabs defaultActiveIndex={0}>
-                  <VTab description='stake tokens to earn rewards' title={'stake'}>
+                  <VTab description='Stake tokens to earn rewards.' title={'stake'}>
                     <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">
                       <div className="w-full flex gap-vmd items-center">
                         <VButton onClick={() => {
@@ -264,7 +263,7 @@ export const GeneratorDapp = ({}) => {
                       </FormLayout>
                     </div>
                   </VTab>
-                  <VTab title="withdraw" description="Widthdraw Tokens from platform">
+                  <VTab title="withdraw" description="Widthdraw tokens from platform.">
                     <div className="w-full flex flex-col justify-center items-start gap-vmd text-center">
                       <FormLayout 
                           buttonText="Withdraw"

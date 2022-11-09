@@ -28,7 +28,7 @@ export const useGetUserInfo = (currentPool: IPoolState) => {
 
   useEffect(() => {
     if(!library || !currentPool || !user) return;
-    const contract = new Contract(currentPool.teller, TELLER_ABI, library.getSigner());
+    const contract = new Contract(currentPool.teller, TELLER_ABI, (library as any)?.getSigner());
     contract.getUserInfo(user).then(res => {
       setResults(res);
     }).catch(err => {
