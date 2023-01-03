@@ -261,6 +261,7 @@ export const GeneratorDapp = ({}) => {
                         {isCommitSuccess && <p className="text-aimbotsGreen-100 w-full">Successfully Committed </p>}
                         {isBreakCommitmentSuccess && <p className="text-aimbotsGreen-100 w-full">Commitment Successfully Broken</p>}
                       </FormLayout>
+                      
                     </div>
                   </VTab>
                   <VTab title="withdraw" description="Widthdraw tokens from the platform.">
