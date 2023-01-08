@@ -65,7 +65,7 @@ export const ProgramListSection: React.FC<IProgramListSectionProps> = ({limit=10
   });
   
   return (
-    <div className='w-full h-[380px] py-vmd px-vmd border-[1px] mx-2 rounded-lgr border-light-300/20 backdrop-blur-sm' style={{maxWidth: totalWidth}} {...bind()}>
+    <div className='bg-light-100/[3%] w-full h-[380px] py-vmd px-vmd border-[1px] mx-2 rounded-lgr border-light-300/20 backdrop-blur-sm' style={{maxWidth: totalWidth}} {...bind()}>
       <CarouselV2 slides={cards} goToSlide={goToSlide} showNavigation={false} offsetRadius={50} animationConfig={config.gentle}/>
     </div>
   )

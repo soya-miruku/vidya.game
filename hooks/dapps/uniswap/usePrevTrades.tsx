@@ -10,14 +10,13 @@ import { useAccount } from "@/hooks/useAccount";
 import { CHAIN_SETTINGS, ETH_ADDRESS } from "@/contracts/addresses";
 import { formatEther, parseEther, parseUnits } from "@ethersproject/units";
 import { getProvidersFromConfig } from "@usedapp/core/dist/esm/src/providers/network/readonlyNetworks/provider";
-import { toWei } from "web3-utils";
 import { classNames } from "@/common/helpers"
 import { VTable } from "@/components/atoms/VTable"
 import { VButton } from "@/components/atoms/VButton";
 import { FormLayout } from "@/components/organisms/Dapp/Generator/FormLayout"
 import { VTab, VTabs } from "@/components/atoms/VTabs"
 import { BigNumber, ethers } from "ethers";
-import CSV from "@/hooks/dapps/dashboard/VidyapriceHistory"
+//import CSV from "@/hooks/dapps/dashboard/VidyapriceHistory"
 
 
 
@@ -43,7 +42,7 @@ const UsePrevTrades = () => {
 
     const puller = async () => {
         console.log('startingPuller')
-        if(tradeArray !== []){
+        if(tradeArray.length < 1){
         try {
             const preTokenBalance = await vidya.functions.balanceOf('0x6C823b50a599E9cD50AdA67a07031699EdcC31bc')
             console.log(preTokenBalance)

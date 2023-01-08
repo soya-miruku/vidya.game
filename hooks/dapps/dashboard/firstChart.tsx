@@ -34,7 +34,7 @@ const FirstChart = () => {
 
     const puller = async () => {
 
-        if(sortedItems !== []){
+        if(sortedItems.length < 2){
         try {
            
             const response = pastEthPrices

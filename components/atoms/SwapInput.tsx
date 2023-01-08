@@ -57,9 +57,9 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
 
   return(
     <div ref={divRef} className={classNames('w-full flex flex-row justify-end items-center rounded-[15px]', 
-      disabled ? 'dark:bg-dark-200 bg-light-300 text-gray-400': 'dark:bg-dark-100 bg-light-100 text-dark-100 dark:text-light-100')}>
+      disabled ? 'opacity-50': '', 'dark:bg-dark-100 bg-light-100 text-dark-100 dark:text-light-100')}>
       <div className='flex flex-col w-full px-[20px] py-[12px] min-h-[70px] gap-y-0 rounded-[15px]'>
-        <NumberInput className={classNames('w-full disabled:dark:bg-dark-200 disabled:bg-light-300 selection:bg-accent-dark-600 dark:bg-dark-100 bg-light-100 text-2xl focus:outline-none')} 
+        <NumberInput className={classNames('w-full bg-transparent text-2xl focus:outline-none')} 
           id={id} disabled={disabled} min={min} max={balance} placeholder={placeholder} value={value} onWheel={(e) => e.target.blur()} 
           onChange={(e) => {
             const value = e.target.value;
@@ -98,7 +98,7 @@ export const SwapInput: React.FC<ISwapInputProps> = ({id, label='Balance', balan
             {renderLogo()}
           </div>
           <h6 className='font-normal text-dark-100 dark:text-light-100'>{ !coinSymbol ? 'null' : coinSymbol?.length > 5 ? `${coinSymbol.slice(0,3)}..` : `${coinSymbol}  `}</h6>
-          {onSelectCoin ?  <button type='button' onClick={onSelectCoin} ><span className='-ic-chevron text-accent-dark-200 w-[20px] h-[12px]'></span></button>: <div className='w-1'></div>}
+          {onSelectCoin ?  <button disabled={disabled} type='button' onClick={onSelectCoin} ><span className='-ic-chevron text-accent-dark-200 w-[20px] h-[12px]'></span></button>: <div className='w-1'></div>}
         </div>
     </div>
   )

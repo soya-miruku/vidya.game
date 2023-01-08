@@ -61,7 +61,7 @@ const VidyaAccessories = () => {
 
     const puller = async () => {
 
-        if(sortedItems !== []){
+        if(sortedItems.length < 2){
         try {
            
             console.log('u', user)

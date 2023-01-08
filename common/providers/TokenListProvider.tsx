@@ -1,6 +1,6 @@
-import { useEffect, useReducer, useState, useMemo, createContext } from 'react';
-import { toChecksumAddress } from 'web3-utils';
+import { useEffect, useReducer, useMemo, createContext } from 'react';
 import { useTokenList } from '@usedapp/core';
+import { utils } from 'ethers';
 import { ETH_ICON, SOURCES } from '@/common/constants';
 import { useAccount } from '@/hooks/useAccount';
 import { ETH_ADDRESS } from '@/contracts/addresses';
@@ -96,7 +96,7 @@ const preprocessTokenList = (tokenList: TokenInfo[], active=true) => {
     let url = token?.logoURI; 
     
     if(!url) {
-      url = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${toChecksumAddress(token.address)}/logo.png`
+      url = `https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/${utils.getAddress(token.address)}/logo.png`
     }
     
     if(url.includes('ipfs://')) {

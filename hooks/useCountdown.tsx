@@ -30,7 +30,10 @@ export const useCountdown = (deadline: number) => {
   useEffect(() => {
     if(deadline <= 0) return;
     requestRef.current = requestAnimationFrame(showTime);
-    return () => cancelAnimationFrame(requestRef.current);
+    return () => {
+      cancelAnimationFrame(requestRef.current);
+      remaining.current = 0;
+    };
   }, [deadline]);
 
   return [countdown, remaining]

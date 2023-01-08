@@ -32,31 +32,31 @@ export interface ICallHeroUnitProps extends SectionProps {
 const CallHeroUnit: types.Brick<ICallHeroUnitProps> = ({ imagePosition, alignText, headerButtons, ...sectionProps }) => {
   const { isMobileView } = useDetectIsMobileView();
   const hasBg = (!!sectionProps.bgImage || sectionProps.bg.color !== 'transparent');
+
   return (
     <Section {...sectionProps} className="flex justify-center items-center">
       <PageViewSize enabled={!sectionProps.bgImage}>
-        <div className={classNames('max-w-page w-full h-full flex flex-row justify-center p-0', 'prose')}>
+        <div className={classNames('w-full h-full flex flex-row justify-between p-0', 'prose')}>
           <div className='w-auto h-full p-0'>
-            <div className={classNames('h-full', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center`, alignText === 'start' ? 'items-start' : alignText === 'center' ? 'items-center' : 'items-end')}>
-            <ParallaxWrapper disabled={isMobileView} translateX={imagePosition === 'left' ? [-15, 0] : [15, 0]} shouldAlwaysCompleteAnimation>
-              <div className='sm:max-w-[790px] w-full h-full flex justify-center z-10 p-vsm'>
-                  <Image
-                    propName="image"
-                    alt="image"
-                    useWebP={true}
-                    useNativeLazyLoading={true}
-                    renderWrapper={({ children }) => {
-                      return (
-                        <div className={'w-full h-full min-w-[200px] min-h-[200px]'}>
-                          {children}
-                        </div>
-                      )
-                    }}
-                    imageClassName="h-full w-full mb-0 ml-2"
-                  />
-              </div>
-            </ParallaxWrapper>
-            <div className="sm:w-[60%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vsm">
+            <div className={classNames('h-full gap-vxl', `flex ${imagePosition === 'right' ? 'sm:flex-row-reverse flex-col': 'sm:flex-row flex-col'} justify-center`, alignText === 'start' ? 'items-start' : alignText === 'center' ? 'items-center' : 'items-end')}>
+              {/* <div className=''> */}
+                <Image
+                  propName="image"
+                  alt="image"
+                  useWebP={true}
+                  useNativeLazyLoading={true}
+                  renderWrapper={({ children }) => {
+                    return (
+                      <div className={'sm:w-[50%] w-full h-full flex justify-center z-10 p-vsm'}>
+                        {children}
+                      </div>
+                    )
+                  }}
+                  // containerClassName="sm:w-[45%] flex justify-center z-10 p-vsm w-full h-full"
+                  imageClassName="h-full w-full mb-0"
+                />
+              {/* </div> */}
+            <div className="sm:w-[50%] w-full h-full p-vmd flex flex-col justify-center items-center z-10 gap-vsm">
                 <Repeater propName='badgeLabels' itemProps={{
                   hasBg
                 }} renderWrapper={(items) => {

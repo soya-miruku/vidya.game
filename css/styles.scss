@@ -198,3 +198,8 @@ html.dark {
 .toolbar {
   top: 2rem!important;
 }
+
+.react-pdf__Page.prevPage {
+  position: absolute !important;
+  z-index: 1;
+}

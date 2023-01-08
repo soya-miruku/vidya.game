@@ -50,10 +50,10 @@ const dappConfig: Config = {
   readOnlyChainId: Mainnet.chainId,
   readOnlyUrls: {
     [Mainnet.chainId]: process.env.alchemyApiKey ? `https://eth-mainnet.alchemyapi.io/v2/${process.env.alchemyApiKey}` : getDefaultProvider('mainnet'),
-    [Ropsten.chainId]: process.env.infuraId ? `https://ropsten.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('ropsten'),
-    [Rinkeby.chainId]: process.env.infuraId ? `https://rinkeby.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('rinkeby'),
-    [Goerli.chainId] : process.env.infuraId ? `https://goerli.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('goerli'),
-    [Kovan.chainId] : process.env.infuraId ? `https://kovan.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('kovan'),
+    // [Ropsten.chainId]: process.env.infuraId ? `https://ropsten.infura.io/v3/${process.env.infuraId}` : getDefaultProvider('ropsten'),
+    // [Rinkeby.chainId]: getDefaultProvider('rinkeby'),
+    [Goerli.chainId]: process.env.goerliAlchemyApiKey ? `https://eth-goerli.g.alchemy.com/v2/${process.env.goerliAlchemyApiKey}`  : getDefaultProvider('goerli'),
+    // [Kovan.chainId]: getDefaultProvider('kovan'),
   },
   refresh: 'everyBlock',
   fastMulticallEncoding: true

@@ -44,7 +44,7 @@ const VRBPdfItem: types.Brick<IVRBPdfItemrops> = ({
           opacity: isOpen ? 1 : 0
         }} className={isOpen ? 'dark:bg-dark-300 bg-light-300 rounded-b-xl' : 'hidden'}>
           <div className="p-5 font-light ">
-            <PDFViewer url={pdfUrl} height={isMobileView ? 640 : 780} width={isMobileView ? innerWidth - 80 : 680}/>
+            <PDFViewer url={pdfUrl} height={isMobileView ? 480 : 955} width={isMobileView ? innerWidth - 80 : 680}/>
           </div>
         </motion.div>
       </div>
