@@ -11,7 +11,7 @@
   <h4 align="center" style="color:#c574e8">$VIDYA</h4>
   <br/>
   <p align="center">
-   Cramer Coin is aimed at inversing Jim Cramer in a fun manner. The project gives access to a suite of tools to do so and also donates to charitable causes.
+
     <br />
     <br/>
     <a style="color:#c574e8" href="https://vidya.game">Website</a>
