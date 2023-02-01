@@ -11,7 +11,6 @@
   <h4 align="center" style="color:#c574e8">$VIDYA</h4>
   <br/>
   <p align="center">
-
     <br />
     <br/>
     <a style="color:#c574e8" href="https://vidya.game">Website</a>
