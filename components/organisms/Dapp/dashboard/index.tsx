@@ -1,51 +1,31 @@
 import { SwapInput } from "@/components/atoms/SwapInput"
-import { VItemContainer } from "@/components/atoms/VItemContainer"
-import { VTitle } from "@/components/atoms/VTitle"
-import Layout from "@/components/layout"
+import { useEffect, useState } from "react"
 import { cleanPage, PageViewer, ReactBricksContext } from "react-bricks";
 import { useDarkMode } from "@/hooks/useDarkMode";
 import { useContext } from "react";
-import { BasicCard, IBasicCardProps } from "@/components/molecules/BasicCard"
-import { PricesSection, IPricesSectionProps } from '@/components/organisms/pricesSection';
-import  UsePrevTrades  from "@/hooks/dapps/uniswap/usePrevTrades"
-import VidyaAccessories from "@/hooks/dapps/inventory/VidyaAccessories";
-import FirstChart from "@/hooks/dapps/dashboard/firstChart";
-export interface DashboardProps {
+import { useAccount } from "@/hooks/useAccount";
+import Dashboard from "pages/programs/dashboard"
 
-}
 
-const Dashboard = ({}) => {
+function DashboardIndex(props:any)  {
   const { pageTypes, bricks } = useContext(ReactBricksContext)  
   const { isDarkMode } = useDarkMode();
+  const { chainId, user, library } = useAccount();
+  const [userProp, setUserProp] = useState(user)
+  
+  useEffect(() => {
+   console.log('dashboard index', library)
+    console.log('uuu',userProp)
+  }, [library])
+  
  //we'll change this later, inline styling is bad
-let divstyle={
-  color:'white'
- }
+
 
   return (
     <>
-    <div style={divstyle}>
-      <FirstChart/>
-    <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
-              <PricesSection source='coinGecko'/>
-      <div className="flex flex-col justify-between items-center py-vsm h-full">
-        <div className="px-vsm">
-        <VTitle type='h1'>I am a dashboard</VTitle>
-       <UsePrevTrades/>
-       <VidyaAccessories/>
-        <div className='flex flex-col'>
-            </div>
-           
-         
-        </div>
-        <div>
-          
-        </div>
-      </div>
-      </Layout>
-      </div>
+    <Dashboard/>
     </>
   )
 }
 
-export default Dashboard
+export default DashboardIndex

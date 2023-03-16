@@ -10,15 +10,21 @@ import { ethers } from "ethers";
 
 
 
-const VidyaAccessories = () => {
-    const { chainId, user, library } = useAccount();
-    console.log('l', library)
+const VidyaAccessories = (props:any) => {
+
+
+
+    const [user, setUser] = useState(props.user)
+    const [library, setLibrary] = useState(props.library)
+    const [chainId, setChainId] = useState(props.chainId)
+    const [isAuthenticated, setIsAuthenticated] = useState(props.isAuthenticated)
+    console.log('renderedaccesso')
+    console.log('VA', props.library, props.user)
     const [data, setData] = useState([]);
     const [accBal, setBalance] = useState("");
     const [chosenItem, setChosenItem] = useState("");
     let [sortedItems, setSortedItems] = useState([]);
     let trades = [];
-    console.log('renderedInventory')
     let inventoryCon = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].INVENTORY_ADDRESS, inventoryAbi, library)
    
     
@@ -59,55 +65,40 @@ const VidyaAccessories = () => {
         puller();
     }, [])
 
+
+
     const puller = async () => {
-
-        if(sortedItems.length < 2){
-        try {
-           
-            console.log('u', user)
-            if (user != undefined) {
-               console.log(inventoryCon)
-               //dont forget to change this back when done testing
-               //let unSortedItems = await inventoryCon.functions.getItemsByOwner(user)
-
-        let unSortedItems = await inventoryCon.functions.getItemsByOwner('0x3063d85ab19c6154fca06f5dc7a92502f030751e')
-        console.log('uuu',unSortedItems)
-        let sortedItems = []
-        unSortedItems[0].forEach(element => {
-            let sortedNum = ethers.utils.formatUnits(element, 0)
-            console.log(sortedNum)
-
-            async function pullUri() {
-                let uri = await inventoryCon.functions.tokenURI(sortedNum)
-                const response = await fetch(uri)
-                const data = await response.json();
-
-                data["id"] = sortedNum;
-
-
-                sortedItems.push(data);
-                if (sortedItems.length == unSortedItems[0].length) {
-                    console.log(sortedItems)
-                    setSortedItems(sortedItems)
+        if (sortedItems.length < 2) {
+            try {
+                if (props.user && props.library) {
+                    console.log('VAPULLER')
+                    let unSortedItems = await inventoryCon.functions.getItemsByOwner('0x3063d85ab19c6154fca06f5dc7a92502f030751e');
+                    let sortedItems2 = [];
+                    
+                    await Promise.all(unSortedItems[0].map(async (element) => {
+                        let sortedNum = ethers.utils.formatUnits(element, 0);
+                        let uri = await inventoryCon.functions.tokenURI(sortedNum);
+                        const response = await fetch(uri);
+                        const data = await response.json();
+                        data["id"] = sortedNum;
+                        sortedItems2.push(data);
+                    }));
+                    
+                    setSortedItems(sortedItems2);
                 }
-
-
+            } catch (error) {
+                console.log('lil broken',error)
             }
-            pullUri();
-
-        });
-        console.log('s', sortedItems)
-           
-
-            }
-        
-        } catch (error) {
-            console.log('lil broken',error)
-        }}
-        else{
-            console.log('already ran')
+        } else {
+            console.log('already ran');
         }
     }
+
+
+
+
+
+    
 
  
 
@@ -126,7 +117,7 @@ const VidyaAccessories = () => {
       ] */
     return (
         <>
-                <button onClick={puller}>click me if nfts dont load</button>
+                <button onClick={puller}>accessories click me if nfts dont load</button>
                 
                 
                    

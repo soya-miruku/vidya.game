@@ -16,42 +16,55 @@ import { VButton } from "@/components/atoms/VButton";
 import { FormLayout } from "@/components/organisms/Dapp/Generator/FormLayout"
 import { VTab, VTabs } from "@/components/atoms/VTabs"
 import { BigNumber, ethers } from "ethers";
+import VidyaAccessories from "../inventory/VidyaAccessories";
 //import CSV from "@/hooks/dapps/dashboard/VidyapriceHistory"
 
 
 
-const UsePrevTrades = () => {
-    const { chainId, user, library } = useAccount();
-    console.log('l', library)
+function UsePrevTrades(props:any) {
+
     const [data, setData] = useState([]);
     const [accBal, setBalance] = useState("");
-    let [tradeArray, settradeArray] = useState([]);
-    let trades = [];
+    const [tradeArray, settradeArray] = useState([]);
+    const [trades, setTrades] = useState([])
+    const [user, setUser] = useState(props.user)
+    const [library, setLibrary] = useState(props.library)
+    const [chainId, setChainId] = useState(props.chainId)
+    const [rendered, setRendered] = useState(false)
+    console.log('upt', props)
     console.log('renderedDashboard')
    
-    let vidya = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].VIDYA_TOKEN_ADDRESS, vidyaabi, library)
+
+
+
+  
 
     useEffect(() => {
+        
         /* const pullData = async () => useCall(CHAIN_SETTINGS[chainId || 1].VIDYA_TOKEN_ADDRESS && {
              contract: new Contract(CHAIN_SETTINGS[chainId || 1].VIDYA_TOKEN_ADDRESS, vidyaabi),
              method: 'balanceOf',
              args: ['0x6C823b50a599E9cD50AdA67a07031699EdcC31bc']
            }) */
         puller();
-    }, [])
+    }, [props.user])
 
     const puller = async () => {
+
+
+        if(!tradeArray)
         console.log('startingPuller')
-        if(tradeArray.length < 1){
+        let vidya = new ethers.Contract(CHAIN_SETTINGS[props.chainId || 1].VIDYA_TOKEN_ADDRESS, vidyaabi, props.library)
+        if(tradeArray.length < 1 && props.user){
         try {
             const preTokenBalance = await vidya.functions.balanceOf('0x6C823b50a599E9cD50AdA67a07031699EdcC31bc')
             console.log(preTokenBalance)
             const tokenBn = ethers.BigNumber.from(preTokenBalance[0])
             const tokenBalance = ethers.utils.formatUnits(tokenBn, 18)
-            console.log(tokenBalance)
-            console.log('u', user)
-            if (user != undefined) {
-                const filterTo = vidya.filters.Transfer(null, user);
+            console.log('u', props.user)
+            if (props.user != undefined) {
+             //   const filterTo = vidya.filters.Transfer(null, user);
+             const filterTo = vidya.filters.Transfer(null, '0x0EBcf026946A4de6155961d66D53b0100c6271a1');
                 const allTx = await vidya.queryFilter(filterTo)
                 console.log(allTx)
 
@@ -64,7 +77,7 @@ const UsePrevTrades = () => {
                         const decoder = new ethers.utils.AbiCoder()
                         const gettx = await tx.getTransaction()
                         const txData = await library.getTransaction(tx.transactionHash)
-                        console.log('g', gettx)
+                    //    console.log('g', gettx)
 
 
                         for (let index = 0; index < recLogs.length; index++) {
@@ -98,6 +111,8 @@ const UsePrevTrades = () => {
                                         let token1name = await token1.functions.name()
                                         let token0decimals = await token0.functions.decimals()
                                         let token1decimals = await token1.functions.decimals()
+                                        let isran = false
+
                                     //    console.log('s',token1name)
 
                                         const decode = decoder.decode([
@@ -125,8 +140,8 @@ const UsePrevTrades = () => {
                                                 'amount1': token1in,
                                                 'index': log.logIndex
                                             }
-                                            let isran = false
-                                         //   console.log('t',trade)
+                                           console.log('t',trade)
+                                        
                                             //loop here is probably hella ineffecient, lets fix that.... another day
                                             //its picking up trades in the route,I need to make sure it ignores the whole path and just takes value of token A to b
 
@@ -135,6 +150,7 @@ const UsePrevTrades = () => {
                                             
                                             for (let i = 0; i < tradeArray.length; i++) {
                                                 const element = tradeArray[i];
+                                                console.log('wawa',tradeArray)
                                                 console.log('1',trade.token0,'2',trade.token1)
                                                 
                                              
@@ -143,13 +159,17 @@ const UsePrevTrades = () => {
                                                 }
 
                                             }
-                                                if(isran == false && trade.txHash !== undefined){
-                                                    console.log('tr',trade)
-                                                    tradeArray.push(trade)
-                                                    settradeArray(tradeArray)
+                                                if(isran == false && trade.txHash){
+                                                    console.log('tr2',tradeArray)
+                                                    const localArray = [...tradeArray, trade]
+                                                    console.log('la',localArray) 
+                                                    settradeArray(tradeArray => [...tradeArray, trade])
+
+                                                    console.log('wtf', localArray)
+                                                    console.log('forreal',trade)
                                                 }
-                                            
-                                           
+                                          
+                                                isran = false;
                                            
                                         //    console.log('t', trades)
                                            console.log('ta', tradeArray)
@@ -187,17 +207,23 @@ const UsePrevTrades = () => {
    
                                                }
                                                    if(isran == false && trade.txHash !== undefined){
-                                                       tradeArray.push(trade)
-                                                       settradeArray(tradeArray)
-                                                   }
+                                                    console.log('tr3',tradeArray)
+                                                    const localArray = [...tradeArray, trade]
+                                                    console.log('la3',localArray) 
 
+                                                    settradeArray(tradeArray => [...tradeArray, trade])
+                                                    console.log('wtf3', localArray)
+                                                    console.log('forreal3',trade)
+                                                
+                                                   }
+                        
                                         //    console.log('t', trades)
                                          //   console.log('ta', tradeArray)
                                             //amount0in != 0; token is 0 to 1
                                             console.log(tx.transactionHash)
                                             console.log(`traded ${actualtoken0} ${token0name} to ${actualtoken1} ${token1name}`)
 
-
+                                            isran = false;
                                         }
 
 
@@ -228,7 +254,7 @@ const UsePrevTrades = () => {
             console.log('lil broken',error)
         }}
         else{
-            console.log('already ran')
+      //      console.log('already ran')
         }
     }
 
@@ -236,6 +262,9 @@ const UsePrevTrades = () => {
 
 
 
+    let divStyle={
+        backgroundColor:'red'
+    }
 
     /*  const prevTrades = (amount: number, amountOut: number, token1Address: string) => {
       //  const deadline = getDeadline();
@@ -251,44 +280,46 @@ const UsePrevTrades = () => {
       ] */
     return (
         <>
-            <div>
+           
                 <button onClick={puller}>click me and then dashboard if transactions dont show up, annoying bug not pulling back account on render/load</button>
                
-               
+               <h1>i'm a trade array</h1>
+<div style={divStyle}>
 
 {
-                            tradeArray.map((id, key) => (
-                               
-                                    <VTable key={key}
-                  borderWidth={0}
-                  columns={[
+    tradeArray.map((id, key) => (
+        
+        <VTable key={key}
+        borderWidth={0}
+        columns={[
                     {label: 'TxHash', align: 'center'}, 
                     {label: 'From', align: 'center'}, 
                     {label: 'Amount', align: 'center'}, 
                     {label: 'To', align: 'center'},
                     {label: 'Amount', align: 'center'},
                     {label: 'P&L', align: 'center'}
-
-                  ]} 
-                  data={[
+                    
+                ]} 
+                data={[
                     {
                         0: <p className="text-accent-dark-100 !font-bold">{id.txHash.slice(0,5)+'...'+id.txHash.slice(-4,-1)}</p>,
                         1: <p className="text-accent-dark-100 !font-bold">{id.token0}</p>,
                         2: <p className="text-accent-dark-100 !font-bold">{id.amount0}</p>,
-                    3: <p className="text-accent-dark-100 !font-bold">{id.token1}</p>,
-                    4: <p className="text-accent-dark-100 !font-bold">{id.amount1}</p>,
-                    //  need to do actual math with usd token values here
-                    // coingecko api isn't prime for history or calls, should probably just do web3 calls at x blocknumber???
-                    5: <p className="text-accent-dark-100 !font-bold">{(id.amount0 - id.amount1)}</p>}
-
+                        3: <p className="text-accent-dark-100 !font-bold">{id.token1}</p>,
+                        4: <p className="text-accent-dark-100 !font-bold">{id.amount1}</p>,
+                        //  need to do actual math with usd token values here
+                        // coingecko api isn't prime for history or calls, should probably just do web3 calls at x blocknumber???
+                        5: <p className="text-accent-dark-100 !font-bold">{(id.amount0 - id.amount1)}</p>}
+                        
                     ]}
-                               /> 
-                            ))
-                        }
+                    /> 
+                    ))
+                }
+                </div>
 
 
                 prevtrades
-            </div>
+            
         </>
     )
 }
