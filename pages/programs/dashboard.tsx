@@ -28,21 +28,25 @@ const Dashboard = ({}) => {
 
     
   
-  }, [user])
+  }, [])
   
  //we'll change this later, inline styling is bad
 let divstyle={
   color:'white'
  }
-
+let priceStyle={
+  marginTop:'10%',
+}
  
- //shit loads p fast so nobody will see this anyway
- if(!user){
+ //shit loads p fast so mainly just used for not connected
+ if(!user ){
 return(
   <>
   <div style={divstyle}>
   <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
-            <PricesSection source='coinGecko'/>
+    <div style={priceStyle}>
+      <PricesSection source='coinGecko'/>
+    </div>
     <div className="flex flex-col justify-between items-center py-vsm h-full">
       <div className="px-vsm">
       <VTitle type='h1'>How am I supposed to pull ur shit if ur not connected? {`>:(`}</VTitle>
@@ -65,7 +69,9 @@ return(
     <>
     <div style={divstyle}>
     <Layout displayCallout={false} useDarkFonts={!isDarkMode}>
-              <PricesSection source='coinGecko'/>
+    <div style={priceStyle}>
+      <PricesSection source='coinGecko'/>
+    </div>
       <div className="flex flex-col justify-between items-center py-vsm h-full">
         <div className="px-vsm">
         <VTitle type='h1'>I am a dashboard</VTitle>

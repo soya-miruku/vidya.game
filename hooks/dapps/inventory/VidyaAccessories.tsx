@@ -6,7 +6,7 @@ import { CHAIN_SETTINGS } from "@/contracts/addresses";
 import styles from "@/css/dashboard.module.scss"
 import { classNames } from '@/common/helpers';
 import { ethers } from "ethers";
-
+import useItemEquip from "../dashboard/equip";
 
 
 
@@ -24,30 +24,37 @@ const VidyaAccessories = (props:any) => {
     const [accBal, setBalance] = useState("");
     const [chosenItem, setChosenItem] = useState("");
     let [sortedItems, setSortedItems] = useState([]);
+    const [txStatus, setTxStatus] = useState(null);
+
     let trades = [];
     let inventoryCon = new ethers.Contract(CHAIN_SETTINGS[chainId || 1].INVENTORY_ADDRESS, inventoryAbi, library)
-   
+    const { state, send } = useContractFunction(inventoryCon, 'equip', {transactionName: 'equip'});
     
-
-   
+    
+    
+    
+    
     const equip = async (e) => {
         if (!library) return;
         try {
-
-            setChosenItem(e.target.id)
+          //  console.log('reee',e,'re2',e.id)
+            console.log(e.id)
 
             const vars = 2;
             console.log(vars)
             var pos = 1
-            let id = e.target.id
-           /* let unsignedTx = await inventoryCon.populateTransaction.equip(e.target.id, pos)
-            console.log(unsignedTx)
-            let to = unsignedTx.to
-            let data = unsignedTx.data
-            console.log('u', unsignedTx)*/
-            console.log('id',e.target.id,'pos',pos)
-            const { state, send } = useContractFunction(inventoryCon, 'equip', {transactionName: 'equip'});
-          //  send(1,1)
+            let id = e.id
+          
+              console.log('id',e.id,'pos',pos)
+              const result:any = await send(e.id, pos);
+              if (result.status === "Mining") {
+                setTxStatus("Mining");
+                await result.wait();
+                setTxStatus("Mined");
+              }
+            
+          
+
             // library.provider = ethereum
            
 
@@ -117,14 +124,14 @@ const VidyaAccessories = (props:any) => {
       ] */
     return (
         <>
-                <button onClick={puller}>accessories click me if nfts dont load</button>
                 
-                
+                <h1>I am the accessories</h1>
                    
                 <div className={classNames( styles.dashGridContainer)}>
                 {
                         sortedItems.map((id, key) => (
-                            <div id={id} onClick={equip} key={key} >
+                           
+                            <div id={id}  onClick={() => equip(id)} key={key} >
 
                                 <img width={40} src={id.image} />
                                 {id.name} {id.id}
